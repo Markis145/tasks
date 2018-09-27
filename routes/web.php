@@ -15,9 +15,9 @@
 
 Route::get('/tasks','TasksController@index');
 
-Route::get('/tasks',function() {
-    return view ('tasks');
-});
+//Route::get('/tasks',function() {
+//    return view ('tasks');
+//});
 
 Route::get('/about',function(){
     return view('/about');

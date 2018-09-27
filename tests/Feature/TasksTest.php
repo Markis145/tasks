@@ -9,19 +9,26 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
      * @test
      */
     public function todo()
     {
-        // 1 2 3
         // executar /tasks
         $this->withExceptionHandling();
+
+        //1 prepare
+        Task::create([
+            'name' => 'comprar pa',
+            'completed' => 'false'
+        ]);
+
+        // 2 execute
         $response = $this->get('/tasks');
-//        dd ($response->getContent());
+
+        //3 comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
-//        $this->get('/tasks');
+
+        //comprovar que es veuen les tasques que hi ha a la base de dades
     }
 }
