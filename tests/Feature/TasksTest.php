@@ -82,7 +82,7 @@ class TasksTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        Task::create([
+        $task = Task::create([
             'name' => 'comprar llet'
         ]);
         //2
