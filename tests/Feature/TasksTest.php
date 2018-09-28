@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Task;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,6 +12,8 @@ class TasksTest extends TestCase
     /**
      * @test
      */
+    use RefreshDatabase;
+
     public function todo()
     {
         // executar /tasks
@@ -22,6 +25,7 @@ class TasksTest extends TestCase
             'completed' => 'false'
         ]);
 
+//        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
 
