@@ -32,4 +32,38 @@ class TasksController extends Controller
         return redirect()->back();
     }
 
+    public function update(Request $request)
+    {
+        //Models -> eloquent -> ORM (Hibernate de java)
+//        Task::find($request->id);
+//        if (!Task::find($request->id)) return response (404,'No ho he provat');
+        $task = Task::findOrFail($request->id);
+        $task->name = $request->name;
+        $task->completed = true;
+        $task->save();
+        return redirect('tasks');
+    }
+
+    public function edit(Request $request)
+    {
+        $task = Task::findOrFail($request->id);
+        return view('task_edit',[ 'task' => $task]);
+//        return view('task_edit',compact('task'));
+    }
+
+
 }
+
+//class CompletedTaskController {
+//    //complete
+//    public function store()
+//    {
+//
+//    }
+//
+//    //uncomplete
+//    public function delete()
+//    {
+//
+//    }
+//}
