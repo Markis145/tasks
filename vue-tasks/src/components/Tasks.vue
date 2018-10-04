@@ -1,46 +1,101 @@
 <template>
-    <div>
-        <input type="text"
-               v-model="newTask" @keyup.enter="add">
-        <button @click="add">Afegir</button>
-        <!--{{ newTask}} = echo -->
-        <!--<input :value="newTask" @input="newTask = $event.target.value">-->
+        <div class="container flex justify-center flex-row" >
+            <div class="flex flex-col">
+                <h1 class="text-center text-red-light">Tasques</h1>
+                <input type="text" placeholder="Nova Tasca"
+                       v-model="newTask" @keyup.enter="add"
+                       class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
+                <button @click="add">Afegir</button>
+                <ul>
+                    <li v-for="task in filteredTasks" :key="task.id" >
+                        <span :class="{ strike: task.completed }">{{task.name}}</span>
+                        &nbsp;
+                        <span @click="remove(task)">&#215;</span>
+                    </li>
+                </ul>
 
-        <ul>
-            <!--<li v-for="task in tasks"-->
-                <!--v-if="task.completed"><strike>{{task.name}}</strike></li>-->
-            <!--<li v-else>{{task.name}}</li>-->
-
-            <li v-for="task in tasks" :class="{strike: task.completed}">{{task.name}}</li>
-        </ul>
-    </div>
+                <h3>Filtros</h3>
+                Activa filter: {{ filter }}
+                <ul>
+                    <li><button @click="setFilter('All')">Totes</button></li>
+                    <li><button @click="setFilter('Completed')">Completades</button></li>
+                    <li><button @click="setFilter('Active')">Pendents</button></li>
+                </ul>
+            </div>
+        </div>
 </template>
 
 <script>
+
+    var filters = {
+        all: function(tasks){
+            return tasks
+        } ,
+        completed: function(tasks){
+            return tasks.filter(function (task) {
+                return task.completed
+                // if (task.completed) return true
+                // return false
+            })
+        },
+        active: function(tasks){
+            return tasks.filter(function (task) {
+                return !task.completed
+                // if (!task.completed) return true
+                // return false
+            })
+        },
+    }
     //document.getEkebementById
     export default {
         data(){
             return {
+                filter: 'All', //all completed actual
                 newTask:'',
                 tasks: [
                     {
+                        id: 1,
                         name:'Comprar pa ',
                         completed:false
                     },
                     {
+                        id: 2,
                         name:'Comprar llet ',
                         completed:true
                     },
                     {
+                        id: 3,
                         name:'Estudiar php ',
                         completed:false
                     },
                 ]
             }
         },
+
+        computed: {
+            total(){
+              return this.tasks.length
+            },
+          filteredTasks(){
+              //segons el filtre actiu
+              //alternativa switch/case -> array asociatiu
+              return filters[this.filter](this.tasks)
+          }
+        },
         methods:{
+            setFilter(newFilter){
+              console.log(xivato);
+              console.log(newFilter);
+              this.filter = newFilter
+            },
             add(){
-                console.log('TODO ADD')
+                // console.log('TODO ADD')
+                this.tasks.splice(0,0,{name:this.newTask,completed:false})
+                this.newTask=''
+            },
+            remove(task) {
+                window.console.log(task);
+                this.tasks.splice(this.tasks.indexOf(task),1)
             }
         }
     }
