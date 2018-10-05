@@ -129,7 +129,11 @@
             </div>
             <ul>
                 <li v-for="task in filteredTasks" :key="task.id">
-                    <span :class="{ strike: task.completed }">{{task.name}}</span>
+                    <span :class="{ strike: task.completed }">
+                        <editable-text>
+                            {{task.name}}
+                        </editable-text>
+                    </span>
                     &nbsp;
                     <span @click="remove(task)">&#215;</span>
                 </li>
@@ -151,6 +155,9 @@
 </template>
 
 <script>
+
+import EditableText from './EditableText'
+
     var filters = {
         all:function (tasks) {
             return tasks
@@ -170,6 +177,9 @@
     }
     //document.getEkebementById
     export default {
+    components: {
+      'editable-text': EditableText
+    },
         data() {
             return {
                 filter: 'all', // All Completed Active
