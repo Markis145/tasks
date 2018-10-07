@@ -46,7 +46,7 @@ Route::get('/prova',function(){
 Route::redirect('/hola','/prova');
 
 //COmplete
-Router::post('/completed_task','CompletedTaskController@store');
+Route::post('/completed_task','CompletedTaskController@store');
 
 //uncomplete
-Router::delete('/uncompleted_task','CompletedTaskController@destroy');
+Route::delete('/uncompleted_task','CompletedTaskController@destroy');
