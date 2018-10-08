@@ -249,7 +249,8 @@
                 <li v-for="task in filteredTasks" :key="task.id">
                 <span :class="{ strike: task.completed }">
                     <editable-text
-                            :text="task.name" @edited="editName(task, $event)"
+                            :text="task.name"
+                            @edited="editName(task, $event)"
                     ></editable-text>
                 </span>
                     <span @click="remove(task)">&#215;</span>
@@ -291,6 +292,7 @@
         },
     }
     export default {
+        name: 'Tasks',
         components: {
             'editable-text': EditableText
         },
@@ -298,33 +300,25 @@
             return {
                 filter: 'all', // All Completed Active
                 newTask: '',
-                tasks: [
-                    {
-                        id: 1,
-                        name: 'Comprar pa',
-                        completed: false
-                    },
-                    {
-                        id: 2,
-                        name: 'Comprar llet',
-                        completed: false
-                    },
-                    {
-                        id: 3,
-                        name: 'Estudiar PHP',
-                        completed: true
-                    }
-                ]
+                datatasks: this.tasks
             }
+        },
+        props: {
+          'tasks': {
+              type: Array,
+              default: function(){
+
+              }
+          }
         },
         computed: {
             total() {
-                return this.tasks.length
+                return this.dataTasks.length
             },
             filteredTasks() {
                 // Segons el filtre actiu
                 // Alternativa switch/case -> array associatiu
-                return filters[this.filter](this.tasks)
+                return filters[this.filter](this.dataTasks)
             }
         },
         methods: {
@@ -335,16 +329,16 @@
                 this.filter = newFilter
             },
             add() {
-                this.tasks.splice(0,0,{ name: this.newTask, completed: false } )
+                this.dataTasks.splice(0,0,{ name: this.newTask, completed: false } )
                 this.newTask=''
             },
             remove(task) {
                 window.console.log(task)
-                this.tasks.splice(this.tasks.indexOf(task),1)
+                this.dataTasks.splice(this.dataTasks.indexOf(task),1)
             }
-            // edit(task){
-            //
-            // }
+        },
+        created() {
+            console.log('Component Tasks ha estat creat');
         }
     }
 </script>

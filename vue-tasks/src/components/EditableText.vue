@@ -38,6 +38,9 @@
                 //informat al pare
                 this.$emit('edited',this.currentText)
             }
+        },
+        created() {
+            console.log('Component Tasks ha estat creat');
         }
     }
 </script>
