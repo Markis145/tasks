@@ -31,7 +31,11 @@
                 required : true
             }
         },
-        // props: ['text'],
+        watch: {
+          text(newText){
+              this.currentText = this.text
+          }
+        },
         methods: {
             edit() {
                 this.editing = false

@@ -247,7 +247,7 @@
             <!-- -->
             <ul>
                 <li v-for="task in filteredTasks" :key="task.id">
-                <span :class="{ strike: task.completed }">
+                <span :class="{ strike: task.completed == '1'}">
                     <editable-text
                             :text="task.name"
                             @edited="editName(task, $event)"
@@ -300,14 +300,14 @@
             return {
                 filter: 'all', // All Completed Active
                 newTask: '',
-                datatasks: this.tasks
+                dataTasks: this.tasks
             }
         },
         props: {
           'tasks': {
               type: Array,
               default: function(){
-
+                  return []
               }
           }
         },
@@ -319,6 +319,11 @@
                 // Segons el filtre actiu
                 // Alternativa switch/case -> array associatiu
                 return filters[this.filter](this.dataTasks)
+            }
+        },
+        watch: {
+            tasks(newTasks){
+                this.dataTasks = newTasks
             }
         },
         methods: {
