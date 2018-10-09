@@ -12,8 +12,8 @@
 <body>
 HEADER
 <nav>
-    <ul><li>Tasques amb PHP</li></ul>
-    <ul><li><a href="/tasks_vue">Tasqsues amb VUE</a> </li></ul>
+    <ul><li><a href="/tasks">Tasques amb PHP</a></li></ul>
+    <ul><li><a href="/tasks_vue">Tasques amb VUE</a> </li></ul>
     <ul><li><a href="about">About</a></li></ul>
 
     <ul><li><a href="contact">Contact</a></li></ul>
