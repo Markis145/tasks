@@ -69448,7 +69448,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 var filters = {
@@ -69784,55 +69783,56 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "flex justify-center" }, [
-    _c("div", { staticClass: "flex flex-col" }, [
-      _c("h1", { staticClass: "text-center text-red-light" }, [
-        _vm._v("Tasques(" + _vm._s(_vm.total) + ") ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "flex-row" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.newTask,
-              expression: "newTask"
-            }
-          ],
-          staticClass:
-            "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
-          attrs: { type: "text", placeholder: "Nova Tasca" },
-          domProps: { value: _vm.newTask },
-          on: {
-            keyup: function($event) {
-              if (
-                !("button" in $event) &&
-                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-              ) {
-                return null
-              }
-              return _vm.add($event)
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.newTask = $event.target.value
-            }
-          }
-        }),
+    _c(
+      "div",
+      { staticClass: "flex flex-col" },
+      [
+        _c("h1", { staticClass: "text-center text-red-light" }, [
+          _vm._v("Tasques(" + _vm._s(_vm.total) + ") ")
+        ]),
         _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "text-center text-red", on: { click: _vm.add } },
-          [_vm._v("Afegir")]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "ul",
+        _c("div", { staticClass: "flex-row" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newTask,
+                expression: "newTask"
+              }
+            ],
+            staticClass:
+              "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
+            attrs: { type: "text", placeholder: "Nova Tasca" },
+            domProps: { value: _vm.newTask },
+            on: {
+              keyup: function($event) {
+                if (
+                  !("button" in $event) &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.add($event)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.newTask = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "text-center text-red", on: { click: _vm.add } },
+            [_vm._v("Afegir")]
+          )
+        ]),
+        _vm._v(" "),
         _vm._l(_vm.filteredTasks, function(task) {
-          return _c("li", { key: task.id }, [
+          return _c("div", { key: task.id }, [
             _c(
               "span",
               { class: { strike: task.completed == "1" } },
@@ -69848,10 +69848,11 @@ var render = function() {
               ],
               1
             ),
-            _vm._v(" "),
+            _vm._v("\n             \n            "),
             _c(
               "span",
               {
+                staticClass: "cursor-pointer",
                 on: {
                   click: function($event) {
                     _vm.remove(task)
@@ -69861,21 +69862,19 @@ var render = function() {
               [_vm._v("×")]
             )
           ])
-        })
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("h3", [_vm._v("Filtros:")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(
-        "\n        Filtre emprat -> " + _vm._s(_vm.filter) + "\n\n        "
-      ),
-      _c("ul", [
+        }),
+        _vm._v(" "),
         _c("br"),
         _vm._v(" "),
-        _c("li", [
+        _c("h3", [_vm._v("Filtros:")]),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(
+          "\n        Filtre emprat -> " + _vm._s(_vm.filter) + "\n\n        "
+        ),
+        _c("div", [
+          _c("br"),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -69886,10 +69885,8 @@ var render = function() {
               }
             },
             [_vm._v("Totes")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
+          ),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -69900,10 +69897,8 @@ var render = function() {
               }
             },
             [_vm._v("Completades")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
+          ),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -69916,8 +69911,9 @@ var render = function() {
             [_vm._v("Pendents")]
           )
         ])
-      ])
-    ])
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []
