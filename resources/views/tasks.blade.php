@@ -1,57 +1,67 @@
 @extends('layouts.app')
 
+@section('title')
+    Tasques
+@endsection
 @section('content')
-    <h1>Tasques</h1>
-    {{--Laravel BLade--}}
-    {{--{{ $tasks }}--}}
-    <ul>
-        @foreach ($tasks as $task)
-            @if($task->completed)
-                <li><del>{{ $task->name }}</del>
+    <v-card>
+        <v-toolbar color="cyan" dark>
 
-                    <form action="" method="POST">
-                        @csrf
-                        {{ method_field('PUT') }}
-                        <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <button type="submit">Complete</button>
-                    </form>
+            <v-toolbar-title>Tasques</v-toolbar-title>
+        </v-toolbar>
 
-                    <a href="/task_edit/{{$task->id}}">
-                        <button>Modificar</button>
-                    </a>
+        <v-list>
+
+            <form action="/tasks" method="POST">
+                @csrf
+                <input name="name" type="text" placeholder="Nova tasca" required>
+                <v-btn color="success">
+                    <button>Afegir</button>
+                </v-btn>
+            </form>
+        <?php foreach ($tasks as $task) : ?>
+                    <v-list-tile>
+                    <v-list-tile-avatar>
+                        <img src="https://placeimg.com/100/100/any">
+                    </v-list-tile-avatar>
+                    @if($task->completed)
+                        <del>{{ $task->name }}</del>
 
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <button>Eliminar</button>
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
                     </form>
-                </li>
             @else
-                <li>{{ $task->name }}
+                {{ $task->name }}
 
                     <form action="" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
-                        <button type="submit">Complete</button>
+                        <v-btn color="warning">
+                            <button>Completar</button>
+                        </v-btn>
                     </form>
 
-                    <a href="/task_edit/{{$task->id}}">
+                    <v-btn color="info" href="/task_edit/{{ $task->id }}">
                         <button>Modificar</button>
-                    </a>
+                    </v-btn>
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <button>Eliminar</button>
+                        <v-btn color="error">
+                            <button>Eliminar</button>
+                        </v-btn>
                     </form>
-                </li>
             @endif
-        @endforeach
-    </ul>
+            </v-list-tile>
+            <?php endforeach;?>
 
-    <form action="/tasks" method="POST">
-        @csrf
-        <input name="name" type="text" placeholder="Nova tasca">
-        <button>Afegir</button>
-    </form>
+
+    </v-list>
+
+    </v-card>
     @endsection
