@@ -278,15 +278,16 @@
         },
         completed: function(tasks) {
             return tasks.filter(function (task) {
-                return task.completed
+                //return task.completed
                 // NO CAL
-                // if (task.completed) return true
-                // else return false
+                if (task.completed == '1') return true
+                else return false
             })
         },
         active: function(tasks) {
             return tasks.filter(function (task) {
-                return !task.completed
+                if (task.completed == '0') return true
+                else return false
             })
         },
     }
