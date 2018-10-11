@@ -26,7 +26,6 @@
                     </v-list-tile-avatar>
                     @if($task->completed)
                         <del>{{ $task->name }}</del>
-
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
@@ -36,7 +35,6 @@
                     </form>
             @else
                 {{ $task->name }}
-
                     <form action="" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
@@ -59,9 +57,6 @@
             @endif
             </v-list-tile>
             <?php endforeach;?>
-
-
-    </v-list>
-
+        </v-list>
     </v-card>
 @endsection

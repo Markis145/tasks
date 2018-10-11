@@ -43,7 +43,7 @@
             </v-list-tile>
             <v-list-tile href="/contact">
                 <v-list-tile-action>
-                    <v-icon>account_box</v-icon>
+                    <v-icon>person</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-title>Contact</v-list-tile-title>

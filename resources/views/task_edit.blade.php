@@ -4,6 +4,7 @@
     Editar tasca
 @endsection
 @section('content')
+<h1>Modificar tasca</h1>
 <form action="/tasks/{{$task->id}}" method="POST">
     @csrf
     {{ method_field('PUT') }}
