@@ -9,7 +9,7 @@ class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderBy('created_at','desc')->get();
 
         return view ('tasks',['tasks' => $tasks]);
     }
@@ -47,20 +47,4 @@ class TasksController extends Controller
         return view('task_edit',[ 'task' => $task]);
 //        return view('task_edit',compact('task'));
     }
-
-    public function complete(Request $request)
-    {
-        $task = Task::findOrFail($request->id);
-//        if (!$task->completed = true){
-//            $task->completed = true;
-//            $task->save();
-//        } else {
-//            $task->completed = false;
-//            $task->save();
-//        }
-        if (!$task->completed = true) $task->completed = true; $task->save();
-//        if (!$task->completed = false) $task->completed = false; $task->save();
-        return redirect ('/tasks');
-    }
-
 }

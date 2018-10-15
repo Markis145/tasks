@@ -26,6 +26,15 @@
                     </v-list-tile-avatar>
                     @if($task->completed)
                         <del>{{ $task->name }}</del>
+                    <form action="" method="POST">
+                        @csrf
+                        {{ method_field('PUT') }}
+                        <input type="hidden" name="id" value="{{ $task->id  }}">
+                        <v-btn color="warning">
+                           <button>Completar</button>
+                        </v-btn>
+                    </form>
+
                     <form action="/tasks/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}

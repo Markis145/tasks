@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Feature;
+use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 class CompletedTaskControllerTest extends TestCase {

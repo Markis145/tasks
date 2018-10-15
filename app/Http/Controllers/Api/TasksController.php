@@ -7,7 +7,7 @@ class TasksController extends Controller
 {
     public function index(Request $request)
     {
-        return Task::all();
+        return Task::orderBy('created_at','desc')->get();
     }
     public function show(Request $request, Task $task) // Route Model Binding
     {
