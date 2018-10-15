@@ -69213,241 +69213,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 var filters = {
@@ -69511,16 +69276,43 @@ var filters = {
             this.filter = newFilter;
         },
         add: function add() {
-            this.dataTasks.splice(0, 0, { name: this.newTask, completed: false });
-            this.newTask = '';
+            var _this = this;
+
+            axios.post('/api/v1/tasks', {
+                name: this.newTask
+            }).then(function (response) {
+                _this.dataTasks.splice(0, 0, { id: response.data.id, name: _this.newTask, completed: false });
+                _this.newTask = '';
+            }).catch(function (error) {
+                console.log(response);
+            });
         },
         remove: function remove(task) {
+            var _this2 = this;
+
+            axios.delete('/api/v1/tasks/' + task.id).then(function (response) {
+                _this2.dataTasks.splice(_this2.dataTasks.indexOf(task), 1);
+            }).catch(function (error) {
+                console.log(response);
+            });
             window.console.log(task);
-            this.dataTasks.splice(this.dataTasks.indexOf(task), 1);
         }
     },
     created: function created() {
-        console.log('Component Tasks ha estat creat');
+        var _this3 = this;
+
+        // Si tinc prop tasks no fer res
+        // si no, vull fer peticio a la API per obtenir les tasques
+        if (this.tasks.length === 0) {
+            this.dataTasks = axios.get('/api/v1/tasks').then(function (response) {
+                console.log(response);
+                console.log(response.data);
+                _this3.dataTasks = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+        // console.log('Component Tasks ha estat creat');
     }
 });
 
@@ -69781,139 +69573,143 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex justify-center" }, [
-    _c(
-      "div",
-      { staticClass: "flex flex-col" },
-      [
-        _c("h1", { staticClass: "text-center text-red-light" }, [
-          _vm._v("Tasques(" + _vm._s(_vm.total) + ") ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex-row" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newTask,
-                expression: "newTask"
-              }
-            ],
-            staticClass:
-              "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
-            attrs: { type: "text", placeholder: "Nova Tasca" },
-            domProps: { value: _vm.newTask },
-            on: {
-              keyup: function($event) {
-                if (
-                  !("button" in $event) &&
-                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                ) {
-                  return null
-                }
-                return _vm.add($event)
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.newTask = $event.target.value
-              }
-            }
-          }),
+  return _c(
+    "div",
+    { staticClass: "flex justify-center tasks", attrs: { id: "tasks" } },
+    [
+      _c(
+        "div",
+        { staticClass: "flex flex-col" },
+        [
+          _c("h1", { staticClass: "text-center text-red-light" }, [
+            _vm._v("Tasques(" + _vm._s(_vm.total) + ") ")
+          ]),
           _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "text-center text-red", on: { click: _vm.add } },
-            [_vm._v("Afegir")]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.filteredTasks, function(task) {
-          return _c("div", { key: task.id }, [
+          _c("div", { staticClass: "flex-row" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newTask,
+                  expression: "newTask"
+                }
+              ],
+              staticClass:
+                "m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker",
+              attrs: { type: "text", placeholder: "Nova Tasca" },
+              domProps: { value: _vm.newTask },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.add($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.newTask = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
             _c(
-              "span",
-              { class: { strike: task.completed == "1" } },
-              [
-                _c("editable-text", {
-                  attrs: { text: task.name },
+              "button",
+              { staticClass: "text-center text-red", on: { click: _vm.add } },
+              [_vm._v("Afegir")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.filteredTasks, function(task) {
+            return _c("div", { key: task.id }, [
+              _c(
+                "span",
+                { class: { strike: task.completed == "1" } },
+                [
+                  _c("editable-text", {
+                    attrs: { text: task.name },
+                    on: {
+                      edited: function($event) {
+                        _vm.editName(task, $event)
+                      }
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v("\n             \n            "),
+              _c(
+                "span",
+                {
+                  staticClass: "cursor-pointer",
                   on: {
-                    edited: function($event) {
-                      _vm.editName(task, $event)
+                    click: function($event) {
+                      _vm.remove(task)
                     }
                   }
-                })
-              ],
-              1
-            ),
-            _vm._v("\n             \n            "),
+                },
+                [_vm._v("×")]
+              )
+            ])
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("h3", [_vm._v("Filtros:")]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(
+            "\n        Filtre emprat -> " + _vm._s(_vm.filter) + "\n\n        "
+          ),
+          _c("div", [
+            _c("br"),
+            _vm._v(" "),
             _c(
-              "span",
+              "button",
               {
-                staticClass: "cursor-pointer",
                 on: {
                   click: function($event) {
-                    _vm.remove(task)
+                    _vm.setFilter("all")
                   }
                 }
               },
-              [_vm._v("×")]
+              [_vm._v("Totes")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.setFilter("completed")
+                  }
+                }
+              },
+              [_vm._v("Completades")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.setFilter("active")
+                  }
+                }
+              },
+              [_vm._v("Pendents")]
             )
           ])
-        }),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("h3", [_vm._v("Filtros:")]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(
-          "\n        Filtre emprat -> " + _vm._s(_vm.filter) + "\n\n        "
-        ),
-        _c("div", [
-          _c("br"),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm.setFilter("all")
-                }
-              }
-            },
-            [_vm._v("Totes")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm.setFilter("completed")
-                }
-              }
-            },
-            [_vm._v("Completades")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm.setFilter("active")
-                }
-              }
-            },
-            [_vm._v("Pendents")]
-          )
-        ])
-      ],
-      2
-    )
-  ])
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
