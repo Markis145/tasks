@@ -1,28 +1,23 @@
 <?php
-
 namespace App\Http\Controllers\Api;
-
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 class TasksController extends Controller
 {
-    public function index(Request $request, Task $task)
+    public function index(Request $request)
+    {
+        return Task::all();
+    }
+    public function show(Request $request, Task $task) // Route Model Binding
     {
         return $task;
+//        return Task::findOrFail($request->task);
     }
-
-    public function show(Request $request, Task $task)
-    {
-        return $task;
-    }
-
     public function destroy(Request $request, Task $task)
     {
         $task->delete();
     }
-
     public function store(Request $request)
     {
 //        Task::create();
@@ -32,11 +27,10 @@ class TasksController extends Controller
         $task->save();
         return $task;
     }
-
     public function edit(Request $request, Task $task)
     {
-
+        $task->name = $request->name;
+        $task->save();
+        return $task;
     }
-
-
 }

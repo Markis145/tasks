@@ -1,9 +1,6 @@
 <?php
-
-use App\Framework\App;
 use App\Task;
-
-if (!function_exists('create_example_tasks')){
+if (!function_exists('create_example_tasks')) {
     function create_example_tasks() {
         Task::create([
             'name' => 'comprar pa',
@@ -14,8 +11,8 @@ if (!function_exists('create_example_tasks')){
             'completed' => false
         ]);
         Task::create([
-            'name' => 'estudiar PHP',
-            'completed' => false
+            'name' => 'Estudiar PHP',
+            'completed' => true
         ]);
     }
 }
