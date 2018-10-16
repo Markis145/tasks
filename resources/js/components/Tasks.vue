@@ -118,14 +118,17 @@ export default {
     }
   },
   created () {
+    console.log('created is executed!')
     // Si tinc prop tasks no fer res
     // si no, vull fer peticio a la API per obtenir les tasques
     if (this.tasks.length === 0) {
+      console.log('entra if')
       this.dataTasks = axios.get('/api/v1/tasks').then((response) => {
         console.log(response)
         console.log(response.data)
         this.dataTasks = response.data
       }).catch((error) => {
+        console.log('error executed')
         console.log(error)
       })
     }
