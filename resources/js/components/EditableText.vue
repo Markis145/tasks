@@ -16,35 +16,35 @@
   </span>
 </template>
 <script>
-    export default {
-        name: 'EditableText',
-        data() {
-            return {
-                editing: false,
-                currentText: this.text
-            }
-        },
-        // props :['text'],
-        props: {
-            'text': {
-                type: String,
-                required : true
-            }
-        },
-        watch: {
-          text(newText){
-              this.currentText = this.text
-          }
-        },
-        methods: {
-            edit() {
-                this.editing = false
-                //informat al pare
-                this.$emit('edited',this.currentText)
-            }
-        },
-        created() {
-            console.log('Component Tasks ha estat creat');
-        }
+export default {
+  name: 'EditableText',
+  data () {
+    return {
+      editing: false,
+      currentText: this.text
     }
+  },
+  // props :['text'],
+  props: {
+    'text': {
+      type: String,
+      required: true
+    }
+  },
+  watch: {
+    text (newText) {
+      this.currentText = this.text
+    }
+  },
+  methods: {
+    edit () {
+      this.editing = false
+      // informat al pare
+      this.$emit('edited', this.currentText)
+    }
+  },
+  created () {
+    console.log('Component Tasks ha estat creat')
+  }
+}
 </script>
