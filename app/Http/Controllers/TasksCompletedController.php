@@ -9,6 +9,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Task;
+use Illuminate\Http\Request;
+
 class TasksCompletedController
 {
     public function store(Request $request)
