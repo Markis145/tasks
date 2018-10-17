@@ -5,11 +5,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
-Vue.use(require('vuetify'));
-
+window.Vue = require('vue')
+Vue.use(require('vuetify'))
 
 // Window en browser (objecte global)
 /**
@@ -18,20 +17,20 @@ Vue.use(require('vuetify'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('tasks', require('./components/Tasks.vue'));
-
+// eslint-disable-next-line no-undef
+window.Vue.component('example-component', require('./components/ExampleComponent.vue'))
+window.Vue.component('tasks', require('./components/Tasks.vue'))
 
 // const app = new Vue({
 //     el: '#app'
 // });
 
 const app = new Vue({
-    el: '#app',
-    data: () => ({
-        drawer: null
-    }),
-    props: {
-        source: String
-    }
-});
+  el: '#app',
+  data: () => ({
+    drawer: null
+  }),
+  props: {
+    source: String
+  }
+})

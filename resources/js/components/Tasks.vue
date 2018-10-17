@@ -4,6 +4,10 @@
             <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
             <div class="flex-row"  >
 
+                <div v-if="errorMessage">
+                Ha succeit un error: {{ errorMessage }}
+                </div>
+
                 <input type="text" placeholder="Nova Tasca"
                        v-model="newTask" @keyup.enter="add"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
@@ -11,7 +15,7 @@
             </div>
             <!-- -->
             <div v-for="task in filteredTasks" :key="task.id">
-            <span :class="{ strike: task.completed=='1'}">
+            <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
                 <editable-text
                         :text="task.name"
                         @edited="editName(task, $event)"
@@ -65,7 +69,8 @@ export default {
     return {
       filter: 'all', // All Completed Active
       newTask: '',
-      dataTasks: this.tasks
+      dataTasks: this.tasks,
+      errorMessage: null
     }
   },
   props: {
@@ -118,18 +123,14 @@ export default {
     }
   },
   created () {
-    console.log('created is executed!')
-    // Si tinc prop tasks no fer res
-    // si no, vull fer peticio a la API per obtenir les tasques
     if (this.tasks.length === 0) {
-      console.log('entra if')
-      this.dataTasks = axios.get('/api/v1/tasks').then((response) => {
+      window.axios.get('/api/v1/tasks').then((response) => {
         console.log(response)
         console.log(response.data)
         this.dataTasks = response.data
       }).catch((error) => {
-        console.log('error executed')
-        console.log(error)
+        console.log('xivato')
+        this.errorMessage = error.data.message
       })
     }
     // console.log('Component Tasks ha estat creat');
