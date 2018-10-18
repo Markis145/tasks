@@ -5,7 +5,7 @@
             <div class="flex-row"  >
 
                 <div v-if="errorMessage">
-                Ha succeit un error: {{ errorMessage }}
+                    Ha succeit un error: {{ errorMessage }}
                 </div>
 
                 <input type="text" placeholder="Nova Tasca"
@@ -41,6 +41,8 @@
 </template>
 <script>
 import EditableText from './EditableText'
+import axios from 'axios'
+
 var filters = {
   all: function (tasks) {
     return tasks
@@ -49,13 +51,13 @@ var filters = {
     return tasks.filter(function (task) {
       // return task.completed
       // NO CAL
-      if (task.completed == '1') return true
+      if (task.completed === '1') return true
       else return false
     })
   },
   active: function (tasks) {
     return tasks.filter(function (task) {
-      if (task.completed == '0') return true
+      if (task.completed === '0') return true
       else return false
     })
   }
@@ -110,30 +112,28 @@ export default {
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {
-        console.log(response)
+        console.log(error)
       })
     },
     remove (task) {
       axios.delete('/api/v1/tasks/' + task.id).then((response) => {
         this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
       }).catch((error) => {
-        console.log(response)
+        console.log(error)
       })
       window.console.log(task)
     }
   },
   created () {
     if (this.tasks.length === 0) {
+      console.log('entra if')
       window.axios.get('/api/v1/tasks').then((response) => {
-        console.log(response)
-        console.log(response.data)
+        console.log('xivato ok')
         this.dataTasks = response.data
       }).catch((error) => {
-        console.log('xivato')
-        this.errorMessage = error.data.message
+        this.errorMessage = error.response.data
       })
     }
-    // console.log('Component Tasks ha estat creat');
   }
 }
 </script>
