@@ -39,6 +39,19 @@ class TasksControllerTest extends TestCase
 //        $this->assertDatabaseMissing('tasks', $task);
         $this->assertNull(Task::find($task->id));
     }
+
+    /**
+     * @test
+     */
+    public function cannot_create_tasks_without_a_name()
+    {
+        $response = $this->post('/api/v1/tasks/',[
+            'name' => ''
+        ]);
+        $result = json_decode($response->getContent());
+        $response->assertStatus(422);
+
+    }
     /**
      * @test
      */

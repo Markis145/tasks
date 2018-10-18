@@ -8,10 +8,10 @@
                     Ha succeit un error: {{ errorMessage }}
                 </div>
 
-                <input type="text" placeholder="Nova Tasca"
+                <input name="name" type="text" placeholder="Nova Tasca"
                        v-model="newTask" @keyup.enter="add"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
-                <button @click="add" class="text-center text-red"  >Afegir</button>
+                <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
             </div>
             <!-- -->
             <div v-for="task in filteredTasks" :key="task.id">
@@ -22,20 +22,20 @@
                 ></editable-text>
             </span>
                 &nbsp;
-                <span @click="remove(task)" class="cursor-pointer">&#215;</span>
+                <span :id="'delete_task_' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
             </div>
             <!-- -->
             <br>
-            <h3>Filtros:</h3>
-            <br>
-            Filtre emprat -> {{ filter }}
-
-            <div>
-                <br>
-                <button @click="setFilter('all')">Totes</button>
-                <button @click="setFilter('completed')">Completades</button>
-                <button @click="setFilter('active')">Pendents</button>
-            </div>
+            <span id="filters" v-show="total > 0">
+                <h3>Filtros:</h3>
+                Active filter: {{ filter }}
+                <div>
+                    <br>
+                    <button @click="setFilter('all')">Totes</button>
+                    <button @click="setFilter('completed')">Completades</button>
+                    <button @click="setFilter('active')">Pendents</button>
+                </div>
+            </span>
         </div>
     </div>
 </template>
@@ -106,9 +106,11 @@ export default {
       this.filter = newFilter
     },
     add () {
-      axios.post('/api/v1/tasks', {
+      window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
+        console.log('response:')
+        console.log(response.data)
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {
@@ -126,9 +128,9 @@ export default {
   },
   created () {
     if (this.tasks.length === 0) {
-      console.log('entra if')
       window.axios.get('/api/v1/tasks').then((response) => {
-        console.log('xivato ok')
+        console.log('prova******************')
+        console.log(response.data)
         this.dataTasks = response.data
       }).catch((error) => {
         this.errorMessage = error.response.data
