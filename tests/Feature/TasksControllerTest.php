@@ -42,7 +42,7 @@ class TasksControllerTest extends TestCase
     /**
      * @test
      */
-    public function cannnot_delete_an_unexisting_task()
+    public function cannot_delete_an_unexisting_task()
     {
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);

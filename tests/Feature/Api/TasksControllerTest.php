@@ -16,7 +16,7 @@ class TasksControllerTest extends TestCase
         // 1
         $task = factory(Task::class)->create();
         // 2
-        $response = $this->get('/api/v1/tasks/' . $task->id);
+        $response = $this->json('GET','/api/v1/tasks/' . $task->id);
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
@@ -45,12 +45,30 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_create_tasks_without_a_name()
     {
-        $response = $this->post('/api/v1/tasks/',[
+//        Petició HTTP normal, no és XHR (Ajax)
+//        $response = $this->post('/api/v1/tasks/',[
+//            'name' => ''
+//        ]);
+        $response = $this->json('POST','/api/v1/tasks/',[
             'name' => ''
         ]);
         $result = json_decode($response->getContent());
         $response->assertStatus(422);
 
+    }
+    /**
+     * @test
+     */
+    public function cannot_edit_task_without_name()
+    {
+        // 1
+        $oldTask = factory(Task::class)->create();
+        // 2
+        $response = $this->json('PUT', '/api/v1/tasks/' . $oldTask->id, [
+            'name' => ''
+        ]);
+        // 3
+        $response->assertStatus(422);
     }
     /**
      * @test
@@ -74,7 +92,7 @@ class TasksControllerTest extends TestCase
     {
         //1
         create_example_tasks();
-        $response = $this->get('/api/v1/tasks');
+        $response = $this->json('get','/api/v1/tasks');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertCount(3,$result);
@@ -101,8 +119,6 @@ class TasksControllerTest extends TestCase
         // 3
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-//        $this->assertDatabaseMissing('tasks', $oldTask);
-//        $this->assertDatabaseHas('tasks', $newtask);
         $newTask = $oldTask->refresh();
         $this->assertNotNull($newTask);
         $this->assertEquals('Comprar pa',$result->name);

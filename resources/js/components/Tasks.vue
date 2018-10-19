@@ -7,11 +7,13 @@
                 <div v-if="errorMessage">
                     Ha succeit un error: {{ errorMessage }}
                 </div>
-
-                <input name="name" type="text" placeholder="Nova Tasca"
+            <form>
+                <input required
+                       name="name" type="text" placeholder="Nova Tasca"
                        v-model="newTask" @keyup.enter="add"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
                 <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
+            </form>
             </div>
             <!-- -->
             <div v-for="task in filteredTasks" :key="task.id">
@@ -106,11 +108,10 @@ export default {
       this.filter = newFilter
     },
     add () {
+      if (this.newTask === '') return
       window.axios.post('/api/v1/tasks', {
         name: this.newTask
       }).then((response) => {
-        console.log('response:')
-        console.log(response.data)
         this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
         this.newTask = ''
       }).catch((error) => {

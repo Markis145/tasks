@@ -130,11 +130,37 @@ describe('Tasks.vue', () => {
     })
   })
 
-  it.skip('adds_a_task_with_enter', () => {
-    // igual que el add_a_task
+  it.only('adds_a_task_with_enter', (done) => {
+
+    // 1
+    moxios.stubRequest('/api/v1/tasks', {
+      status: 200,
+      response: {
+        id: 99,
+        name: 'Comprar lejiaaa',
+        completed: false
+      }
+    })
+    // 2
+    const wrapper = mount(Tasks, {
+      propsData: {
+        tasks: exampletasks
+      }
+    })
+    let inputName = wrapper.find("input[name='name']")
+    inputName.element.value = 'Comprar lejiaaa'
+    inputName.trigger('input')
+    let button = wrapper.find('button#button_add_task')
+    button.trigger('keydown.enter')
+    // 3
+    moxios.wait(() => {
+      expect(wrapper.text()).contains('Comprar lejiaaa')
+
+      done()
+    })
   })
 
-  it.only('delete_a_task', (done) => {
+  it('delete_a_task', (done) => {
     // 1
 
     // 2
