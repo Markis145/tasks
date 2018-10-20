@@ -130,8 +130,7 @@ describe('Tasks.vue', () => {
     })
   })
 
-  it.only('adds_a_task_with_enter', (done) => {
-
+  it('adds_a_task_with_enter', (done) => {
     // 1
     moxios.stubRequest('/api/v1/tasks', {
       status: 200,
@@ -150,19 +149,19 @@ describe('Tasks.vue', () => {
     let inputName = wrapper.find("input[name='name']")
     inputName.element.value = 'Comprar lejiaaa'
     inputName.trigger('input')
-    let button = wrapper.find('button#button_add_task')
-    button.trigger('keydown.enter')
+    inputName.trigger('keyup.enter')
     // 3
     moxios.wait(() => {
       expect(wrapper.text()).contains('Comprar lejiaaa')
-
       done()
     })
   })
 
-  it('delete_a_task', (done) => {
+  it.skip('delete_a_task', (done) => {
     // 1
-
+    moxios.stubRequest('/api/v1/tasks/1', {
+      status: 200
+    })
     // 2
     const wrapper = mount(Tasks, {
       propsData: {
@@ -170,8 +169,13 @@ describe('Tasks.vue', () => {
       }
     })
 
-    let deleteIcon = wrapper.find('span#delete_task_1')
+    let deleteIcon = wrapper.find('#deleteTask1')
     deleteIcon.trigger('click')
+
+    moxios.wait(() => {
+      expect(wrapper.text()).not.contains('Comprar pa')
+      done()
+    })
   })
 
   it('adds_a_task', (done) => {

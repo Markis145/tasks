@@ -12,6 +12,7 @@ class CompletedTaskControllerTest extends TestCase {
     {
         $this->withoutExceptionHandling();
         //1
+
         $task= Task::create([
             'name' => 'comprar pa',
             'completed' => false
@@ -22,7 +23,6 @@ class CompletedTaskControllerTest extends TestCase {
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $response->assertStatus('302');
         $this->assertEquals($task->completed, true);
     }
     /**

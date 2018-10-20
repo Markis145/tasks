@@ -24,7 +24,7 @@
                 ></editable-text>
             </span>
                 &nbsp;
-                <span :id="'delete_task_' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
+                <span :id="'deleteTask' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
             </div>
             <!-- -->
             <br>
