@@ -44,7 +44,7 @@
                     </form>
             @else
                 {{ $task->name }}
-                    <form action="/tasks-completed" method="POST">
+                    <form action="/tasks-completed/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">

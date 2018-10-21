@@ -153,8 +153,8 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_show_edit_form_unexisting_task()
     {
-//        $this->withoutExceptionHandling();
-        $response = $this->get('/task_edit/32');
+       $this->withoutExceptionHandling();
+        $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }
 }

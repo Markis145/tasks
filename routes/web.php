@@ -29,5 +29,5 @@ Route::get('/', function () {
 
 Route::get('/tasks_vue','TasksVueController@index');
 
-Route::put('/tasks-completed','TasksCompletedController@store');
+Route::put('/tasks-completed/{id}','TasksCompletedController@store');
 Route::put('/tasks-uncompleted','TasksCompletedController@destroy');
