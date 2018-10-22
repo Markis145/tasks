@@ -21,7 +21,7 @@ class CompletedTaskControllerTest extends TestCase {
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed, true);
+        $this->assertEquals($task->completed, 1);
     }
     /**
      * @test
@@ -44,12 +44,12 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => true
         ]);
         //2
-        $response = $this->put('/tasks-completed/' . $task->id);
+        $response = $this->delete('/tasks-uncompleted/' . $task->id);
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed,1);
+        $this->assertEquals($task->completed,0);
     }
     /**
      * @test
@@ -59,7 +59,7 @@ class CompletedTaskControllerTest extends TestCase {
         $this->withoutExceptionHandling();
         // 1 -> no cal fer res
         // 2 Execute
-        $response= $this->put('/tasks-completed/1');
+        $response= $this->delete('/tasks-uncompleted/1');
         //3 Assert
         $response->assertStatus(404);
     }

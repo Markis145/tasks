@@ -94,7 +94,7 @@ class TasksControllerTest extends TestCase
 //        $this->assertDatabaseMissing('tasks',$task);
         $task = $task->fresh();
         $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,0);
+        $this->assertEquals($task->completed,1);
     }
     /**
      * @test
