@@ -157,7 +157,7 @@ describe('Tasks.vue', () => {
     })
   })
 
-  it.skip('delete_a_task', (done) => {
+  it.only('delete_a_task', (done) => {
     // 1
     moxios.stubRequest('/api/v1/tasks/1', {
       status: 200

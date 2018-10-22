@@ -80,21 +80,17 @@ class TasksControllerTest extends TestCase
         // 1
         $task = Task::create([
             'name' => 'asdasdasd',
-            'completed' => false
+            'completed' => '0'
         ]);
         //2
         $response = $this->put('/tasks/' . $task->id,$newTask = [
             'name' => 'Comprar pa',
-            'completed' => true
+            'completed' => '1'
         ]);
         $response->assertStatus(302);
-//            $response->assertStatus(200);
-        // 2 opcions
-//        $this->assertDatabaseHas('tasks',$newTask);
-//        $this->assertDatabaseMissing('tasks',$task);
         $task = $task->fresh();
-        $this->assertEquals($task->name,'Comprar pa');
-        $this->assertEquals($task->completed,1);
+        $this->assertEquals($task->name,$newTask['name']);
+        $this->assertEquals($task->completed,$newTask['completed']);
     }
     /**
      * @test
