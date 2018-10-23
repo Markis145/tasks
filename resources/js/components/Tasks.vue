@@ -1,7 +1,16 @@
 <template>
+    <v-container grid-list-md text-xs-center id="tasks" class="tasks">
+        <v-layout row wrap>
+            <v-flex xs12>
+                <v-card dark color="primary">
+                    <v-card-text class="px-0">12</v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
     <div id="tasks" class="flex justify-center tasks">
         <div class="flex flex-col">
-            <h1 class="text-center text-red-light">Tasques({{total}}) </h1>
+            <span class="text-center text-red-light title">Tasques({{total}}) </span>
             <div class="flex-row"  >
 
                 <div v-if="errorMessage">
@@ -12,7 +21,7 @@
                        name="name" type="text" placeholder="Nova Tasca"
                        v-model="newTask" @keyup.enter="add"
                        class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
-                <button id="button_add_task" @click="add" class="text-center text-red"  >Afegir</button>
+                <v-btn id="button_add_task" @click="add" class="text-center text-red"  >Afegir</v-btn>
             </form>
             </div>
             <!-- -->
