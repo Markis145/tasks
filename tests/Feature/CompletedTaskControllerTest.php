@@ -21,7 +21,7 @@ class CompletedTaskControllerTest extends TestCase {
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed, 1);
+        $this->assertEquals((boolean)$task->completed, true);
     }
     /**
      * @test
@@ -49,7 +49,7 @@ class CompletedTaskControllerTest extends TestCase {
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
         $response->assertRedirect('/tasks');
-        $this->assertEquals($task->completed,0);
+        $this->assertEquals((boolean)$task->completed,false);
     }
     /**
      * @test

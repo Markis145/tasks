@@ -2,42 +2,42 @@
     <v-container grid-list-md text-xs-center id="tasks" class="tasks">
         <v-layout row wrap>
             <v-flex xs12>
-                <v-card dark color="primary">
-                    <v-card-text class="px-0">12</v-card-text>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-container>
-    <div id="tasks" class="flex justify-center tasks">
-        <div class="flex flex-col">
-            <span class="text-center text-red-light title">Tasques({{total}}) </span>
-            <div class="flex-row"  >
-
-                <div v-if="errorMessage">
-                    Ha succeit un error: {{ errorMessage }}
-                </div>
-            <form>
-                <input required
-                       name="name" type="text" placeholder="Nova Tasca"
-                       v-model="newTask" @keyup.enter="add"
-                       class="m-3 mt-5 p-2 pl-5 shadow border rounded focus:outline-none focus:shadow-outline text-grey-darker">
-                <v-btn id="button_add_task" @click="add" class="text-center text-red"  >Afegir</v-btn>
-            </form>
-            </div>
-            <!-- -->
-            <div v-for="task in filteredTasks" :key="task.id">
-            <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
-                <editable-text
-                        :text="task.name"
-                        @edited="editName(task, $event)"
-                ></editable-text>
-            </span>
-                &nbsp;
-                <span :id="'deleteTask' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
-            </div>
-            <!-- -->
-            <br>
-            <span id="filters" v-show="total > 0">
+                <v-card-title dark color="primary">
+                    <span class="title">Tasques ({{total}})</span>
+                </v-card-title>
+                <v-card-text class="px-0">
+                    <form>
+                        <v-text-field
+                                type="text"
+                                v-model="newTask" @keyup.enter="add"
+                                name="name"
+                                required>
+                        </v-text-field>
+                        <input type="text"
+                               v-model="newTask" @keyup.enter="add"
+                               name="name"
+                               required
+                        >
+                        <v-btn id="button_add_task" @click="add">Afegir</v-btn>
+                    </form>
+                    <div v-if="errorMessage">
+                        Ha succeit un error: {{ errorMessage }}
+                    </div>
+                    <v-list dense>
+                        <v-list-tile v-for="task in filteredTasks" :key="task.id">
+                            <v-list-tile-content>
+                                <v-list-tile-tile>
+                                    <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
+                                    </span>
+                                    <editable-text
+                                            :text="task.name"
+                                            @edited="editName(task, $event)"
+                                    ></editable-text>
+                                </v-list-tile-tile>
+                            </v-list-tile-content>&nbsp;
+                        </v-list-tile>
+                    </v-list>
+                    <span id="filters" v-show="total > 0">
                 <h3>Filtros:</h3>
                 Active filter: {{ filter }}
                 <div>
@@ -47,8 +47,10 @@
                     <button @click="setFilter('active')">Pendents</button>
                 </div>
             </span>
-        </div>
-    </div>
+                </v-card-text>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 <script>
 import EditableText from './EditableText'

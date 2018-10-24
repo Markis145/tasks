@@ -107,4 +107,49 @@ class TaskTest extends TestCase
         //3
         $this->assertNull($file);
     }
+
+    /**
+     * @test
+     */
+    public function can_toggle_completed()
+    {
+        $task = factory(Task::class)->create([
+            'completed'=>false
+        ]);
+        $task->toggleCompleted();
+        $this->assertTrue($task->completed);
+
+        $task = factory(Task::class)->create([
+            'completed'=>true
+        ]);
+        $task->toggleCompleted();
+        $this->assertFalse($task->completed);
+    }
+
+    /**
+     * @test
+     */
+    public function map()
+    {
+        //1
+        $task = Task::create([
+            'name' => 'Comprar pa',
+            'completed' => false,
+        ]);
+        $user = User::create([
+            'name' => 'pepe',
+
+        ]);
+        //2
+        $newUser = $user->map();
+        $newTask = $task->map();
+//        dd($newTask);
+        // 3
+        $this->assertEquals($newTask->name,$task['name']);
+        $this->assertEquals($newTask->completed,$task['completed']);
+        $this->assertEquals($newUser->user_id,$task['user_id']);
+
+//        $this->assertEquals($newTask->user_name,$task->user_name);
+//        $this->assertEquals($newTask->completed,);
+    }
 }

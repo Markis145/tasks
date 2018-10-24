@@ -10,17 +10,22 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function can_complete_a_task()
     {
-        $task= Task::create([
+        $this->withoutExceptionHandling();
+        $task = Task::create([
             'name' => 'comprar pa',
             'completed' => false
         ]);
         //2
-        $response = $this->json('PUT','/tasks-completed/' . $task->id);
+        $response = $this->json('POST', '/api/v1/tasks-completed/' . $task->id);
+        $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
+
         $task = $task->fresh();
-        $this->assertEquals($task->completed, 1);
+        dd($task);
+        $this->assertEquals((boolean)$task->completed, true);
     }
+
     /**
      * @test
      */
@@ -41,11 +46,12 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => true
         ]);
         //2
-        $response = $this->json('DELETE','/tasks-uncompleted/' . $task->id);
+        $response = $this->json('DELETE','/api/v1/tasks-uncompleted/' . $task->id);
+        $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
         $task = $task->fresh();
-        $this->assertEquals($task->completed,0);
+        $this->assertEquals((boolean)$task->completed,false);
     }
     /**
      * @test
@@ -54,7 +60,7 @@ class CompletedTaskControllerTest extends TestCase {
     {
         // 1 -> no cal fer res
         // 2 Execute
-        $response= $this->json('DELETE','/completed_task/1');
+        $response= $this->json('DELETE','/api/v1/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
     }
