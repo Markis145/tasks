@@ -16,13 +16,12 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => false
         ]);
         //2
-        $response = $this->json('POST', '/api/v1/tasks-completed/' . $task->id);
+        $response = $this->json('POST', '/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task
 
         $task = $task->fresh();
-        dd($task);
         $this->assertEquals((boolean)$task->completed, true);
     }
 
@@ -31,7 +30,7 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function cannot_complete_a_unexisting_task()
     {
-        $response = $this->json('PUT','/tasks-completed/1');
+        $response = $this->json('POST','/completed_task/1');
         //3 Assert
         $response->assertStatus(404);
     }
@@ -46,7 +45,7 @@ class CompletedTaskControllerTest extends TestCase {
             'completed' => true
         ]);
         //2
-        $response = $this->json('DELETE','/api/v1/tasks-uncompleted/' . $task->id);
+        $response = $this->json('DELETE','/api/v1/completed_task/' . $task->id);
         $response->assertSuccessful();
         //3 Dos opcions: 1) Comprovar base de dades directament
         // 2) comprovar canvis al objecte $task

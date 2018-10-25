@@ -137,19 +137,16 @@ class TaskTest extends TestCase
             'completed' => false,
         ]);
         $user = User::create([
-            'name' => 'pepe',
-
+            'name' => 'marc',
+            'email' => 'marcmestre@iesebre.com',
+            'password' => 'memes'
         ]);
         //2
-        $newUser = $user->map();
+        $task->assignUser($user);
         $newTask = $task->map();
-//        dd($newTask);
         // 3
-        $this->assertEquals($newTask->name,$task['name']);
-        $this->assertEquals($newTask->completed,$task['completed']);
-        $this->assertEquals($newUser->user_id,$task['user_id']);
+        $this->assertEquals($task->name,$newTask['name']);
+//        $this->assertEquals($newTask->completed,$task['completed']);
 
-//        $this->assertEquals($newTask->user_name,$task->user_name);
-//        $this->assertEquals($newTask->completed,);
     }
 }

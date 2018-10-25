@@ -12,7 +12,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 
-class TasksCompletedController
+class TasksCompletedController extends Controller
 {
 //    public function store(Task $task)
 //    {

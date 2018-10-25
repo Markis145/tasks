@@ -3,16 +3,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
-    protected $guarded = [];
-
-    protected $hidden = [
-      'created_at'
-    ];
 //    protected $fillable = ['name','completed'];
+    protected $guarded = [];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at'
+    ];
     public function file()
     {
+        // return $this->hasOne('App\File');
         return $this->hasOne(File::class);
-//        return $this->hasOne('App\Class');
     }
     public function assignFile(File $file)
     {
@@ -40,23 +44,21 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public function toggleCompleted()
     {
-        $this->completed= !$this->completed;
+        $this->completed = !$this->completed;
         $this->save();
     }
-
     public function map()
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'completed' =>$this->completed,
+            'completed' => $this->completed,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name
-//            'tags' => $this->tags
-//            'file' => $this->file
+//            'tags' => $this->tags,
+//            'file' => $this->file,
         ];
     }
 }
