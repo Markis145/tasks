@@ -15,9 +15,11 @@ class LoggedUserTasksControllerTest extends TestCase
         // 1
         $user = factory(User::class)->create();
         $this->actingAs($user, 'api');
+
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
+
         $tasks = [$task1, $task2, $task3];
         $user->addTask($tasks);
         // 2

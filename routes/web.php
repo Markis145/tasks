@@ -11,6 +11,11 @@
 |
 */
 
+Auth::routes();
+
+//TODO
+Route::post('/login_alt','LoginAltController@login');
+
 Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');
 Route::delete('/tasks/{id}','TasksController@destroy');
