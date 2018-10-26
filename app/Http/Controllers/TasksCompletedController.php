@@ -14,34 +14,16 @@ use Illuminate\Http\Request;
 
 class TasksCompletedController extends Controller
 {
-//    public function store(Task $task)
-//    {
-//        $task->completed=true;
-////        $task = Task::findOrFail($request->id);
-////        if (!$task->completed = true) $task->completed = true;
-//        $task->save();
-//        return redirect ('/tasks');
-//    }
-
-    public function destroy(Request $request, Task $task)
-    {
-        $task->completed=false;
-        $task->save();
-        return redirect()->back();
-    }
-
     public function store(Request $request, Task $task)
     {
-        $task->completed=true;
+        $task->completed = true;
         $task->save();
         return redirect('/tasks');
     }
-//    public function destroy(Task $task)
-//    {
-//        $task->completed=false;
-////        $task = Task::findOrFail($request->id);
-////        if (!$task->completed = false) $task->completed = false;
-//        $task->save();
-//        return redirect ('/tasks');
-//    }
+    public function destroy(Request $request, Task $task)
+    {
+        $task->completed = false;
+        $task->save();
+        return redirect('/tasks');
+    }
 }
