@@ -16,12 +16,11 @@ class LoginControllerTest extends TestCase
      */
     public function can_login_a_user()
     {
-//        $this->withoutExceptionHandling();
         //1
         $user = factory(User::class)->create([
-            'email' => 'prova@gmail.com'
+            'email'=>'prova@gmail.com'
         ]);
-
+        $this->assertNull(Auth::user());
         //2
         $response = $this->post('/login',[
             'email' => 'prova@gmail.com',
@@ -29,8 +28,9 @@ class LoginControllerTest extends TestCase
         ]);
         $response->assertStatus(302);
         $response->assertRedirect('/home');
-        $this->assertNull(Auth::user());
-//        $this->assertEquals('prova@gmail.com',Auth::user()->email);
+        $this->assertNotNull(Auth::user());
+        $this->assertEquals('prova@gmail.com',Auth::user()->email);
+        //3
     }
 
     /**

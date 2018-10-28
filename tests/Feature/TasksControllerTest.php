@@ -44,13 +44,12 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_delete_an_unexisting_task()
     {
-        $this->withoutExceptionHandling();
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
-    /**
-     * @test
-     */
+//    /**
+//     * @test
+//     */
 //    public function user_without_permissions_cannnot_delete_tasks()
 //    {
 //        $response = $this->delete('/tasks/1');
@@ -122,8 +121,6 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_edit_an_unexisting_task()
     {
-        $this->withoutExceptionHandling();
-        // TDD Test Driven Development ->
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/1',[]);
 //        dd($response->getContent());
@@ -149,7 +146,6 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_show_edit_form_unexisting_task()
     {
-       $this->withoutExceptionHandling();
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }

@@ -92,7 +92,7 @@ class TasksControllerTest extends TestCase
     {
         //1
         create_example_tasks();
-        $response = $this->json('get','/api/v1/tasks');
+        $response = $this->json('GET','/api/v1/tasks');
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertCount(3,$result);
@@ -103,6 +103,7 @@ class TasksControllerTest extends TestCase
         $this->assertEquals('Estudiar PHP', $result[2]->name);
         $this->assertTrue((boolean) $result[2]->completed);
     }
+
     /**
      * @test
      */

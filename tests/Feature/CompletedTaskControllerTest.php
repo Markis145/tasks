@@ -57,7 +57,6 @@ class CompletedTaskControllerTest extends TestCase {
      */
     public function cannot_uncomplete_a_unexisting_task()
     {
-        $this->withoutExceptionHandling();
         // 1 -> no cal fer res
         // 2 Execute
         $response= $this->delete('/completed_task/1');
