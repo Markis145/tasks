@@ -16,20 +16,20 @@ class LoginAltControllerTest extends TestCase
      */
     public function can_login_a_user()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         //1
         $user = factory(User::class)->create([
             'email' => 'prova@gmail.com'
         ]);
-
+        $this->assertNull(Auth::user());
         //2
         $response = $this->post('/login_alt',[
             'email' => 'prova@gmail.com',
-            'passowrd' => 'secret'
+            'password' => 'secret'
         ]);
         $response->assertStatus(302);
         $response->assertRedirect('/home');
-        $this->assertNull(Auth::user());
+        $this->assertNotNull(Auth::user());
         $this->assertEquals('prova@gmail.com',Auth::user()->email);
     }
 
