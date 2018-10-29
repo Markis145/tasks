@@ -12,6 +12,7 @@
 */
 
 Auth::routes();
+//Auth::logout();
 
 //TODO
 Route::post('/login_alt','LoginAltController@login');
@@ -33,6 +34,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks_vue','TasksVueController@index');
+Route::get('/home','TasksVueController@index');
 
 Route::post('/completed_task/{task}','TasksCompletedController@store');
 Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
