@@ -7,7 +7,10 @@
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-toolbar-title>Tasks</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn href="/login">Login</v-btn>
+            <v-btn href="register">Registrar</v-btn>
         </v-toolbar>
         <v-content>
             <section>
@@ -25,7 +28,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/pre-made-themes"
+                                href="/home"
                         >
                             Get Started
                         </v-btn>
@@ -111,7 +114,7 @@
                                 class="blue lighten-2 mt-5"
                                 dark
                                 large
-                                href="/pre-made-themes"
+                                href="/home"
                         >
                             Get Started
                         </v-btn>
