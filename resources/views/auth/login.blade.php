@@ -25,7 +25,6 @@
                         <v-flex xs12 sm8 md4>
                             <v-card class="elevation-12">
                                 <login-form email="{{ old ('email') }}" csrf-token="{{ csrf_token() }}"></login-form>
-                                {{--<login-form email="prova@asdasd.com"></login-form>--}}
                             </v-card>
                         </v-flex>
                     </v-layout>
