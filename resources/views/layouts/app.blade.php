@@ -74,40 +74,6 @@
                 </v-list-tile>
             </template>
         </v-list>
-        {{--<v-list dense>--}}
-            {{--<v-list-tile href="/tasks">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>assignment</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Tasques en PHP</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/tasks_vue">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>assignment</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Tasques en Vue</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/about">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>account_box</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>About</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-            {{--<v-list-tile href="/contact">--}}
-                {{--<v-list-tile-action>--}}
-                    {{--<v-icon>person</v-icon>--}}
-                {{--</v-list-tile-action>--}}
-                {{--<v-list-tile-content>--}}
-                    {{--<v-list-tile-title>Contact</v-list-tile-title>--}}
-                {{--</v-list-tile-content>--}}
-            {{--</v-list-tile>--}}
-        {{--</v-list>--}}
     </v-navigation-drawer>
     <v-toolbar color="indigo" dark fixed app>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -118,7 +84,7 @@
         </v-avatar>
         <v-form action="logout" method="POST">
             @csrf
-            <v-btn color="primary" type="submit">Logout</v-btn>
+            <v-btn color="error" type="submit">Logout</v-btn>
         </v-form>
     </v-toolbar>
     <v-content>
