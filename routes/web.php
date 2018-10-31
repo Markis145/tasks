@@ -15,7 +15,8 @@ Auth::routes();
 //Auth::logout();
 
 //TODO
-Route::post('/login_alt','LoginAltController@login');
+Route::post('/login_alt','Auth\LoginAltController@login');
+Route::post('/register_alt','Auth\RegisterAltController@store');
 
 Route::get('/tasks','TasksController@index');
 Route::post('/tasks','TasksController@store');

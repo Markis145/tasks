@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase
@@ -24,7 +24,7 @@ class LoginControllerTest extends TestCase
         //2
         $response = $this->post('/login',[
             'email' => 'prova@gmail.com',
-            'password' => 'secret'
+            'password' => 'secret' //password per defecte factories laravel
         ]);
         $response->assertStatus(302);
         $response->assertRedirect('/home');
@@ -49,6 +49,8 @@ class LoginControllerTest extends TestCase
             'email' => 'prova@gmail.com',
             'passowrd' => 'asdasdasdasdasdasdd324234234asd'
         ]);
+        //Session::all();
+//        dump(Session::get('errors')[0]);
         $response->assertStatus(302);
         $response->assertRedirect('/');
         $this->assertNull(Auth::user());
