@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +37,7 @@ class LoginAltControllerTest extends TestCase
      */
     public function cannot_login_a_user_with_incorrect_password()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
         //1
         $user = factory(User::class)->create([
             'email' => 'prova@gmail.com'

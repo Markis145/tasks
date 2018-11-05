@@ -2,11 +2,13 @@
 // PSR-4
 namespace Tests\Feature;
 use App\Task;
+use App\User;
+use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class TasksControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, CanLogin;
     /**
      * @test
      */
@@ -15,6 +17,9 @@ class TasksControllerTest extends TestCase
 //        $this->withoutExceptionHandling();
         //1 Prepare
         create_example_tasks();
+
+        $this->login();
+
 //        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
@@ -33,6 +38,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
+        $this->login();
         $response = $this->post('/tasks',[
             'name' => 'Comprar llet'
         ]);
@@ -44,6 +50,7 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_delete_an_unexisting_task()
     {
+        $this->login();
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
@@ -60,7 +67,8 @@ class TasksControllerTest extends TestCase
      */
     public function can_delete_task()
     {
-        $this->withoutExceptionHandling();
+        $this->login();
+
         // 1
         $task = Task::create([
             'name' => 'Comprar llet'
@@ -76,6 +84,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_edit_a_task()
     {
+        $this->login();
         // 1
         $task = Task::create([
             'name' => 'asdasdasd',
@@ -121,6 +130,7 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_edit_an_unexisting_task()
     {
+        $this->login();
         // 2 execute HTTP REQUEST -> HTTP RESPONSE (resposta)
         $response = $this->put('/tasks/1',[]);
 //        dd($response->getContent());
@@ -133,6 +143,7 @@ class TasksControllerTest extends TestCase
     public function can_show_edit_form()
     {
         // 1
+        $this->login();
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false
@@ -146,7 +157,9 @@ class TasksControllerTest extends TestCase
      */
     public function cannot_show_edit_form_unexisting_task()
     {
+        $this->login();
         $response = $this->get('/task_edit/1');
         $response->assertStatus(404);
     }
+
 }
