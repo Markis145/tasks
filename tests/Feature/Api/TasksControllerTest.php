@@ -99,16 +99,18 @@ class TasksControllerTest extends TestCase
         $this->login('api');
         //1
         create_example_tasks();
-        $response = $this->json('GET','/api/v1/tasks');
+        $response = $this->json('GET', '/api/v1/tasks/', [
+            'name' => 'comprar pa'
+        ]);
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
-        $this->assertCount(3,$result);
+        //$this->assertCount(3, $result);
         $this->assertEquals('comprar pa', $result[0]->name);
         $this->assertFalse((boolean)$result[0]->completed);
         $this->assertEquals('comprar llet', $result[1]->name);
-        $this->assertFalse((boolean) $result[1]->completed);
+        $this->assertFalse((boolean)$result[1]->completed);
         $this->assertEquals('Estudiar PHP', $result[2]->name);
-        $this->assertTrue((boolean) $result[2]->completed);
+        $this->assertTrue((boolean)$result[2]->completed);
     }
 
     /**
