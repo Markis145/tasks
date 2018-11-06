@@ -7,14 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class TasksController extends Controller
 {
-//    public function index(Request $request)
-//    {
-//        return Task::orderBy('created_at','desc')->get();
-//    }
-    public function index()
+    public function index(Request $request)
     {
-        $tasks =  Task::orderBy('created_at','desc')->get();
-        return view ('tasks',['tasks' => $tasks]);
+        return Task::orderBy('created_at')->get();
     }
     public function show(Request $request, Task $task) // Route Model Binding
     {
@@ -34,7 +29,7 @@ class TasksController extends Controller
     }
     public function update(UpdateTask $request, Task $task)
     {
-        $task->update($request->all());
+        $task->name = $request->name;
         $task->save();
         return $task->map();
     }

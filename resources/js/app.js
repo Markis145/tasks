@@ -6,6 +6,7 @@ import './bootstrap'
 import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 import Tasks from './components/Tasks'
+import Tasques from './components/Tasques'
 import LoginForm from './components/LoginForm.vue'
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -13,6 +14,7 @@ window.Vue.use(Vuetify)
 // eslint-disable-next-line no-undef
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
+window.Vue.component('tasques', Tasques)
 window.Vue.component('login-form', LoginForm)
 
 const app = new window.Vue(AppComponent)

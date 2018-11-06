@@ -26,14 +26,14 @@
                     <v-list dense>
                         <v-list-tile v-for="task in filteredTasks" :key="task.id">
                             <v-list-tile-content>
-                                <v-list-tile-tile>
+                                <v-list-tile-title>
                                     <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
                                     </span>
                                     <editable-text
                                             :text="task.name"
                                             @edited="editName(task, $event)"
                                     ></editable-text>
-                                </v-list-tile-tile>
+                                </v-list-tile-title>
                             </v-list-tile-content>&nbsp;
                         </v-list-tile>
                     </v-list>

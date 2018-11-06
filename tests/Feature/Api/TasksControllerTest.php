@@ -104,7 +104,7 @@ class TasksControllerTest extends TestCase
         ]);
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
-        //$this->assertCount(3, $result);
+        $this->assertCount(3, $result);
         $this->assertEquals('comprar pa', $result[0]->name);
         $this->assertFalse((boolean)$result[0]->completed);
         $this->assertEquals('comprar llet', $result[1]->name);

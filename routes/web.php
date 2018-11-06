@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('/completed_task/{task}','TasksCompletedController@destroy');
 
     Route::get('/tasks_vue','TasksVueController@index');
+    Route::get('/tasques','TasquesController@index');
     Route::get('/home','TasksVueController@index');
 });
 
