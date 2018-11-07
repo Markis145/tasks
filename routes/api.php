@@ -24,5 +24,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Completed tasks -> estats
     Route::post('/v1/completed_task/{task}', 'Api\CompletedTasksController@store');
     Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
+
+    Route::get('/v1/tags','Api\TagsController@index');                // BROWSE - Llistar
+    Route::get('/v1/tags/{tag}','Api\TagsController@show');          // READ
+    Route::delete('/v1/tags/{tag}','Api\TagsController@destroy');    // DELETE
+    Route::post('/v1/tags','Api\TagsController@store');               // CREATE
+    Route::put('/v1/tags/{tag}','Api\TagsController@update');         // EDIT
+
 //});
 

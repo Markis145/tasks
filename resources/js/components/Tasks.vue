@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-md text-xs-center id="tasks" class="tasks">
         <v-layout row wrap>
-            <v-flex xs12>
+            <v-flex xs12 justify-center>
                 <v-card-title dark color="primary">
                     <span class="title">Tasques ({{total}})</span>
                 </v-card-title>

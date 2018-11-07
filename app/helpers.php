@@ -1,4 +1,6 @@
 <?php
+
+use App\Tag;
 use App\Task;
 use App\User;
 
@@ -29,6 +31,26 @@ if (!function_exists('create_example_tasks')) {
         Task::create([
             'name' => 'Estudiar PHP',
             'completed' => true
+        ]);
+    }
+}
+
+if (!function_exists('create_example_tags')) {
+    function create_example_tags() {
+        Tag::create([
+            'name' => 'feina',
+            'description' => 'blafeina',
+            'color' => '#04B404'
+        ]);
+        Tag::create([
+            'name' => 'classe',
+            'description' => 'blaclasse',
+            'color' => '#04B100'
+        ]);
+        Tag::create([
+            'name' => 'casa',
+            'description' => 'blacasa',
+            'color' => '#02C404'
         ]);
     }
 }
