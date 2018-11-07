@@ -84,7 +84,6 @@ class TagsControllerTest extends TestCase
      */
     public function can_create_tag()
     {
-        $this->withoutExceptionHandling();
         $this->login('api');
         $response = $this->post('/api/v1/tags/',[
             'name' => 'feina',
@@ -93,14 +92,15 @@ class TagsControllerTest extends TestCase
         ]);
         $result = json_decode($response->getContent());
         $response->assertSuccessful();
-//        $this->assertDatabaseHas('tags', [ 'name' => 'Comprar pa' ]);
         $this->assertNotNull($tag = Tag::find($result->id));
         $this->assertEquals('feina',$result->name);
+        $this->assertEquals('asdasdasd',$result->description);
+        $this->assertEquals('#04B404',$result->color);
     }
     /**
      * @test
      */
-    public function can_list_tagss()
+    public function can_list_tags()
     {
         $this->login('api');
         //1
@@ -127,11 +127,15 @@ class TagsControllerTest extends TestCase
         $this->login('api');
         // 1
         $oldTag = factory(Tag::class)->create([
-            'name' => 'feina'
+            'name' => 'feina',
+            'description' => "blablab",
+            'color' => '#04B404'
         ]);
         // 2
         $response = $this->put('/api/v1/tags/' . $oldTag->id, [
-            'name' => 'classe'
+            'name' => 'classe',
+            'description' => 'classethings',
+            'color' => '#05C202'
         ]);
         // 3
         $result = json_decode($response->getContent());
@@ -139,7 +143,8 @@ class TagsControllerTest extends TestCase
         $newTag = $oldTag->refresh();
         $this->assertNotNull($newTag);
         $this->assertEquals('classe',$result->name);
-        $this->assertFalse((boolean) $newTag->completed);
+        $this->assertEquals('classethings',$result->description);
+        $this->assertEquals('#05C202',$result->color);
     }
 
 }

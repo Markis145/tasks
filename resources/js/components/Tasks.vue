@@ -1,43 +1,45 @@
 <template>
     <v-container grid-list-md text-xs-center id="tasks" class="tasks">
         <v-layout row wrap>
-            <v-flex xs12 justify-center>
-                <v-card-title dark color="primary">
-                    <span class="title">Tasques ({{total}})</span>
-                </v-card-title>
-                <v-card-text class="px-0">
-                    <form>
-                        <v-text-field
-                                type="text"
-                                v-model="newTask" @keyup.enter="add"
-                                name="name"
-                                required>
-                        </v-text-field>
-                        <input type="text"
-                               v-model="newTask" @keyup.enter="add"
-                               name="name"
-                               required
-                        >
-                        <v-btn id="button_add_task" @click="add">Afegir</v-btn>
-                    </form>
-                    <div v-if="errorMessage">
-                        Ha succeit un error: {{ errorMessage }}
-                    </div>
-                    <v-list dense>
-                        <v-list-tile v-for="task in filteredTasks" :key="task.id">
-                            <v-list-tile-content>
-                                <v-list-tile-title>
+            <v-flex xs12>
+                <v-card>
+                    <v-card-title dark color="primary">
+                        <span class="title">Tasques ({{total}})</span>
+                    </v-card-title>
+                    <v-card-text class="px-0">
+                        <form>
+                            <v-text-field
+                                    label="Tasca a afegir"
+                                    type="text"
+                                    v-model="newTask" @keyup.enter="add"
+                                    name="name"
+                                    required>
+                            </v-text-field>
+                            <input type="text"
+                                   v-model="newTask" @keyup.enter="add"
+                                   name="name"
+                                   required
+                            >
+                            <v-btn id="button_add_task" @click="add">Afegir</v-btn>
+                        </form>
+                        <div v-if="errorMessage">
+                            Ha succeit un error: {{ errorMessage }}
+                        </div>
+                        <v-list dense>
+                            <v-list-tile v-for="task in filteredTasks" :key="task.id">
+                                <v-list-tile-content>
+                                    <v-list-tile-title>
                                     <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
                                     </span>
-                                    <editable-text
-                                            :text="task.name"
-                                            @edited="editName(task, $event)"
-                                    ></editable-text>
-                                </v-list-tile-title>
-                            </v-list-tile-content>&nbsp;
-                        </v-list-tile>
-                    </v-list>
-                    <span id="filters" v-show="total > 0">
+                                        <editable-text
+                                                :text="task.name"
+                                                @edited="editName(task, $event)"
+                                        ></editable-text>
+                                    </v-list-tile-title>
+                                </v-list-tile-content>&nbsp;
+                            </v-list-tile>
+                        </v-list>
+                        <span id="filters" v-show="total > 0">
                 <h3>Filtros:</h3>
                 Active filter: {{ filter }}
                 <div>
@@ -47,7 +49,8 @@
                     <button @click="setFilter('active')">Pendents</button>
                 </div>
             </span>
-                </v-card-text>
+                    </v-card-text>
+                </v-card>
             </v-flex>
         </v-layout>
     </v-container>

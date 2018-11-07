@@ -34,6 +34,8 @@ class TagsController extends Controller
     public function update(UpdateTag $request, Tag $tag)
     {
         $tag->name = $request->name;
+        $tag->description = $request->description;
+        $tag->color = $request->color;
         $tag->save();
         return $tag->map();
     }
