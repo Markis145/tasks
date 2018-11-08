@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog" fullscreen>
+        <v-dialog v-model="deleteDialog">
             <v-card>
                 TODO DELETE DIALOG
             </v-card>

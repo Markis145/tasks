@@ -1,0 +1,1 @@
+scp /home/marcmestre/Code/Markis145/tasks/.env.production tasks2DAM:/home/forge/tasks.marcmestre.scool.cat/.env
