@@ -28,9 +28,11 @@ class LoggedUserTasksControllerTest extends TestCase
         $response->assertSuccessful();
         // Per obtenir el json que et respon
         $result = json_decode($response->getContent());
-        $this->assertEquals($result[0]->is($task1));
-        $this->assertEquals($result[1]->is($task2));
-        $this->assertEquals($result[2]->is($task3));
+        $this->assertCount(3,$result);
+        $this->assertEquals($result[0]->id,$task1->id);
+        $this->assertEquals($result[1]->id,$task2->id);
+        $this->assertEquals($result[2]->id,$task3->id);
+
     }
     /**
      * @test

@@ -85,4 +85,22 @@ class UserTest extends TestCase
         $this->assertTrue($tasks[1]->is($task2));
         $this->assertTrue($tasks[2]->is($task3));
     }
+
+    /**
+     * @test
+     */
+    public function haveTask()
+    {
+        //2
+        $user->haveTask();
+    }
+
+    /**
+     * @test
+     */
+    public function removeTask()
+    {
+        //2
+        $user->removeTask();
+    }
 }

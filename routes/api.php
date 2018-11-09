@@ -31,5 +31,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('/v1/tags','Api\TagsController@store');               // CREATE
     Route::put('/v1/tags/{tag}','Api\TagsController@update');         // EDIT
 
+    Route::get('/v1/user/tasks','Api\LoggedUserTasksController@index');
+
 //});
 
