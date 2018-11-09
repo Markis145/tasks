@@ -17,7 +17,7 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function can_add_tasks_to_user()
+    public function can_add_task_to_user()
     {
         // 1
         $user = factory(User::class)->create();
@@ -59,5 +59,30 @@ class UserTest extends TestCase
         $tasks = $user->tasks;
         // 3
         $this->assertEmpty($tasks);
+    }
+
+    /**
+     * @test
+     */
+    public function can_add_tasks_to_user()
+    {
+        // 1
+        $user = factory(User::class)->create();
+        $task1 = factory(Task::class)->create();
+        $task2 = factory(Task::class)->create();
+        $task3 = factory(Task::class)->create();
+        $tasks = [];
+        array_push($tasks,$task1);
+        array_push($tasks,$task2);
+        array_push($tasks,$task3);
+
+        //2
+        $user->addTasks($tasks);
+
+        // 3
+        $tasks = $user->tasks;
+        $this->assertTrue($tasks[0]->is($task1));
+        $this->assertTrue($tasks[1]->is($task2));
+        $this->assertTrue($tasks[2]->is($task3));
     }
 }

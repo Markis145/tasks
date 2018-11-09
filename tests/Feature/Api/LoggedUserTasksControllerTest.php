@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,24 +13,24 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_list_logged_user_tasks()
     {
-        $this->withoutExceptionHandling();
         // 1 Preparació
-        $user = $this->login();
+        $user = $this->login('api');
 
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
         $task3 = factory(Task::class)->create();
 
-        $tasks = collect([$task1, $task2, $task3]);
+        $tasks = [$task1, $task2, $task3];
         $user->addTasks($tasks);
 
         // 2
-        $response = $this->get( '/user/tasks');
+        $response = $this->json('GET', '/api/v1/user/tasks');
         $response->assertSuccessful();
-
-        $response->assertViewIs('tasks.user.index');
-        $response->assertViewHas('tasks',$user->tasks);
-
+        // Per obtenir el json que et respon
+        $result = json_decode($response->getContent());
+        $this->assertEquals($result[0]->is($task1));
+        $this->assertEquals($result[1]->is($task2));
+        $this->assertEquals($result[2]->is($task3));
     }
     /**
      * @test
