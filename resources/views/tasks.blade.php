@@ -26,7 +26,7 @@
                     </v-list-tile-avatar>
                     @if($task->completed)
                         <del>{{ $task->name }}</del>
-                    <form action="/tasks-uncompleted/{{ $task->id }}" method="POST">
+                    <form action="/completed_task/{{ $task->id }}" method="POST">
                         @csrf
                         {{ method_field('DELETE') }}
                         <input type="hidden" name="id" value="{{ $task->id  }}">
@@ -44,9 +44,9 @@
                     </form>
             @else
                 {{ $task->name }}
-                    <form action="/tasks-completed/{{ $task->id }}" method="POST">
+                    <form action="/completed_task/{{ $task->id }}" method="POST">
                         @csrf
-                        {{ method_field('PUT') }}
+
                         <input type="hidden" name="id" value="{{ $task->id  }}">
                         <v-btn type="submit" color="warning">
                             <button>Completar</button>

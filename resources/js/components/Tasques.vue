@@ -1,11 +1,34 @@
 <template>
     <span>
-        <v-dialog v-model="deleteDialog">
+        <v-dialog v-model="deleteDialog" width="500">
             <v-card>
-                TODO DELETE DIALOG
+                <v-card-title class="headline">Esteu segurs?</v-card-title>
+
+                <v-card-text>
+                    Aquesta operació no es pot desfer.
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                      <v-btn
+                              color="green darken-1"
+                              flat="flat"
+                              @click="deleteDialog = false"
+                      >
+                        Cancel·lar
+                      </v-btn>
+
+                      <v-btn
+                              color="error darken-1"
+                              flat="flat"
+                              @click="destroy"
+                      >
+                        Confirmar
+                      </v-btn>
+                </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="createDialog" fullscreen>
+        <v-dialog v-model="createDialog">
             <v-card>
                 TODO CREATE DIALOG
             </v-card>
@@ -161,7 +184,7 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: true
+      required: false
     }
   },
   methods: {
@@ -176,8 +199,7 @@ export default {
       console.log('Todo delete task' + task.id)
     },
     showCreate (task) {
-      this.deleteDialog = true
-      this.deleteDialog = true
+      this.createDialog = true
       console.log('Todo delete task')
     },
     create (task) {

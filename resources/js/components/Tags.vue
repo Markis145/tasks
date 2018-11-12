@@ -1,36 +1,36 @@
 <template>
-    <v-container grid-list-md text-xs-center id="tasks" class="tasks">
+    <v-container grid-list-md text-xs-center id="tags" class="tags">
         <v-layout row wrap>
             <v-flex xs12>
                 <v-card width="500">
                     <v-card-title dark color="primary">
-                        <span class="title">Tasques ({{total}})</span>
+                        <span class="title">Tags ({{total}})</span>
                     </v-card-title>
                     <v-card-text class="px-0">
                         <form>
                             <v-text-field
-                                    label="Tasca a afegir"
+                                    label="Tag a afegir"
                                     type="text"
-                                    v-model="newTask" @keyup.enter="add"
+                                    v-model="newTag" @keyup.enter="add"
                                     name="name"
                                     required>
                             </v-text-field>
-                            <v-btn id="button_add_task" @click="add">Afegir</v-btn>
+                            <v-btn id="button_add_tag" @click="add">Afegir</v-btn>
                         </form>
                         <div v-if="errorMessage">
                             Ha succeit un error: {{ errorMessage }}
                         </div>
                         <v-list dense>
-                            <v-list-tile v-for="task in filteredTasks" :key="task.id">
+                            <v-list-tile v-for="tag in filteredTags" :key="tag.id">
                                 <v-list-tile-content>
                                     <v-list-tile-title>
-                                    <span :id="'task' + task.id" :class="{ strike: task.completed=='1'}">
+                                    <span :id="'tag' + tag.id">
                                     </span>
                                         <editable-text
-                                                :text="task.name"
-                                                @edited="editName(task, $event)"
+                                                :text="tag.name"
+                                                @edited="editName(tag, $event)"
                                         ></editable-text>
-                                        <span :id="'delete_task_id' + task.id" @click="remove(task)" class="cursor-pointer">&#215;</span>
+                                        <span :id="'delete_tag_id' + tag.id" @click="remove(tag)" class="cursor-pointer">&#215;</span>
                                     </v-list-tile-title>
                                 </v-list-tile-content>&nbsp;
                             </v-list-tile>
@@ -56,39 +56,39 @@ import EditableText from './EditableText'
 import axios from 'axios'
 
 var filters = {
-  all: function (tasks) {
-    return tasks
-  },
-  completed: function (tasks) {
-    return tasks.filter(function (task) {
-      // return task.completed
-      // NO CAL
-      if (task.completed === '1') return true
-      else return false
-    })
-  },
-  active: function (tasks) {
-    return tasks.filter(function (task) {
-      if (task.completed === '0') return true
-      else return false
-    })
+  all: function (tags) {
+    return tags
   }
+  // completed: function (tags) {
+  //   return tags.filter(function (tag) {
+  //     // return tag.completed
+  //     // NO CAL
+  //     if (tag.completed === '1') return true
+  //     else return false
+  //   })
+  // },
+  // active: function (tags) {
+  //   return tags.filter(function (tag) {
+  //     if (tag.completed === '0') return true
+  //     else return false
+  //   })
+  // }
 }
 export default {
-  name: 'Tasks',
+  name: 'Tags',
   components: {
     'editable-text': EditableText
   },
   data () {
     return {
       filter: 'all', // All Completed Active
-      newTask: '',
-      dataTasks: this.tasks,
+      newTag: '',
+      dataTag: this.tags,
       errorMessage: null
     }
   },
   props: {
-    'tasks': {
+    'tags': {
       type: Array,
       default: function () {
         return []
@@ -97,52 +97,52 @@ export default {
   },
   computed: {
     total () {
-      return this.dataTasks.length
+      return this.dataTags.length
     },
-    filteredTasks () {
+    filteredTags () {
       // Segons el filtre actiu
       // Alternativa switch/case -> array associatiu
-      return filters[this.filter](this.dataTasks)
+      return filters[this.filter](this.dataTags)
     }
   },
   watch: {
-    tasks (newTasks) {
-      this.dataTasks = newTasks
+    tags (newTags) {
+      this.dataTags = newTags
     }
   },
   methods: {
-    editName (task, text) {
-      task.name = text
+    editName (tag, text) {
+      tag.name = text
     },
     setFilter (newFilter) {
       this.filter = newFilter
     },
     add () {
-      if (this.newTask === '') return
-      window.axios.post('/api/v1/tasks', {
-        name: this.newTask
+      if (this.newTag === '') return
+      window.axios.post('/api/v1/tags', {
+        name: this.newTag
       }).then((response) => {
-        this.dataTasks.splice(0, 0, { id: response.data.id, name: this.newTask, completed: false })
-        this.newTask = ''
+        this.dataTags.splice(0, 0, { id: response.data.id, name: this.newTag })
+        this.newTag = ''
       }).catch((error) => {
         console.log(error)
       })
     },
-    remove (task) {
-      axios.delete('/api/v1/tasks/' + task.id).then((response) => {
-        this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    remove (tag) {
+      axios.delete('/api/v1/tags/' + tag.id).then((response) => {
+        this.dataTags.splice(this.dataTags.indexOf(tag), 1)
       }).catch((error) => {
         console.log(error)
       })
-      window.console.log(task)
+      window.console.log(tag)
     }
   },
   created () {
-    if (this.tasks.length === 0) {
-      window.axios.get('/api/v1/tasks').then((response) => {
+    if (this.tags.length === 0) {
+      window.axios.get('/api/v1/tags').then((response) => {
         console.log('prova******************')
         console.log(response.data)
-        this.dataTasks = response.data
+        this.dataTags = response.data
       }).catch((error) => {
         this.errorMessage = error.response.data
       })

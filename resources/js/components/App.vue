@@ -17,7 +17,8 @@ export default {
         ]
       },
       { icon: 'account_box', text: 'About', url: '/about' },
-      { icon: 'person', text: 'Contacte', url: '/contact' }
+      { icon: 'person', text: 'Contacte', url: '/contact' },
+      { icon: 'description', text: 'Tags', url: '/tags' }
     ]
   }),
   props: {
