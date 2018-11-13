@@ -12,7 +12,7 @@
                     <v-spacer></v-spacer>
                       <v-btn
                               color="green darken-1"
-                              flat="flat"
+                              flat
                               @click="deleteDialog = false"
                       >
                         Cancel·lar
@@ -28,9 +28,28 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="createDialog">
+        <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <v-card>
                 TODO CREATE DIALOG
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+            <v-toolbar color="blue darken-3" class="white--text">
+                <v-toolbar-title class="white--text">Editar Tasca</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-1">exit_to_app</v-icon>
+                    SORTIR
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-1">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
+            <v-card>
+                <v-card-text>
+                    TODO AQUI EDIT DIALOG
+                </v-card-text>
             </v-card>
         </v-dialog>
         <v-snackbar :timeout="3000" color="success" v-model="snackbar">
@@ -103,22 +122,22 @@
                     <tr>
                         <td>{{ task.id }}</td>
                         <td v-text="task.name"></td>
-                        <td v-text="task.completed"></td>
                         <td v-text="task.user_id"></td>
+                        <td v-text="task.completed"></td>
                         <td v-text="task.created_at"></td>
                         <td v-text="task.updated_at"></td>
                         <td>
                             <v-btn icon color="primary" flat title="Mostrar snackbar"
                                    @click="snackbar=true">
-                                <v-icon>delete</v-icon>
+                                <v-icon>info</v-icon>
                             </v-btn>
                             <v-btn icon color="primary" flat title="Mostrar la tasca"
                                     @click="show(task)">
-                                <v-icon>search</v-icon>
+                                <v-icon>visibility</v-icon>
                             </v-btn>
                             <v-btn icon color="success" flat title="Actualitzar la tasca"
-                                   @click="update(task)">
-                                <v-icon>border_color</v-icon>
+                                   @click="showUpdate(task)">
+                                <v-icon>edit</v-icon>
                             </v-btn>
                             <v-btn icon color="error" flat title="Eliminar la tasca"
                                    @click="showDestroy(task)">
@@ -150,6 +169,7 @@ export default {
     return {
       createDialog: false,
       deleteDialog: false,
+      editDialog: false,
       snackbar: true,
       user: '',
       users: [
@@ -184,10 +204,13 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: false
+      required: true
     }
   },
   methods: {
+    showUpdate () {
+      this.editDialog = true
+    },
     opcio1 () {
       console.log('Todo Opcio')
     },
