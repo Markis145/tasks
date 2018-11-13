@@ -28,16 +28,34 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+                  @keydown.esc="createDialog=false">
+            <v-toolbar color="blue darken-3" class="white--text">
+                <v-btn icon flat class="white--text">
+                    <v-icon class="mr-1" @click="createDialog=false">close</v-icon>
+                </v-btn>
+                <v-toolbar-title class="white--text">Crear Tasca</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text" @click="createDialog=false">
+                    <v-icon class="mr-1" >exit_to_app</v-icon>
+                    SORTIR
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-1">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
             <v-card>
-                TODO CREATE DIALOG
+                <v-card-text>
+                    TODO AQUI CREATE DIALOG
+                </v-card-text>
             </v-card>
         </v-dialog>
         <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
         @keydown.esc="editDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
                 <v-btn icon flat class="white--text">
-                    <v-icon class="mr-1">close</v-icon>
+                    <v-icon class="mr-1" @click="editDialog=false">close</v-icon>
                 </v-btn>
                 <v-toolbar-title class="white--text">Editar Tasca</v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -52,7 +70,44 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    TODO AQUI EDIT DIALOG
+                    <v-form>
+                        <v-text-field v-model="name" label="Nom" hint="El nom de la tasca"></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
+                        <v-text-area v-model="description" :label="Descripcio" hint="blabla"></v-text-area>
+                        <div class="align-center" id="PERIDENTIFICARLO">
+                            <v-btn flat class="white--text" @click="editDialog=false">
+                                <v-icon class="mr-1" >exit_to_app</v-icon>
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="success" class="white--text">
+                                <v-icon class="mr-1">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </div>
+                    </v-form>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+                  @keydown.esc="showDialog=false">
+            <v-toolbar color="blue darken-3" class="white--text">
+                <v-btn icon flat class="white--text">
+                    <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
+                </v-btn>
+                <v-toolbar-title class="white--text">Mostrar tasca</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn flat class="white--text" @click="showDialog=false">
+                    <v-icon class="mr-1" >exit_to_app</v-icon>
+                    SORTIR
+                </v-btn>
+                <v-btn flat class="white--text">
+                    <v-icon class="mr-1">save</v-icon>
+                    Guardar
+                </v-btn>
+            </v-toolbar>
+            <v-card>
+                <v-card-text>
+                    TODO AQUI mostrar DIALOG
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -86,14 +141,14 @@
         <v-card>
             <v-card-title>
                 <v-layout row wrap>
-                    <v-flex xs3 class="pr-2">
+                    <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
                                 v-model="filter">
                         </v-select>
                     </v-flex>
-                    <v-flex xs4 class="pr-2">
+                    <v-flex lg4 class="pr-2">
                         <v-select
                                 label="Users"
                                 :items="users"
@@ -101,7 +156,7 @@
                                 clearable>
                         </v-select>
                     </v-flex>
-                    <v-flex xs5>
+                    <v-flex lg5>
                         <v-text-field
                             append-icon="search"
                             label="Buscar"
@@ -120,6 +175,7 @@
                     :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
+                    class="hidden-md-and-down"
             >
                 <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}">
@@ -136,7 +192,7 @@
                                 <v-icon>info</v-icon>
                             </v-btn>
                             <v-btn icon color="primary" flat title="Mostrar la tasca"
-                                    @click="show(task)">
+                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
                             <v-btn icon color="success" flat title="Actualitzar la tasca"
@@ -151,6 +207,34 @@
                     </tr>
                 </template>
             </v-data-table>
+            <v-data-iterator class="hidden-log-and-up"
+                             :items="dataTasks"
+                             :search="search"
+                             no-results-text="No s'ha trobat cap registre coincident"
+                             no-data-text="No hi ha dades disponibles"
+                             rows-per-page-text="Tasques per pàgina"
+                             :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
+                             :loading="loading"
+                             :pagination.sync="pagination"
+            >
+                <v-flex
+                         slot="item"
+                         slot-scope="{item:task}"
+                         xs12
+                         sm6
+                         md4
+                >
+                    <v-card>
+                        <v-card-title v-text="task.name"></v-card-title>
+                        <v-list dense>
+                             <v-list-tile>
+                                  <v-list-tile-content>Calories:</v-list-tile-content>
+                                  <v-list-tile-content class="align-end">{{ props.item.calories }}</v-list-tile-content>
+                             </v-list-tile>
+                        </v-list>
+                    </v-card>
+                </v-flex>
+            </v-data-iterator>
         </v-card>
         <v-btn
             @click="showCreate"
@@ -171,9 +255,13 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      completed: false,
+      name: '',
+      description: false,
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
+      showDialog: false,
       snackbar: true,
       user: '',
       users: [
@@ -214,6 +302,9 @@ export default {
   methods: {
     showUpdate () {
       this.editDialog = true
+    },
+    showShow () {
+      this.showDialog = true
     },
     opcio1 () {
       console.log('Todo Opcio')
