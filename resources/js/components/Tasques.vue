@@ -33,12 +33,16 @@
                 TODO CREATE DIALOG
             </v-card>
         </v-dialog>
-        <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+        @keydown.esc="editDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
+                <v-btn icon flat class="white--text">
+                    <v-icon class="mr-1">close</v-icon>
+                </v-btn>
                 <v-toolbar-title class="white--text">Editar Tasca</v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">exit_to_app</v-icon>
+                <v-btn flat class="white--text" @click="editDialog=false">
+                    <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
                 <v-btn flat class="white--text">
