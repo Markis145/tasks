@@ -71,16 +71,17 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="name" label="Nom" hint="El nom de la tasca"></v-text-field>
-                        <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
-                        <v-text-area v-model="description" :label="Descripcio" hint="blabla"></v-text-area>
-                        <div class="align-center" id="PERIDENTIFICARLO">
-                            <v-btn flat class="white--text" @click="editDialog=false">
-                                <v-icon class="mr-1" >exit_to_app</v-icon>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                        <v-autocomplete :items="dataUsers" label="Usuari" item-text="name"></v-autocomplete>
+                        <div class="text-xs-center">
+                            <v-btn @click="editDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
                                 Cancel·lar
                             </v-btn>
-                            <v-btn color="success" class="white--text">
-                                <v-icon class="mr-1">save</v-icon>
+                            <v-btn color="success">
+                                <v-icon class="mr-2">save</v-icon>
                                 Guardar
                             </v-btn>
                         </div>
@@ -107,7 +108,11 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    TODO AQUI mostrar DIALOG
+                    <v-form>
+                        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="description" label="Descripció"></v-textarea>
+                    </v-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -151,8 +156,9 @@
                     <v-flex lg4 class="pr-2">
                         <v-select
                                 label="Users"
-                                :items="users"
+                                :items="dataUsers"
                                 v-model="user"
+                                item-text="name"
                                 clearable>
                         </v-select>
                     </v-flex>
@@ -227,10 +233,14 @@
                     <v-card>
                         <v-card-title v-text="task.name"></v-card-title>
                         <v-list dense>
-                             <v-list-tile>
-                                  <v-list-tile-content>Calories:</v-list-tile-content>
-                                  <v-list-tile-content class="align-end">{{ props.item.calories }}</v-list-tile-content>
-                             </v-list-tile>
+                            <v-list-tile>
+                              <v-list-tile-content>Completed:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                              <v-list-tile-content>User:</v-list-tile-content>
+                              <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
+                            </v-list-tile>
                         </v-list>
                     </v-card>
                 </v-flex>
@@ -255,16 +265,17 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      dataUsers: this.users,
       completed: false,
       name: '',
-      description: false,
+      description: '',
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
       showDialog: false,
       snackbar: true,
       user: '',
-      users: [
+      usersold: [
         'Marc Mestre',
         'Cristian Marin',
         'Sergi Baucells',
@@ -295,6 +306,10 @@ export default {
   },
   props: {
     tasks: {
+      type: Array,
+      required: true
+    },
+    users: {
       type: Array,
       required: true
     }
