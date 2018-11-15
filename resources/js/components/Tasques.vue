@@ -22,6 +22,8 @@
                               color="error darken-1"
                               flat="flat"
                               @click="destroy"
+                              :loading="removing"
+                              :disabled="removing"
                       >
                         Confirmar
                       </v-btn>
@@ -213,7 +215,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-log-and-up"
+            <v-data-iterator class="hidden-lg-and-up"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
@@ -230,7 +232,7 @@
                          sm6
                          md4
                 >
-                    <v-card>
+                    <v-card class="mb-1">
                         <v-card-title v-text="task.name"></v-card-title>
                         <v-list dense>
                             <v-list-tile>
@@ -272,6 +274,7 @@ export default {
       createDialog: false,
       deleteDialog: false,
       editDialog: false,
+      taskBeingRemoved: null,
       showDialog: false,
       snackbar: true,
       user: '',
@@ -292,6 +295,9 @@ export default {
         rowsPerPage: 25
       },
       loading: false,
+      creating: false,
+      editing: false,
+      removing: false,
       dataTasks: this.tasks,
       headers: [
         { text: 'Id', value: 'id' },
@@ -326,10 +332,25 @@ export default {
     },
     showDestroy (task) {
       this.deleteDialog = true
-      console.log('Todo delete task' + task.id)
+      this.taskBeingRemoved = task
+    },
+    removeTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
     destroy (task) {
-      console.log('Todo delete task' + task.id)
+      this.removing = true
+      window.axios.delete('/api/v1/user/tasks' + this.taskBeingRemoved.id).then(() => {
+        // this.refresh()
+        this.removeTask(this.taskBeingRemoved)
+        this.deleteDialog = false
+        this.taskBeingRemoved = null
+        // TODO showSnackbar
+        this.removing = false
+      }).catch(error => {
+        console.log(error)
+        // TODO showSnackbar
+        this.removing = false
+      })
     },
     showCreate (task) {
       this.createDialog = true
@@ -350,8 +371,10 @@ export default {
       window.axios.get('/api/v1/user/tasks').then(response => {
       //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTasks = response.data
+        this.loading = false
       }).catch(error => {
         console.log(error)
+        this.loading = false
         // SHOW SNACKBAR ERROR TODO
       })
     }
