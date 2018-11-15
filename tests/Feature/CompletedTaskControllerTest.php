@@ -16,7 +16,8 @@ class CompletedTaskControllerTest extends TestCase {
         //1
         $task= Task::create([
             'name' => 'comprar pa',
-            'completed' => false
+            'completed' => false,
+            'description' => 'ba bla bla'
         ]);
         //2
         $response = $this->post('/completed_task/' . $task->id);
@@ -45,7 +46,8 @@ class CompletedTaskControllerTest extends TestCase {
         //1
         $task = Task::create([
             'name' => 'comprar pa',
-            'completed' => true
+            'completed' => true,
+            'description' => 'ba bla bla'
         ]);
         //2
         $response = $this->delete('/completed_task/' . $task->id);

@@ -17,7 +17,8 @@ class TaskTest extends TestCase
     {
         // 1
         $task = Task::create([
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'description' => 'bla bla'
         ]);
         $userOriginal = factory(User::class)->create();
         // 2

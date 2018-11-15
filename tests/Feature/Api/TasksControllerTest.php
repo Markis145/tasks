@@ -130,13 +130,16 @@ class TasksControllerTest extends TestCase
     public function can_edit_task()
     {
         $this->login('api');
+        $this->withoutExceptionHandling();
         // 1
         $oldTask = factory(Task::class)->create([
-            'name' => 'Comprar llet'
+            'name' => 'Comprar llet',
+            'description' => 'ba bla bla'
         ]);
         // 2
         $response = $this->put('/api/v1/tasks/' . $oldTask->id, [
-            'name' => 'Comprar pa'
+            'name' => 'Comprar pa',
+            'description' => 'ba bla bla'
         ]);
         // 3
         $result = json_decode($response->getContent());

@@ -339,7 +339,7 @@ export default {
     },
     destroy (task) {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false

@@ -15,6 +15,7 @@ class CompletedTaskControllerTest extends TestCase {
         $this->login('api');
         $task = Task::create([
             'name' => 'comprar pa',
+            'description' => 'bla bla',
             'completed' => false
         ]);
         //2
@@ -46,7 +47,8 @@ class CompletedTaskControllerTest extends TestCase {
         //1
         $task= Task::create([
             'name' => 'comprar pa',
-            'completed' => true
+            'completed' => true,
+            'description' => 'bla bla bla'
         ]);
         //2
         $response = $this->json('DELETE','/api/v1/completed_task/' . $task->id);
