@@ -263,6 +263,22 @@ if (!function_exists('sample_users')) {
         } catch (exception $e) {
 
         }
+
+        try {
+            $sergitur = factory(User::class)->create([
+                'name' => 'Sergi Tur',
+                'email' => 'sergiturbadenas@gmail.com',
+                'password' => 'secret'
+            ]);
+        } catch (exception $e) {
+
+        }
+
+        try {
+            $sergitur->assignRole('TaskManager');
+        } catch (exception $e) {
+
+        }
     }
 };
 

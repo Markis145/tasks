@@ -38,6 +38,7 @@ class TasksControllerTest extends TestCase
      */
     public function can_store_task()
     {
+        $this->withoutExceptionHandling();
         $this->login();
         $response = $this->post('/tasks',[
             'name' => 'Comprar llet'

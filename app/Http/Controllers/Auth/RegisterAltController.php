@@ -19,7 +19,7 @@ class RegisterAltController extends Controller
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
             $user->save();
             Auth::login($user);
             return redirect('/home');
