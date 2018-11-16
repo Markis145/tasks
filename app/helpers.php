@@ -4,6 +4,11 @@ use App\Tag;
 use App\Task;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
+use Spatie\Permission\Exceptions\RoleAlreadyExists;
+use Spatie\Permission\Exceptions\RoleDoesNotExist;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 if (!function_exists('create_primary_user')) {
     function create_primary_user() {
@@ -109,3 +114,157 @@ if (!function_exists('create_database')) {
         grant_mysql_privileges(env('DB_USERNAME'),env('DB_DATABASE'));
     }
 }
+
+if (!function_exists('initialize_roles')) {
+    function initialize_roles() {
+        // Crear rols
+        try {
+            $taskManager = Role::create([
+                'name' => 'TaskManager'
+            ]);
+
+            $tasks = Role::create([
+                'name' => 'Tasks'
+            ]);
+        } catch(Exception $e) {
+
+        }
+
+        try {
+            Permission::create([
+                'name' => 'tasks.index'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.show'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.store'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.update'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.complete'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.uncomplete'
+            ]);
+
+            Permission::create([
+                'name' => 'tasks.destroy'
+            ]);
+        } catch(Exception $e) {
+
+        }
+
+        try {
+            $taskManager->givePermissionTo('tasks.index');
+            $taskManager->givePermissionTo('tasks.show');
+            $taskManager->givePermissionTo('tasks.store');
+            $taskManager->givePermissionTo('tasks.update');
+            $taskManager->givePermissionTo('tasks.complete');
+            $taskManager->givePermissionTo('tasks.uncomplete');
+            $taskManager->givePermissionTo('tasks.destroy');
+        } catch(Exception $e){
+
+        }
+
+        try {
+            Permission::create([
+                'name' => 'user.tasks.index'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.show'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.store'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.update'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.complete'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.uncomplete'
+            ]);
+
+            Permission::create([
+                'name' => 'user.tasks.destroy'
+            ]);
+        } catch(Exception $e) {
+
+        }
+
+        try {
+            $tasks->givePermissionTo('user.tasks.index');
+            $tasks->givePermissionTo('user.tasks.show');
+            $tasks->givePermissionTo('user.tasks.store');
+            $tasks->givePermissionTo('user.tasks.update');
+            $tasks->givePermissionTo('user.tasks.complete');
+            $tasks->givePermissionTo('user.tasks.uncomplete');
+            $tasks->givePermissionTo('user.tasks.destroy');
+        } catch(Exception $e) {
+
+        }
+    }
+}
+
+if (!function_exists('sample_users')) {
+    function sample_users()
+    {
+        //superadmin no cal -> jo mateix
+
+        try {
+            factory(User::class)->create([
+                'name' => 'Pepe Pringao',
+                'email' => 'pepepringao@hotmail.com'
+            ]);
+        } catch (exception $e) {
+
+        }
+
+        try {
+            $bartsimpson = factory(User::class)->create([
+                'name' => 'Bart Simpson',
+                'email' => 'bartsimpson@hotmail.com'
+            ]);
+        } catch (exception $e) {
+
+        }
+
+        try {
+            $bartsimpson->assignRole('Tasks');
+        } catch (exception $e) {
+
+        }
+
+        try {
+            $homersimpson = factory(User::class)->create([
+                'name' => 'Homer Simpson',
+                'email' => 'homersimpson@hotmail.com'
+            ]);
+        } catch (exception $e) {
+
+        }
+
+        try {
+            $homersimpson->assignRole('TaskManager');
+        } catch (exception $e) {
+
+        }
+    }
+};
+
+// TODO: crear multiples usuaris amb diferents rols
+// TODO: Com gestionar el superadmin
