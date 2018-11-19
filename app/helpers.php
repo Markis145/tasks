@@ -14,11 +14,13 @@ if (!function_exists('create_primary_user')) {
     function create_primary_user() {
         $user = User::where('email', 'marcmestre@iesebre.com')->first();
         if (!$user) {
-            User::firstOrCreate([
+            $user = User::firstOrCreate([
                 'name' => 'Marc Mestre Alguero',
                 'email' => 'marcmestre@iesebre.com',
                 'password' => bcrypt(env('PRIMARY_USER_PASSWORD','123456'))
             ]);
+            $user->admin = true;
+            $user->save();
         }
     }
 }

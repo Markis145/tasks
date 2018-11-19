@@ -14,8 +14,8 @@ class UpdateTask extends FormRequest
      */
     public function authorize()
     {
-        return true;
-        //return Auth::user()->can('task.update');
+//        return true;
+        return Auth::user()->can('tasks.update');
     }
 
     /**
@@ -26,7 +26,8 @@ class UpdateTask extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required'
         ];
     }
 }

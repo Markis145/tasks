@@ -105,4 +105,18 @@ class UserTest extends TestCase
         //2
         $user->removeTask();
     }
+
+    /**
+     * @test
+     */
+    public function isSuperAdmin()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertFalse($user->isSuperAdmin());
+        $user->admin = true;
+        $user->save();
+        $this->assertTrue($user->isSuperAdmin());
+
+    }
 }
