@@ -9,8 +9,12 @@ import Tasks from './components/Tasks'
 import Tasques from './components/Tasques'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
+import UserList from './components/UserList'
+
 window.Vue = Vue
 window.Vue.use(Vuetify)
+
+// window.Vue.use(Snackbar)
 
 // eslint-disable-next-line no-undef
 window.Vue.component('example-component', ExampleComponent)
@@ -18,5 +22,6 @@ window.Vue.component('tasks', Tasks)
 window.Vue.component('tasques', Tasques)
 window.Vue.component('login-form', LoginForm)
 window.Vue.component('register-form', RegisterForm)
+window.Vue.component('user-list', UserList)
 
 const app = new window.Vue(AppComponent)
