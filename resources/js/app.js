@@ -10,6 +10,7 @@ import Tasques from './components/Tasques'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
+import UserSelect from './components/UserSelect'
 
 window.Vue = Vue
 window.Vue.use(Vuetify)
@@ -23,5 +24,6 @@ window.Vue.component('tasques', Tasques)
 window.Vue.component('login-form', LoginForm)
 window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
+window.Vue.component('user-select', UserSelect)
 
 const app = new window.Vue(AppComponent)

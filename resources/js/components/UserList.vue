@@ -7,10 +7,10 @@
                     <img :src="user.avatar" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
-            <v-list-content>
-                <v-list-tile-tilte v-text="user.name"></v-list-tile-tilte>
+            <v-list-tile-content>
+                <v-list-tile-title v-text="user.name"></v-list-tile-title>
                 <v-list-tile-sub-title v-text="user.email"></v-list-tile-sub-title>
-            </v-list-content>
+            </v-list-tile-content>
         </v-list-tile>
         <v-divider></v-divider>
         </template>
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'UserList.vue',
+  name: 'UserList',
   data () {
     return {
       dataUsers: []
@@ -31,7 +31,7 @@ export default {
     }
   },
   created () {
-    if (this.users) this.dataUser = this.users
+    if (this.users) this.dataUsers = this.users
     else {
       window.axios.get('/api/v1/users').then(response => {
         this.dataUsers = response.data
