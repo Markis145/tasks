@@ -49,7 +49,26 @@
             </v-toolbar>
             <v-card>
                 <v-card-text>
-                    TODO AQUI CREATE DIALOG
+                    <v-form>
+                        <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
+                        <v-autocomplete v-model="newTask.user_id" :items="dataUsers" label="Usuari" item-text="name" item-value="id"></v-autocomplete>
+                        <div class="text-xs-center">
+                            <v-btn @click="createDialog=false">
+                                <v-icon class="mr-2">exit_to_app</v-icon>
+                                Cancel·lar
+                            </v-btn>
+                            <v-btn color="success"
+                                   flat
+                                   @click="add()"
+                                   :loading="creating"
+                                   :disabled="creating">
+                                <v-icon class="mr-2">save</v-icon>
+                                Guardar
+                            </v-btn>
+                        </div>
+                    </v-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -265,6 +284,12 @@ export default {
   name: 'Tasques',
   data () {
     return {
+      newTask: {
+        name: '',
+        completed: false,
+        user_id: '',
+        description: ''
+      },
       snackbarMessage: 'Prova',
       snackbarTimeout: 3000,
       snackbarColor: 'success',
@@ -352,6 +377,18 @@ export default {
         this.removing = false
       })
     },
+    createTask (task) {
+      this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
+    },
+    add () {
+      console.log('estic dins del add!')
+      window.axios.post('/api/v1/user/tasks', this.newTask).then(() => {
+
+        this.showMessage("S'ha creat correctament la tasca")
+      }).catch(error => {
+        this.showError(error)
+      })
+    },
 
     // SNACKBAR
     showMessage (message) {
@@ -370,7 +407,7 @@ export default {
 
     showCreate (task) {
       this.createDialog = true
-      console.log('Todo delete task')
+      this.newTask = task
     },
     create (task) {
       console.log('Todo delete task')

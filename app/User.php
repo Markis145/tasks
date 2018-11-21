@@ -72,6 +72,7 @@ class User extends Authenticatable
     public function map()
     {
         return [
+            'id' => $this->id,
             'name'=>$this->name,
             'email'=>$this->email,
             'avatar'=>$this->avatar

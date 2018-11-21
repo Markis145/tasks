@@ -28,7 +28,6 @@
             </v-list-content>
         </template>
     </v-autocomplete>
-
 </template>
 
 <script>

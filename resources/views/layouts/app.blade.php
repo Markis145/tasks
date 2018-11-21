@@ -14,6 +14,7 @@
             v-model="drawer"
             fixed
             app
+            clipped
     >
         <v-list dense>
             <template v-for="item in items">
@@ -93,7 +94,7 @@
 
        </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
+    <v-toolbar color="indigo" dark fixed app clipped-right>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>
