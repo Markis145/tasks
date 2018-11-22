@@ -344,7 +344,7 @@ export default {
         { text: 'Completat', value: 'completed' },
         { text: 'Creat', value: 'created_at_timestamp' },
         { text: 'Modificat', value: 'updated_at_timestamp' },
-        { text: 'Accions', sortable: false }
+        { text: 'Accions', sortable: false, value: 'full_search' }
       ]
     }
   },

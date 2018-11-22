@@ -8,7 +8,7 @@
         <template slot="selection" slot-scope="data">
             <v-chip>
                 <v-avatar :title="data.item.name">
-                    <img :src="data.item.avatar" :alt="data.item.name">
+                    <img :src="data.item.gravatar" :alt="data.item.name">
                 </v-avatar>
                 {{ data.item.name }}
             </v-chip>
@@ -16,7 +16,7 @@
         <template slot="item" slot-scope="{ item: user }">
             <v-list-tile-avatar>
                 <v-avatar :title="user.name">
-                    <img :src="user.avatar" alt="avatar">
+                    <img :src="user.gravatar" alt="avatar">
                 </v-avatar>
             </v-list-tile-avatar>
             <v-list-tile-content>
