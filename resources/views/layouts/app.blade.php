@@ -94,7 +94,7 @@
 
        </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app clipped-right>
+    <v-toolbar color="indigo" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <v-spacer></v-spacer>

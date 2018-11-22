@@ -5,14 +5,7 @@ class Task extends Model
 {
 //    protected $fillable = ['name','completed'];
     protected $guarded = [];
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'created_at'
-    ];
+
     public function file()
     {
         // return $this->hasOne('App\File');
