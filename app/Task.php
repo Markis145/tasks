@@ -1,8 +1,10 @@
 <?php
 namespace App;
+use App\traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
+    use FormattedDates;
 //    protected $fillable = ['name','completed'];
     protected $guarded = [];
 
@@ -47,13 +49,21 @@ class Task extends Model
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'completed' => $this->completed,
+            'completed' => (boolean) $this->completed,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
+            'user_gravatar' => optional($this->user)->gravatar,
+            'created_at' => $this->created_at,
+            'created_at_formatted' => $this->created_at_formatted,
+            'created_at_human' => $this->created_at_human,
+            'created_at_timestamp' => $this->created_at_timestamp,
+            'updated_at' => $this->updated_at,
+            'updated_at_formatted' => $this->updated_at_formatted,
+            'updated_at_human' => $this->updated_at_human,
+            'updated_at_timestamp' => $this->updated_at_timestamp,
             'user' => $this->user
-//            'tags' => $this->tags,
-//            'file' => $this->file,
         ];
     }
+
 }

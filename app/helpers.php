@@ -272,6 +272,7 @@ if (!function_exists('sample_users')) {
                 'email' => 'sergiturbadenas@gmail.com',
                 'password' => 'secret'
             ]);
+
         } catch (exception $e) {
 
         }

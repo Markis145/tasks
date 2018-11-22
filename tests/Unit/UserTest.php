@@ -137,7 +137,30 @@ class UserTest extends TestCase
         $this->assertEquals($mappedUser['name'],'Pepe Pardo Jeans');
         $this->assertEquals($mappedUser['email'],'pepepardo@jeans.com');
         $this->assertEquals($mappedUser['avatar'],'https://www.gravatar.com/avatar/6849ef9c40c2540dc23ad9699a79a2f8');
+    }
 
-
+    /**
+     * @test
+     */
+    public function regulars()
+    {
+        $this->assertCount(0,User::regular()->get());
+        $user1 = factory(User::class)->create([
+            'name' => 'Jakito Mestre Algueró',
+            'email' => 'jaki@hotmail.com'
+        ]);
+        $user2 = factory(User::class)->create([
+            'name' => 'Pepa la cerda',
+            'email' => 'pepacerda@hotmail.com'
+        ]);
+        $user3 = factory(User::class)->create([
+            'name' => 'Pepa Pig',
+            'email' => 'pepapig@hotmail.com'
+        ]);
+        $user3->admin = true;
+        $user3->save();
+        $this->assertCount(2,$regularusers=User::regular()->get());
+        $this->assertEquals($regularusers[0]->name,'Jakito Mestre Algueró');
+        $this->assertEquals($regularusers[1]->name,'Pepa la cerda');
     }
 }

@@ -143,12 +143,6 @@ class TaskTest extends TestCase
         //1
         $user = factory(User::class)->create();
 
-//        $user = User::create([
-//            'name' => 'marc',
-//            'email' => 'marcmestre@iesebre.com',
-//            'password' => 'memes'
-//        ]);
-
         $task = Task::create([
             'name' => 'Comprar pa',
             'completed' => false,
@@ -165,9 +159,16 @@ class TaskTest extends TestCase
         $this->assertEquals($mappedTask['user_id'],$user->id);
         $this->assertEquals($mappedTask['user_name'],$user->name);
         $this->assertEquals($mappedTask['user_email'],$user->email);
+        $this->assertNotNull($mappedTask['created_at']);
+        $this->assertNotNull($mappedTask['created_at_formatted']);
+        $this->assertNotNull($mappedTask['created_at_human']);
+        $this->assertNotNull($mappedTask['created_at_timestamp']);
+        $this->assertNotNull($mappedTask['updated_at']);
+        $this->assertNotNull($mappedTask['updated_at_formatted']);
+        $this->assertNotNull($mappedTask['updated_at_human']);
+        $this->assertNotNull($mappedTask['updated_at_timestamp']);
+        // TODO fullsearch
         $this->assertTrue($user->is($mappedTask['user']));
-//        $this->assertEquals($task->name,$newTask['name']);
-//        $this->assertEquals($newTask->completed,$task['completed']);
 
     }
 }

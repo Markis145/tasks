@@ -85,12 +85,19 @@
     >
        <v-card>
 
-           TODO PERFIL
+            TODO PERFIL
 
-           Administrador:
+            Administrador:
 
-           Llista de tots els usuaris
-           <user-select></user-select>
+            Llista de tots els usuaris
+            @canImpersonate
+                <user-select @selected="impersonate" url="/api/v1/regular_users"></user-select>
+            @endCanImpersonate
+
+            @impersonating
+                El usuari {{ Auth::user()->impersonatedBy()->name }} està suplantant a {{ Auth::user()->name }}
+                <a href="/impersonate/leave">Abandonar la suplantació</a>
+            @endImpersonating
 
        </v-card>
     </v-navigation-drawer>
