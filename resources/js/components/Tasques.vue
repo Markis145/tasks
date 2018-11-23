@@ -226,7 +226,7 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn v-can="task.showShow" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-can="tasks.showShow" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
