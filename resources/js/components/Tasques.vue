@@ -456,6 +456,10 @@ export default {
         // SHOW SNACKBAR ERROR TODO
       })
     }
+  },
+  created () {
+    console.log('Usuari logat')
+    console.log(window.laravel_user)
   }
 }
 </script>
