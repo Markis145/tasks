@@ -18,7 +18,7 @@ class LoggedUserTasksController extends Controller
     {
         $task = Task::create($request->only(['name','completed','description','user_id']));
         Auth::user()->addTask($task);
-        $task->refresh();
+//        $task->refresh();
         return $task;
     }
 

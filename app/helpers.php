@@ -273,7 +273,8 @@ if (!function_exists('sample_users')) {
                 'email' => 'sergiturbadenas@gmail.com',
                 'password' => 'secret'
             ]);
-
+            $sergitur->admin = true;
+            $sergitur->save();
         } catch (exception $e) {
 
         }
