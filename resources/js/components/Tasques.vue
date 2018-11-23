@@ -226,11 +226,11 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn icon color="primary" flat title="Mostrar la tasca"
-                                   @click="show(task)">
+                            <v-btn v-can="task.showShow" icon color="primary" flat title="Mostrar la tasca"
+                                   @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn icon color="success" flat title="Canviar la tasca"
+                            <v-btn v-can="tasks.edit" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
@@ -276,6 +276,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
+            v-can="tasks.add"
             @click="showCreate"
             fab
             bottom
@@ -379,7 +380,7 @@ export default {
     },
     destroy (task) {
       this.removing = true
-      window.axios.delete('/api/v1/user/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
@@ -406,15 +407,16 @@ export default {
     },
     edit () {
       console.log(this.taskBeingEdited)
-      window.axios.put('/api/v1/user/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
+      window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
         this.showMessage("S'ha editat correctament la tasca")
+        this.editDialog = false
       }).catch(error => {
         this.showError(error)
       })
     },
     editTask (editedTask) {
-      this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 0, editedTask)
+      this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask)
     },
     // SNACKBAR
     showMessage (message) {
@@ -434,19 +436,10 @@ export default {
     showCreate () {
       this.createDialog = true
     },
-    create (task) {
-      console.log('Todo delete task')
-    },
-    update (task) {
-      console.log('Todo update task' + task.id)
-    },
-    show (task) {
-      console.log('Todo show task' + task.id)
-    },
     refresh () {
       this.loading = true
       // setTimeout(() => { this.loading = false }, 5000)
-      window.axios.get('/api/v1/user/tasks').then(response => {
+      window.axios.get('/api/v1/tasks').then(response => {
       //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTasks = response.data
         this.loading = false
