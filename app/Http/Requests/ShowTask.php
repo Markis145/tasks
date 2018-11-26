@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class TaskDestroy extends FormRequest
+class ShowTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class TaskDestroy extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.destroy');
+        return Auth::user()->can('tasks.show');
     }
 
     /**

@@ -6,7 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 
-class TasksVueControllerTest extends TestCase{
+class TasksVueControllerTest extends TestCase
+{
     use RefreshDatabase, CanLogin;
 
     /**
@@ -14,9 +15,11 @@ class TasksVueControllerTest extends TestCase{
      */
     public function can_show_vue_tasks()
     {
+//        $this->withoutExceptionHandling();
+        create_example_tasks();
         $this->login();
         // Prepare
-        create_example_tasks();
+
         // Execute
         $response = $this->get('/tasks_vue');
         // Assert

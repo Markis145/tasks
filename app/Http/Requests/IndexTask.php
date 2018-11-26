@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class TaskShow extends FormRequest
+class IndexTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class TaskShow extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.show');
+        return Auth::user()->can('tasks.index');
     }
 
     /**

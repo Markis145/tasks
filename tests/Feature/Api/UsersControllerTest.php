@@ -36,12 +36,12 @@ class UsersControllerTest extends TestCase
 
         $this->assertEquals($result[0]->name,'Jakito Mestre Algueró');
         $this->assertEquals($result[0]->email,'jaki@hotmail.com');
-        $this->assertEquals($result[0]->avatar,'https://www.gravatar.com/avatar/' . md5('jaki@hotmail.com'));
+        $this->assertEquals($result[0]->gravatar,'https://www.gravatar.com/avatar/' . md5('jaki@hotmail.com'));
         $this->assertEquals($result[1]->name,'Pepa la cerda');
         $this->assertEquals($result[1]->email,'pepacerda@hotmail.com');
-        $this->assertEquals($result[1]->avatar,'https://www.gravatar.com/avatar/' . md5('pepacerda@hotmail.com'));
+        $this->assertEquals($result[1]->gravatar,'https://www.gravatar.com/avatar/' . md5('pepacerda@hotmail.com'));
         $this->assertEquals($result[2]->name,'Pepa Pig');
         $this->assertEquals($result[2]->email,'pepapig@hotmail.com');
-        $this->assertEquals($result[2]->avatar,'https://www.gravatar.com/avatar/' . md5('pepapig@hotmail.com'));
+        $this->assertEquals($result[2]->gravatar,'https://www.gravatar.com/avatar/' . md5('pepapig@hotmail.com'));
     }
 }

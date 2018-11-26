@@ -1,5 +1,8 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Http\Requests\DestroyTask;
+use App\Http\Requests\IndexTask;
+use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
 use App\Http\Requests\TaskDestroy;
 use App\Http\Requests\TaskShow;
@@ -9,15 +12,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 class TasksController extends Controller
 {
-    public function index(Request $request)
+    public function index(IndexTask $request)
     {
         return map_collection(Task::orderBy('created_at','desc')->get());
     }
-    public function show(TaskShow $request, Task $task) // Route Model Binding
+    public function show(ShowTask $request, Task $task) // Route Model Binding
     {
         return $task->map();
     }
-    public function destroy(TaskDestroy $request, Task $task)
+    public function destroy(DestroyTask $request, Task $task)
     {
         $task->delete();
     }
