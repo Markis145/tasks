@@ -14,6 +14,7 @@
 </head>
 <body>
 <v-app id="app" v-cloak>
+    <snackbar></snackbar>
     <v-navigation-drawer
             v-model="drawer"
             fixed

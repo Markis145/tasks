@@ -140,11 +140,6 @@
             </v-card>
         </v-dialog>
 
-        <v-snackbar :timeout="snackbarTimeout" :color="snackbarColor" v-model="snackbar">
-            {{ snackbarMessage }}
-            <v-btn dark flat @click.native="snackbar=false">X</v-btn>
-        </v-snackbar>
-
         <v-toolbar color="blue darken-3">
             <v-menu>
                 <v-btn slot="activator" icon dark>
@@ -291,6 +286,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Tasques',
   data () {
@@ -303,10 +299,6 @@ export default {
         user_id: '',
         description: ''
       },
-      snackbarMessage: 'Prova',
-      snackbarTimeout: 3000,
-      snackbarColor: 'success',
-      snackbar: false,
       dataUsers: this.users,
       completed: false,
       name: '',
@@ -385,10 +377,10 @@ export default {
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
         this.taskBeingRemoved = null
-        this.showMessage("S'ha esborrat correctament la tasca")
+        this.$snackbar.showMessage("S'ha esborrat correctament la tasca")
         this.removing = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
         this.removing = false
       })
     },
@@ -399,54 +391,37 @@ export default {
       console.log(this.newTask)
       window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
         this.createTask(response.data)
-        this.showMessage("S'ha creat correctament la tasca")
+        this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
       })
     },
     edit () {
       console.log(this.taskBeingEdited)
       window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
-        this.showMessage("S'ha editat correctament la tasca")
+        this.$snackbar.showMessage("S'ha editat correctament la tasca")
         this.editDialog = false
       }).catch(error => {
-        this.showError(error)
+        this.$snackbar.showError(error)
       })
     },
     editTask (editedTask) {
       this.dataTasks.splice(this.dataTasks.indexOf(editedTask), 1, editedTask)
     },
-    // SNACKBAR
-    showMessage (message) {
-      this.snackbarMessage = message
-      this.snackbarColor = 'success'
-      this.snackbar = true
-    },
-
-    // SNACKBAR END
-    showError (error) {
-      console.log(error)
-      this.snackbarMessage = error.message
-      this.snackbarColor = 'error'
-      this.snackbar = true
-    },
-
     showCreate () {
       this.createDialog = true
     },
     refresh () {
       this.loading = true
-      // setTimeout(() => { this.loading = false }, 5000)
       window.axios.get('/api/v1/tasks').then(response => {
-      //  SHOW SNACKBAR MSISATGE OK: 'les tasques s'han actualitzar correctament'
         this.dataTasks = response.data
         this.loading = false
+        this.$snackbar.showMessage('Tasques actualitzades correctament')
       }).catch(error => {
-        console.log(error)
+        this.$snackbar.showError(error)
         this.loading = false
-        // SHOW SNACKBAR ERROR TODO
       })
     }
   },
