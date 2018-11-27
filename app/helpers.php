@@ -53,17 +53,17 @@ if (!function_exists('create_example_tasks')) {
 if (!function_exists('create_example_tags')) {
     function create_example_tags() {
         Tag::create([
-            'name' => 'feina',
+            'name' => 'Tag1',
             'description' => 'blafeina',
             'color' => '#04B404'
         ]);
         Tag::create([
-            'name' => 'classe',
+            'name' => 'Tag2',
             'description' => 'blaclasse',
             'color' => '#04B100'
         ]);
         Tag::create([
-            'name' => 'casa',
+            'name' => 'Tag3',
             'description' => 'blacasa',
             'color' => '#02C404'
         ]);

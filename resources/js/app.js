@@ -7,6 +7,7 @@ import AppComponent from './components/App.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 import Tasks from './components/Tasks'
 import Tasques from './components/Tasques'
+import Tags from './components/Tags'
 import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
@@ -23,6 +24,7 @@ window.Vue.use(permissions)
 window.Vue.component('example-component', ExampleComponent)
 window.Vue.component('tasks', Tasks)
 window.Vue.component('tasques', Tasques)
+window.Vue.component('tags', Tags)
 window.Vue.component('login-form', LoginForm)
 window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)

@@ -1,0 +1,104 @@
+<?php
+// PSR-4
+namespace Tests\Feature;
+use App\Tag;
+use App\User;
+use Tests\Feature\Traits\CanLogin;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+class TagsControllerTest extends TestCase
+{
+    use RefreshDatabase, CanLogin;
+
+    /**
+     * @test
+     */
+    public function guest_user_cannot_show_tags()
+    {
+        // 2 execute
+        $response = $this->get('/tags');
+
+        //3 Comprovar
+        $response->assertRedirect('/login');
+    }
+
+    /**
+     * @test
+     */
+    public function regular_user_cannot_show_tags()
+    {
+        $this->login();
+        $response = $this->get('/tags');
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @test
+     */
+    public function superadmin_can_show_tags()
+    {
+        $this->withoutExceptionHandling();
+        $this->loginAsSuperAdmin();
+        create_example_tags();
+
+        // 2 execute
+        $response = $this->get('/tags');
+
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertViewIs('tags');
+        $response->assertViewHas('tags',function ($tags){
+            return count($tags) === 3 &&
+                $tags[0]['name'] === 'Tag1'&&
+                $tags[1]['name'] === 'Tag2' &&
+                $tags[2]['name'] === 'Tag3';
+
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function tags_manager_can_show_tags()
+    {
+        //1 Prepare
+        create_example_tags();
+
+        $this->loginAsTagsManager();
+
+
+        // 2 execute
+        $response = $this->get('/tags');
+
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertSee('Tasques');
+        $response->assertSee('comprar pa');
+        $response->assertSee('comprar llet');
+        $response->assertSee('Estudiar PHP');
+    }
+
+
+
+    /**
+     * @test
+     */
+    public function gues_user_cannot_show_tags()
+    {
+        //1 Prepare
+        create_example_tags();
+
+        $this->login();
+
+
+        // 2 execute
+        $response = $this->get('/tags');
+
+        //3 Comprovar
+        $response->assertSuccessful();
+        $response->assertSee('Tasques');
+        $response->assertSee('comprar pa');
+        $response->assertSee('comprar llet');
+        $response->assertSee('Estudiar PHP');
+    }
+}

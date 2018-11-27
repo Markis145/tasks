@@ -1,16 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: marcmestre
- * Date: 5/11/18
- * Time: 20:59
- */
-
 namespace Tests\Feature\Traits;
-
 use App\User;
 use Spatie\Permission\Models\Permission;
-
 trait CanLogin
 {
     protected function login($guard = null)
@@ -19,18 +10,33 @@ trait CanLogin
         $this->actingAs($user,$guard);
         return $user;
     }
-
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsUsingRole($guard,$role)
+    {
+        initialize_roles();
+        $user = factory(User::class)->create();
+        $user->assignRole($role);
+        $this->actingAs($user,$guard);
+        return $user;
+    }
     /**
      * @param null $guard
      * @return mixed
      */
     protected function loginAsTaskManager($guard = null)
     {
-        initialize_roles();
-        $user = factory(User::class)->create();
-        $user->assignRole('TaskManager');
-        $this->actingAs($user,$guard);
-        return $user;
+        return $this->loginAsUsingRole($guard,'TaskManager');
+    }
+    /**
+     * @param null $guard
+     * @return mixed
+     */
+    protected function loginAsTagsManager($guard = null)
+    {
+        return $this->loginAsUsingRole($guard,'TagsManager');
     }
     /**
      * @param null $guard
