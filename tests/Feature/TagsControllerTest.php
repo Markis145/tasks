@@ -37,7 +37,6 @@ class TagsControllerTest extends TestCase
      */
     public function superadmin_can_show_tags()
     {
-        $this->withoutExceptionHandling();
         $this->loginAsSuperAdmin();
         create_example_tags();
 
@@ -72,33 +71,12 @@ class TagsControllerTest extends TestCase
 
         //3 Comprovar
         $response->assertSuccessful();
-        $response->assertSee('Tasques');
-        $response->assertSee('comprar pa');
-        $response->assertSee('comprar llet');
-        $response->assertSee('Estudiar PHP');
+        $response->assertSee('Tag1');
+        $response->assertSee('Tag2');
+        $response->assertSee('Tag3');
     }
 
 
 
-    /**
-     * @test
-     */
-    public function gues_user_cannot_show_tags()
-    {
-        //1 Prepare
-        create_example_tags();
 
-        $this->login();
-
-
-        // 2 execute
-        $response = $this->get('/tags');
-
-        //3 Comprovar
-        $response->assertSuccessful();
-        $response->assertSee('Tasques');
-        $response->assertSee('comprar pa');
-        $response->assertSee('comprar llet');
-        $response->assertSee('Estudiar PHP');
-    }
 }
