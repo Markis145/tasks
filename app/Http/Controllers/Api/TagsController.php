@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\IndexTags;
 use App\Http\Requests\StoreTag;
 use App\Http\Requests\UpdateTag;
 use App\Tag;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-    public function index(Request $request)
+    public function index(IndexTags $request)
     {
         return Tag::orderBy('created_at')->get();
     }

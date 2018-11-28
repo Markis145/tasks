@@ -14,24 +14,20 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_tasks()
     {
-//        $this->withoutExceptionHandling();
         //1 Prepare
         create_example_tasks();
 
         $this->login();
 
-//        dd(Task::find(1));
         // 2 execute
         $response = $this->get('/tasks');
-//        dd($response->getContent());
+
         //3 Comprovar
         $response->assertSuccessful();
         $response->assertSee('Tasques');
         $response->assertSee('comprar pa');
         $response->assertSee('comprar llet');
         $response->assertSee('Estudiar PHP');
-        // Comprovar que es veuen les tasques que hi ha a la
-        // base dades
     }
     /**
      * @test
@@ -55,14 +51,7 @@ class TasksControllerTest extends TestCase
         $response = $this->delete('/tasks/1');
         $response->assertStatus(404);
     }
-//    /**
-//     * @test
-//     */
-//    public function user_without_permissions_cannnot_delete_tasks()
-//    {
-//        $response = $this->delete('/tasks/1');
-//        $response->assertStatus(403);
-//    }
+
     /**
      * @test
      */

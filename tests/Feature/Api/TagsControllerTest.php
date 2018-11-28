@@ -111,11 +111,11 @@ class TagsControllerTest extends TestCase
         $response->assertSuccessful();
         $result = json_decode($response->getContent());
         $this->assertCount(3, $result);
-        $this->assertEquals('feina', $result[0]->name);
+        $this->assertEquals('Tag1', $result[0]->name);
         $this->assertEquals('blafeina', $result[0]->description);
-        $this->assertEquals('classe', $result[1]->name);
+        $this->assertEquals('Tag2', $result[1]->name);
         $this->assertEquals('blaclasse', $result[1]->description);
-        $this->assertEquals('casa', $result[2]->name);
+        $this->assertEquals('Tag3', $result[2]->name);
         $this->assertEquals('blacasa', $result[2]->description);
     }
 
