@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateTag extends FormRequest
+class IndexLoggedUserTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class UpdateTag extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tags.update');
+        return Auth::user()->can('user.tasks.index');
     }
 
     /**
@@ -25,8 +25,7 @@ class UpdateTag extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required'
+            //
         ];
     }
 }

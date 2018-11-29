@@ -14,7 +14,8 @@ class LoggedUserTasksControllerTest extends TestCase
     public function can_list_logged_user_tasks()
     {
         // 1 Preparació
-        $user = $this->login('api');
+        initialize_roles();
+        $user=$this->loginAsTasksUser('api');
 
         $task1 = factory(Task::class)->create();
         $task2 = factory(Task::class)->create();
@@ -49,7 +50,9 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_edit_a_task_not_associated_to_user()
     {
-        $this->login('api');
+//        initialize_roles();
+//        $user=$this->loginAsTasksUser('api');
+        $this->loginAsTasksUser('api');
         // 1
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet'
@@ -67,8 +70,7 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_edit_task()
     {
-        $this->withoutExceptionHandling();
-        $user = $this->login('api');
+        $user = $this->loginAsTasksUser('api');
         // 1
         $oldTask = factory(Task::class)->create([
             'name' => 'Comprar llet',
@@ -96,7 +98,7 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function cannot_delete_not_owned_tasks()
     {
-        $user = $this->login('api');
+        $this->loginAsTasksUser('api');
         $task = factory(Task::class)->create([
             'name' => 'Comprar llet',
             'description'=>'asdasfadf'
@@ -110,8 +112,7 @@ class LoggedUserTasksControllerTest extends TestCase
      */
     public function can_delete_tasks()
     {
-        $this->withoutExceptionHandling();
-        $user = $this->login('api');
+        $user = $this->loginAsTasksUser('api');
         $task = factory(Task::class)->create([
             'name' => 'Comprar llet',
             'description'=>'asdasfadf'

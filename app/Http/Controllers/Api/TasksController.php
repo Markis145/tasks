@@ -4,8 +4,6 @@ use App\Http\Requests\DestroyTask;
 use App\Http\Requests\IndexTask;
 use App\Http\Requests\ShowTask;
 use App\Http\Requests\StoreTask;
-use App\Http\Requests\TaskDestroy;
-use App\Http\Requests\TaskShow;
 use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;

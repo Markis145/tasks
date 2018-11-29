@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DestroyTag;
 use App\Http\Requests\IndexTags;
+use App\Http\Requests\ShowTag;
 use App\Http\Requests\StoreTag;
 use App\Http\Requests\UpdateTag;
 use App\Tag;
@@ -15,11 +17,11 @@ class TagsController extends Controller
     {
         return Tag::orderBy('created_at')->get();
     }
-    public function show(Request $request, Tag $tag) // Route Model Binding
+    public function show(ShowTag $request, Tag $tag) // Route Model Binding
     {
         return $tag->map();
     }
-    public function destroy(Request $request, Tag $tag)
+    public function destroy(DestroyTag $request, Tag $tag)
     {
         $tag->delete();
     }
