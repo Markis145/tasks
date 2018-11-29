@@ -7,9 +7,6 @@ use Tests\TestCase;
 class TagsControllerTest extends TestCase
 {
     use RefreshDatabase, CanLogin;
-    // CRUD -> CRU -> CREATE RETRIEVE UPDATE DELETE
-    // BREAD -> PA -> BROWSE READ EDIT ADD DELETE
-
     //FIELDS
     //name
     //description
