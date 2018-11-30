@@ -5,6 +5,7 @@ use App\Task;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
@@ -251,6 +252,7 @@ if (!function_exists('sample_users')) {
 
         try {
             $homersimpson->assignRole('TaskManager');
+            $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
 
         }
@@ -296,5 +298,14 @@ if (!function_exists('logged_user')) {
     function logged_user()
     {
         return json_encode(optional(Auth::user())->map());
+    }
+}
+
+if (!function_exists('initialize_gates')) {
+    function initialize_gates()
+    {
+        Gate::define('tasks.manage',function($user) {
+            return $user->isSuperAdmin() || $user->hasRole('TaskManager');
+        });
     }
 }

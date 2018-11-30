@@ -80,23 +80,21 @@ class TasquesControllerTest extends TestCase
     {
         create_example_tasks();
         $user = $this->loginAsTasksUser();
-        $task = Task::create([
-            'name' => 'comprar pa',
+        Task::create([
+            'name' => 'Tasca usuari logat',
             'completed' => false,
-            'description' => 'anar al spar a comprarlo',
+            'description' => 'Jorl',
             'user_id' => $user->id
         ]);
-
         $response = $this->get('/tasques');
         $response->assertSuccessful();
-
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks', function($tasks) {
             return count($tasks)===1 &&
-                $tasks[0]['name']==='comprar pa';
+                $tasks[0]['name']==='Tasca usuari logat';
         });
-
-
+        $response->assertViewHas('users');
+        $response->assertViewHas('uri');
     }
 
 }

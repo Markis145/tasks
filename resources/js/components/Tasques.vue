@@ -221,11 +221,11 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tasks.showShow" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-can="tasks.show" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.edit" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-can="tasks.update" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
@@ -271,7 +271,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-            v-can="tasks.add"
+            v-can="tasks.store"
             @click="showCreate"
             fab
             bottom
@@ -349,7 +349,14 @@ export default {
     users: {
       type: Array,
       required: true
+    },
+    uri: {
+      type: String,
+      required: true
     }
+  },
+  watch: {
+
   },
   methods: {
     showUpdate (task) {
@@ -370,9 +377,9 @@ export default {
     removeTask (task) {
       this.dataTasks.splice(this.dataTasks.indexOf(task), 1)
     },
-    destroy (task) {
+    destroy () {
       this.removing = true
-      window.axios.delete('/api/v1/tasks/' + this.taskBeingRemoved.id).then(() => {
+      window.axios.delete(this.uri + '/' + this.taskBeingRemoved.id).then(() => {
         // this.refresh()
         this.removeTask(this.taskBeingRemoved)
         this.deleteDialog = false
@@ -389,7 +396,7 @@ export default {
     },
     add () {
       console.log(this.newTask)
-      window.axios.post('/api/v1/tasks', this.newTask).then((response) => {
+      window.axios.post(this.uri, this.newTask).then((response) => {
         this.createTask(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
@@ -399,7 +406,7 @@ export default {
     },
     edit () {
       console.log(this.taskBeingEdited)
-      window.axios.put('/api/v1/tasks/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
+      window.axios.put(this.uri + '/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
         this.$snackbar.showMessage("S'ha editat correctament la tasca")
         this.editDialog = false
@@ -415,7 +422,7 @@ export default {
     },
     refresh () {
       this.loading = true
-      window.axios.get('/api/v1/tasks').then(response => {
+      window.axios.get(this.uri).then(response => {
         this.dataTasks = response.data
         this.loading = false
         this.$snackbar.showMessage('Tasques actualitzades correctament')
