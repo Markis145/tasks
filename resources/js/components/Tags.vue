@@ -242,7 +242,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-can="tags.add"
+                v-can="tags.store"
                 @click="showCreate"
                 fab
                 bottom
@@ -318,6 +318,9 @@ export default {
       this.showDialog = true
       this.tagBeingShown = tag
     },
+    opcio1 () {
+      console.log('Todo Opcio')
+    },
     showDestroy (tag) {
       this.deleteDialog = true
       this.tagBeingRemoved = tag
@@ -344,7 +347,7 @@ export default {
     },
     add () {
       console.log(this.newTag)
-      window.axios.post('/api/v1/tags', this.newTag).then((response) => {
+      window.axios.post(this.uri, this.newTag).then((response) => {
         this.createTag(response.data)
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
