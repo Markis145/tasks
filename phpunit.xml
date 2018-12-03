@@ -28,14 +28,8 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
-        <env name="MAIL_DRIVER" value="smtp"/>
+        <env name="MAIL_DRIVER" value="array"/>
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
-        <env name="MAIL_HOST" value="smtp.mailtrap.io"/>
-        <env name="MAIL_PORT" value="2525"/>
-        <env name="MAIL_USERNAME" value="8156884e0e7582"/>
-        <env name="MAIL_PASSWORD" value="ddba42c53d9c45"/>
-        <env name="MAIL_FROM_ADDRESS" value="noreply-tasks@gmail.com"/>
-        <env name="MAIL_FROM_NAME" value="Aplicació de Tasques"/>
     </php>
 </phpunit>

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\TestWelcomeEmail;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
@@ -32,8 +33,8 @@ class RegisterControllerTest extends TestCase
             'password_confirmation' => 'secret222'
         ]);
 
-        Mail::assertSent(WelcomeEmail::class, function($mail){
-           $mail->user->name == 'Marc Mestre';
+        Mail::assertSent(TestWelcomeEmail::class, function($mail){
+           return $mail->user->name == 'Marc Mestre';
         });
 
         //3

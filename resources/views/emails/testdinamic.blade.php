@@ -1,20 +1,14 @@
 @component('mail::message')
-    # Introduction
+# Introduction
 
-    Hola {{ $user->name }},
+Hola {{ $user->name }}
 
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid commodi dolore inventore laborum magni minima, modi molestiae, nulla pariatur placeat praesentium quae qui quo saepe suscipit vitae, voluptas voluptate.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis culpa doloribus, error exercitationem molestias nisi non perspiciatis repudiandae, sint, tenetur totam ullam. Deleniti id inventore maxime minima numquam praesentium quas?
 
-    @component('mail::button', ['url' => ''])
-        Button Text
-    @endcomponent
+The body of your message.
 
-    Thanks,<br>
-    {{ config('app.name') }}
-@endcomponent
-
-@component('mail::panel')
-    This is the panel content.
+@component('mail::button', ['url' => ''])
+Button Text
 @endcomponent
 
 @component('mail::table')
@@ -22,4 +16,8 @@
     | ------------- |:-------------:| --------:|
     | Col 2 is      | Centered      | $10      |
     | Col 3 is      | Right-Aligned | $20      |
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
 @endcomponent
