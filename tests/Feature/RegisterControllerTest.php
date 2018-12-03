@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
@@ -21,6 +22,8 @@ class RegisterControllerTest extends TestCase
         initialize_roles();
         $this->assertNull(Auth::user());
 
+        Mail::fake();
+
         //2
         $response = $this->post('/register', $user = [
             'name' => 'Marc Mestre',
@@ -28,6 +31,10 @@ class RegisterControllerTest extends TestCase
             'password' => 'secret222',
             'password_confirmation' => 'secret222'
         ]);
+
+        Mail::assertSent(WelcomeEmail::class, function($mail){
+           $mail->user->name == 'Marc Mestre';
+        });
 
         //3
 //        $this->assertDatabaseHas('users',['email' => 'provaregister@gmail.com']);
