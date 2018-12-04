@@ -193,15 +193,15 @@
                             <span :title="task.updated_at_formatted">{{ task.updated_at_human}}</span>
                         </td>
                         <td>
-                            <v-btn v-can="tasks.show" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-if="$can('user.tasks.show', tasks)" icon color="primary" flat title="Mostrar la tasca"
                                    @click="showShow(task)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.update" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-if="$can('user.tasks.update', tasks)" icon color="success" flat title="Editar la tasca"
                                    @click="showUpdate(task)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-can="tasks.destroy" icon color="error" flat title="Eliminar la tasca"
+                            <v-btn v-if="$can('user.tasks.destroy', tasks)" icon color="error" flat title="Eliminar la tasca"
                                    :loading="removing === task.id" :disabled="removing === task.id"
                                    @click="destroy(task)">
                                 <v-icon>delete</v-icon>
@@ -244,7 +244,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-            v-can="tasks.store"
+            v-if="$can('user.tasks.store', tasks)"
             @click="showCreate"
             fab
             bottom
@@ -376,6 +376,7 @@ export default {
       console.log(this.newTask)
       window.axios.post(this.uri, this.newTask).then((response) => {
         this.createTask(response.data)
+        this.refresh()
         this.$snackbar.showMessage("S'ha creat correctament la tasca")
         this.createDialog = false
       }).catch(error => {
@@ -386,6 +387,7 @@ export default {
       console.log(this.taskBeingEdited)
       window.axios.put(this.uri + '/' + this.taskBeingEdited.id, this.taskBeingEdited).then((response) => {
         this.editTask(response.data)
+        this.refresh()
         this.$snackbar.showMessage("S'ha editat correctament la tasca")
         this.editDialog = false
       }).catch(error => {

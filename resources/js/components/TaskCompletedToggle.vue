@@ -29,7 +29,6 @@ export default {
   methods: {
     completeTask () {
       // loading i disabled
-      // window.axios.post('/v1/completed_task/' + this.task.id) // TODO ACABAR
       window.axios.post('/api/v1/completed_task/' + this.task.id)
     },
     uncompleteTask () {
