@@ -16,8 +16,8 @@ class TasksVueControllerTest extends TestCase
     public function can_show_vue_tasks()
     {
 //        $this->withoutExceptionHandling();
-        create_example_tasks();
-        $this->login();
+        //create_example_tasks();
+        $this->loginAsTaskManager();
         // Prepare
 
         // Execute

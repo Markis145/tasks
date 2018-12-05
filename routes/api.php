@@ -24,6 +24,8 @@ Route::middleware('auth:api')->group(function (){
 // Completed tasks -> estats
     Route::post('/v1/completed_task/{task}', 'Api\CompletedTasksController@store');
     Route::delete('/v1/completed_task/{task}', 'Api\CompletedTasksController@destroy');
+    Route::post('/v1/completed_task/{task}', 'Api\LoggedUserCompletedTasksController@store');
+    Route::delete('/v1/completed_task/{task}', 'Api\LoggedUserCompletedTasksController@destroy');
 
     Route::get('/v1/tags','Api\TagsController@index');                // BROWSE - Llistar
     Route::get('/v1/tags/{tag}','Api\TagsController@show');          // READ
