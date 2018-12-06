@@ -16,10 +16,14 @@ class Tag extends Model
             'name' => $this->name,
             'description' => $this->description,
             'color' => $this->color,
-//            'user_id' => $this->user_id,
-//            'user_name' => optional($this->user)->name
-//            'tags' => $this->tags,
-//            'file' => $this->file,
+            'created_at' => $this->created_at,
+            'created_at_formatted' => $this->created_at_formatted,
+            'created_at_human' => $this->created_at_human,
+            'created_at_timestamp' => $this->created_at_timestamp,
+            'updated_at' => $this->updated_at,
+            'updated_at_formatted' => $this->updated_at_formatted,
+            'updated_at_human' => $this->updated_at_human,
+            'updated_at_timestamp' => $this->updated_at_timestamp,
         ];
     }
 }

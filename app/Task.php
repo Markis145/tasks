@@ -50,6 +50,7 @@ class Task extends Model
             'id' => $this->id,
             'name' => $this->name,
             'completed' => (boolean) $this->completed,
+            'description' => $this->description,
             'user_id' => $this->user_id,
             'user_name' => optional($this->user)->name,
             'user_email' => optional($this->user)->email,
