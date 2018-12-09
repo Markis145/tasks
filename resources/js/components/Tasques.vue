@@ -351,9 +351,12 @@ export default {
     async destroy (task) {
       // ES6 async await
       let result = await this.$confirm('Les tasques esborrades no es poden recuperar',
-        { title: 'Esteu segurs?',
+        {
+          title: 'Esteu segurs?',
           buttonTrueText: 'Eliminar',
-          buttonFalseText: 'Cancel·lar' })
+          buttonFalseText: 'Cancel·lar',
+          color: 'red'
+        })
       if (result) {
         this.removing = task.id
         window.axios.delete(this.uri + '/' + task.id).then(() => {

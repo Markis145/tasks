@@ -1,6 +1,5 @@
 <template>
     <span>
-
         <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -42,7 +41,6 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="editDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -63,7 +61,7 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-text-field v-model="tagBeingEdited.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
                         <v-text-field v-model="tagBeingEdited.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea v-model="tagBeingEdited.description" label="Descripció"></v-textarea>
                         <div class="text-xs-center">
@@ -81,7 +79,6 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-
         <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="showDialog=false">
             <v-toolbar color="blue darken-3" class="white--text">
@@ -102,14 +99,13 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-text-field disabled v-model="tagBeingShown.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
                         <v-text-field disabled v-model="tagBeingShown.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
                         <v-textarea disabled v-model="tagBeingShown.description" label="Descripció"></v-textarea>
                     </v-form>
                 </v-card-text>
             </v-card>
         </v-dialog>
-
         <v-toolbar color="blue darken-3">
             <v-menu>
                 <v-btn slot="activator" icon dark>
@@ -151,7 +147,7 @@
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
                     no-data-text="No hi ha dades disponibles"
-                    rows-per-page-text="Tasques per pàgina"
+                    rows-per-page-text="Tags per pàgina"
                     :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
@@ -171,15 +167,15 @@
                             <span :title="tag.updated_at_formatted">{{ tag.updated_at_human }}</span>
                         </td>
                         <td>
-                            <v-btn v-if="$can('user.tags.show', tags)" icon color="primary" flat title="Mostrar la tasca"
+                            <v-btn v-if="$can('tags.show', tags)" icon color="primary" flat title="Mostrar tag"
                                    @click="showShow(tag)">
                                 <v-icon>visibility</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tags.update', tags)" icon color="success" flat title="Editar la tasca"
+                            <v-btn v-if="$can('tags.update', tags)" icon color="success" flat title="Editar tag"
                                    @click="showUpdate(tag)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('user.tags.destroy', tags)" icon color="error" flat title="Eliminar la tasca"
+                            <v-btn v-if="$can('tags.destroy', tags)" icon color="error" flat title="Eliminar tag"
                                    :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
@@ -192,7 +188,7 @@
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
                              no-data-text="No hi ha dades disponibles"
-                             rows-per-page-text="Tasques per pàgina"
+                             rows-per-page-text="Tags per pàgina"
                              :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                              :loading="loading"
                              :pagination.sync="pagination"
@@ -217,7 +213,7 @@
             </v-data-iterator>
         </v-card>
         <v-btn
-                v-if="$can('user.tags.store', tags)"
+                v-if="$can('tags.store', tags)"
                 @click="showCreate"
                 fab
                 bottom
@@ -232,144 +228,142 @@
 </template>
 
 <script>
-  export default {
-    name: 'Tags',
-    data () {
-      return {
-        tagBeingEdited: '',
-        tagBeingShown: '',
-        newTag: {
-          name: '',
-          color: '',
-          description: ''
-        },
-        color: '',
+export default {
+  name: 'Tags',
+  data () {
+    return {
+      tagBeingEdited: '',
+      tagBeingShown: '',
+      newTag: {
         name: '',
-        description: '',
-        createDialog: false,
-        editDialog: false,
-        showDialog: false,
-        tagBeingRemoved: null,
-        filter: 'Totes',
-        filters: [
-          'Totes',
-          'Completades',
-          'Pendents'
-        ],
-        search: '',
-        pagination: {
-          rowsPerPage: 25
-        },
-        loading: false,
-        creating: false,
-        editing: false,
-        removing: null,
-        dataTags: this.tags,
-        headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'Description', value: 'description' },
-          { text: 'Color', value: 'color' },
-          { text: 'Create', value: 'created_at_timestamp' },
-          { text: 'Modify', value: 'updated_at_timestamp' },
-          { text: 'Actions', sortable: false, value: 'full_search' }
-        ]
-      }
+        color: '',
+        description: ''
+      },
+      name: '',
+      color: '',
+      description: '',
+      createDialog: false,
+      editDialog: false,
+      showDialog: false,
+      tagBeingRemoved: null,
+      search: '',
+      pagination: {
+        rowsPerPage: 25
+      },
+      loading: false,
+      creating: false,
+      editing: false,
+      removing: null,
+      dataTags: this.tags,
+      headers: [
+        { text: 'Id', value: 'id' },
+        { text: 'Name', value: 'name' },
+        { text: 'Descripció', value: 'description' },
+        { text: 'Color', value: 'color' },
+        { text: 'Creat', value: 'created_at_timestamp' },
+        { text: 'Modificat', value: 'updated_at_timestamp' },
+        { text: 'Accions', sortable: false, value: 'full_search' }
+      ]
+    }
+  },
+  props: {
+    tags: {
+      type: Array,
+      required: true
     },
-    props: {
-      tags: {
-        type: Array,
-        required: true
-      },
-      uri: {
-        type: String,
-        required: true
-      }
+    uri: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    showUpdate (tag) {
+      this.editDialog = true
+      this.tagBeingEdited = tag
     },
-    methods: {
-      opcio1 () {
-        console.log('OPCIO 1 REFRESH')
-      },
-      showUpdate (tag) {
-        this.editDialog = true
-        this.tagBeingEdited = tag
-      },
-      showShow (tag) {
-        this.showDialog = true
-        this.tagBeingShown = tag
-      },
-      showCreate () {
-        this.createDialog = true
-      },
-      removeTag (tag) {
-        this.dataTags.splice(this.dataTags.indexOf(tag), 1)
-      },
-      createTag (tag) {
-        this.dataTags.splice(0, 0, tag)
-      },
-      editTag (editedTag) {
-        this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
-      },
-      add () {
-        window.axios.post(this.uri, this.newTag).then((response) => {
-          this.createTag(response.data)
-          this.$snackbar.showMessage("S'ha creat correctament la tasca")
-          this.createDialog = false
-          // llimpiar formulari
-          this.newTag.name = ''
-          this.newTag.description = ''
-          this.newTag.color = ''
+    showShow (tag) {
+      this.showDialog = true
+      this.tagBeingShown = tag
+    },
+    opcio1 () {
+      console.log('Todo Opcio')
+    },
+    showCreate () {
+      this.createDialog = true
+    },
+    removeTag (tag) {
+      this.dataTags.splice(this.dataTags.indexOf(tag), 1)
+    },
+    createTag (tag) {
+      this.dataTags.splice(0, 0, tag)
+    },
+    editTag (editedTag) {
+      this.dataTags.splice(this.dataTags.indexOf(editedTag), 1, editedTag)
+    },
+    add () {
+      console.log(this.newTask)
+      window.axios.post(this.uri, this.newTag).then((response) => {
+        this.createTag(response.data)
+        this.$snackbar.showMessage("S'ha creat correctament el tag")
+        this.createDialog = false
+        this.newTag.name = ''
+        this.newTag.description = ''
+        this.newTag.color = ''
+        this.refresh()
+      }).catch(error => {
+        this.$snackbar.showError(error)
+      })
+    },
+    async destroy (tag) {
+      let result = await this.$confirm('Els tags esborrats no es poden recuperar',
+        {
+          title: 'Esteu segurs?',
+          buttonTrueText: 'Eliminar',
+          buttonFalseText: 'Cancel·lar',
+          color: 'red'
+        })
+      if (result) {
+        this.removing = tag.id
+        window.axios.delete(this.uri + '/' + tag.id).then(() => {
+          this.removeTag(tag)
+          this.deleteDialog = false
+          tag = null
+          this.$snackbar.showMessage("S'ha esborrat correctament el tag")
+          this.removing = null
           this.refresh()
         }).catch(error => {
           this.$snackbar.showError(error)
+          this.removing = null
         })
-      },
-      async destroy (tag) {
-        let result = await this.$confirm('Els tags esborrats no es poden recuperar',
-          {
-            title: 'Esteu segurs?',
-            buttonTrueText: 'Eliminar',
-            buttonFalseText: 'Cancel·lar',
-            color: 'red'
-          })
-        if (result) {
-          this.removing = true
-          window.axios.delete(this.uri + '/' + tag.id).then(() => {
-            // this.refresh() // Problema -> rendiment
-            this.removeTag(tag)
-            this.tag = null
-            this.$snackbar.showMessage("S'ha esborrat correctament el tag")
-            this.removing = false
-          }).catch(error => {
-            this.$snackbar.showError(error.message)
-            this.removing = false
-          })
-        }
-      },
-      edit () {
-        window.axios.put(this.uri + '/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
-          this.editTag(response.data)
-          this.$snackbar.showMessage("El tag s'ha editat correctament")
-          this.editDialog = false
-        }).catch(error => {
-          this.$snackbar.showError(error)
-        })
-      },
-      refresh () {
-        this.loading = true
-        window.axios.get(this.uri).then(response => {
-          this.dataTags = response.data
-          this.loading = false
-          this.$snackbar.showMessage('Tags actualitzats correctament')
-        }).catch(error => {
-          console.log(error)
-          this.loading = false
-        })
-      },
-      created () {
-        console.log('Usuari logat')
-        console.log(window.laravel_user)
       }
+    },
+    edit () {
+      console.log(this.tagBeingEdited)
+      window.axios.put(this.uri + '/' + this.tagBeingEdited.id, this.tagBeingEdited).then((response) => {
+        this.editTag(response.data)
+        console.log(response.data)
+        this.$snackbar.showMessage("El tag s'ha editat correctament")
+        this.editDialog = false
+        this.refresh()
+      }).catch(error => {
+        this.$snackbar.showError(error)
+      })
+    },
+    refresh () {
+      this.loading = true
+      window.axios.get(this.uri).then(response => {
+        this.dataTags = response.data
+        this.loading = false
+        this.$snackbar.showMessage('Tags actualitzats correctament')
+      }).catch(error => {
+        this.$snackbar.showError(error)
+        this.loading = false
+      })
+    },
+    created () {
+      console.log('Usuari logat')
+      console.log(window.laravel_user)
     }
   }
+}
 </script>

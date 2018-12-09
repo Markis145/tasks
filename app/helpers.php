@@ -57,17 +57,17 @@ if (!function_exists('create_example_tags')) {
         Tag::create([
             'name' => 'Tag1',
             'description' => 'blafeina',
-            'color' => '#04B404'
+            'color' => 'blue'
         ]);
         Tag::create([
             'name' => 'Tag2',
             'description' => 'blaclasse',
-            'color' => '#04B100'
+            'color' => 'green'
         ]);
         Tag::create([
             'name' => 'Tag3',
             'description' => 'blacasa',
-            'color' => '#02C404'
+            'color' => 'red'
         ]);
     }
 }
@@ -216,70 +216,75 @@ if (!function_exists('sample_users')) {
     function sample_users()
     {
         //superadmin no cal -> jo mateix
-
         try {
-            factory(User::class)->create([
+            $pepepringao = factory(User::class)->create([
                 'name' => 'Pepe Pringao',
                 'email' => 'pepepringao@hotmail.com'
             ]);
         } catch (exception $e) {
-
         }
-
+        Task::create([
+            'name' => 'Tasca Pepe',
+            'completed' => false,
+            'description' => 'Descripció de prova',
+            'user_id' => $pepepringao->id
+        ]);
         try {
             $bartsimpson = factory(User::class)->create([
                 'name' => 'Bart Simpson',
                 'email' => 'bartsimpson@hotmail.com'
             ]);
         } catch (exception $e) {
-
         }
-
         try {
             $bartsimpson->assignRole('Tasks');
             $bartsimpson->assignRole('Tags');
         } catch (exception $e) {
-
         }
-
+        Task::create([
+            'name' => 'Tasca Bart',
+            'completed' => false,
+            'description' => 'Descripció Bart',
+            'user_id' => $bartsimpson->id
+        ]);
         try {
             $homersimpson = factory(User::class)->create([
                 'name' => 'Homer Simpson',
                 'email' => 'homersimpson@hotmail.com'
             ]);
         } catch (exception $e) {
-
         }
-
         try {
             $homersimpson->assignRole('TaskManager');
             $homersimpson->assignRole('TagsManager');
         } catch (exception $e) {
-
-        }
-
-        try {
-            $homersimpson->assignRole('Tasks');
-        } catch (exception $e) {
-
-        }
+        }try {
+        $homersimpson->assignRole('Tasks');
+        $homersimpson->assignRole('Tags');
+    } catch (exception $e) {
+    }
+        Task::create([
+            'name' => 'Tasca Homer',
+            'completed' => true,
+            'description' => 'Descripció Homer',
+            'user_id' => $homersimpson->id
+        ]);
         try {
             $sergitur = factory(User::class)->create([
                 'name' => 'Sergi Tur',
                 'email' => 'sergiturbadenas@gmail.com',
-                'password' => 'secret'
+                'password' => bcrypt(env('PRIMARY_USER_PASSWORD', 'secret'))
             ]);
             $sergitur->admin = true;
             $sergitur->save();
-        } catch (exception $e) {
-
+        } catch (Exception $e) {
         }
-
-        try {
-            $sergitur->assignRole('TaskManager');
-        } catch (exception $e) {
-
-        }
+        Task::create([
+            'name' => 'Tasca Sergi',
+            'completed' => false,
+            'description' => 'Sergi tasca',
+            'user_id' => $sergitur->id
+        ]);
     }
 };
 

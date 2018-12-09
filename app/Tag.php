@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    use FormattedDates;
     protected $guarded = [];
 
 
