@@ -95,10 +95,10 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field disabled v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch disabled v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea disabled v-model="taskBeingShown.description" label="Descripció"></v-textarea>
-                        <v-autocomplete disabled v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
+                        <v-text-field readonly v-model="taskBeingShown.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
+                        <v-switch readonly v-model="taskBeingShown.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+                        <v-textarea readonly v-model="taskBeingShown.description" label="Descripció"></v-textarea>
+                        <v-autocomplete readonly v-model="taskBeingShown.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                     </v-form>
                 </v-card-text>
             </v-card>
@@ -148,9 +148,9 @@
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
-                            append-icon="search"
-                            label="Buscar"
-                            v-model="search"
+                                append-icon="search"
+                                label="Buscar"
+                                v-model="search"
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
@@ -160,9 +160,9 @@
                     :items="dataTasks"
                     :search="search"
                     no-results-text="No s'ha trobat cap registre coincident"
-                    no-data-text="No hi ha dades disponibles"
+                    no-data-text="No hi han dades disponibles"
                     rows-per-page-text="Tasques per pàgina"
-                    :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
+                    :rows-per-page-items="[5,10,25,50,100,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
                     class="hidden-md-and-down"
@@ -178,7 +178,7 @@
                             </v-avatar>
                         </td>
                         <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
-                        <task-completed-toggle :task="task"></task-completed-toggle>
+                        <task-completed-toggle :task="task" ></task-completed-toggle>
 
                         <td>
                             <span :title="task.created_at_formatted">{{ task.created_at_human}}</span>
@@ -204,15 +204,16 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up"
-                             :items="dataTasks"
-                             :search="search"
-                             no-results-text="No s'ha trobat cap registre coincident"
-                             no-data-text="No hi ha dades disponibles"
-                             rows-per-page-text="Tasques per pàgina"
-                             :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
-                             :loading="loading"
-                             :pagination.sync="pagination"
+            <v-data-iterator
+                    class="hidden-lg-and-up"
+                    :items="dataTasks"
+                    :search="search"
+                    no-results-text="No s'ha trobat cap registre coincident"
+                    no-data-text="No hi han dades disponibles"
+                    rows-per-page-text="Tasques per pàgina"
+                    :rows-per-page-items="[5,10,25,50,100,{'text':'Tots','value':-1}]"
+                    :loading="loading"
+                    :pagination.sync="pagination"
             >
                 <v-flex
                          slot="item"
@@ -258,8 +259,7 @@ import Toggle from './Toggle'
 export default {
   name: 'Tasques',
   components: {
-    TaskCompletedToggle,
-    'task-completed': TaskCompletedToggle,
+    'task-completed-toggle': TaskCompletedToggle,
     'toggle': Toggle
   },
   data () {

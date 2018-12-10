@@ -22,16 +22,26 @@
                             class="white--text"
                     >
                         <img src="img/vuetify.png" alt="Vuetify.js" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
-                        <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
-                        <v-btn
-                                class="blue lighten-2 mt-5"
-                                dark
-                                large
-                                href="/home"
-                        >
-                            Get Started
-                        </v-btn>
+                        <h1 class="white--text mb-2 display-1 text-xs-center">Projecte Tasks Marc Mestre</h1>
+                        <div class="subheading mb-3 text-xs-center">Fet amb Vuetify</div>
+                        <v-layout>
+                            <v-btn
+                                    class="blue lighten-2 mt-5"
+                                    dark
+                                    large
+                                    href="/home"
+                            >
+                                Get Started
+                            </v-btn>
+                            <v-btn depressed
+                                   class="dark mt-5"
+                                   target="_blank"
+                                   large
+                                   href="https://github.com/Markis145/tasks"
+                            ><img src="img/github.png" alt="Github" height="25" class="mr-3">
+                                Github
+                            </v-btn>
+                        </v-layout>
                     </v-layout>
                 </v-parallax>
             </section>
