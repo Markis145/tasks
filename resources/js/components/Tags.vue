@@ -12,9 +12,9 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
+                <v-btn flat class="white--text" @click="add">
+                   <v-icon class="mr-2">save</v-icon>
+                   Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>
@@ -53,8 +53,8 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn  flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
+                <v-btn flat class="white--text" @click="edit">
+                    <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
             </v-toolbar>
@@ -90,10 +90,6 @@
                 <v-btn flat class="white--text" @click="showDialog=false">
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
-                </v-btn>
-                <v-btn  flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>

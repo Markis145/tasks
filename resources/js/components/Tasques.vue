@@ -12,17 +12,16 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
+                <v-btn flat class="white--text" @click="add">
+                   <v-icon class="mr-2">save</v-icon>
+                   Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="newTask.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
+                        <v-switch v-model="newTask.completed" :label="completed ? 'Completada':'Pendent'"></v-switch>                        <v-textarea v-model="newTask.description" label="Descripció" item-value="id"></v-textarea>
                         <v-autocomplete v-if="$can('tasks.index')" v-model="newTask.user_id    " :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -54,8 +53,8 @@
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
                 </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
+                <v-btn flat class="white--text" @click="edit">
+                    <v-icon class="mr-2">save</v-icon>
                     Guardar
                 </v-btn>
             </v-toolbar>
@@ -63,8 +62,7 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field v-model="taskBeingEdited.name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-                        <v-switch v-model="taskBeingEdited.completed" :label="taskBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>
-                        <v-textarea v-model="taskBeingEdited.description" label="Descripció"></v-textarea>
+                        <v-switch v-model="taskBeingEdited.completed" :label="taskBeingEdited.completed ? 'Completada':'Pendent'"></v-switch>                        <v-textarea v-model="taskBeingEdited.description" label="Descripció"></v-textarea>
                         <v-autocomplete v-if="$can('tasks.index')" v-model="taskBeingEdited.user" :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
                         <div class="text-xs-center">
                             <v-btn @click="editDialog=false">
@@ -92,10 +90,6 @@
                 <v-btn flat class="white--text" @click="showDialog=false">
                     <v-icon class="mr-1" >exit_to_app</v-icon>
                     SORTIR
-                </v-btn>
-                <v-btn flat class="white--text">
-                    <v-icon class="mr-1">save</v-icon>
-                    Guardar
                 </v-btn>
             </v-toolbar>
             <v-card>
@@ -387,7 +381,7 @@ export default {
         this.newTask.user = ''
         this.refresh()
       }).catch(error => {
-        this.$snackbar.showError(error)
+        this.$snackbar.showError(error.message)
       })
     },
     edit () {

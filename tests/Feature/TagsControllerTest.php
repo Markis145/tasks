@@ -75,8 +75,7 @@ class TagsControllerTest extends TestCase
         $response->assertSee('Tag2');
         $response->assertSee('Tag3');
     }
-
-
+    
 
 
 }
