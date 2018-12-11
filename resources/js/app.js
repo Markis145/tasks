@@ -12,6 +12,7 @@ import LoginForm from './components/LoginForm.vue'
 import RegisterForm from './components/RegisterForm.vue'
 import UserList from './components/UserList'
 import UserSelect from './components/UserSelect'
+import Impersonate from './components/Impersonate'
 import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
@@ -33,5 +34,6 @@ window.Vue.component('login-form', LoginForm)
 window.Vue.component('register-form', RegisterForm)
 window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
+window.Vue.component('impersonate', Impersonate)
 
 const app = new window.Vue(AppComponent)
