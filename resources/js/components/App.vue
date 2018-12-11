@@ -23,16 +23,6 @@ export default {
     ]
   }),
   methods: {
-    impersonate (user) {
-      console.log('impersonate')
-      console.log('user:')
-      console.log(user)
-      if (user){
-        window.location.href = '/impersonate/take/' + user
-      } else {
-        console.log('caca')
-      }
-    }
   },
   props: {
     source: String

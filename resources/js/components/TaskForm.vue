@@ -1,19 +1,24 @@
 <template>
     <v-form>
-        <v-text-field v-model="name" label="Nom" hint="Nom de la tasca" placeholder="Nom de la tasca"></v-text-field>
-        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>                        <v-textarea v-model="description" label="Descripció" item-value="id"></v-textarea>
-        <v-autocomplete v-if="$can('tasks.index')" v-model="user_id    " :items="dataUsers" label="Usuari" item-value="id" item-text="name"></v-autocomplete>
-        <user-select v-model="user_id" :users="dataUsers" label="Usuari"></user-select>
+        <v-text-field
+                autofocus
+                v-model="name"
+                label="Nom"
+                hint="El nom de la tasca..."
+                placeholder="Nom de la tasca"
+                :error-messages="nameErrors"
+                @input="$v.name.$touch()"
+                @blur="$v.name.$touch()"
+        ></v-text-field>
+        <v-switch v-model="completed" :label="completed ? 'Completada':'Pendent'"></v-switch>
+        <v-textarea v-model="description" label="Descripció"></v-textarea>
+        <user-select v-if="$can('tasks.index')" @selected="setUser" :users="dataUsers" label="Users"></user-select>
         <div class="text-xs-center">
-            <v-btn @click="$emit('close')">
+            <v-btn @click="emit('close')">
                 <v-icon class="mr-2">exit_to_app</v-icon>
                 Cancel·lar
             </v-btn>
-            <v-btn color="success"
-                   flat
-                   @click="add"
-                   :loading="loading"
-                   :disabled="loading">
+            <v-btn color="success" @click="add" :disabled="loading || $v.$invalid" :loading="loading">
                 <v-icon class="mr-2">save</v-icon>
                 Guardar
             </v-btn>
@@ -22,18 +27,26 @@
 </template>
 
 <script>
-import UserSelect from "./UserSelect"
+import { validationMixin } from 'vuelidate'
+import { required } from 'vuelidate/lib/validators'
+import UserSelect from './UserSelect'
 export default {
   name: 'TaskForm',
-  components: {UserSelect},
+  mixins: [validationMixin],
+  validations: {
+    name: { required }
+  },
+  components: {
+    'user-select': UserSelect
+  },
   data () {
     return {
       name: '',
-      completed: '',
+      completed: false,
+      user_id: '',
       description: '',
-      user_id: null,
-      dataUsers: this.users,
-      loading: false
+      loading: false,
+      dataUsers: this.users
     }
   },
   props: {
@@ -46,30 +59,44 @@ export default {
       default: '/api/v1/tasks'
     }
   },
+  computed: {
+    nameErrors () {
+      const errors = []
+      if (!this.$v.name.$dirty) return errors
+      !this.$v.name.required && errors.push('El camp name és obligatori.')
+      return errors
+    }
+  },
   methods: {
     reset () {
       this.name = ''
       this.description = ''
+      this.completed = false
       this.user_id = ''
-      this.completed = ''
     },
     add () {
+      this.creating = true
       const task = {
         'name': this.name,
         'description': this.description,
-        'completed': this.completed,
+        'completed': false,
         'user_id': this.user_id
       }
-      console.log(this.newTask)
-      window.axios.post(this.uri, task).then((response) => {
-        this.$snackbar.showMessage("S'ha creat correctament la tasca")
+      window.axios.post(this.uri + '/', task).then((response) => {
+        // this.createTask(response.data)
         this.$emit('created', response.data)
         this.$emit('close')
-        this.refresh()
-      }).catch(error => {
+        this.$snackbar.showMessage("S'ha creat correctament la tasca")
+      }).catch((error) => {
+        this.creating = false
         this.$snackbar.showError(error.message)
-        this.loading = false
+      }).finally(() => {
+        this.creating = false
+        this.reset()
       })
+    },
+    setUser ($event) {
+      this.user_id = $event
     }
   }
 }

@@ -131,7 +131,7 @@
                         <td>{{ task.id }}</td>
                         <td v-text="task.name"></td>
                         <td>
-                            <v-avatar :title="task.user_name">
+                            <v-avatar :title="task.user_name + ' - ' + task.user_email">
                                 <img :src="task.user_gravatar" alt="avatar">
                             </v-avatar>
                         </td>
