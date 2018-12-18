@@ -25,6 +25,9 @@
                     @input="$v.password.$touch()"
                     @blur="$v.password.$touch()"
                     v-model="password"></v-text-field>
+            <a href="/register">No tens compte d'usuari? Registrat abans</a>
+            <br>
+            <a href="/password/reset">Has oblidat la teva contrassenya?</a>
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>

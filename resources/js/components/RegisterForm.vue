@@ -47,6 +47,7 @@
                     @blur="$v.password_confirmation.$touch()"
                     v-model="password_confirmation">
             </v-text-field>
+            <a href="/register">Ja tens compte d'usuari? Loguejat directament</a>
         </v-card-text>
         <v-card-actions>
             <v-spacer></v-spacer>
