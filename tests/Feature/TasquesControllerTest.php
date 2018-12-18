@@ -21,17 +21,33 @@ class TasquesControllerTest extends TestCase
      */
     public function superadmin_can_index_tasks()
     {
-        create_example_tasks();
-        $this->loginAsSuperAdmin();
+        $this->withoutExceptionHandling();
+        create_example_tasks_with_tags();
+
+        $user  = $this->loginAsSuperAdmin();
         $response = $this->get('/tasques');
         $response->assertSuccessful();
-
         $response->assertViewIs('tasques');
         $response->assertViewHas('tasks', function($tasks) {
-            return count($tasks)===3 &&
+            return count($tasks)===6 &&
                 $tasks[0]['name']==='comprar pa' &&
                 $tasks[1]['name']==='comprar llet' &&
                 $tasks[2]['name']==='Estudiar PHP';
+        });
+        $response->assertViewHas('users', function($users) use ($user) {
+            return count($users)===3 &&
+                $users[2]['id']=== $user->id &&
+                $users[2]['name']=== $user->name &&
+                $users[2]['email']=== $user->email &&
+                $users[2]['gravatar']=== $user->gravatar &&
+                $users[2]['admin']=== $user->admin;
+        });
+        $response->assertViewHas('tags', function($tags) use ($user) {
+            return count($tags)===2 &&
+                $tags[0]['id']=== 1 &&
+                $tags[0]['name']=== 'Tag1' &&
+                $tags[0]['description']=== 'bla bla bla' &&
+                $tags[0]['color']=== 'blue';
         });
     }
 
