@@ -158,10 +158,10 @@
                         <v-flex xs12 sm4 offset-sm1>
                             <v-card class="elevation-0 transparent">
                                 <v-card-title primary-title class="layout justify-center">
-                                    <div class="headline">Contact us</div>
+                                    <div class="headline">Contacta amb nosaltres</div>
                                 </v-card-title>
                                 <v-card-text>
-                                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
+                                    Si tens algun dubte, pregunta o formes part d'alguna empresa que voldria col·laborar amb nosaltres, simplement contacta.
                                 </v-card-text>
                                 <v-list class="transparent">
                                     <v-list-tile>
@@ -177,7 +177,7 @@
                                             <v-icon class="blue--text text--lighten-2">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>Chicago, US</v-list-tile-title>
+                                            <v-list-tile-title>Tortosa, CAT</v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                     <v-list-tile>
@@ -185,7 +185,7 @@
                                             <v-icon class="blue--text text--lighten-2">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
-                                            <v-list-tile-title>john@vuetifyjs.com</v-list-tile-title>
+                                            <v-list-tile-title>marcmestre@iesebre.com</v-list-tile-title>
                                         </v-list-tile-content>
                                     </v-list-tile>
                                 </v-list>

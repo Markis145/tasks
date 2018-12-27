@@ -20,8 +20,9 @@
             <v-card>
                 <v-card-text>
                     <v-form>
-                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag" placeholder="Nom del tag"></v-text-field>
-                        <v-text-field v-model="newTag.color" label="Color" hint="Color" placeholder="Color"></v-text-field>
+                        <v-text-field v-model="newTag.name" label="Nom" hint="Nom del tag"
+                                      placeholder="Nom del tag"></v-text-field>
+                        <input type="color" v-model="newTag.color" style="width: 50px; height: 50px;">
                         <v-textarea v-model="newTag.description" label="Descripció" item-value="id"></v-textarea>
                         <div class="text-xs-center">
                             <v-btn @click="createDialog=false">
@@ -29,7 +30,6 @@
                                 Cancel·lar
                             </v-btn>
                             <v-btn color="success"
-
                                    @click="add()"
                                    :loading="creating"
                                    :disabled="creating">

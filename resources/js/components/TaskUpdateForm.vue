@@ -38,7 +38,7 @@ export default {
       name: this.task.name,
       description: this.task.description,
       completed: this.task.completed,
-      user: 0,
+      user: null,
       dataUsers: this.users,
       working: false
     }

@@ -52,7 +52,7 @@ export default {
       completed: '',
       dataUsers: this.users,
       loading: false,
-      user: 0
+      user: null
     }
   },
   props: {

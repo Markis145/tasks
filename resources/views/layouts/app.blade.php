@@ -93,13 +93,16 @@
             <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
             <v-layout row wrap>
                 <v-flex xs12>
-                    <ul>
-                        <li>Nom : {{ Auth::user()->name }}</li>
-                        <li>Email : {{ Auth::user()->email }}</li>
-                        <li>Admin : {{ Auth::user()->admin }}</li>
-                        <li>Roles : {{ implode(',',Auth::user()->map()['roles']) }}</li>
-                        <li>Permissions : {{ implode(', ',Auth::user()->map()['permissions']) }}</li>
-                    </ul>
+                        <p>Nom: {{ Auth::user()->name }}</p>
+                        <p>Email: {{ Auth::user()->email }}</p>
+                        @if(Auth::user()->admin)
+                                Super Administrador
+                        @else
+                                Usuari
+                        @endif
+                        <p></p>
+                        <p>Rols: {{ implode(',',Auth::user()->map()['roles']) }}</p>
+                        <p>Permissos: {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
                 </v-flex>
             </v-layout>
         </v-card>
