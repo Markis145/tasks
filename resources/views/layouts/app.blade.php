@@ -129,7 +129,7 @@
             </v-layout>
         </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app clipped-right clipped-left>
+    <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>Menú</v-toolbar-title>
         <span v-role="'SuperAdmin'" style="margin-left: 2%"><git-info></git-info></span>

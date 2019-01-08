@@ -2,7 +2,7 @@
     <span>
         <v-dialog v-model="createDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="createDialog=false">
-            <v-toolbar color="blue darken-3" class="white--text">
+            <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="createDialog=false">close</v-icon>
                 </v-btn>
@@ -43,7 +43,7 @@
         </v-dialog>
         <v-dialog v-model="editDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="editDialog=false">
-            <v-toolbar color="blue darken-3" class="white--text">
+            <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="editDialog=false">close</v-icon>
                 </v-btn>
@@ -81,7 +81,7 @@
         </v-dialog>
         <v-dialog v-model="showDialog" fullscreen hide-overlay transition="dialog-bottom-transition"
                   @keydown.esc="showDialog=false">
-            <v-toolbar color="blue darken-3" class="white--text">
+            <v-toolbar color="primary" class="white--text">
                 <v-btn icon flat class="white--text">
                     <v-icon class="mr-1" @click="showDialog=false">close</v-icon>
                 </v-btn>
@@ -102,7 +102,7 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <v-toolbar color="blue darken-3">
+        <v-toolbar color="primary">
             <v-menu>
                 <v-btn slot="activator" icon dark>
                     <v-icon>more_vert</v-icon>
