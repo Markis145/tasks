@@ -34,7 +34,7 @@
                         <div class="subheading mb-3 text-xs-center">Fet amb Vuetify</div>
                         <v-layout>
                             <v-btn
-                                    class="blue lighten-2 mt-5"
+                                    class="primary lighten-2 mt-5"
                                     dark
                                     large
                                     href="/home"
@@ -129,7 +129,7 @@
                         <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
                         <em>Kick-start your application today</em>
                         <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary lighten-2 mt-5"
                                 dark
                                 large
                                 href="/home"
@@ -195,7 +195,7 @@
                 </v-container>
             </section>
 
-            <v-footer class="blue darken-2">
+            <v-footer class="primary darken-2">
                 <v-layout row wrap align-center>
                     <v-flex xs12>
                         <div class="white--text ml-3">

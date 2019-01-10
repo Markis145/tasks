@@ -215,7 +215,7 @@
                 bottom
                 right
                 fixed
-                color="pink"
+                color="accent"
                 class="white--text"
         >
             <v-icon>add</v-icon>

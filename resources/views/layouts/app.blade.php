@@ -90,7 +90,7 @@
             app
     >
         <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-card-title class="primary darken-3 white--text"><h4>Perfil</h4></v-card-title>
             <v-layout row wrap>
                 <v-flex xs12>
                         <p>Nom: {{ Auth::user()->name }}</p>
@@ -107,7 +107,7 @@
             </v-layout>
         </v-card>
         <v-card>
-            <v-card-title class="blue darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+            <v-card-title class="primary darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
             <v-layout row wrap>
                 @impersonating
@@ -155,7 +155,7 @@
             </v-layout>
         </v-container>
     </v-content>
-    <v-footer color="indigo" app>
+    <v-footer color="primary" app>
         <span class="white--text">Created by Marc Mestre Algueró, &copy; 2018 All rights reserved</span>
     </v-footer>
 </v-app>

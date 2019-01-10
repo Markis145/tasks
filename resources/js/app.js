@@ -29,51 +29,51 @@ window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
       base: '#8719E0',
-      lighten1: '#4098D7',
-      lighten2: '#62B0E8',
-      lighten3: '#84C5F4',
-      lighten4: '#B6E0FE',
-      lighten5: '#DCEEFB',
-      darken1: '#186FAF',
-      darken2: '#0F609B',
-      darken3: '#0A558C',
-      darken4: '#003E6B'
+      lighten1: '#9446ED',
+      lighten2: '#A368FC',
+      lighten3: '#B990FF',
+      lighten4: '#DAC4FF',
+      lighten5: '#F2EBFE',
+      darken1: '#7A0ECC',
+      darken2: '#690CB0',
+      darken3: '#580A94',
+      darken4: '#44056E'
     },
     secondary: {
-      base: '#2CB1BC',
-      lighten1: '#38BEC9',
-      lighten2: '#54D1DB',
-      lighten3: '#87EAF2',
-      lighten4: '#BEF8FD',
-      lighten5: '#E0FCFF',
-      darken1: '#14919B',
-      darken2: '#0E7C86',
-      darken3: '#0A6C74',
-      darken4: '#044E54'
+      base: '#616E7C',
+      lighten1: '#7B8794',
+      lighten2: '#9AA5B1',
+      lighten3: '#CBD2D9',
+      lighten4: '#E4E7EB',
+      lighten5: '#F5F7FA',
+      darken1: '#52606D',
+      darken2: '#3E4C59',
+      darken3: '#323F4B',
+      darken4: '#1F2933'
     },
     accent: {
-      base: '#F0B429',
-      lighten1: '#F7C948',
-      lighten2: '#FADB5F',
-      lighten3: '#FCE588',
-      lighten4: '#FFF3C4',
-      lighten5: '#FFFBEA',
-      darken1: '#DE911D',
-      darken2: '#CB6E17',
-      darken3: '#B44D12',
-      darken4: '#8D2B0B'
+      base: '#8719E0',
+      lighten1: '#9446ED',
+      lighten2: '#A368FC',
+      lighten3: '#B990FF',
+      lighten4: '#DAC4FF',
+      lighten5: '#F2EBFE',
+      darken1: '#7A0ECC',
+      darken2: '#690CB0',
+      darken3: '#580A94',
+      darken4: '#44056E'
     },
     error: {
-      base: '#BA2525',
-      lighten1: '#D64545',
-      lighten2: '#E66A6A',
-      lighten3: '#F29B9B',
-      lighten4: '#FACDCD',
-      lighten5: '#FFEEEE',
-      darken1: '#A61B1B',
-      darken2: '#911111',
-      darken3: '#780A0A',
-      darken4: '#610404'
+      base: '#E12D39',
+      lighten1: '#EF4E4E',
+      lighten2: '#F86A6A',
+      lighten3: '#FF9B9B',
+      lighten4: '#FFBDBD',
+      lighten5: '#FFE3E3',
+      darken1: '#CF1124',
+      darken2: '#AB091E',
+      darken3: '#8A041A',
+      darken4: '#610316'
     },
     // Taken from palete 3
     success: {
@@ -102,7 +102,6 @@ window.Vue.use(window.Vuetify, {
     }
   }
 })
-
 
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
