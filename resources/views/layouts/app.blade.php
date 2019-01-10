@@ -90,7 +90,7 @@
             app
     >
         <v-card>
-            <v-card-title class="primary darken-3 white--text"><h4>Perfil</h4></v-card-title>
+            <v-card-title class="secondary darken3 white--text"><h4>Perfil</h4></v-card-title>
             <v-layout row wrap>
                 <v-flex xs12>
                         <p>Nom: {{ Auth::user()->name }}</p>
@@ -103,11 +103,13 @@
                         <p></p>
                         <p>Rols: {{ implode(',',Auth::user()->map()['roles']) }}</p>
                         <p>Permissos: {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
+                        <h3>Colors del tema</h3>
+                        <color></color>
                 </v-flex>
             </v-layout>
         </v-card>
         <v-card>
-            <v-card-title class="primary darken-3 white--text"><h4>Opcions administrador</h4></v-card-title>
+            <v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
             <v-layout row wrap>
                 @impersonating

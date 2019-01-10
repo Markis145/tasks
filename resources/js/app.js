@@ -17,18 +17,21 @@ import permissions from './plugins/permissions'
 import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import GitInfo from './components/git/GitInfoComponent'
+import Color from './components/ColorPicker'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
 
-const PRIMARY_COLOR_KEY = 'primary_color_key'
+const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'
+const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#8719E0'
+const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C'
 
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
-      base: '#8719E0',
+      base: primaryColor,
       lighten1: '#9446ED',
       lighten2: '#A368FC',
       lighten3: '#B990FF',
@@ -40,7 +43,7 @@ window.Vue.use(window.Vuetify, {
       darken4: '#44056E'
     },
     secondary: {
-      base: '#616E7C',
+      base: secondaryColor,
       lighten1: '#7B8794',
       lighten2: '#9AA5B1',
       lighten3: '#CBD2D9',
@@ -120,5 +123,6 @@ window.Vue.component('user-list', UserList)
 window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
+window.Vue.component('color', Color)
 
 const app = new window.Vue(AppComponent)
