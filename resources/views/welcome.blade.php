@@ -10,14 +10,12 @@
             <v-toolbar-title>Marc Mestre Algueró</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
-                <div class="top-right links">
                     @auth
                         <v-btn href="{{ url('/home') }}">Home</v-btn>
                     @else
                         <v-btn href="{{ route('login') }}">Login</v-btn>
                         <v-btn href="{{ route('register') }}">Register</v-btn>
                     @endauth
-                </div>
             @endif
         </v-toolbar>
         <v-content>
