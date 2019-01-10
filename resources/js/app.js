@@ -18,6 +18,7 @@ import snackbar from './plugins/snackbar'
 import confirm from './plugins/confirm'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/ColorPicker'
+import Profile from './components/Profile'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -124,5 +125,6 @@ window.Vue.component('user-select', UserSelect)
 window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
+window.Vue.component('profile', Profile)
 
 const app = new window.Vue(AppComponent)

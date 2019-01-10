@@ -11,6 +11,10 @@
 |
 */
 
+use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProfileController;
+
 Auth::routes();
 //Auth::logout();
 
@@ -46,6 +50,14 @@ Route::middleware(['auth'])->group(function (){
 
     //Tasques
     Route::get('/tags','TagsController@index');
+
+    Route::get('/profile', '\\'. ProfileController::class . '@show');
+
+
+    Route::post('/photo', '\\'. PhotoController::class . '@store');
+
+
+    Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 });
 
 
