@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
-    <meta name="theme-color" content="primary"/>
+    <meta name="theme-color" content="#8719E0"/>
     <link rel="manifest" href="/manifest.json">
     <title>@yield('title')</title>
     <style>
