@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         create_example_tasks_with_tags();
         initialize_roles();
         sample_users();
+        sample_logs();
 
         //TODO -> Com ferho en el registre
     }

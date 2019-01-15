@@ -7,7 +7,7 @@
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title>Marc Mestre Algueró</v-toolbar-title>
+            <v-toolbar-title>Aplicació de tasques</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                     @auth
