@@ -19,6 +19,7 @@ import confirm from './plugins/confirm'
 import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/ColorPicker'
 import Profile from './components/Profile'
+import TreeView from 'vue-json-tree-view'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -110,6 +111,7 @@ window.Vue.use(window.Vuetify, {
 window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
+window.Vue.use(TreeView)
 
 // window.Vue.use(Snackbar)
 
