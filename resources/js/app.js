@@ -20,6 +20,8 @@ import GitInfo from './components/git/GitInfoComponent'
 import Color from './components/ColorPicker'
 import Profile from './components/Profile'
 import TreeView from 'vue-json-tree-view'
+import VueTimeago from 'vue-timeago'
+import Changelog from './components/changelog/ChangelogComponent.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -112,6 +114,14 @@ window.Vue.use(permissions)
 window.Vue.use(snackbar)
 window.Vue.use(confirm)
 window.Vue.use(TreeView)
+window.Vue.use(VueTimeago, {
+  locale: 'ca', // Default locale
+  locales: {
+    'ca': require('date-fns/locale/ca')
+  }
+})
+
+window.Vue.use(TreeView)
 
 // window.Vue.use(Snackbar)
 
@@ -128,5 +138,6 @@ window.Vue.component('impersonate', Impersonate)
 window.Vue.component('git-info', GitInfo)
 window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
+window.Vue.component('changelog', Changelog)
 
 const app = new window.Vue(AppComponent)

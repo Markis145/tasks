@@ -499,14 +499,16 @@ if (! function_exists('sample_logs')) {
     {
         $user1 = factory(User::class)->create();
         $user2 = factory(User::class)->create();
+
         $task = Task::create([
             'name' => 'Comprar pa',
         ]);
         $task->assignUser($user1);
+
         $log1 = Log::create([
-            'text' => 'Ha creat la incidència TODO_LINK_INCIDENCIA',
+            'text' => 'Ha creat la tasca TODO_LINK_TASCA',
             'time' => Carbon::now(),
-            'action_type' => 'update',
+            'action_type' => 'store',
             'module_type' => 'Tasks',
             'loggable_id' => $task->id,
             'loggable_type' => Task::class,
@@ -515,7 +517,7 @@ if (! function_exists('sample_logs')) {
             'color' => 'teal'
         ]);
         $log2 = Log::create([
-            'text' => 'Ha modificat la incidència TODO_LINK_INCIDENCIA',
+            'text' => 'Ha modificat la tasca TODO_LINK_TASCA',
             'time' => Carbon::now(),
             'action_type' => 'update',
             'module_type' => 'Tasks',
@@ -526,7 +528,7 @@ if (! function_exists('sample_logs')) {
             'color' => 'teal'
         ]);
         $log3 = Log::create([
-            'text' => 'Ha modificat la incidència TODO_LINK_INCIDENCIA',
+            'text' => 'Ha modificat la tasca TODO_LINK_TASCA',
             'time' => Carbon::now(),
             'action_type' => 'update',
             'module_type' => 'Tasks',
