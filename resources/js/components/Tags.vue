@@ -197,7 +197,8 @@
                         md4
                 >
                     <v-card class="mb-1">
-                        <v-card-title><h3 class="font-weight-bold">{{ tag.name }}</h3></v-card-title>
+                        <v-list>
+                            <v-card-title><h3 class="font-weight-bold">{{ tag.name }}</h3></v-card-title>
                             <v-list-tile>
                               <v-list-tile-content class="font-italic">{{ tag.description }}</v-list-tile-content>
                                 <v-list-tile-content class="align-end"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></v-list-tile-content>

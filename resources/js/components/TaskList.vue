@@ -124,15 +124,36 @@
                         md4
                 >
                     <v-card class="mb-1">
-                        <v-card-title v-text="task.name"></v-card-title>
-                        <v-list dense>
+                        <v-list>
+                            <v-card-title><h3 class="font-weight-bold">{{ task.name }}</h3></v-card-title>
                             <v-list-tile>
-                                <v-list-tile-content>Completed:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.completed }}</v-list-tile-content>
+                                <v-list-tile-content class="font-italic">{{ task.description }}</v-list-tile-content>
                             </v-list-tile>
                             <v-list-tile>
-                                <v-list-tile-content>User:</v-list-tile-content>
-                                <v-list-tile-content class="align-end">{{ task.user_id }}</v-list-tile-content>
+                                <task-completed-toggle :task="task"></task-completed-toggle>
+                                <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <td v-if="task.user_id !== null" >
+                                    {{task.user_email}}
+                                </td>
+
+                                <td v-else>
+                                    <v-avatar title="No user">
+                                        <img src="img/usuari.png" alt="gravatar">
+                                    </v-avatar>
+                                </td>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content class="align-center">
+                                    <task-show :users="users" :task="task" :uri="uri"></task-show>
+                                </v-list-tile-content>
+                                <v-list-tile-content class="align-center">
+                                    <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
+                                </v-list-tile-content>
+                                <v-list-tile-content class="align-center">
+                                    <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                                </v-list-tile-content>
                             </v-list-tile>
                         </v-list>
                     </v-card>
