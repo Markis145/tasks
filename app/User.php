@@ -18,6 +18,11 @@ class User extends Authenticatable
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_PHOTO_PATH1 = 'photos/' . self::DEFAULT_PHOTO;
     const DEFAULT_PHOTO_PATH = 'app/' . self::DEFAULT_PHOTO_PATH1;
+
+    const DEFAULT_AVATAR = 'default.png';
+//    const PHOTOS_PATH = 'user_photos';
+    const DEFAULT_AVATAR_PATH1 = 'avatars/' . self::DEFAULT_AVATAR;
+    const DEFAULT_AVATAR_PATH = 'app/' . self::DEFAULT_AVATAR_PATH1;
     /**
      * The attributes that are mass assignable.
      *
