@@ -197,11 +197,30 @@
                         md4
                 >
                     <v-card class="mb-1">
-                        <v-card-title v-text="tag.name"></v-card-title>
-                        <v-list dense>
+                        <v-card-title><h3 class="font-weight-bold">{{ tag.name }}</h3></v-card-title>
                             <v-list-tile>
-                              <v-list-tile-content>User:</v-list-tile-content>
-                              <v-list-tile-content class="align-end">{{ tag.user_id }}</v-list-tile-content>
+                              <v-list-tile-content class="font-italic">{{ tag.description }}</v-list-tile-content>
+                                <v-list-tile-content class="align-end"><div class="elevation-2" :style="'background-color:' + tag.color+';border-radius: 4px;height: 15px;width: 15px;'"></div></v-list-tile-content>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-content class="align-center">
+                                    <v-btn v-if="$can('tags.show', tags)" icon color="primary" flat title="Mostrar tag"
+                                         @click="showShow(tag)">
+                                        <v-icon>visibility</v-icon>
+                                    </v-btn>
+                                </v-list-tile-content>
+                                <v-list-tile-content class="align-center">
+                                    <v-btn v-if="$can('tags.update', tags)" icon color="success" flat title="Editar tag"
+                                           @click="showUpdate(tag)">
+                                        <v-icon>edit</v-icon>
+                                    </v-btn>
+                                </v-list-tile-content>
+                                <v-list-tile-content class="align-center">
+                                    <v-btn v-if="$can('tags.destroy', tags)" icon color="error" flat title="Eliminar tag"
+                                           :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
+                                        <v-icon>delete</v-icon>
+                                    </v-btn>
+                                </v-list-tile-content>
                             </v-list-tile>
                         </v-list>
                     </v-card>
@@ -224,8 +243,11 @@
 </template>
 
 <script>
+import VListTile from "vuetify/lib/components/VList/VListTile"
+import VListTileAction from "vuetify/src/components/VList/VListTileAction"
 export default {
   name: 'Tags',
+  components: {VListTileAction, VListTile},
   data () {
     return {
       tagBeingEdited: '',
