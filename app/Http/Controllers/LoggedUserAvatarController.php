@@ -1,11 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 class LoggedUserAvatarController extends Controller
 {
     public function show(Request $request)
@@ -16,15 +12,12 @@ class LoggedUserAvatarController extends Controller
             'Pragma' => 'no-cache'
         ]);
     }
-
     protected function userAvatarExists($user)
     {
         return $user->avatar && Storage::disk('local')->exists($user->avatar->url);
     }
-
     protected function defaultAvatar()
     {
-//        return 'avatars/default.png';
-        return User::DEFAULT_AVATAR_PATH1;
+        return 'avatars/default.jpg';
     }
 }

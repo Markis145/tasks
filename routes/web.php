@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/photo', '\\'. LoggedUserPhotoController::class . '@show');
 
     Route::post('/avatar', '\\'. AvatarController::class . '@store');
-    Route::get('/user/photo', '\\'. LoggedUserAvatarController::class . '@show');
+    Route::get('/user/avatar', '\\'. LoggedUserAvatarController::class . '@show');
 
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
 });
