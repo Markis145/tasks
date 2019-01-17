@@ -24,6 +24,7 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="name"
                                             class="purple-input"
                                             label="User Name"
                                     />
@@ -33,8 +34,9 @@
                                         md6
                                 >
                                     <v-text-field
+                                            v-model="email"
                                             label="Email Address"
-                                            class="purple-input"/>
+                                            />
                                 </v-flex>
                                 <v-flex
                                         xs12
@@ -60,35 +62,6 @@
                                             label="Permissions"
                                             class="purple-input"/>
                                 </v-flex>
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--label="City"-->
-                                <!--class="purple-input"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--label="Country"-->
-                                <!--class="purple-input"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex-->
-                                <!--xs12-->
-                                <!--md4>-->
-                                <!--<v-text-field-->
-                                <!--class="purple-input"-->
-                                <!--label="Postal Code"-->
-                                <!--type="number"/>-->
-                                <!--</v-flex>-->
-                                <!--<v-flex xs12>-->
-                                <!--<v-textarea-->
-                                <!--class="purple-input"-->
-                                <!--label="About Me"-->
-                                <!--value="Lorem ipsum dolor sit amet, consectetur adipiscing elit."-->
-                                <!--/>-->
-                                <!--</v-flex>-->
                                 <v-flex
                                         xs12
                                         text-xs-right
@@ -165,6 +138,18 @@ export default {
   name: 'Profile',
   components: {
     'material-card': MaterialCard
+  },
+  data () {
+    return {
+      name: this.user.name,
+      email: this.user.email,
+    }
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
   },
   created () {
     this.csrf_token = window.csrf_token
