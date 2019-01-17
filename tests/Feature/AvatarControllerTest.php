@@ -14,6 +14,7 @@ class AvatarControllerTest extends TestCase
      */
     public function upload_avatar()
     {
+        $this->withoutExceptionHandling();
         Storage::fake('local');
         Storage::fake('google');
         $user = $this->login();

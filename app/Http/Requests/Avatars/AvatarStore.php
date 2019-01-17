@@ -25,7 +25,7 @@ class AvatarStore extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required'
+            'avatar' => 'required'
         ];
     }
 }
