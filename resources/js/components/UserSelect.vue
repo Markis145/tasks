@@ -48,10 +48,10 @@ export default {
       default: 'id'
     },
     user: {
-      // type: Object,
-      // default: function () {
-      //   return {}
-      // }
+      type: Object,
+      default: function () {
+        return {}
+      }
     },
     users: {
       type: Array,

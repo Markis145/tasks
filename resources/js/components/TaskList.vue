@@ -131,7 +131,7 @@
                             </v-list-tile>
                             <v-list-tile>
                                 <task-completed-toggle :task="task"></task-completed-toggle>
-                                <tasks-tags :task="task" :tags="tags"></tasks-tags>
+                                <!--<tasks-tags :task="task" :tags="tags"></tasks-tags>-->
                             </v-list-tile>
                             <v-list-tile>
                                 <td v-if="task.user_id !== null" >
