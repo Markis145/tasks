@@ -15,6 +15,15 @@ use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+
+if (! function_exists('ellipsis')) {
+    function ellipsis($text,$max=50)
+    {
+        $ellipted = strlen($text) > $max ? substr($text,0,$max)."..." : $text;
+        return $ellipted;
+    }
+}
+
 if (!function_exists('create_primary_user')) {
     function create_primary_user() {
         $user = User::where('email', 'marcmestre@iesebre.com')->first();
