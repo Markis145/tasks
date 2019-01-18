@@ -35,7 +35,6 @@
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import UserSelect from './UserSelect'
-
 export default {
   name: 'TaskForm',
   mixins: [validationMixin],
@@ -49,7 +48,7 @@ export default {
     return {
       name: '',
       description: '',
-      completed: '',
+      completed: false,
       dataUsers: this.users,
       loading: false,
       user: null
@@ -85,7 +84,7 @@ export default {
       this.name = ''
       this.description = ''
       this.completed = ''
-      this.user = 0
+      this.user = null
     },
     add () {
       this.loading = true
@@ -105,13 +104,10 @@ export default {
         this.$snackbar.showError(error.data)
         this.loading = false
       })
-    },
-    created () {
-      this.selectLoggedUser()
     }
+  },
+  created () {
+    this.selectLoggedUser()
   }
 }
 </script>
-
-<style scoped>
-</style>
