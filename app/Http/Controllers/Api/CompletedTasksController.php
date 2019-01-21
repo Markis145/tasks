@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\TaskCompleted;
 use App\Events\TaskUncompleted;
 use App\Http\Requests\DestroyTaskCompleted;
 use App\Http\Requests\StoreTaskCompleted;
@@ -21,5 +22,7 @@ class CompletedTasksController
     {
         $task->completed=true;
         $task->save();
+        // HOOK -> EVENT
+        event(new TaskCompleted($task));
     }
 }
