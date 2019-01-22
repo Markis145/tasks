@@ -10,8 +10,6 @@
                 @input="$v.name.$touch()"
                 @blur="$v.name.$touch()"
         ></v-text-field>
-        <!--todo-->
-        <!--<task-completed-toggle :task="task"></task-completed-toggle>-->
 
         <v-switch v-model="completed" :label="completed ? 'Completada' : 'Pendent'"></v-switch>
         <v-textarea v-model="description" label="Descripció" hint="Escriu la descripció de la tasca..."></v-textarea>

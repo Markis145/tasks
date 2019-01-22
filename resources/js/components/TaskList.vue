@@ -84,8 +84,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                            <!--<toggle :completed="task.completed" :id="task.id"></toggle>-->
-                            <task-completed-toggle :task="task"></task-completed-toggle>
+                            <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :tags="tags"></tasks-tags>
@@ -130,7 +129,7 @@
                                 <v-list-tile-content class="font-italic">{{ task.description }}</v-list-tile-content>
                             </v-list-tile>
                             <v-list-tile>
-                                <task-completed-toggle :task="task"></task-completed-toggle>
+                                <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
                                 <!--<tasks-tags :task="task" :tags="tags"></tasks-tags>-->
                             </v-list-tile>
                             <v-list-tile>
