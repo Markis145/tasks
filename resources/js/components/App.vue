@@ -20,7 +20,8 @@ export default {
       { icon: 'account_box', text: 'About', url: '/about' },
       { icon: 'person', text: 'Contacte', url: '/contact' },
       { icon: 'description', text: 'Tags', url: '/tags' },
-      { icon: 'person', text: 'Perfil', url: '/profile' }
+      { icon: 'person', text: 'Perfil', url: '/profile' },
+      { icon: 'settings', text: 'Changelog', url: '/changelog' }
     ]
   }),
   methods: {
