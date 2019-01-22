@@ -72885,7 +72885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         text: 'Tasques',
         model: false,
         children: [{ icon: 'description', text: 'Tasques en PHP', url: '/tasks' }, { icon: 'description', text: 'Tasques tailwind', url: '/tasks_vue' }, { icon: 'description', text: 'Tasques', url: '/tasques' }]
-      }, { icon: 'account_box', text: 'About', url: '/about' }, { icon: 'person', text: 'Contacte', url: '/contact' }, { icon: 'description', text: 'Tags', url: '/tags' }, { icon: 'person', text: 'Perfil', url: '/profile' }]
+      }, { icon: 'account_box', text: 'About', url: '/about' }, { icon: 'person', text: 'Contacte', url: '/contact' }, { icon: 'description', text: 'Tags', url: '/tags' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'settings', text: 'Changelog', url: '/changelog' }]
     };
   },
   methods: {},
@@ -74155,8 +74155,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UserSelect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__UserSelect__);
-//
-//
 //
 //
 //
@@ -75703,7 +75701,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -75848,54 +75845,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'taskCompletedToggle',
   data: function data() {
     return {
-      dataTask: this.task,
+      dataValue: this.value,
       loading: false
     };
   },
 
   props: {
-    task: {
+    activeText: {
+      type: String,
+      default: 'Active'
+    },
+    unactiveText: {
+      type: String,
+      default: 'Unactive'
+    },
+    uri: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: Boolean,
+      required: true
+    },
+    resource: {
       type: Object,
       required: true
     }
   },
   watch: {
-    dataTask: {
-      handler: function handler(dataTask) {
-        if (dataTask.completed) this.completeTask();else this.uncompleteTask();
-      },
-      deep: true
-    },
-    task: function task(_task) {
-      this.dataTask = _task;
+    dataValue: function dataValue(_dataValue, oldDataValue) {
+      if (_dataValue !== oldDataValue) {
+        if (_dataValue) this.completeTask();else this.uncompleteTask();
+      }
     }
   },
   methods: {
-    uncompleteTask: function uncompleteTask() {
+    completeTask: function completeTask() {
       var _this = this;
 
       this.loading = true;
-      window.axios.delete('/api/v1/completed_task/' + this.task.id).then(function () {
+      window.axios.post(this.uri + '/' + this.resource.id).then(function () {
         _this.loading = false;
       }).catch(function (error) {
-        _this.$snackbar.showError(error.message);
         _this.loading = false;
+        _this.$snackbar.showError(error);
       });
     },
-    completeTask: function completeTask() {
+    uncompleteTask: function uncompleteTask() {
       var _this2 = this;
 
       this.loading = true;
-      window.axios.post('/api/v1/completed_task/' + this.task.id).then(function () {
+      window.axios.delete(this.uri + '/' + this.resource.id).then(function () {
         _this2.loading = false;
       }).catch(function (error) {
-        _this2.$snackbar.showError(error.message);
         _this2.loading = false;
+        _this2.$snackbar.showError(error);
       });
     }
   }
@@ -75911,16 +75924,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-switch", {
     attrs: {
-      loading: _vm.loading,
-      disabled: _vm.loading,
-      label: _vm.dataTask.completed ? "Completada" : "Pendent"
+      label: _vm.dataValue ? _vm.activeText : _vm.unactiveText,
+      loading: _vm.loading
     },
     model: {
-      value: _vm.dataTask.completed,
+      value: _vm.dataValue,
       callback: function($$v) {
-        _vm.$set(_vm.dataTask, "completed", $$v)
+        _vm.dataValue = $$v
       },
-      expression: "dataTask.completed"
+      expression: "dataValue"
     }
   })
 }
@@ -78528,7 +78540,13 @@ var render = function() {
                           "td",
                           [
                             _c("task-completed-toggle", {
-                              attrs: { task: task }
+                              attrs: {
+                                value: task.completed,
+                                uri: "/api/v1/completed_task",
+                                "active-text": "Completada",
+                                "unactive-text": "Pendent",
+                                resource: task
+                              }
                             })
                           ],
                           1
@@ -78670,7 +78688,13 @@ var render = function() {
                                 "v-list-tile",
                                 [
                                   _c("task-completed-toggle", {
-                                    attrs: { task: task }
+                                    attrs: {
+                                      value: task.completed,
+                                      uri: "/api/v1/completed_task",
+                                      "active-text": "Completada",
+                                      "unactive-text": "Pendent",
+                                      resource: task
+                                    }
                                   })
                                 ],
                                 1

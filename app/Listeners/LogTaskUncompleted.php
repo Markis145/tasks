@@ -33,7 +33,7 @@ class LogTaskUncompleted
             'time' => Carbon::now(),
             'action_type'=> 'descompletar',
             'module_type' => 'Tasques',
-            'icon' => 'lock_open',
+            'icon' => 'clear',
             'color' => 'primary',
             'user_id' => $event->task->user_id,
             'loggable_id' => $event->task->id,
