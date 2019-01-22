@@ -127,10 +127,11 @@
                             <v-card-title><h3 class="font-weight-bold">{{ task.name }}</h3></v-card-title>
                             <v-list-tile>
                                 <v-list-tile-content class="font-italic">{{ task.description }}</v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                                <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
-                                <!--<tasks-tags :task="task" :tags="tags"></tasks-tags>-->
+                                <v-avatar :title="task.user_name + ' - ' + task.user_email">
+                                        <img style=" width:150%; height:150%; border-radius:160px;"
+                                             :src="task.user_gravatar"
+                                             alt="gravatar">
+                                </v-avatar>
                             </v-list-tile>
                             <v-list-tile>
                                 <td v-if="task.user_id !== null" >
@@ -144,13 +145,14 @@
                                 </td>
                             </v-list-tile>
                             <v-list-tile>
-                                <v-list-tile-content class="align-center">
+                                <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
+                                <v-list-tile-content>
                                     <task-show :users="users" :task="task" :uri="uri"></task-show>
                                 </v-list-tile-content>
-                                <v-list-tile-content class="align-center">
+                                <v-list-tile-content>
                                     <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
                                 </v-list-tile-content>
-                                <v-list-tile-content class="align-center">
+                                <v-list-tile-content>
                                     <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
                                 </v-list-tile-content>
                             </v-list-tile>

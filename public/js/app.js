@@ -75705,6 +75705,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -78683,23 +78685,32 @@ var render = function() {
                                     "v-list-tile-content",
                                     { staticClass: "font-italic" },
                                     [_vm._v(_vm._s(task.description))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-avatar",
+                                    {
+                                      attrs: {
+                                        title:
+                                          task.user_name +
+                                          " - " +
+                                          task.user_email
+                                      }
+                                    },
+                                    [
+                                      _c("img", {
+                                        staticStyle: {
+                                          width: "150%",
+                                          height: "150%",
+                                          "border-radius": "160px"
+                                        },
+                                        attrs: {
+                                          src: task.user_gravatar,
+                                          alt: "gravatar"
+                                        }
+                                      })
+                                    ]
                                   )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile",
-                                [
-                                  _c("task-completed-toggle", {
-                                    attrs: {
-                                      value: task.completed,
-                                      uri: "/api/v1/completed_task",
-                                      "active-text": "Completada",
-                                      "unactive-text": "Pendent",
-                                      resource: task
-                                    }
-                                  })
                                 ],
                                 1
                               ),
@@ -78736,9 +78747,18 @@ var render = function() {
                               _c(
                                 "v-list-tile",
                                 [
+                                  _c("task-completed-toggle", {
+                                    attrs: {
+                                      value: task.completed,
+                                      uri: "/api/v1/completed_task",
+                                      "active-text": "Completada",
+                                      "unactive-text": "Pendent",
+                                      resource: task
+                                    }
+                                  }),
+                                  _vm._v(" "),
                                   _c(
                                     "v-list-tile-content",
-                                    { staticClass: "align-center" },
                                     [
                                       _c("task-show", {
                                         attrs: {
@@ -78753,7 +78773,6 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "v-list-tile-content",
-                                    { staticClass: "align-center" },
                                     [
                                       _c("task-update", {
                                         attrs: {
@@ -78769,7 +78788,6 @@ var render = function() {
                                   _vm._v(" "),
                                   _c(
                                     "v-list-tile-content",
-                                    { staticClass: "align-center" },
                                     [
                                       _c("task-destroy", {
                                         attrs: { task: task, uri: _vm.uri },
