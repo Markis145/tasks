@@ -85,7 +85,7 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function a_assign_tag_to_task()
+    public function can_assign_tag_to_task()
     {
         // 1 Prepare
         $task = Task::create([
@@ -98,6 +98,27 @@ class TaskTest extends TestCase
         ]);
         // execució
         $task->addTag($tag);
+        // Assertion
+        $tags = $task->tags;
+        $this->assertTrue($tags[0]->is($tag));
+    }
+
+    /**
+     * @test
+     */
+    public function can_assign_tag_to_task_using_id()
+    {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+        $tag = Tag::create([
+            'name' => 'feina',
+            'description' => "blablab",
+            'color' => '#04B404'
+        ]);
+        // execució
+        $task->addTag($tag->id);
         // Assertion
         $tags = $task->tags;
         $this->assertTrue($tags[0]->is($tag));

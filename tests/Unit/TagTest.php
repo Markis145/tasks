@@ -30,4 +30,34 @@ class TagTest extends TestCase
         $this->assertEquals($mappedTask['description'],$tag->description);
         $this->assertEquals($mappedTask['color'],$tag->color);
     }
+
+    /**
+     * @test
+     */
+    public function can_add_a_task_to_tag()
+    {
+        // 1 Prepare
+        $task = Task::create([
+            'name' => 'Comprar pa'
+        ]);
+        $tag = Tag::create([
+            'name' => 'feina',
+            'description' => "blablab",
+            'color' => '#04B404'
+        ]);
+        $task2 = Task::create([
+            'name' => 'Comprar llet'
+        ]);
+        // execució
+        $tag->addTask($task);
+        // Assertion
+        $tasks = $tag->tasks;
+        $this->assertTrue($tasks[0]->is($task));
+
+        // execució
+        $tag->addTask($task2->id);
+        // Assertion
+//        $tasks = $tag->tasks;
+//        $this->assertTrue($tasks[1]->is($task2));
+    }
 }

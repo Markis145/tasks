@@ -28,4 +28,16 @@ class Tag extends Model
             'updated_at_timestamp' => $this->updated_at_timestamp,
         ];
     }
+
+    public function addTask($task)
+    {
+        if(is_int($task)) $task = Task::find($task);
+        $this->tasks()->save($task);
+        return $this;
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
 }
