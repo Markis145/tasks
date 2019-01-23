@@ -4,11 +4,14 @@ namespace App\Providers;
 
 use App\Events\TaskCompleted;
 use App\Events\TaskUncompleted;
+use App\Events\TaskStore;
 use App\Listeners\AddRolesToRegisterUser;
 use App\Listeners\LogTaskCompleted;
 use App\Listeners\LogTaskUncompleted;
+use App\Listeners\LogTaskStore;
 use App\Listeners\SendMailTaskCompleted;
 use App\Listeners\SendMailTaskUncompleted;
+use App\Listeners\SendMailTaskStore;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +36,10 @@ class EventServiceProvider extends ServiceProvider
         TaskCompleted::class => [
             LogTaskCompleted::class,
             SendMailTaskCompleted::class
+        ],
+        TaskStore::class => [
+            LogTaskStore::class,
+            SendMailTaskStore::class
         ]
     ];
 
