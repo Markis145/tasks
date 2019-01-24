@@ -9,7 +9,7 @@
             <no-data-cta
                     v-show="dataTasks.length == 0"
                     btn-text="Crear nova tasca"
-                    main-text="Actualment no hi ha cap tasca disponible... Crea'n una ara i comença a organitzar millor les teves tasques diàries"
+                    main-text="Actualment no ❌ hi ha cap tasca 📝 disponible... Crea'n una ara ✅ i comença a organitzar millor la teva vida 💪"
                     img="/img/tasks-solid.svg"
             ></no-data-cta>
         </v-flex>

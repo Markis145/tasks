@@ -23,6 +23,7 @@ import TreeView from 'vue-json-tree-view'
 import VueTimeago from 'vue-timeago'
 import Changelog from './components/changelog/ChangelogComponent.vue'
 import ServiceWorker from './components/ServiceWorker.vue'
+import Navigation from './components/Navigation.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -141,5 +142,6 @@ window.Vue.component('color', Color)
 window.Vue.component('profile', Profile)
 window.Vue.component('changelog', Changelog)
 window.Vue.component('service-worker', ServiceWorker)
+window.Vue.component('navigation', Navigation)
 
 const app = new window.Vue(AppComponent)
