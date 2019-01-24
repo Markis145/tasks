@@ -1,9 +1,10 @@
 <template>
     <v-flex xs12 sm4 offset-sm4 class="text-center">
-        <img width="60%" :src="img" alt="">
-        <h4 class="mt-4">{{ mainText }}</h4>
+        <img width="70%" :src="img" alt="">
+        <h3 class="mt-4">{{ mainText }}</h3>
         <v-btn
                 color="primary darken-1"
+                large
                 @click="emitCTA"
         >{{ btnText }}</v-btn>
     </v-flex>

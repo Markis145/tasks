@@ -78915,7 +78915,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -78927,6 +78927,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus__ = __webpack_require__(11);
+//
 //
 //
 //
@@ -78965,13 +78966,16 @@ var render = function() {
       attrs: { xs12: "", sm4: "", "offset-sm4": "" }
     },
     [
-      _c("img", { attrs: { width: "60%", src: _vm.img, alt: "" } }),
+      _c("img", { attrs: { width: "70%", src: _vm.img, alt: "" } }),
       _vm._v(" "),
-      _c("h4", { staticClass: "mt-4" }, [_vm._v(_vm._s(_vm.mainText))]),
+      _c("h3", { staticClass: "mt-4" }, [_vm._v(_vm._s(_vm.mainText))]),
       _vm._v(" "),
       _c(
         "v-btn",
-        { attrs: { color: "primary darken-1" }, on: { click: _vm.emitCTA } },
+        {
+          attrs: { color: "primary darken-1", large: "" },
+          on: { click: _vm.emitCTA }
+        },
         [_vm._v(_vm._s(_vm.btnText))]
       )
     ],
@@ -79044,9 +79048,9 @@ var render = function() {
             ],
             attrs: {
               "btn-text": "Crear nova tasca",
-              "main-text": "No hi ha tasques disponibles",
-              img:
-                "https://cdn3.iconfinder.com/data/icons/illustricon-tech/512/task.board-512.png?w=240"
+              "main-text":
+                "Actualment no hi ha cap tasca disponible... Crea'n una ara i comença a organitzar millor les teves tasques diàries",
+              img: "/img/tasks-solid.svg"
             }
           })
         ],

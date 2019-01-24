@@ -9,8 +9,8 @@
             <no-data-cta
                     v-show="dataTasks.length == 0"
                     btn-text="Crear nova tasca"
-                    main-text="No hi ha tasques disponibles"
-                    img="https://cdn3.iconfinder.com/data/icons/illustricon-tech/512/task.board-512.png?w=240"
+                    main-text="Actualment no hi ha cap tasca disponible... Crea'n una ara i comença a organitzar millor les teves tasques diàries"
+                    img="/img/tasks-solid.svg"
             ></no-data-cta>
         </v-flex>
     </v-layout>
