@@ -30,8 +30,6 @@ class SleepJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::debug("SleepJob: Hola, men vaig  a dormir 10 segons");
         sleep(10);
-        Log::debug("SleepJob: He acabat");
     }
 }
