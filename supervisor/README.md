@@ -1,3 +1,4 @@
+# Supervisor per a Queueworker
 Path:
 
 ``
@@ -19,4 +20,33 @@ redirect_stderr=true
 stdout_logfile=/home/marcmestre/Code/Markis145/tasks/storage/logs/worker.log
 ``
 
-EXPLOT
+EXPLOT:
+
+# Supervisor per a Horizon
+
+LOCAL: 
+
+/etc/supervisor/conf.d/horizon-tasks-marcmestre-scool-cat.conf
+
+``
+[program:horizon-tasks-marcmestre-scool-cat]
+process_name=%(program_name)s
+command=php /home/marcmestre/Code/Markis145/tasks/artisan horizon
+autostart=true
+autorestart=true
+user=marcmestre
+redirect_stderr=true
+stdout_logfile=/home/marcmestre/Code/Markis145/tasks/storage/logs/horizon.log
+``
+
+EXPLOT:
+``
+[program:horizon-tasks-marcmestre-scool-cat]
+process_name=%(program_name)s
+command=php /home/forge/tasks.marcmestre.scool.cat/artisan horizon
+autostart=true
+autorestart=true
+user=forge
+redirect_stderr=true
+stdout_logfile=/home/forge/tasks.marcmestre.scool.cat/storage/logs/horizon.log
+``
