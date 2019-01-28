@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
-class SendMailTaskCompleted
+class SendMailTaskCompleted implements ShouldQueue
 {
     /**
      * Create the event listener.
