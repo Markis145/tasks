@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class LogTaskStore implements ShouldQueue
+class LogTaskDelete
 {
     /**
      * Create the event listener.
@@ -29,11 +29,11 @@ class LogTaskStore implements ShouldQueue
     public function handle($event)
     {
         Log::create([
-            'text' => "S'ha creat la tasca '" . $event->task->name . "'",
+            'text' => "S'ha eliminat la tasca '" . $event->task->name . "'",
             'time' => Carbon::now(),
-            'action_type'=> 'store',
+            'action_type'=> 'destroy',
             'module_type' => 'Tasques',
-            'icon' => 'add',
+            'icon' => 'delete',
             'color' => 'primary',
             'user_id' => $event->task->user_id,
             'loggable_id' => $event->task->id,

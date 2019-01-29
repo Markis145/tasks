@@ -2,13 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Mail\TaskUncompleted;
+use App\Mail\TaskDelete;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Mail;
 
-class SendMailTaskUncompleted implements ShouldQueue
+class SendMailTaskDelete
 {
     /**
      * Create the event listener.
@@ -29,9 +28,8 @@ class SendMailTaskUncompleted implements ShouldQueue
     public function handle($event)
     {
         $subject = $event->task->subject();
-        \App\Jobs\SendMailTaskUncompleted::dispatch();
         Mail::to($event->task->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskUncompleted($event->task))->subject($subject));
+            ->send((new TaskDelete($event->task))->subject($subject));
     }
 }

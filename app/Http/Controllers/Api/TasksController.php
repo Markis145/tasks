@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Events\TaskDelete;
 use App\Events\TaskStore;
 use App\Http\Requests\DestroyTask;
 use App\Http\Requests\IndexTask;
@@ -23,6 +24,7 @@ class TasksController extends Controller
     public function destroy(DestroyTask $request, Task $task)
     {
         $task->delete();
+        event(new TaskDelete($task,Auth::user()));
     }
     public function store(StoreTask $request)
     {
