@@ -24,6 +24,7 @@ import VueTimeago from 'vue-timeago'
 import Changelog from './components/changelog/ChangelogComponent.vue'
 import ServiceWorker from './components/ServiceWorker.vue'
 import Navigation from './components/Navigation.vue'
+import NotificationsWidget from './components/NotificationsWidget.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -143,5 +144,6 @@ window.Vue.component('profile', Profile)
 window.Vue.component('changelog', Changelog)
 window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
+window.Vue.component('notificationswidget', NotificationsWidget)
 
 const app = new window.Vue(AppComponent)

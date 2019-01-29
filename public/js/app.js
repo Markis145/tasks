@@ -27299,7 +27299,7 @@ module.exports = buildFormattingTokensRegExp
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(28);
-module.exports = __webpack_require__(251);
+module.exports = __webpack_require__(254);
 
 
 /***/ }),
@@ -27356,6 +27356,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__);
+
 
 
 
@@ -27477,7 +27480,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_21_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(248)
+    'ca': __webpack_require__(251)
   }
 });
 
@@ -27501,6 +27504,7 @@ window.Vue.component('profile', __WEBPACK_IMPORTED_MODULE_20__components_Profile
 window.Vue.component('changelog', __WEBPACK_IMPORTED_MODULE_23__components_changelog_ChangelogComponent_vue___default.a);
 window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue___default.a);
 window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue___default.a);
+window.Vue.component('notificationswidget', __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue___default.a);
 
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
 
@@ -87779,8 +87783,191 @@ if (false) {
 /* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(249)
-var buildFormatLocale = __webpack_require__(250)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(250)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/NotificationsWidget.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c4b359e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c4b359e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'NotificationsWidget',
+  methods: {
+    notify: function notify() {
+      if (!('Notification' in window)) {
+        this.$snackbar.showError('This browser does not support desktop notification');
+      } else {
+        if (Notification.permission === 'default') {
+          Notification.requestPermission().then(function (result) {
+            console.log(result);
+            new Notification('Hi there!');
+          });
+        }
+        console.log(Notification.permission);
+        if (Notification.permission === 'granted') {
+          new Notification('Hi there!');
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-menu",
+    { attrs: { "offset-y": "" } },
+    [
+      _c(
+        "v-badge",
+        {
+          attrs: { slot: "activator", left: "", color: "accent", overlap: "" },
+          slot: "activator"
+        },
+        [
+          _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
+            _vm._v("6")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { color: "primary" } },
+            [_c("v-icon", [_vm._v("notifications_none")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-list",
+        [
+          _c(
+            "v-list-tile",
+            [
+              _c("v-list-tile-title", { on: { click: _vm.notify } }, [
+                _vm._v("\n                Notify\n            ")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 2")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 3")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 4")])],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4c4b359e", module.exports)
+  }
+}
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(252)
+var buildFormatLocale = __webpack_require__(253)
 
 /**
  * @category Locales
@@ -87794,7 +87981,7 @@ module.exports = {
 
 
 /***/ }),
-/* 249 */
+/* 252 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -87899,7 +88086,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 250 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(26)
@@ -87989,7 +88176,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 251 */
+/* 254 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
