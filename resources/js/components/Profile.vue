@@ -122,7 +122,7 @@
                         <p>Username here</p>
 
                         <form action="/photo" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload"/>
+                            <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload" capture>
                             <input type="hidden" name="_token" :value="csrf_token">
                             <input type="submit" value="Pujar">
                         </form>
