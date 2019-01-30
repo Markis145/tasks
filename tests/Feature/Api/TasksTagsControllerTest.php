@@ -21,25 +21,37 @@ class TasksTagsControllerTest extends TestCase {
         $task = Task::create([
             'name' => 'Comprar pa'
         ]);
-
         $tag = Tag::create([
             'name' => 'home',
             'description' => 'bla bla',
             'color' => 'blue'
         ]);
-        $this->assertCount(0,$task->tags);
-        $response = $this->json('PUT','/api/v1/tasks/' . $task->id . '/tags/', [
-            'tags' => [$tag->id]
+        $tag2 = Tag::create([
+            'name' => 'prova',
+            'description' => 'bla bla',
+            'color' => 'green'
         ]);
-
+        $this->assertCount(0,$task->tags);
+        $response = $this->json('PUT','/api/v1/tasks/' . $task->id . '/tags', [
+            'tags' => [$tag->id, $tag2->id,'Etiqueta Nova']
+        ]);
         $response->assertSuccessful();
-
         $task = $task->fresh();
-
-        $this->assertCount(1,$task->tags);
+        $this->assertCount(3,$task->tags);
         $this->assertEquals('home',$task->tags[0]->name);
         $this->assertTrue($task->tags[0]->is($tag));
         $this->assertEquals($task->tags[0]->id, $tag->id);
+        $this->assertEquals('prova',$task->tags[1]->name);
+        $this->assertTrue($task->tags[1]->is($tag2));
+        $this->assertEquals($task->tags[1]->id, $tag2->id);
+        $this->assertEquals('Etiqueta Nova',$task->tags[2]->name);
+        $this->assertEquals('grey',$task->tags[2]->color);
+        $this->assertNotNull(Tag::where('name','Etiqueta Nova'));
+
+        $response = $this->json('PUT','/api/v1/tasks/' . $task->id . '/tags', [
+            'tags' => [$tag->id]
+        ]);
+        $response->assertSuccessful();
     }
 
     /**

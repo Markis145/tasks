@@ -75789,11 +75789,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     refresh: function refresh() {
       var _this2 = this;
 
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
       this.loading = true;
       window.axios.get(this.uri).then(function (response) {
         _this2.dataTasks = response.data;
         _this2.loading = false;
-        _this2.$snackbar.showMessage('Tasques actualitzades correctament');
+        if (message) _this2.$snackbar.showMessage('Tasques actualitzades correctament');
       }).catch(function (error) {
         console.log(error);
         _this2.loading = false;
@@ -78081,13 +78083,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'TasksTags',
   data: function data() {
     return {
       dialog: false,
-      selectedTags: []
+      loading: false,
+      selectedTags: [],
+      dataTaskTags: this.taskTags
     };
   },
 
@@ -78096,12 +78102,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Object,
       required: true
     },
+    taskTags: {
+      type: Array,
+      required: true
+    },
     tags: {
       type: Array,
       required: true
     }
   },
+  watch: {
+    taskTags: function taskTags(_taskTags) {
+      this.dataTaskTags = _taskTags;
+    }
+  },
   methods: {
+    formatTag: function formatTag() {
+      var value = this.selectedTags[this.selectedTags.length - 1];
+      if (typeof value === 'string') {
+        this.selectedTags[this.selectedTags.length - 1] = {
+          'color': 'grey',
+          'name': this.selectedTags[this.selectedTags.length - 1]
+        };
+      }
+    },
     removeTag: function removeTag() {
       var _this = this;
 
@@ -78116,10 +78140,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addTag: function addTag() {
       var _this2 = this;
 
-      console.log('TODO ADD TAG');
-      var tag = {};
-      window.axios.post('/api/v1/tasks/' + this.task.id + '/tag', tag).then(function (response) {
-        _this2.$snackbar.showMessage('Etiqueta afegida correctament');
+      this.loading = true;
+      window.axios.put('/api/v1/tasks/' + this.task.id + '/tags', {
+        tags: this.selectedTags.map(function (tag) {
+          if (tag.id) return tag.id;else return tag.name;
+        })
+      }).then(function (response) {
+        _this2.$snackbar.showMessage('Etiqueta/s afegida/es correctament');
+        _this2.dialog = false;
+        _this2.loading = false;
+        _this2.$emit('change', _this2.selectedTags);
       }).catch(function (error) {
         _this2.$snackbar.showError(error);
       });
@@ -78138,7 +78168,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm._l(_vm.task.tags, function(tag) {
+      _vm._l(_vm.taskTags, function(tag) {
         return _c("v-chip", {
           key: tag.id,
           attrs: { color: tag.color },
@@ -78203,6 +78233,7 @@ var render = function() {
                       chips: "",
                       "item-text": "name"
                     },
+                    on: { change: _vm.formatTag },
                     scopedSlots: _vm._u([
                       {
                         key: "selection",
@@ -78214,6 +78245,7 @@ var render = function() {
                                 key: JSON.stringify(data.item),
                                 staticClass: "v-chip--select-multi",
                                 attrs: {
+                                  color: data.item.color,
                                   selected: data.selected,
                                   disabled: data.disabled
                                 },
@@ -78257,7 +78289,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { flat: "" },
+                      attrs: { flat: "", loading: false },
                       on: {
                         click: function($event) {
                           _vm.dialog = false
@@ -78570,7 +78602,16 @@ var render = function() {
                           "td",
                           [
                             _c("tasks-tags", {
-                              attrs: { task: task, tags: _vm.tags }
+                              attrs: {
+                                task: task,
+                                "task-tags": task.tags,
+                                tags: _vm.tags
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.refresh(false)
+                                }
+                              }
                             })
                           ],
                           1

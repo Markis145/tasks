@@ -24,14 +24,24 @@ class Task extends Model
     }
     public function addTag($tag)
     {
-        !is_int($tag) ?: $tag = Tag::find($tag);
-//        if(is_int($tag)) $tag = Tag::find($tag);
+//        !is_int($tag) ?: $tag = Tag::find($tag);
+        if(is_int($tag)) $tag = Tag::find($tag);
+        try {
+            $this->tags()->save($tag);
+        } catch (\Exception $e) {
+
+        }
         $this->tags()->save($tag);
         return $this;
     }
-    public function addTags(array $tags)
+    public function addTags($tags)
     {
-        $this->tags()->saveMany($tags);
+        try {
+            $this->tags()->saveMany($tags);
+        } catch(\Exception $e) {
+
+        }
+
     }
     public function assignUser(User $user)
     {

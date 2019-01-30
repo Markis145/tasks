@@ -80,12 +80,12 @@ if (!function_exists('create_example_tasks_with_tags')) {
             'user_id' => $user1->id
         ]);
         $tag1 = Tag::create([
-            'name' => 'Tag1',
+            'name' => 'Tag4',
             'color' => 'blue',
             'description' => 'bla bla bla'
         ]);
         $tag2 = Tag::create([
-            'name' => 'Tag2',
+            'name' => 'Tag5',
             'color' => 'red',
             'description' => 'Jorl Jorl'
         ]);

@@ -24,7 +24,7 @@ class TasksController extends Controller
     public function destroy(DestroyTask $request, Task $task)
     {
         $task->delete();
-        event(new TaskDelete($task,Auth::user()));
+//        event(new TaskDelete($task,Auth::user()));
     }
     public function store(StoreTask $request)
     {

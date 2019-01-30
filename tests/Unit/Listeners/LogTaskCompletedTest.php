@@ -38,7 +38,7 @@ class LogTaskCompletedTest extends TestCase
         $this->assertEquals($log->new_value,0);
         $this->assertEquals($log->loggable_id,$task->id);
         $this->assertEquals($log->loggable_type,Task::class);
-        $this->assertEquals($log->icon,'lock_open');
+        $this->assertEquals($log->icon,'clear+');
         $this->assertEquals($log->color,'primary');
     }
 }
