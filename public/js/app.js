@@ -83242,28 +83242,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
+  },
   name: 'Profile',
   data: function data() {
     return {
       uploading: false,
+      uploadingAvatar: false,
+      percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,
       email: this.user.email
     };
   },
 
-  props: {
-    user: {
-      type: Object,
-      required: true
-    }
-  },
-  components: {
-    'material-card': __WEBPACK_IMPORTED_MODULE_0__ui_MaterialCard___default.a
-  },
   methods: {
     preview: function preview() {
       var _this = this;
@@ -83287,7 +83299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
       window.axios.post('/api/v1/user/photo', formData, config).then(function () {
         _this2.uploading = false;
-        _this2.$snackbar.showMessage('Ok!');
+        _this2.$snackbar.showMessage('La foto ha estat pujada correctament!');
       }).catch(function (error) {
         console.log(error);
         _this2.$snackbar.showError(error);
@@ -83304,10 +83316,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.preview();
       // save it
       this.save(formData);
+    },
+    previewAvatar: function previewAvatar() {
+      var _this3 = this;
+
+      if (this.$refs.avatar.files && this.$refs.avatar.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          _this3.$refs.img_avatar.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(this.$refs.avatar.files[0]);
+      }
+    },
+    saveAvatar: function saveAvatar(formData) {
+      var _this4 = this;
+
+      this.uploadingAvatar = true;
+      var config = {
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          _this4.percentCompletedAvatar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+        }
+      };
+      window.axios.post('/api/v1/user/avatar', formData, config).then(function () {
+        _this4.uploadingAvatar = false;
+        _this4.$snackbar.showMessage('El avatar ha estat pujat correctament!');
+      }).catch(function (error) {
+        console.log(error);
+        _this4.$snackbar.showError(error);
+        _this4.uploadingAvatar = false;
+      });
+    },
+    selectFilesAvatar: function selectFilesAvatar() {
+      this.$refs.avatar.click();
+    },
+    uploadAvatar: function uploadAvatar() {
+      var formData = new FormData();
+      formData.append('avatar', this.$refs.avatar.files[0]);
+      // Preview it
+      this.previewAvatar();
+      // save it
+      this.saveAvatar(formData);
     }
   },
   created: function created() {
     this.csrf_token = window.csrf_token;
+  },
+
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
   }
 });
 
@@ -83829,6 +83888,7 @@ var render = function() {
                                 { attrs: { xs12: "", md6: "" } },
                                 [
                                   _c("v-text-field", {
+                                    staticClass: "purple-input",
                                     attrs: { label: "Email Address" },
                                     model: {
                                       value: _vm.email,
@@ -83928,7 +83988,13 @@ var render = function() {
                       attrs: { slot: "offset", size: "130" },
                       slot: "offset"
                     },
-                    [_c("img", { attrs: { src: "/user/avatar" } })]
+                    [
+                      _c("img", {
+                        ref: "img_avatar",
+                        attrs: { src: "/user/avatar" },
+                        on: { click: _vm.selectFilesAvatar }
+                      })
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -83948,22 +84014,19 @@ var render = function() {
                         },
                         [
                           _c("input", {
-                            ref: "photo",
+                            ref: "avatar",
                             attrs: {
                               type: "file",
                               name: "avatar",
                               id: "avatar-file-input",
                               accept: "image/*"
-                            }
+                            },
+                            on: { change: _vm.uploadAvatar }
                           }),
                           _vm._v(" "),
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -83972,12 +84035,27 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "font-weight-light",
-                          attrs: { color: "success", round: "" }
+                          attrs: {
+                            color: "success",
+                            round: "",
+                            loading: _vm.uploadingAvatar,
+                            disabled: _vm.uploadingAvatar
+                          },
+                          on: { click: _vm.selectFilesAvatar }
                         },
                         [_vm._v("Upload Avatar")]
                       ),
                       _vm._v(" "),
-                      _c("p", [_vm._v("TODO LIST AVATARS here")])
+                      _c("v-progress-linear", {
+                        attrs: { active: _vm.uploadingAvatar },
+                        model: {
+                          value: _vm.percentCompletedAvatar,
+                          callback: function($$v) {
+                            _vm.percentCompletedAvatar = $$v
+                          },
+                          expression: "percentCompletedAvatar"
+                        }
+                      })
                     ],
                     1
                   )
@@ -84027,8 +84105,7 @@ var render = function() {
                               type: "file",
                               name: "photo",
                               id: "photo-file-input",
-                              accept: "image/*",
-                              capture: ""
+                              accept: "image/*"
                             },
                             on: { change: _vm.upload }
                           }),
@@ -84036,10 +84113,6 @@ var render = function() {
                           _c("input", {
                             attrs: { type: "hidden", name: "_token" },
                             domProps: { value: _vm.csrf_token }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            attrs: { type: "submit", value: "Pujar" }
                           })
                         ]
                       ),
@@ -84057,7 +84130,18 @@ var render = function() {
                           on: { click: _vm.selectFiles }
                         },
                         [_vm._v("Upload Photo")]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("v-progress-linear", {
+                        attrs: { active: _vm.uploading },
+                        model: {
+                          value: _vm.percentCompleted,
+                          callback: function($$v) {
+                            _vm.percentCompleted = $$v
+                          },
+                          expression: "percentCompleted"
+                        }
+                      })
                     ],
                     1
                   )
@@ -87916,7 +88000,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
         console.log(Notification.permission);
         if (Notification.permission === 'granted') {
-          new Notification('Hi there!');
+          var not = new Notification('Hi there!');
+          not.onclick = function () {
+            window.open('https://tasks.test');
+          };
         }
       }
     }

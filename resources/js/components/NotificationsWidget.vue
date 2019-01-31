@@ -41,7 +41,8 @@ export default {
         }
         console.log(Notification.permission)
         if (Notification.permission === 'granted') {
-          new Notification('Hi there!')
+          var not = new Notification('Hi there!')
+          not.onclick = function () { window.open('https://tasks.test') }
         }
       }
     }

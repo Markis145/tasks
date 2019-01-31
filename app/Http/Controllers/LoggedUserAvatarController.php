@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,7 +11,7 @@ class LoggedUserAvatarController extends Controller
 {
     public function show(Request $request)
     {
-        $avatar = $this->userAvatarExists($request->user()) ? $request->user()->avatar->url : $this->defaultAvatar();
+        $avatar = $this->userAvatarExists($request->user()) ? $request->user()->avatars[0]->url : $this->defaultAvatar();
         return response()->file(Storage::disk('local')->path($avatar), [
             'Cache-Control' => 'no-cache, must-revalidate, no-store, max-age=0, private',
             'Pragma' => 'no-cache'
@@ -19,12 +20,13 @@ class LoggedUserAvatarController extends Controller
 
     protected function userAvatarExists($user)
     {
-        return $user->avatar && Storage::disk('local')->exists($user->avatar->url);
+        return $user->avatars && Storage::disk('local')->exists($user->avatars[0]->url);
     }
 
     protected function defaultAvatar()
     {
-//        return 'avatars/default.png';
-        return User::DEFAULT_AVATAR_PATH1;
+//        return 'avatars/default.jpg';
+        return User::DEFAULT_AVATAR_PATH;
+
     }
 }
