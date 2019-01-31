@@ -45,7 +45,7 @@
                                         md6
                                 >
                                     <v-text-field
-
+                                            v-model="admin"
                                             label="Admin"
                                             class="purple-input"/>
                                 </v-flex>
@@ -54,7 +54,7 @@
                                         md6
                                 >
                                     <v-text-field
-
+                                            v-model="roles"
                                             label="Roles"
                                             class="purple-input"/>
                                 </v-flex>
@@ -63,6 +63,7 @@
                                         md12
                                 >
                                     <v-text-field
+                                            v-model="permissions"
                                             label="Permissions"
                                             class="purple-input"/>
                                 </v-flex>
@@ -172,7 +173,10 @@ export default {
       percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,
-      email: this.user.email
+      email: this.user.email,
+      permissions: window.laravel_user.permissions,
+      roles: window.laravel_user.roles,
+      admin: window.laravel_user.admin
     }
   },
   methods: {

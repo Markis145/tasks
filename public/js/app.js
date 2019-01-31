@@ -83258,6 +83258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -83272,7 +83273,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       percentCompletedAvatar: 0,
       percentCompleted: 0,
       name: this.user.name,
-      email: this.user.email
+      email: this.user.email,
+      permissions: window.laravel_user.permissions,
+      roles: window.laravel_user.roles,
+      admin: window.laravel_user.admin
     };
   },
 
@@ -83908,7 +83912,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Admin" }
+                                    attrs: { label: "Admin" },
+                                    model: {
+                                      value: _vm.admin,
+                                      callback: function($$v) {
+                                        _vm.admin = $$v
+                                      },
+                                      expression: "admin"
+                                    }
                                   })
                                 ],
                                 1
@@ -83920,7 +83931,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Roles" }
+                                    attrs: { label: "Roles" },
+                                    model: {
+                                      value: _vm.roles,
+                                      callback: function($$v) {
+                                        _vm.roles = $$v
+                                      },
+                                      expression: "roles"
+                                    }
                                   })
                                 ],
                                 1
@@ -83932,7 +83950,14 @@ var render = function() {
                                 [
                                   _c("v-text-field", {
                                     staticClass: "purple-input",
-                                    attrs: { label: "Permissions" }
+                                    attrs: { label: "Permissions" },
+                                    model: {
+                                      value: _vm.permissions,
+                                      callback: function($$v) {
+                                        _vm.permissions = $$v
+                                      },
+                                      expression: "permissions"
+                                    }
                                   })
                                 ],
                                 1
