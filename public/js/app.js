@@ -87739,17 +87739,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     setSelectedItem: function setSelectedItem() {
       var currentPath = window.location.pathname;
-      console.log(currentPath);
       var selected = this.items.indexOf(this.items.find(function (item) {
         return item.url === currentPath;
       }));
       this.items[selected].selected = true;
     },
     selectedStyle: function selectedStyle(item) {
-      console.log(__WEBPACK_IMPORTED_MODULE_0_vuetify_es5_util_colors___default.a);
       if (item.selected) {
         return {
-          'border-left': '5px solid #F0B429',
+          'border-right': '5px solid #F0B429',
           'background-color': '#F0F4F8',
           'font-size': '1em'
         };

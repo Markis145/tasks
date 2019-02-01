@@ -18,7 +18,7 @@ class AvatarControllerTest extends TestCase
         Storage::fake('local');
         Storage::fake('google');
         $user = $this->login();
-        $response = $this->post('/avatar',[
+        $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
@@ -29,9 +29,10 @@ class AvatarControllerTest extends TestCase
         $this->assertNotNull($avatar->user);
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
-        $this->withoutExceptionHandling();
-        $this->assertNotNull($user->avatar);
-        $this->assertEquals($avatarUrl, $user->avatar->url);
+//        dd($user->avatar);
+        $this->assertNotNull($user->avatars);
+        $this->assertCount(1, $user->avatars);
+        $this->assertEquals($avatarUrl, $user->avatars[0]->url);
     }
     /**
      * @test
@@ -45,7 +46,7 @@ class AvatarControllerTest extends TestCase
             'user_id' => $user->id
         ]);
         Storage::fake('local');
-        $response = $this->post('/avatar',[
+        $response = $this->post('/avatar', [
             'avatar' => UploadedFile::fake()->image('avatar.jpg')
         ]);
         $response->assertRedirect();
@@ -55,8 +56,9 @@ class AvatarControllerTest extends TestCase
         $this->assertNotNull($avatar->user);
         $this->assertEquals($user->id, $avatar->user->id);
         $user = $user->fresh();
-        $this->withoutExceptionHandling();
-        $this->assertNotNull($user->avatar);
-        $this->assertEquals($avatarUrl, $user->avatar->url);
+        $this->assertNotNull($user->avatars);
+        $this->assertCount(1, $user->avatars);
+        $this->assertEquals($avatarUrl, $user->avatars[0]->url);
     }
+
 }

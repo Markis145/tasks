@@ -28,8 +28,8 @@ class SendMailTaskModify implements ShouldQueue
     public function handle($event)
     {
         $subject = $event->task->subject();
-        Mail::to($event->task->user)
+        Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskModify($event->task))->subject($subject));
+            ->send(new TaskModify($event->task));
     }
 }

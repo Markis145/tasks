@@ -112,6 +112,7 @@ class TasksControllerTest extends TestCase
      */
     public function superadmin_can_create_task()
     {
+        $this->withoutExceptionHandling();
         $this->loginAsSuperAdmin('api');
         $response = $this->json('POST','/api/v1/tasks/',[
             'name' => 'Comprar pa'

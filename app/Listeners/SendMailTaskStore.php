@@ -28,8 +28,8 @@ class SendMailTaskStore implements ShouldQueue
     public function handle($event)
     {
         $subject = $event->task->subject();
-        Mail::to($event->task->user)
+        Mail::to($event->user)
             ->cc(config('tasks.manager_email'))
-            ->send((new TaskStore($event->task))->subject($subject));
+            ->send(new TaskStore($event->task));
     }
 }
