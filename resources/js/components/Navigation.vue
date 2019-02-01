@@ -51,7 +51,7 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list-group>
-                <v-list-tile v-else :href="item.href" :target="item.target"
+                <v-list-tile v-else :href="item.url" :target="item.target"
                              :style="selectedStyle(item)">
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
@@ -114,7 +114,7 @@ export default {
     setSelectedItem () {
       const currentPath = window.location.pathname
       console.log(currentPath)
-      const selected = this.items.indexOf(this.items.find(item => item.href === currentPath))
+      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
       this.items[selected].selected = true
     },
     selectedStyle (item) {

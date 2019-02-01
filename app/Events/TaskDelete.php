@@ -16,16 +16,16 @@ class TaskDelete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $task, $user;
+    public $task, $completed, $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Task $task, User $user)
+    public function __construct(array $oldTask)
     {
         $this->task = $task;
-        $this->user = $user;
+
     }
 
     /**

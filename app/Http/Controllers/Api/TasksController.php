@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Events\TaskDelete;
+use App\Events\TaskModify;
 use App\Events\TaskStore;
 use App\Http\Requests\DestroyTask;
 use App\Http\Requests\IndexTask;
@@ -40,11 +41,13 @@ class TasksController extends Controller
     }
     public function update(UpdateTask $request, Task $task)
     {
+        $task_old=$task;
         $task->name = $request->name;
         $task->completed = $request->completed;
         $task->description = $request->description;
         $task->user_id = $request->user_id;
         $task->save();
+        event(new TaskModify($task_old,$task,Auth::user()));
         return $task->map();
     }
 }

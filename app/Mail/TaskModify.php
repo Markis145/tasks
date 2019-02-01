@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +12,15 @@ class TaskModify extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $task;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Task $task)
     {
-        //
+        $this->task = $task;
     }
 
     /**

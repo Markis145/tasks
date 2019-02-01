@@ -38,7 +38,7 @@ class LogTaskModify
             'user_id' => $event->task->user_id,
             'loggable_id' => $event->task->id,
             'loggable_type' => Task::class,
-            'old_value' => null,
+            'old_value' => $event->old_task,
             'new_value' => $event->task
         ]);
     }

@@ -27299,7 +27299,7 @@ module.exports = buildFormattingTokensRegExp
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(28);
-module.exports = __webpack_require__(254);
+module.exports = __webpack_require__(255);
 
 
 /***/ }),
@@ -27356,7 +27356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__components_ServiceWorker_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue__ = __webpack_require__(245);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_NotificationsWidget_vue__);
 
 
@@ -27480,7 +27480,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_21_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(251)
+    'ca': __webpack_require__(252)
   }
 });
 
@@ -87588,7 +87588,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(246)
 /* template */
-var __vue_template__ = __webpack_require__(247)
+var __vue_template__ = __webpack_require__(248)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -87632,7 +87632,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_es5_util_colors__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_es5_util_colors__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuetify_es5_util_colors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuetify_es5_util_colors__);
 //
 //
@@ -87741,7 +87741,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var currentPath = window.location.pathname;
       console.log(currentPath);
       var selected = this.items.indexOf(this.items.find(function (item) {
-        return item.href === currentPath;
+        return item.url === currentPath;
       }));
       this.items[selected].selected = true;
     },
@@ -87763,604 +87763,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 247 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-navigation-drawer",
-    {
-      attrs: { fixed: "", app: "", clipped: "" },
-      model: {
-        value: _vm.dataDrawer,
-        callback: function($$v) {
-          _vm.dataDrawer = $$v
-        },
-        expression: "dataDrawer"
-      }
-    },
-    [
-      _c(
-        "v-list",
-        { attrs: { dense: "" } },
-        [
-          _vm._l(_vm.items, function(item) {
-            return [
-              item.heading
-                ? _c(
-                    "v-layout",
-                    {
-                      key: item.heading,
-                      attrs: { row: "", "align-center": "" }
-                    },
-                    [
-                      _c(
-                        "v-flex",
-                        { attrs: { xs6: "" } },
-                        [
-                          item.heading
-                            ? _c("v-subheader", [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(item.heading) +
-                                    "\n                    "
-                                )
-                              ])
-                            : _vm._e()
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-flex",
-                        { staticClass: "text-xs-center", attrs: { xs6: "" } },
-                        [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "body-2 black--text",
-                              attrs: { href: "#!" }
-                            },
-                            [_vm._v("EDIT")]
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                : item.children
-                  ? _c(
-                      "v-list-group",
-                      {
-                        key: item.text,
-                        attrs: {
-                          "prepend-icon": item.model
-                            ? item.icon
-                            : item["icon-alt"],
-                          "append-icon": ""
-                        },
-                        model: {
-                          value: item.model,
-                          callback: function($$v) {
-                            _vm.$set(item, "model", $$v)
-                          },
-                          expression: "item.model"
-                        }
-                      },
-                      [
-                        _c(
-                          "v-list-tile",
-                          {
-                            attrs: { slot: "activator", href: item.url },
-                            slot: "activator"
-                          },
-                          [
-                            _c(
-                              "v-list-tile-content",
-                              [
-                                _c("v-list-tile-title", [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(item.text) +
-                                      "\n                        "
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _vm._l(item.children, function(child, i) {
-                          return _c(
-                            "v-list-tile",
-                            { key: i, attrs: { href: child.url } },
-                            [
-                              child.icon
-                                ? _c(
-                                    "v-list-tile-action",
-                                    [
-                                      _c("v-icon", [_vm._v(_vm._s(child.icon))])
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c(
-                                "v-list-tile-content",
-                                [
-                                  _c("v-list-tile-title", [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(child.text) +
-                                        "\n                        "
-                                    )
-                                  ])
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  : _c(
-                      "v-list-tile",
-                      {
-                        style: _vm.selectedStyle(item),
-                        attrs: { href: item.href, target: item.target }
-                      },
-                      [
-                        _c(
-                          "v-list-tile-action",
-                          [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-list-tile-content",
-                          [
-                            _c("v-list-tile-title", {
-                              domProps: { textContent: _vm._s(item.text) }
-                            })
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-            ]
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-d456e682", module.exports)
-  }
-}
-
-/***/ }),
-/* 248 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(249)
-/* template */
-var __vue_template__ = __webpack_require__(250)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/NotificationsWidget.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c4b359e", Component.options)
-  } else {
-    hotAPI.reload("data-v-4c4b359e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 249 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'NotificationsWidget',
-  methods: {
-    notify: function notify() {
-      if (!('Notification' in window)) {
-        this.$snackbar.showError('This browser does not support desktop notification');
-      } else {
-        if (Notification.permission === 'default') {
-          Notification.requestPermission().then(function (result) {
-            console.log(result);
-            new Notification('Hi there!');
-          });
-        }
-        console.log(Notification.permission);
-        if (Notification.permission === 'granted') {
-          var not = new Notification('Hi there!');
-          not.onclick = function () {
-            window.open('https://tasks.test');
-          };
-        }
-      }
-    }
-  }
-});
-
-/***/ }),
-/* 250 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-menu",
-    { attrs: { "offset-y": "" } },
-    [
-      _c(
-        "v-badge",
-        {
-          attrs: { slot: "activator", left: "", color: "accent", overlap: "" },
-          slot: "activator"
-        },
-        [
-          _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
-            _vm._v("6")
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { attrs: { color: "primary" } },
-            [_c("v-icon", [_vm._v("notifications_none")])],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-list",
-        [
-          _c(
-            "v-list-tile",
-            [
-              _c("v-list-tile-title", { on: { click: _vm.notify } }, [
-                _vm._v("\n                Notify\n            ")
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 2")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 3")])],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-list-tile",
-            [_c("v-list-tile-title", [_vm._v("Notification 4")])],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c4b359e", module.exports)
-  }
-}
-
-/***/ }),
-/* 251 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var buildDistanceInWordsLocale = __webpack_require__(252)
-var buildFormatLocale = __webpack_require__(253)
-
-/**
- * @category Locales
- * @summary Catalan locale.
- * @author Guillermo Grau [@guigrpa]{@link https://github.com/guigrpa}
- */
-module.exports = {
-  distanceInWords: buildDistanceInWordsLocale(),
-  format: buildFormatLocale()
-}
-
-
-/***/ }),
-/* 252 */
-/***/ (function(module, exports) {
-
-function buildDistanceInWordsLocale () {
-  var distanceInWordsLocale = {
-    lessThanXSeconds: {
-      one: "menys d'un segon",
-      other: 'menys de {{count}} segons'
-    },
-
-    xSeconds: {
-      one: '1 segon',
-      other: '{{count}} segons'
-    },
-
-    halfAMinute: 'mig minut',
-
-    lessThanXMinutes: {
-      one: "menys d'un minut",
-      other: 'menys de {{count}} minuts'
-    },
-
-    xMinutes: {
-      one: '1 minut',
-      other: '{{count}} minuts'
-    },
-
-    aboutXHours: {
-      one: 'aproximadament una hora',
-      other: 'aproximadament {{count}} hores'
-    },
-
-    xHours: {
-      one: '1 hora',
-      other: '{{count}} hores'
-    },
-
-    xDays: {
-      one: '1 dia',
-      other: '{{count}} dies'
-    },
-
-    aboutXMonths: {
-      one: 'aproximadament un mes',
-      other: 'aproximadament {{count}} mesos'
-    },
-
-    xMonths: {
-      one: '1 mes',
-      other: '{{count}} mesos'
-    },
-
-    aboutXYears: {
-      one: 'aproximadament un any',
-      other: 'aproximadament {{count}} anys'
-    },
-
-    xYears: {
-      one: '1 any',
-      other: '{{count}} anys'
-    },
-
-    overXYears: {
-      one: "més d'un any",
-      other: 'més de {{count}} anys'
-    },
-
-    almostXYears: {
-      one: 'gairebé un any',
-      other: 'gairebé {{count}} anys'
-    }
-  }
-
-  function localize (token, count, options) {
-    options = options || {}
-
-    var result
-    if (typeof distanceInWordsLocale[token] === 'string') {
-      result = distanceInWordsLocale[token]
-    } else if (count === 1) {
-      result = distanceInWordsLocale[token].one
-    } else {
-      result = distanceInWordsLocale[token].other.replace('{{count}}', count)
-    }
-
-    if (options.addSuffix) {
-      if (options.comparison > 0) {
-        return 'en ' + result
-      } else {
-        return 'fa ' + result
-      }
-    }
-
-    return result
-  }
-
-  return {
-    localize: localize
-  }
-}
-
-module.exports = buildDistanceInWordsLocale
-
-
-/***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var buildFormattingTokensRegExp = __webpack_require__(26)
-
-function buildFormatLocale () {
-  var months3char = ['gen', 'feb', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'des']
-  var monthsFull = ['gener', 'febrer', 'març', 'abril', 'maig', 'juny', 'juliol', 'agost', 'setembre', 'octobre', 'novembre', 'desembre']
-  var weekdays2char = ['dg', 'dl', 'dt', 'dc', 'dj', 'dv', 'ds']
-  var weekdays3char = ['dge', 'dls', 'dts', 'dcs', 'djs', 'dvs', 'dss']
-  var weekdaysFull = ['diumenge', 'dilluns', 'dimarts', 'dimecres', 'dijous', 'divendres', 'dissabte']
-  var meridiemUppercase = ['AM', 'PM']
-  var meridiemLowercase = ['am', 'pm']
-  var meridiemFull = ['a.m.', 'p.m.']
-
-  var formatters = {
-    // Month: Jan, Feb, ..., Dec
-    'MMM': function (date) {
-      return months3char[date.getMonth()]
-    },
-
-    // Month: January, February, ..., December
-    'MMMM': function (date) {
-      return monthsFull[date.getMonth()]
-    },
-
-    // Day of week: Su, Mo, ..., Sa
-    'dd': function (date) {
-      return weekdays2char[date.getDay()]
-    },
-
-    // Day of week: Sun, Mon, ..., Sat
-    'ddd': function (date) {
-      return weekdays3char[date.getDay()]
-    },
-
-    // Day of week: Sunday, Monday, ..., Saturday
-    'dddd': function (date) {
-      return weekdaysFull[date.getDay()]
-    },
-
-    // AM, PM
-    'A': function (date) {
-      return (date.getHours() / 12) >= 1 ? meridiemUppercase[1] : meridiemUppercase[0]
-    },
-
-    // am, pm
-    'a': function (date) {
-      return (date.getHours() / 12) >= 1 ? meridiemLowercase[1] : meridiemLowercase[0]
-    },
-
-    // a.m., p.m.
-    'aa': function (date) {
-      return (date.getHours() / 12) >= 1 ? meridiemFull[1] : meridiemFull[0]
-    }
-  }
-
-  // Generate ordinal version of formatters: M -> Mo, D -> Do, etc.
-  var ordinalFormatters = ['M', 'D', 'DDD', 'd', 'Q', 'W']
-  ordinalFormatters.forEach(function (formatterToken) {
-    formatters[formatterToken + 'o'] = function (date, formatters) {
-      return ordinal(formatters[formatterToken](date))
-    }
-  })
-
-  return {
-    formatters: formatters,
-    formattingTokensRegExp: buildFormattingTokensRegExp(formatters)
-  }
-}
-
-function ordinal (number) {
-  switch (number) {
-    case 1:
-      return '1r'
-    case 2:
-      return '2n'
-    case 3:
-      return '3r'
-    case 4:
-      return '4t'
-    default:
-      return number + 'è'
-  }
-}
-
-module.exports = buildFormatLocale
-
-
-/***/ }),
-/* 254 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 255 */,
-/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88689,6 +88091,603 @@ exports.default = Object.freeze({
     shades: shades
 });
 //# sourceMappingURL=colors.js.map
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-navigation-drawer",
+    {
+      attrs: { fixed: "", app: "", clipped: "" },
+      model: {
+        value: _vm.dataDrawer,
+        callback: function($$v) {
+          _vm.dataDrawer = $$v
+        },
+        expression: "dataDrawer"
+      }
+    },
+    [
+      _c(
+        "v-list",
+        { attrs: { dense: "" } },
+        [
+          _vm._l(_vm.items, function(item) {
+            return [
+              item.heading
+                ? _c(
+                    "v-layout",
+                    {
+                      key: item.heading,
+                      attrs: { row: "", "align-center": "" }
+                    },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs6: "" } },
+                        [
+                          item.heading
+                            ? _c("v-subheader", [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(item.heading) +
+                                    "\n                    "
+                                )
+                              ])
+                            : _vm._e()
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        { staticClass: "text-xs-center", attrs: { xs6: "" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "body-2 black--text",
+                              attrs: { href: "#!" }
+                            },
+                            [_vm._v("EDIT")]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                : item.children
+                  ? _c(
+                      "v-list-group",
+                      {
+                        key: item.text,
+                        attrs: {
+                          "prepend-icon": item.model
+                            ? item.icon
+                            : item["icon-alt"],
+                          "append-icon": ""
+                        },
+                        model: {
+                          value: item.model,
+                          callback: function($$v) {
+                            _vm.$set(item, "model", $$v)
+                          },
+                          expression: "item.model"
+                        }
+                      },
+                      [
+                        _c(
+                          "v-list-tile",
+                          {
+                            attrs: { slot: "activator", href: item.url },
+                            slot: "activator"
+                          },
+                          [
+                            _c(
+                              "v-list-tile-content",
+                              [
+                                _c("v-list-tile-title", [
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(item.text) +
+                                      "\n                        "
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._l(item.children, function(child, i) {
+                          return _c(
+                            "v-list-tile",
+                            { key: i, attrs: { href: child.url } },
+                            [
+                              child.icon
+                                ? _c(
+                                    "v-list-tile-action",
+                                    [
+                                      _c("v-icon", [_vm._v(_vm._s(child.icon))])
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-tile-content",
+                                [
+                                  _c("v-list-tile-title", [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(child.text) +
+                                        "\n                        "
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  : _c(
+                      "v-list-tile",
+                      {
+                        style: _vm.selectedStyle(item),
+                        attrs: { href: item.url, target: item.target }
+                      },
+                      [
+                        _c(
+                          "v-list-tile-action",
+                          [_c("v-icon", [_vm._v(_vm._s(item.icon))])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-tile-content",
+                          [
+                            _c("v-list-tile-title", {
+                              domProps: { textContent: _vm._s(item.text) }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+            ]
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d456e682", module.exports)
+  }
+}
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(250)
+/* template */
+var __vue_template__ = __webpack_require__(251)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/NotificationsWidget.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4c4b359e", Component.options)
+  } else {
+    hotAPI.reload("data-v-4c4b359e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 250 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'NotificationsWidget',
+  methods: {
+    notify: function notify() {
+      if (!('Notification' in window)) {
+        this.$snackbar.showError('This browser does not support desktop notification');
+      } else {
+        if (Notification.permission === 'default') {
+          Notification.requestPermission().then(function (result) {
+            console.log(result);
+            new Notification('Hi there!');
+          });
+        }
+        console.log(Notification.permission);
+        if (Notification.permission === 'granted') {
+          var not = new Notification('Hi there!');
+          not.onclick = function () {
+            window.open('https://tasks.test');
+          };
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-menu",
+    { attrs: { "offset-y": "" } },
+    [
+      _c(
+        "v-badge",
+        {
+          attrs: { slot: "activator", left: "", color: "accent", overlap: "" },
+          slot: "activator"
+        },
+        [
+          _c("span", { attrs: { slot: "badge" }, slot: "badge" }, [
+            _vm._v("6")
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            { attrs: { color: "primary" } },
+            [_c("v-icon", [_vm._v("notifications_none")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-list",
+        [
+          _c(
+            "v-list-tile",
+            [
+              _c("v-list-tile-title", { on: { click: _vm.notify } }, [
+                _vm._v("\n                Notify\n            ")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 2")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 3")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-tile",
+            [_c("v-list-tile-title", [_vm._v("Notification 4")])],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4c4b359e", module.exports)
+  }
+}
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(253)
+var buildFormatLocale = __webpack_require__(254)
+
+/**
+ * @category Locales
+ * @summary Catalan locale.
+ * @author Guillermo Grau [@guigrpa]{@link https://github.com/guigrpa}
+ */
+module.exports = {
+  distanceInWords: buildDistanceInWordsLocale(),
+  format: buildFormatLocale()
+}
+
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports) {
+
+function buildDistanceInWordsLocale () {
+  var distanceInWordsLocale = {
+    lessThanXSeconds: {
+      one: "menys d'un segon",
+      other: 'menys de {{count}} segons'
+    },
+
+    xSeconds: {
+      one: '1 segon',
+      other: '{{count}} segons'
+    },
+
+    halfAMinute: 'mig minut',
+
+    lessThanXMinutes: {
+      one: "menys d'un minut",
+      other: 'menys de {{count}} minuts'
+    },
+
+    xMinutes: {
+      one: '1 minut',
+      other: '{{count}} minuts'
+    },
+
+    aboutXHours: {
+      one: 'aproximadament una hora',
+      other: 'aproximadament {{count}} hores'
+    },
+
+    xHours: {
+      one: '1 hora',
+      other: '{{count}} hores'
+    },
+
+    xDays: {
+      one: '1 dia',
+      other: '{{count}} dies'
+    },
+
+    aboutXMonths: {
+      one: 'aproximadament un mes',
+      other: 'aproximadament {{count}} mesos'
+    },
+
+    xMonths: {
+      one: '1 mes',
+      other: '{{count}} mesos'
+    },
+
+    aboutXYears: {
+      one: 'aproximadament un any',
+      other: 'aproximadament {{count}} anys'
+    },
+
+    xYears: {
+      one: '1 any',
+      other: '{{count}} anys'
+    },
+
+    overXYears: {
+      one: "més d'un any",
+      other: 'més de {{count}} anys'
+    },
+
+    almostXYears: {
+      one: 'gairebé un any',
+      other: 'gairebé {{count}} anys'
+    }
+  }
+
+  function localize (token, count, options) {
+    options = options || {}
+
+    var result
+    if (typeof distanceInWordsLocale[token] === 'string') {
+      result = distanceInWordsLocale[token]
+    } else if (count === 1) {
+      result = distanceInWordsLocale[token].one
+    } else {
+      result = distanceInWordsLocale[token].other.replace('{{count}}', count)
+    }
+
+    if (options.addSuffix) {
+      if (options.comparison > 0) {
+        return 'en ' + result
+      } else {
+        return 'fa ' + result
+      }
+    }
+
+    return result
+  }
+
+  return {
+    localize: localize
+  }
+}
+
+module.exports = buildDistanceInWordsLocale
+
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildFormattingTokensRegExp = __webpack_require__(26)
+
+function buildFormatLocale () {
+  var months3char = ['gen', 'feb', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'des']
+  var monthsFull = ['gener', 'febrer', 'març', 'abril', 'maig', 'juny', 'juliol', 'agost', 'setembre', 'octobre', 'novembre', 'desembre']
+  var weekdays2char = ['dg', 'dl', 'dt', 'dc', 'dj', 'dv', 'ds']
+  var weekdays3char = ['dge', 'dls', 'dts', 'dcs', 'djs', 'dvs', 'dss']
+  var weekdaysFull = ['diumenge', 'dilluns', 'dimarts', 'dimecres', 'dijous', 'divendres', 'dissabte']
+  var meridiemUppercase = ['AM', 'PM']
+  var meridiemLowercase = ['am', 'pm']
+  var meridiemFull = ['a.m.', 'p.m.']
+
+  var formatters = {
+    // Month: Jan, Feb, ..., Dec
+    'MMM': function (date) {
+      return months3char[date.getMonth()]
+    },
+
+    // Month: January, February, ..., December
+    'MMMM': function (date) {
+      return monthsFull[date.getMonth()]
+    },
+
+    // Day of week: Su, Mo, ..., Sa
+    'dd': function (date) {
+      return weekdays2char[date.getDay()]
+    },
+
+    // Day of week: Sun, Mon, ..., Sat
+    'ddd': function (date) {
+      return weekdays3char[date.getDay()]
+    },
+
+    // Day of week: Sunday, Monday, ..., Saturday
+    'dddd': function (date) {
+      return weekdaysFull[date.getDay()]
+    },
+
+    // AM, PM
+    'A': function (date) {
+      return (date.getHours() / 12) >= 1 ? meridiemUppercase[1] : meridiemUppercase[0]
+    },
+
+    // am, pm
+    'a': function (date) {
+      return (date.getHours() / 12) >= 1 ? meridiemLowercase[1] : meridiemLowercase[0]
+    },
+
+    // a.m., p.m.
+    'aa': function (date) {
+      return (date.getHours() / 12) >= 1 ? meridiemFull[1] : meridiemFull[0]
+    }
+  }
+
+  // Generate ordinal version of formatters: M -> Mo, D -> Do, etc.
+  var ordinalFormatters = ['M', 'D', 'DDD', 'd', 'Q', 'W']
+  ordinalFormatters.forEach(function (formatterToken) {
+    formatters[formatterToken + 'o'] = function (date, formatters) {
+      return ordinal(formatters[formatterToken](date))
+    }
+  })
+
+  return {
+    formatters: formatters,
+    formattingTokensRegExp: buildFormattingTokensRegExp(formatters)
+  }
+}
+
+function ordinal (number) {
+  switch (number) {
+    case 1:
+      return '1r'
+    case 2:
+      return '2n'
+    case 3:
+      return '3r'
+    case 4:
+      return '4t'
+    default:
+      return number + 'è'
+  }
+}
+
+module.exports = buildFormatLocale
+
+
+/***/ }),
+/* 255 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
