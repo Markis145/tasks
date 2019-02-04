@@ -14,7 +14,7 @@
                         align-center
                 >
                     <v-flex xs6>
-                        <v-subheader v-if="item.heading">
+                        <v-subheader class="grey--text text--darken-4" v-if="item.heading">
                             {{ item.heading }}
                         </v-subheader>
                     </v-flex>
@@ -31,7 +31,7 @@
                 >
                     <v-list-tile slot="activator" :href="item.url">
                         <v-list-tile-content>
-                            <v-list-tile-title>
+                            <v-list-tile-title class="grey--text text--darken-4">
                                 {{ item.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>
@@ -45,7 +45,7 @@
                             <v-icon>{{ child.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
-                            <v-list-tile-title>
+                            <v-list-tile-title class="grey--text text--darken-4">
                                 {{ child.text }}
                             </v-list-tile-title>
                         </v-list-tile-content>

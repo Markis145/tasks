@@ -22,7 +22,8 @@
     </style>
 </head>
 <body>
-<v-app id="app" v-cloak>
+<v-app id="app" v-cloak style="background: #F0F4F8;background: -webkit-linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);
+              background: linear-gradient(to right, #F0F4F8, #D9E2EC, #BCCCDC);">
     <snackbar></snackbar>
     <service-worker></service-worker>
     <navigation v-model="drawer"></navigation>

@@ -27,7 +27,7 @@
                             justify-center
                             class="white--text"
                     >
-                        <img src="img/vuetify.png" alt="Vuetify.js" height="200">
+                        <img src="img/branding.png" alt="Tasques" height="200">
                         <h1 class="white--text mb-2 display-1 text-xs-center">Projecte Tasks Marc Mestre</h1>
                         <div class="subheading mb-3 text-xs-center">Fet amb Vuetify</div>
                         <v-layout>

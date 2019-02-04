@@ -76898,7 +76898,7 @@ var render = function() {
                 slot: "activator",
                 dark: "",
                 icon: "",
-                color: "error",
+                color: "accent",
                 flat: "",
                 title: "Eliminar la tasca",
                 loading: _vm.removing,
@@ -80792,7 +80792,7 @@ var render = function() {
                                   {
                                     attrs: {
                                       icon: "",
-                                      color: "error",
+                                      color: "accent",
                                       flat: "",
                                       title: "Eliminar tag",
                                       loading: _vm.removing === tag.id,
@@ -88130,13 +88130,17 @@ var render = function() {
                         { attrs: { xs6: "" } },
                         [
                           item.heading
-                            ? _c("v-subheader", [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(item.heading) +
-                                    "\n                    "
-                                )
-                              ])
+                            ? _c(
+                                "v-subheader",
+                                { staticClass: "grey--text text--darken-4" },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(item.heading) +
+                                      "\n                    "
+                                  )
+                                ]
+                              )
                             : _vm._e()
                         ],
                         1
@@ -88189,13 +88193,17 @@ var render = function() {
                             _c(
                               "v-list-tile-content",
                               [
-                                _c("v-list-tile-title", [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(item.text) +
-                                      "\n                        "
-                                  )
-                                ])
+                                _c(
+                                  "v-list-tile-title",
+                                  { staticClass: "grey--text text--darken-4" },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.text) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
                               ],
                               1
                             )
@@ -88221,13 +88229,19 @@ var render = function() {
                               _c(
                                 "v-list-tile-content",
                                 [
-                                  _c("v-list-tile-title", [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(child.text) +
-                                        "\n                        "
-                                    )
-                                  ])
+                                  _c(
+                                    "v-list-tile-title",
+                                    {
+                                      staticClass: "grey--text text--darken-4"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(child.text) +
+                                          "\n                        "
+                                      )
+                                    ]
+                                  )
                                 ],
                                 1
                               )

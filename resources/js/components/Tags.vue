@@ -171,7 +171,7 @@
                                    @click="showUpdate(tag)">
                                 <v-icon>edit</v-icon>
                             </v-btn>
-                            <v-btn v-if="$can('tags.destroy', tags)" icon color="error" flat title="Eliminar tag"
+                            <v-btn v-if="$can('tags.destroy', tags)" icon color="accent" flat title="Eliminar tag"
                                    :loading="removing === tag.id" :disabled="removing === tag.id" @click="destroy(tag)">
                                 <v-icon>delete</v-icon>
                             </v-btn>
