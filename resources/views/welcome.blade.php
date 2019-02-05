@@ -20,7 +20,7 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax src="img/inici.jpg" height="600">
+                <v-parallax height="600" class="article">
                     <v-layout
                             column
                             align-center
@@ -28,7 +28,7 @@
                             class="white--text"
                     >
                         <img src="img/branding.png" alt="Tasques" height="200">
-                        <h1 class="white--text mb-2 display-1 text-xs-center">Projecte Tasks Marc Mestre</h1>
+                        <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style="text-shadow: black 0.1em 0.1em 0.1em">Projecte Tasques Marc Mestre</h1>
                         <div class="subheading mb-3 text-xs-center">Fet amb Vuetify</div>
                         <v-layout>
                             <v-btn
@@ -208,3 +208,11 @@
         </v-content>
     </v-app>
 @endsection
+
+<style>
+    .article{
+        display:compact;
+        background-size: cover;
+        background-image: url('img/inici.jpeg');
+    }
+</style>
