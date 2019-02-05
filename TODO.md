@@ -70,13 +70,13 @@ FAVICON i altres icones 2:
 
 - [X] Incorporar alguna icona/logo/branding a la Landing Page
 - [X] Favicon. Utilitzar favicon generator
-- [ ] Escollir una imatge de les webs de imatges d'stock mirant que siguin el més adient possible
-- [ ] Augmentar les mides dels textos de la pàgina principal usnat la tipografia de vue
-- [ ] Instal·lar altres fonts de Google (veure exemples al document Font recommendations) per als heading i titols destacats
+- [X] Escollir una imatge de les webs de imatges d'stock mirant que siguin el més adient possible
+- [X] Augmentar les mides dels textos de la pàgina principal usnat la tipografia de vue
+- [X] Instal·lar altres fonts de Google (veure exemples al document Font recommendations) per als heading i titols destacats
   - Moltes fonts són de pagament. https://1stwebdesigner.com/top-google-webfonts-header-text/
   - Roboto black
-- [ ] Adaptar la imatge per tenir millor contrast amb les lletres
-  - [ ] Incorporar sombra a les lletres
+- [X] Adaptar la imatge per tenir millor contrast amb les lletres
+  - [X] Incorporar sombra a les lletres
   - Apartat text needs consistent contrast
     - Overlay: http://jsfiddle.net/VsHyD/
     - Opacity: 0.5;

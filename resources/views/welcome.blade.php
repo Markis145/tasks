@@ -122,10 +122,10 @@
             </section>
 
             <section>
-                <v-parallax src="img/section.jpeg" height="380">
+                <v-parallax src="img/inici2.jpg" height="380">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
-                        <em>Kick-start your application today</em>
+                        <div class="headline white--text mb-3 text-xs-center">Organitzar la teva vida mai havia sigut tant facil</div>
+                        <em>Comença avui a fer-ho</em>
                         <v-btn
                                 class="primary lighten-2 mt-5"
                                 dark

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\Notifications\NotificationsController;
+use App\Http\Controllers\Api\Notifications\UserNotificationsController;
+use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
@@ -59,6 +62,15 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/v1/user/photo', '\\' . PhotoController::class . '@store');
 
     Route::post('/v1/user/avatar', '\\' . AvatarController::class . '@store');
+
+    Route::get('/v1/notifications','\\' . NotificationsController::class . '@index');
+    Route::post('/v1/notifications/multiple','\\' . NotificationsController::class . '@destroyMultiple');
+    Route::delete('/v1/notifications/{notification}','\\' . NotificationsController::class . '@destroy');
+    Route::get('/v1/user/notifications','\\' . UserNotificationsController::class . '@index');
+    Route::get('/v1/user/unread_notifications','\\' . UserUnreadNotificationsController::class . '@index');
+    Route::delete('/v1/user/unread_notifications/all','\\' . UserUnreadNotificationsController::class . '@destroyAll');
+    Route::delete('/v1/user/unread_notifications/{notification}','\\' . UserUnreadNotificationsController::class . '@destroy');
+
 
 });
 

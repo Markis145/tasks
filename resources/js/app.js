@@ -24,7 +24,7 @@ import VueTimeago from 'vue-timeago'
 import Changelog from './components/changelog/ChangelogComponent.vue'
 import ServiceWorker from './components/ServiceWorker.vue'
 import Navigation from './components/Navigation.vue'
-import NotificationsWidget from './components/NotificationsWidget.vue'
+import NotificationsWidget from './components/notifications/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
 
 window.Vue = Vue
