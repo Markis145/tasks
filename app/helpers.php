@@ -40,8 +40,9 @@ if (!function_exists('create_primary_user')) {
 }
 
 if (!function_exists('create_example_tasks_with_tags')) {
-    function create_example_tasks_with_tags() {
-        $user1= factory(User::class)->create();
+    function create_example_tasks_with_tags()
+    {
+        $user1 = factory(User::class)->create();
         Task::create([
             'name' => 'comprar pa',
             'completed' => false,
@@ -60,7 +61,7 @@ if (!function_exists('create_example_tasks_with_tags')) {
             'description' => 'JORL JORL JORL',
             'user_id' => $user1->id
         ]);
-        $user1= factory(User::class)->create();
+        $user1 = factory(User::class)->create();
         $comprarpa = Task::create([
             'name' => 'comprar pa',
             'completed' => false,
@@ -80,12 +81,12 @@ if (!function_exists('create_example_tasks_with_tags')) {
             'user_id' => $user1->id
         ]);
         $tag1 = Tag::create([
-            'name' => 'Tag4',
+            'name' => 'Tag1',
             'color' => 'blue',
             'description' => 'bla bla bla'
         ]);
         $tag2 = Tag::create([
-            'name' => 'Tag5',
+            'name' => 'Tag2',
             'color' => 'red',
             'description' => 'Jorl Jorl'
         ]);
@@ -117,26 +118,6 @@ if (!function_exists('create_example_tasks')) {
             'completed' => true,
             'description' => 'a caseta de chill',
             'user_id' => $user1->id
-        ]);
-    }
-}
-
-if (!function_exists('create_example_tags')) {
-    function create_example_tags() {
-        Tag::create([
-            'name' => 'Tag1',
-            'description' => 'blafeina',
-            'color' => 'blue'
-        ]);
-        Tag::create([
-            'name' => 'Tag2',
-            'description' => 'blaclasse',
-            'color' => 'green'
-        ]);
-        Tag::create([
-            'name' => 'Tag3',
-            'description' => 'blacasa',
-            'color' => 'red'
         ]);
     }
 }
