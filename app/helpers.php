@@ -122,6 +122,26 @@ if (!function_exists('create_example_tasks')) {
     }
 }
 
+if (!function_exists('create_example_tags')) {
+    function create_example_tags() {
+        Tag::create([
+            'name' => 'Tag1',
+            'description' => 'blafeina',
+            'color' => 'blue'
+        ]);
+        Tag::create([
+            'name' => 'Tag2',
+            'description' => 'blaclasse',
+            'color' => 'green'
+        ]);
+        Tag::create([
+            'name' => 'Tag3',
+            'description' => 'blacasa',
+            'color' => 'red'
+        ]);
+    }
+}
+
 if (!function_exists('create_mysql_database')) {
     function create_mysql_database($name){
         //PDO

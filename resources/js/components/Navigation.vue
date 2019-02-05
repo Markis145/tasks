@@ -40,6 +40,7 @@
                             v-for="(child, i) in item.children"
                             :key="i"
                             :href="child.url"
+                            :style="selectedStyle(child)"
                     >
                         <v-list-tile-action v-if="child.icon">
                             <v-icon>{{ child.icon }}</v-icon>
@@ -111,13 +112,14 @@ export default {
     event: 'input'
   },
   methods: {
-    setSelectedItem () {
+    setSelectedItem (item) {
       const currentPath = window.location.pathname
-      const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
-      this.items[selected].selected = true
+      return currentPath === item.url
+      // const selected = this.items.indexOf(this.items.find(item => item.url === currentPath))
+      // this.items[selected].selected = true
     },
     selectedStyle (item) {
-      if (item.selected) {
+      if (this.setSelectedItem(item)) {
         return {
           'border-right': '5px solid #F0B429',
           'background-color': '#F0F4F8',
@@ -125,9 +127,9 @@ export default {
         }
       }
     }
-  },
-  created () {
-    this.setSelectedItem()
   }
+  // created () {
+  //   this.setSelectedItem()
+  // }
 }
 </script>
