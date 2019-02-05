@@ -25,6 +25,7 @@ import Changelog from './components/changelog/ChangelogComponent.vue'
 import ServiceWorker from './components/ServiceWorker.vue'
 import Navigation from './components/Navigation.vue'
 import NotificationsWidget from './components/NotificationsWidget.vue'
+import Notifications from './components/notifications/Notifications'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -145,5 +146,6 @@ window.Vue.component('changelog', Changelog)
 window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 window.Vue.component('notificationswidget', NotificationsWidget)
+window.Vue.component('notifications', Notifications)
 
 const app = new window.Vue(AppComponent)

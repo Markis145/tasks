@@ -82,14 +82,14 @@ export default {
           children: [
             { icon: 'description', text: 'Tasques en PHP', url: '/tasks' },
             { icon: 'description', text: 'Tasques tailwind', url: '/tasks_vue' },
-            { icon: 'description', text: 'Tasques', url: '/tasques' }
-          ]
+            { icon: 'description', text: 'Tasques', url: '/tasques' }]
         },
         { icon: 'account_box', text: 'About', url: '/about' },
         { icon: 'person', text: 'Contacte', url: '/contact' },
         { icon: 'description', text: 'Tags', url: '/tags' },
         { icon: 'person', text: 'Perfil', url: '/profile' },
-        { icon: 'settings', text: 'Changelog', url: '/changelog' }
+        { icon: 'settings', text: 'Changelog', url: '/changelog' },
+        { icon: 'notifications', text: 'Notifications', url: '/notifications' }
       ]
     }
   },
