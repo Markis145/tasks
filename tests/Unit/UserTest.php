@@ -129,26 +129,6 @@ class UserTest extends TestCase
     /**
      * @test
      */
-    public function haveTask()
-    {
-        $this->markTestSkipped();
-        //2
-        $user->haveTask();
-    }
-
-    /**
-     * @test
-     */
-    public function removeTask()
-    {
-        $this->markTestSkipped();
-        //2
-        $user->removeTask();
-    }
-
-    /**
-     * @test
-     */
     public function isSuperAdmin()
     {
         $user = factory(User::class)->create();

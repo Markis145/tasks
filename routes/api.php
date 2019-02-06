@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
+use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\TasksTagsController;
@@ -71,6 +72,6 @@ Route::middleware('auth:api')->group(function (){
     Route::delete('/v1/user/unread_notifications/all','\\' . UserUnreadNotificationsController::class . '@destroyAll');
     Route::delete('/v1/user/unread_notifications/{notification}','\\' . UserUnreadNotificationsController::class . '@destroy');
 
-
+    Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 });
 

@@ -193,18 +193,73 @@
                 </v-container>
             </section>
 
-            <v-footer class="primary darken-2">
-                <v-layout row wrap align-center>
-                    <v-flex xs12>
-                        <div class="white--text ml-3">
-                            Made with
-                            <v-icon class="red--text">favorite</v-icon>
-                            by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
-                            and <a class="white--text" href="https://github.com/vwxyzjn">Costa Huang</a>
-                        </div>
-                    </v-flex>
-                </v-layout>
-            </v-footer>
+            <v-footer
+                    dark
+                    height="auto"
+            >
+                <v-card
+                        width="100%"
+                        flat
+                        tile
+                        class="primary darken-2 white--text text-xs-center"
+                >
+                    <v-card-text>
+                        <v-btn
+                                color="white"
+                                flat
+                                round
+                        >
+                            Web
+                        </v-btn>
+                        <v-btn
+                                color="white"
+                                flat
+                                round
+                        >
+                            Sobre nosaltres
+                        </v-btn>
+                        <v-btn
+                                color="white"
+                                flat
+                                round
+                        >
+                            ABOUT US
+                        </v-btn>
+                        <v-btn
+                                color="white"
+                                flat
+                                round
+                        >
+                            BLOG
+                        </v-btn>
+                        <v-btn
+                                color="white"
+                                flat
+                                round
+                        >
+                            AVÍS LEGAL
+                        </v-btn>
+                    </v-card-text>
+                    <v-card-text>
+                        <v-btn
+                                class="mx-3 white--text"
+                                icon
+                        >
+                            <v-icon size="24px">fab fa-facebook</v-icon>
+                        </v-btn>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-text class="white--text pt-0">
+                        Fet amb
+                        <v-icon class="red--text">favorite</v-icon> per
+                        <a class="white--text" target="_blank" href="https://github.com/markis145">Marc Mestre Algueró</a>
+                    </v-card-text>
+                    <v-card-text class="white--text">
+                        © Marc Mestre Algueró 2019-2019. All rights reserved
+                    </v-card-text>
+                </v-card>
         </v-content>
     </v-app>
 @endsection

@@ -44,7 +44,6 @@ class NotificationsControllerTest extends TestCase
      */
     public function regular_user_cannot_list_all_notifications()
     {
-        $this->withoutExceptionHandling();
         $user = $this->login('api');
         set_sample_notifications_to_user($user);
         $user->notifications[1]->markAsRead();

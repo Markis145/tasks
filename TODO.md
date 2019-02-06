@@ -121,7 +121,7 @@ Solucions:
   - [ ] Qüestions secundaries
   - [ ] Pot haver-hi però un altre cop algun CTA prou important com recollir emails per mantenir-se informa't
   - [ ] Site map / About section / Social media icons / Legal
-  - [x] Copyright
+  - [ ] Copyright
   - [ ] Altres
    - [ ] FAQ/Testimonials
 - Exemple:
