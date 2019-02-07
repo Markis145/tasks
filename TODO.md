@@ -23,7 +23,7 @@
 - Cal abans refactoritzar la vista app.blade.php per crear un nou component
 - [X] Opcional: canviar el color de les icones per que no siguin negres. FET per Vuetify
 - [X] Color de les lletres un gris molt fos en comptes de negre
-- [ ] Que funcioni amb submenus
+- [X] Que funcioni amb submenus
 ## Profile usuari
 
 - Settings: permetre canviar el color primary com a mínim (pràctica simple utilitzar LocalStorage)
