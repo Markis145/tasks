@@ -16,7 +16,7 @@
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#8719E0"/>
     <meta property="og:type" content="website">
-    <meta property="og:image" content="/img/inici.jpg">
+    <meta property="og:image" content="https://tasks.marcmestre.scool.cat/img/inici.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="628">
     <meta property="og:description" content="Projecte de tasques per a 2&ordm; DAM de Marc Mestre Alguer&oacute;">
