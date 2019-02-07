@@ -7,7 +7,7 @@
     {{--<link rel="manifest" href="/site.webmanifest">--}}
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#8719E0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,6 +15,13 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#8719E0"/>
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/img/inici.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="628">
+    <meta property="og:description" content="Projecte de tasques per a 2&ordm; DAM de Marc Mestre Alguer&oacute;">
+    <meta property="og:title" content="Tasques Marc Mestre Alguer&oacute;">
+    <meta property="og:url" content="https://tasks.marcmestre.scool.cat">
     <link rel="manifest" href="/manifest.json">
     <title>@yield('title')</title>
     <style>

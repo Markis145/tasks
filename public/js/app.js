@@ -27570,9 +27570,9 @@ window.Vue.use(window.Vuetify, {
       darken4: '#1F2933'
     },
     accent: {
-      base: '#8719E0',
-      lighten1: '#9446ED',
-      lighten2: '#A368FC',
+      base: '#1CD4D4',
+      lighten1: '#62F4EB',
+      lighten2: '#92FDF2',
       lighten3: '#B990FF',
       lighten4: '#DAC4FF',
       lighten5: '#F2EBFE',

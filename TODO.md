@@ -30,7 +30,7 @@
   - [X] "Selector de tema" / Theme Selector
   
 # Manifest.json i PWA
-- [ ] Colors i icones al manifest de la system bar i de la barra de navegació 
+- [X] Colors i icones al manifest de la system bar i de la barra de navegació 
 - [X] Add to Home Screen: Service Worker simple i comprovar la instal·lació a mobils 
   
 # Background colors
