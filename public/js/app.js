@@ -27444,7 +27444,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(31);
-module.exports = __webpack_require__(291);
+module.exports = __webpack_require__(294);
 
 
 /***/ }),
@@ -27505,6 +27505,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_notifications_NotificationsWidget_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__components_notifications_NotificationsWidget_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_ShareFab_vue__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_ShareFab_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__components_ShareFab_vue__);
+
 
 
 
@@ -27571,15 +27574,15 @@ window.Vue.use(window.Vuetify, {
     },
     accent: {
       base: '#1CD4D4',
-      lighten1: '#62F4EB',
-      lighten2: '#92FDF2',
-      lighten3: '#B990FF',
-      lighten4: '#DAC4FF',
-      lighten5: '#F2EBFE',
-      darken1: '#7A0ECC',
-      darken2: '#690CB0',
-      darken3: '#580A94',
-      darken4: '#44056E'
+      lighten1: '#3AE7E1',
+      lighten2: '#62F4EB',
+      lighten3: '#92FDF2',
+      lighten4: '#C1FEF6',
+      lighten5: '#E1FCF8',
+      darken1: '#0FB5BA',
+      darken2: '#099AA4',
+      darken3: '#07818F',
+      darken4: '#05606E'
     },
     error: {
       base: '#E12D39',
@@ -27628,7 +27631,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_21_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_22_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(288)
+    'ca': __webpack_require__(291)
   }
 });
 
@@ -27654,6 +27657,7 @@ window.Vue.component('service-worker', __WEBPACK_IMPORTED_MODULE_24__components_
 window.Vue.component('navigation', __WEBPACK_IMPORTED_MODULE_25__components_Navigation_vue___default.a);
 window.Vue.component('notificationswidget', __WEBPACK_IMPORTED_MODULE_26__components_notifications_NotificationsWidget_vue___default.a);
 window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_27__components_notifications_Notifications___default.a);
+window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_28__components_ShareFab_vue___default.a);
 
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
 
@@ -91715,8 +91719,155 @@ if (false) {
 /* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(289)
-var buildFormatLocale = __webpack_require__(290)
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(289)
+/* template */
+var __vue_template__ = __webpack_require__(290)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ShareFab.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7fdf77da", Component.options)
+  } else {
+    hotAPI.reload("data-v-7fdf77da", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 289 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ShareFab',
+  data: function data() {
+    return {
+      fab: false
+    };
+  },
+
+  methods: {
+    show: function show() {
+      if ('share' in navigator) return true;
+      return false;
+    },
+    share: function share() {
+      if (!('share' in navigator)) {
+        return;
+      }
+
+      navigator.share({
+        title: "L'app de tasques de Marc Mestre",
+        text: "L'app de tasques de Marc Mestre com a projecte de 2º de DAM",
+        url: 'https://tasks.marcmestre.scool.cat/'
+      }).then(function () {
+        return console.log('Successful share');
+      }).catch(function (error) {
+        return console.log('Error sharing:', error);
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.show()
+    ? _c(
+        "v-btn",
+        {
+          attrs: {
+            color: "accent",
+            dark: "",
+            fab: "",
+            fixed: "",
+            bottom: "",
+            right: "",
+            large: ""
+          },
+          on: { click: _vm.share },
+          model: {
+            value: _vm.fab,
+            callback: function($$v) {
+              _vm.fab = $$v
+            },
+            expression: "fab"
+          }
+        },
+        [_c("v-icon", [_vm._v("share")])],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fdf77da", module.exports)
+  }
+}
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(292)
+var buildFormatLocale = __webpack_require__(293)
 
 /**
  * @category Locales
@@ -91730,7 +91881,7 @@ module.exports = {
 
 
 /***/ }),
-/* 289 */
+/* 292 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -91835,7 +91986,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 290 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(27)
@@ -91925,7 +92076,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 291 */
+/* 294 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

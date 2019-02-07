@@ -26,6 +26,7 @@ import ServiceWorker from './components/ServiceWorker.vue'
 import Navigation from './components/Navigation.vue'
 import NotificationsWidget from './components/notifications/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
+import ShareFab from './components/ShareFab.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -64,15 +65,15 @@ window.Vue.use(window.Vuetify, {
     },
     accent: {
       base: '#1CD4D4',
-      lighten1: '#62F4EB',
-      lighten2: '#92FDF2',
-      lighten3: '#B990FF',
-      lighten4: '#DAC4FF',
-      lighten5: '#F2EBFE',
-      darken1: '#7A0ECC',
-      darken2: '#690CB0',
-      darken3: '#580A94',
-      darken4: '#44056E'
+      lighten1: '#3AE7E1',
+      lighten2: '#62F4EB',
+      lighten3: '#92FDF2',
+      lighten4: '#C1FEF6',
+      lighten5: '#E1FCF8',
+      darken1: '#0FB5BA',
+      darken2: '#099AA4',
+      darken3: '#07818F',
+      darken4: '#05606E'
     },
     error: {
       base: '#E12D39',
@@ -147,5 +148,6 @@ window.Vue.component('service-worker', ServiceWorker)
 window.Vue.component('navigation', Navigation)
 window.Vue.component('notificationswidget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
+window.Vue.component('share-fab', ShareFab)
 
 const app = new window.Vue(AppComponent)
