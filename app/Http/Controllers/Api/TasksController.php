@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+
 class TasksController extends Controller
 {
+
     public function index(IndexTask $request)
     {
         return map_collection(Task::orderBy('created_at','desc')->get());

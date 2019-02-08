@@ -2,11 +2,19 @@
 namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+
 class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'desc')->get();
+//        dd('asdasd');
+
+        $tasks = Cache::rememberForever(Task::INCIDENTS_CACHE_KEY, function () {
+            return Task::orderBy('created_at', 'desc')->get();
+
+        });
+
         return view('tasks', ['tasks' => $tasks]);
     }
     public function store(Request $request)

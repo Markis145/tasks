@@ -91795,10 +91795,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    show: function show() {
-      if ('share' in navigator) return true;
-      return false;
-    },
     share: function share() {
       if (!('share' in navigator)) {
         return;
@@ -91814,6 +91810,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return console.log('Error sharing:', error);
       });
     }
+  },
+  computed: {
+    show: function show() {
+      return 'share' in navigator;
+    }
   }
 });
 
@@ -91825,7 +91826,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.show()
+  return _vm.show
     ? _c(
         "v-btn",
         {

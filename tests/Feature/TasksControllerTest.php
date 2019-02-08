@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Tests\Feature\Traits\CanLogin;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,6 +15,10 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_tasks()
     {
+        Cache::shouldReceive('rememberForever')
+            ->once()
+            ->with('key')
+            ->andReturn('value');
         //1 Prepare
         create_example_tasks();
 

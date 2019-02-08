@@ -1,6 +1,6 @@
 <template>
     <v-btn
-            v-if="show()"
+            v-if="show"
             v-model="fab"
             color="accent"
             dark
@@ -24,10 +24,6 @@ export default {
     }
   },
   methods: {
-    show () {
-      if (('share' in navigator)) return true
-      return false
-    },
     share () {
       if (!('share' in navigator)) {
         return
@@ -40,6 +36,11 @@ export default {
       })
         .then(() => console.log('Successful share'))
         .catch(error => console.log('Error sharing:', error))
+    }
+  },
+  computed: {
+    show () {
+      return ('share' in navigator)
     }
   }
 }
