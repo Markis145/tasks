@@ -17,8 +17,8 @@ class TasksControllerTest extends TestCase
     {
         Cache::shouldReceive('rememberForever')
             ->once()
-            ->with('key')
-            ->andReturn('value');
+            ->with(Task::INCIDENTS_CACHE_KEY, \Closure::class)
+            ->andReturn(Task::orderBy('created_at', 'desc')->get());
         //1 Prepare
         create_example_tasks();
 
