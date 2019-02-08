@@ -8,7 +8,7 @@ class Task extends Model
 //    protected $fillable = ['name','completed'];
     protected $guarded = [];
 
-    const INCIDENTS_CACHE_KEY = 'tasks.marcmestre.scool.cat.user';
+    const TASKS_CACHE_KEY = 'tasks.marcmestre.scool.cat.user';
 
     public function file()
     {

@@ -15,17 +15,22 @@ class TasksControllerTest extends TestCase
      */
     public function can_show_tasks()
     {
-        Cache::shouldReceive('rememberForever')
-            ->once()
-            ->with(Task::INCIDENTS_CACHE_KEY, \Closure::class)
-            ->andReturn(Task::orderBy('created_at', 'desc')->get());
+        $this->withoutExceptionHandling();
+
         //1 Prepare
         create_example_tasks();
-
         $this->login();
-
         // 2 execute
         $response = $this->get('/tasks');
+        // TODO
+//        Cache::shouldReceive('remember')
+//            ->once()
+//            ->with('git_info',5, \Closure::class)
+//            ->andReturn(collect([]));
+//        Cache::shouldReceive('rememberForever')
+//            ->once()
+//            ->with('user_all_permissions', \Closure::class)
+//            ->andReturn(Task::orderBy('created_at', 'desc')->get());
 
         //3 Comprovar
         $response->assertSuccessful();

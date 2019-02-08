@@ -8,13 +8,7 @@ class TasksController extends Controller
 {
     public function index()
     {
-//        dd('asdasd');
-
-        $tasks = Cache::rememberForever(Task::INCIDENTS_CACHE_KEY, function () {
-            return Task::orderBy('created_at', 'desc')->get();
-
-        });
-
+        $tasks = Task::orderBy('created_at', 'desc')->get();
         return view('tasks', ['tasks' => $tasks]);
     }
     public function store(Request $request)
