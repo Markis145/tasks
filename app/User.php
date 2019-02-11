@@ -107,7 +107,7 @@ class User extends Authenticatable
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
             'hash_id' => $this->hash_id,
-            'online' => $this->online
+            'online' => $this->isOnline()
         ];
     }
 
@@ -120,7 +120,7 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
-            'online' => $this->online
+            'online' => $this->isOnline()
         ];
     }
 
