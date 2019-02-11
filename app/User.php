@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
@@ -22,6 +23,9 @@ class User extends Authenticatable
     const DEFAULT_AVATAR = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
     const DEFAULT_AVATAR_PATH = 'avatars/' . self::DEFAULT_AVATAR;
+
+    const USERS_CACHE_KEY = 'tasks.marcmestre.scool.cat.user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -102,7 +106,8 @@ class User extends Authenticatable
             'admin' => (boolean) $this->admin,
             'roles' => $this->roles()->pluck('name')->unique()->toArray(),
             'permissions' => $this->getAllPermissions()->pluck('name')->unique()->toArray(),
-            'hash_id' => $this->hash_id
+            'hash_id' => $this->hash_id,
+            'online' => $this->online
         ];
     }
 
@@ -115,6 +120,7 @@ class User extends Authenticatable
             'gravatar' => $this->gravatar,
             'admin' => (boolean) $this->admin,
             'hash_id' => $this->hash_id,
+            'online' => $this->online
         ];
     }
 
@@ -185,5 +191,14 @@ class User extends Authenticatable
     public function getHashIdAttribute($value)
     {
         return $this->hashedKey();
+    }
+
+    public function getOnlineAttributed()
+    {
+        return $this->isOnline();
+    }
+    public function isOnline()
+    {
+        return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);
     }
 }

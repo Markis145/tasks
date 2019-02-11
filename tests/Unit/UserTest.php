@@ -11,6 +11,7 @@ use App\Avatar;
 use App\Photo;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -193,6 +194,7 @@ class UserTest extends TestCase
         $this->assertEquals($mappedUser['permissions'][0],'Permission1');
         $this->assertEquals($mappedUser['permissions'][1],'Permission2');
 
+        $this->assertEquals(false,$mappedUser['online']);
     }
 
     /**
@@ -226,5 +228,17 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $hashids = new \Hashids\Hashids(config('tasks.salt'));
         $this->assertEquals($user->hashid,$hashids->encode($user->getKey()));
+    }
+
+    /** @test */
+    public function mapOnline()
+    {
+        $user = factory(User::class)->create();
+//        Cache::shouldReceive('rememberForever')
+//            ->andReturn(Permission::all());
+        Cache::shouldReceive('has')
+            ->andReturn(true);
+        $mappedUser = $user->map();
+        $this->assertEquals(true, $mappedUser['online']);
     }
 }
