@@ -16,7 +16,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#8719E0"/>
-    <meta property="og:image" content="https://tasks.marcmestre.scool.cat/img/inici.jpg">
+    <meta property="og:image" content="https://tasks.marcmestre.scool.cat/img/branding.png">
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
     <meta property="og:description" content="Projecte de tasques per a 2&ordm; DAM de Marc Mestre Alguer&oacute;">
