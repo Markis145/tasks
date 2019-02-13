@@ -15,14 +15,13 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#8719E0"/>
-    <meta property="og:type" content="website">
-    <meta property="fb:app_id" content="123123666">
     <meta property="og:image" content="https://tasks.marcmestre.scool.cat/img/inici.jpg">
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
     <meta property="og:description" content="Projecte de tasques per a 2&ordm; DAM de Marc Mestre Alguer&oacute;">
     <meta property="og:title" content="Tasques Marc Mestre Alguer&oacute;">
     <meta property="og:url" content="https://tasks.marcmestre.scool.cat">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
