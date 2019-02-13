@@ -233,8 +233,6 @@ class UserTest extends TestCase
     /** @test */
     public function mapOnline()
     {
-
-        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         Cache::shouldReceive('has')
             ->andReturn(true);
