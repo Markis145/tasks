@@ -105,7 +105,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up"
+            <v-data-iterator class="hidden-lg-and-up, ma-1"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
@@ -119,11 +119,11 @@
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm6
-                        md4
+                        sm12
+                        md12
                 >
-                    <v-card class="mb-1">
-                        <v-list>
+                    <v-card class=" elevation-10 mb-2">
+                        <v-list class="mr-1">
                             <v-card-title><h3 class="font-weight-bold">{{ task.name }}</h3></v-card-title>
                             <v-list-tile>
                                 <v-list-tile-content class="font-italic">{{ task.description }}</v-list-tile-content>
@@ -144,6 +144,7 @@
                                     </v-avatar>
                                 </td>
                             </v-list-tile>
+                            <hr>
                             <v-list-tile>
                                 <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
                                 <v-list-tile-content>
