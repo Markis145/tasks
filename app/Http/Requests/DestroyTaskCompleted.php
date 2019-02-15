@@ -14,7 +14,7 @@ class DestroyTaskCompleted extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.uncomplete');
+        return Auth::user()->can('user.tasks.uncomplete');
     }
 
     /**

@@ -61,7 +61,7 @@
                     :rows-per-page-items="[5,10,25,50,100,200,{'text':'Tots','value':-1}]"
                     :loading="loading"
                     :pagination.sync="pagination"
-                    class="hidden-md-and-down"
+                    class="hidden-sm-and-down"
             >
                 <v-progress-linear slot="progress" color="secondary" indeterminate></v-progress-linear>
                 <template slot="items" slot-scope="{item: task}">
@@ -105,7 +105,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-lg-and-up, ma-1"
+            <v-data-iterator class="hidden-md-and-up ma-1"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
@@ -191,7 +191,7 @@ export default {
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 5
       },
       headers: [
         { text: 'Id', value: 'id' },

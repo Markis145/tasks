@@ -14,7 +14,7 @@ class StoreTaskCompleted extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->can('tasks.complete');
+        return Auth::user()->can('user.tasks.complete');
     }
 
     /**

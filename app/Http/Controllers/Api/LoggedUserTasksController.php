@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\TaskModify;
+use App\Events\TaskStore;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestroyLoggedUserTask;
 use App\Http\Requests\IndexLoggedUserTask;
@@ -22,7 +24,7 @@ class LoggedUserTasksController extends Controller
     {
         $task = Task::create($request->only(['name','completed','description','user_id']));
         Auth::user()->addTask($task);
-//        $task->refresh();
+        event(new TaskStore($task,Auth::user()));
         return $task;
     }
 
@@ -35,10 +37,12 @@ class LoggedUserTasksController extends Controller
     public function update(UpdateLoggedUserTask $request, Task $task)
     {
         Auth::user()->tasks()->findOrFail($task->id);
+        $task_old=$task;
         $task->name = $request->name;
         $task->description = $request->description;
         $task->completed = $request->completed;
         $task->save();
+        event(new TaskModify($task_old,$task,Auth::user()));
         return $task;
     }
 }
