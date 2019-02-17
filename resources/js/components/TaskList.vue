@@ -105,7 +105,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-md-and-up ma-1 justify-center"
+            <v-data-iterator class="hidden-md-and-up ma-1 align-center justify-center row"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
@@ -116,6 +116,7 @@
                              :pagination.sync="pagination"
             >
                 <v-flex
+                        class="align-center justify-center row"
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
