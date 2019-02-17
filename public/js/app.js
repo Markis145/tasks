@@ -73056,6 +73056,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {},
   props: {
     source: String
+  },
+  created: function created() {
+    if (window.localStorage.getItem('PRIMARY_COLOR_KEY')) this.$vuetify.theme.primary = window.localStorage.getItem('PRIMARY_COLOR_KEY');
   }
 });
 
@@ -75864,10 +75867,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -75894,7 +75893,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
       search: '',
       pagination: {
-        rowsPerPage: 25
+        rowsPerPage: 5
       },
       headers: [{ text: 'Id', value: 'id' }, { text: 'Name', value: 'name' }, { text: 'User', value: 'user_id' }, { text: 'Completat', value: 'completed' }, { text: 'Etiquetes', value: 'tags' }, { text: 'Creat', value: 'created_at_timestamp' }, { text: 'Modificat', value: 'updated_at_timestamp' }, { text: 'Accions', sortable: false, value: 'full_search' }]
     };
@@ -78109,7 +78108,7 @@ var render = function() {
                     slot: "activator",
                     dark: "",
                     icon: "",
-                    color: "primary",
+                    color: "secondary",
                     flat: ""
                   },
                   on: {
@@ -78647,7 +78646,7 @@ var render = function() {
           _c(
             "v-data-table",
             {
-              staticClass: "hidden-md-and-down",
+              staticClass: "hidden-sm-and-down",
               attrs: {
                 headers: _vm.headers,
                 items: _vm.getFilteredTasks,
@@ -78834,7 +78833,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-data-iterator", {
-            staticClass: "hidden-lg-and-up",
+            staticClass: "hidden-md-and-up ma-1",
             attrs: {
               items: _vm.dataTasks,
               search: _vm.search,
@@ -78865,27 +78864,31 @@ var render = function() {
                   var task = ref.item
                   return _c(
                     "v-flex",
-                    { attrs: { xs12: "", sm6: "", md4: "" } },
+                    { attrs: { xs12: "", "offset-sm2": "", sm8: "" } },
                     [
                       _c(
                         "v-card",
-                        { staticClass: "mb-1" },
+                        { staticClass: "elevation-10 mb-2" },
                         [
                           _c(
                             "v-list",
+                            { staticClass: "mr-1" },
                             [
-                              _c("v-card-title", [
-                                _c("h3", { staticClass: "font-weight-bold" }, [
-                                  _vm._v(_vm._s(task.name))
-                                ])
-                              ]),
+                              _c(
+                                "v-card-title",
+                                { staticClass: "title font-weight-black" },
+                                [_vm._v(_vm._s(task.name))]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "v-list-tile",
                                 [
                                   _c(
                                     "v-list-tile-content",
-                                    { staticClass: "font-italic" },
+                                    {
+                                      staticClass: "font-italic",
+                                      staticStyle: { color: "#504847" }
+                                    },
                                     [_vm._v(_vm._s(task.description))]
                                   ),
                                   _vm._v(" "),
@@ -78894,9 +78897,11 @@ var render = function() {
                                     {
                                       attrs: {
                                         title:
-                                          task.user_name +
-                                          " - " +
-                                          task.user_email
+                                          task.user !== null
+                                            ? task.user_name +
+                                              " - " +
+                                              task.user_email
+                                            : ""
                                       }
                                     },
                                     [
@@ -78907,7 +78912,10 @@ var render = function() {
                                           "border-radius": "160px"
                                         },
                                         attrs: {
-                                          src: task.user_gravatar,
+                                          src:
+                                            task.user !== null
+                                              ? task.user_gravatar
+                                              : "img/usuari.png",
                                           alt: "gravatar"
                                         }
                                       })
@@ -78917,47 +78925,31 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _c("v-list-tile", [
-                                task.user_id !== null
-                                  ? _c("td", [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(task.user_email) +
-                                          "\n                            "
-                                      )
-                                    ])
-                                  : _c(
-                                      "td",
-                                      [
-                                        _c(
-                                          "v-avatar",
-                                          { attrs: { title: "No user" } },
-                                          [
-                                            _c("img", {
-                                              attrs: {
-                                                src: "img/usuari.png",
-                                                alt: "gravatar"
-                                              }
-                                            })
-                                          ]
+                              _c(
+                                "v-list-tile",
+                                {
+                                  staticClass: "font-italic",
+                                  staticStyle: { color: "gray" }
+                                },
+                                [
+                                  task.user_id !== null
+                                    ? _c("td", [
+                                        _vm._v(
+                                          "\n                                " +
+                                            _vm._s(task.user_email) +
+                                            "\n                            "
                                         )
-                                      ],
-                                      1
-                                    )
-                              ]),
+                                      ])
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr"),
                               _vm._v(" "),
                               _c(
                                 "v-list-tile",
                                 [
-                                  _c("task-completed-toggle", {
-                                    attrs: {
-                                      value: task.completed,
-                                      uri: "/api/v1/completed_task",
-                                      "active-text": "Completada",
-                                      "unactive-text": "Pendent",
-                                      resource: task
-                                    }
-                                  }),
+                                  _c("v-spacer"),
                                   _vm._v(" "),
                                   _c(
                                     "v-list-tile-content",
@@ -83043,9 +83035,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   watch: {
     colorPrincipal: function colorPrincipal() {
       window.localStorage.setItem('PRIMARY_COLOR_KEY', this.colorPrincipal);
+      this.$vuetify.theme.primary = this.colorPrincipal;
     },
     colorSecundari: function colorSecundari() {
       window.localStorage.setItem('SECONDARY_COLOR_KEY', this.colorSecundari);
+      this.$vuetify.theme.secondary = this.colorSecundari;
     }
   }
 });
