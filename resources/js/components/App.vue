@@ -24,10 +24,12 @@ export default {
       { icon: 'settings', text: 'Changelog', url: '/changelog' }
     ]
   }),
-  methods: {
-  },
+  methods: {},
   props: {
     source: String
+  },
+  created () {
+    if (window.localStorage.getItem('PRIMARY_COLOR_KEY')) this.$vuetify.theme.primary = window.localStorage.getItem('PRIMARY_COLOR_KEY')
   }
 }
 </script>

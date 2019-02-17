@@ -192,74 +192,67 @@
                     </v-layout>
                 </v-container>
             </section>
+            <footer class="footer-distributed">
 
-            <v-footer
-                    dark
-                    height="auto"
-            >
-                <v-card
-                        width="100%"
-                        flat
-                        tile
-                        class="primary darken-2 white--text text-xs-center"
-                >
-                    <v-card-text>
-                        <v-btn
-                                color="white"
-                                flat
-                                round
-                        >
-                            Web
-                        </v-btn>
-                        <v-btn
-                                color="white"
-                                flat
-                                round
-                        >
-                            Sobre nosaltres
-                        </v-btn>
-                        <v-btn
-                                color="white"
-                                flat
-                                round
-                        >
-                            ABOUT US
-                        </v-btn>
-                        <v-btn
-                                color="white"
-                                flat
-                                round
-                        >
-                            BLOG
-                        </v-btn>
-                        <v-btn
-                                color="white"
-                                flat
-                                round
-                        >
-                            AVÍS LEGAL
-                        </v-btn>
-                    </v-card-text>
-                    <v-card-text>
-                        <v-btn
-                                class="mx-3 white--text"
-                                icon
-                        >
-                            <v-icon size="24px">fab fa-facebook</v-icon>
-                        </v-btn>
-                    </v-card-text>
+                <div class="footer-left">
 
-                    <v-divider></v-divider>
+                    <p class="footer-links">
+                        <a href="/">Home</a>
+                        ·
+                        <a href="/tasques">Tasques Vuetify</a>
+                        ·
+                        <a href="/tags">Tags</a>
+                        ·
+                        <a href="/perfil">Perfil</a>
+                        ·
+                        <a href="/changelog">Changelog</a>
+                    </p>
 
-                    <v-card-text class="white--text pt-0">
-                        Fet amb
-                        <v-icon class="red--text">favorite</v-icon> per
-                        <a class="white--text" target="_blank" href="https://github.com/markis145">Marc Mestre Algueró</a>
-                    </v-card-text>
-                    <v-card-text class="white--text">
-                        © Marc Mestre Algueró 2019-2019. All rights reserved
-                    </v-card-text>
-                </v-card>
+                    <p class="footer-company-name">Marc Mestre Algueró &copy; 2019</p>
+                </div>
+
+                <div class="footer-center">
+
+                    <p class="text-xs-center headline white--text" id="fgoogle">Introdueix el teu correu per a rebre totes les actualitzacions d'aquesta aplicació.</p>
+
+                    <v-text-field
+                            class="white--text"
+                            label="Introdueix el teu correu electronic"
+                            solo-inverted
+                    ></v-text-field>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <p class="footer-company-about">
+                        <span>Aplicació de tasques</span>
+                        Aplicació de tasques realitzada per Marc Mestre Algueró per al cicle superior de 2on DAM al institut IES de l'Ebre, Tortosa.
+                    </p>
+
+                    <div class="footer-icons">
+
+                        <a href="https://www.facebook.com/marc.m.alguero">
+                            <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
+                        </a>
+
+                        <a href="https://www.instagram.com/mrks145">
+                            <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
+                        </a>
+
+                        <a href="https://www.twitter.com/markis145">
+                            <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
+                        </a>
+
+                        <a href="https://www.github.com/markis145/tasks">
+                            <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </footer>
         </v-content>
     </v-app>
 @endsection
