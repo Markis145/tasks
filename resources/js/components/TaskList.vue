@@ -105,7 +105,7 @@
                     </tr>
                 </template>
             </v-data-table>
-            <v-data-iterator class="hidden-md-and-up ma-1"
+            <v-data-iterator class="hidden-md-and-up ma-1 justify-center"
                              :items="dataTasks"
                              :search="search"
                              no-results-text="No s'ha trobat cap registre coincident"
@@ -119,34 +119,28 @@
                         slot="item"
                         slot-scope="{item:task}"
                         xs12
-                        sm12
-                        md12
+                        sm8
                 >
-                    <v-card class=" elevation-10 mb-2">
+
+                    <v-card class="elevation-10 mb-2">
                         <v-list class="mr-1">
-                            <v-card-title><h3 class="font-weight-bold">{{ task.name }}</h3></v-card-title>
+                            <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
-                                <v-list-tile-content class="font-italic">{{ task.description }}</v-list-tile-content>
-                                <v-avatar :title="task.user_name + ' - ' + task.user_email">
-                                        <img style=" width:150%; height:150%; border-radius:160px;"
-                                             :src="task.user_gravatar"
-                                             alt="gravatar">
+                                <v-list-tile-content class="font-italic" style="color:#504847">{{ task.description }}</v-list-tile-content>
+                                <v-avatar :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : ''">
+                                    <img style=" width:150%; height:150%; border-radius:160px;" :src="(task.user !== null) ? task.user_gravatar : 'img/usuari.png'"
+                                     alt="gravatar">
                                 </v-avatar>
                             </v-list-tile>
-                            <v-list-tile>
+                            <v-list-tile class="font-italic" style="color:gray">
                                 <td v-if="task.user_id !== null" >
                                     {{task.user_email}}
                                 </td>
 
-                                <td v-else>
-                                    <v-avatar title="No user">
-                                        <img src="img/usuari.png" alt="gravatar">
-                                    </v-avatar>
-                                </td>
                             </v-list-tile>
                             <hr>
                             <v-list-tile>
-                                <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
+                                <v-spacer></v-spacer>
                                 <v-list-tile-content>
                                     <task-show :users="users" :task="task" :uri="uri"></task-show>
                                 </v-list-tile-content>
