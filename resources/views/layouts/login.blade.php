@@ -36,6 +36,6 @@
         @yield('content')
     </v-app>
 </div>
-    <script src="{{mix('js/app.js')}}"></script>
+    <script defer src="{{mix('js/app.js')}}"></script>
 </body>
 </html>

@@ -135,6 +135,6 @@ Solucions:
   - [ ] Imatges Webp amb components webp utilitzats a la welcome.
   - [ ] Laravel-mix 4.0
   - [ ] Npm run hot modificar (package.json)
-  - [ ] Npm run prod
+  - [x] Npm run prod
   
   
