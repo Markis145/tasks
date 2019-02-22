@@ -118,7 +118,7 @@ Solucions:
 
 - Footer ample, no un simple Footer 
 - Que posar:
-  - [ ] Qüestions secundaries
+  - [x] Qüestions secundaries
   - [ ] Pot haver-hi però un altre cop algun CTA prou important com recollir emails per mantenir-se informa't
   - [ ] Site map / About section / Social media icons / Legal
   - [ ] Copyright
@@ -128,5 +128,13 @@ Solucions:
   - https://laracasts.com/  
 
   - [X] notification.onclick -> developer.mozilla -> a les notificacions
+  
+  
+  ## Correccio
+  - [ ] Vuetify ripple (cta, botons, botó share)
+  - [ ] Imatges Webp amb components webp utilitzats a la welcome.
+  - [ ] Laravel-mix 4.0
+  - [ ] Npm run hot modificar (package.json)
+  - [ ] Npm run prod
   
   
