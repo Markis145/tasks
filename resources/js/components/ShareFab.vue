@@ -9,6 +9,7 @@
             bottom
             right
             large
+            ripple
             @click="share"
     >
         <v-icon>share</v-icon>

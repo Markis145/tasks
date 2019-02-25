@@ -5,6 +5,7 @@
         <v-btn
                 color="primary darken-1"
                 large
+                ripple
                 @click="emitCTA"
         >{{ btnText }}</v-btn>
     </v-flex>
