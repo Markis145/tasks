@@ -74628,7 +74628,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -74642,6 +74642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TaskForm__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TaskForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TaskForm__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eventBus__ = __webpack_require__(12);
+//
 //
 //
 //
@@ -76075,6 +76076,7 @@ var render = function() {
             right: "",
             fixed: "",
             large: "",
+            ripple: "",
             color: "secondary"
           },
           on: {
@@ -79567,7 +79569,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -79579,6 +79581,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus__ = __webpack_require__(12);
+//
 //
 //
 //
@@ -79625,7 +79628,7 @@ var render = function() {
       _c(
         "v-btn",
         {
-          attrs: { color: "primary darken-1", large: "" },
+          attrs: { color: "primary darken-1", large: "", ripple: "" },
           on: { click: _vm.emitCTA }
         },
         [_vm._v(_vm._s(_vm.btnText))]
@@ -92295,6 +92298,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ShareFab',
@@ -92347,7 +92351,8 @@ var render = function() {
             fixed: "",
             bottom: "",
             right: "",
-            large: ""
+            large: "",
+            ripple: ""
           },
           on: { click: _vm.share },
           model: {
