@@ -29,6 +29,8 @@ import Navigation from './components/Navigation.vue'
 import NotificationsWidget from './components/notifications/NotificationsWidget.vue'
 import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab.vue'
+import ImgWebp from './components/ui/ImgWebp.vue'
+import VParallaxWebp from './components/ui/VParallaxWebp.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -151,5 +153,7 @@ window.Vue.component('navigation', Navigation)
 window.Vue.component('notificationswidget', NotificationsWidget)
 window.Vue.component('notifications', Notifications)
 window.Vue.component('share-fab', ShareFab)
+window.Vue.component('img-webp', ImgWebp)
+window.Vue.component('v-parallax-webp', VParallaxWebp)
 
 const app = new window.Vue(AppComponent)
