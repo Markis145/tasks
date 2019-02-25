@@ -131,8 +131,8 @@ Solucions:
   
   
   ## Correccio
-  - [ ] Vuetify ripple (cta, botons, botó share)
-  - [ ] Imatges Webp amb components webp utilitzats a la welcome.
+  - [X] Vuetify ripple (cta, botons, botó share)
+  - [X] Imatges Webp amb components webp utilitzats a la welcome.
   - [ ] Laravel-mix 4.0
   - [ ] Npm run hot modificar (package.json)
   - [x] Npm run prod

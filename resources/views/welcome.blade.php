@@ -20,14 +20,14 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax src="img/inici.webp" height="600" class="article" alt-format="jpg">
+                <v-parallax-webp src="img/inici.webp" height="600" class="article" alt-format="jpg">
                     <v-layout
                             column
                             align-center
                             justify-center
                             class="white--text"
                     >
-                        <img src="img/branding.webp" alt="Tasques" height="200" alt-format="png">
+                        <img-webp src="img/branding.webp" alt="Tasques" height="200" alt-format="png">
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques Marc Mestre</h1>
                         <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Fet amb vuetify</div>
                         <v-layout>
@@ -49,7 +49,7 @@
                             </v-btn>
                         </v-layout>
                     </v-layout>
-                </v-parallax>
+                </v-parallax-webp>
             </section>
 
             <section>
@@ -122,7 +122,7 @@
             </section>
 
             <section>
-                <v-parallax src="img/inici2.webp" height="380" alt-format="jpg">
+                <v-parallax-webp src="img/inici2.webp" height="380" alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center">Organitzar la teva vida mai havia sigut tant facil</div>
                         <em>Comença avui a fer-ho</em>
@@ -135,7 +135,7 @@
                             Get Started
                         </v-btn>
                     </v-layout>
-                </v-parallax>
+                </v-parallax-webp>
             </section>
 
             <section>
