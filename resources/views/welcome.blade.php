@@ -27,7 +27,7 @@
                             justify-center
                             class="white--text"
                     >
-                        <img-webp src="img/branding.webp" alt="Tasques" height="200" alt-format="png">
+                        <img-webp src="img/branding.webp" alt="Tasques" height="200" alt-format="png"></img-webp>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques Marc Mestre</h1>
                         <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Fet amb vuetify</div>
                         <v-layout>
