@@ -89,7 +89,8 @@ export default {
         { icon: 'description', text: 'Tags', url: '/tags' },
         { icon: 'person', text: 'Perfil', url: '/profile' },
         { icon: 'settings', text: 'Changelog', url: '/changelog' },
-        { icon: 'notifications', text: 'Notifications', url: '/notifications' }
+        { icon: 'notifications', text: 'Notifications', url: '/notifications' },
+        { icon: 'settings', text: 'Features', url: '/features' }
       ]
     }
   },

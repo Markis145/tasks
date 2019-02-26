@@ -31,6 +31,7 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab.vue'
 import ImgWebp from './components/ui/ImgWebp.vue'
 import VParallaxWebp from './components/ui/VParallaxWebp.vue'
+import Vibrate from './components/Vibrate'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -155,5 +156,6 @@ window.Vue.component('notifications', Notifications)
 window.Vue.component('share-fab', ShareFab)
 window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
+window.Vue.component('vibrate', Vibrate)
 
 const app = new window.Vue(AppComponent)
