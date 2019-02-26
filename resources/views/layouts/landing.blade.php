@@ -26,6 +26,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
+    <script defer src="{{mix('js/app.js')}}"></script>
     <title>@yield('title')</title>
     <style>
         [v-cloak] > * { display:none; }
@@ -61,6 +62,6 @@
     <service-worker></service-worker>
     @yield('content')
 </div>
-<script defer src="{{mix('js/app.js')}}"></script>
+
 </body>
 </html>

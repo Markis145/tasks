@@ -136,5 +136,6 @@ Solucions:
   - [ ] Laravel-mix 4.0
   - [ ] Npm run hot modificar (package.json)
   - [x] Npm run prod
+  - [ ] Cache /tasques network first en regex que capti peticions a la api
   
   
