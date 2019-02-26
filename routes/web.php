@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\NotificationController;
@@ -65,6 +66,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/changelog','\\'. ChangelogController::class . '@index');
     Route::get('/notifications', '\\' . NotificationController::class . '@index');
+
+    Route::get('/features','\\'. FeaturesController::class . '@index');
 
 });
 
