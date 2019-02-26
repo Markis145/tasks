@@ -44425,7 +44425,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(162);
-module.exports = __webpack_require__(496);
+module.exports = __webpack_require__(501);
 
 
 /***/ }),
@@ -44496,6 +44496,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_ui_ImgWebp_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__components_ui_ImgWebp_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_ui_VParallaxWebp_vue__ = __webpack_require__(490);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_ui_VParallaxWebp_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__components_ui_VParallaxWebp_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_Vibrate__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_Vibrate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__components_Vibrate__);
+
 
 
 
@@ -44624,7 +44627,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_24_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(493)
+    'ca': __webpack_require__(498)
   }
 });
 
@@ -44653,6 +44656,7 @@ window.Vue.component('notifications', __WEBPACK_IMPORTED_MODULE_29__components_n
 window.Vue.component('share-fab', __WEBPACK_IMPORTED_MODULE_30__components_ShareFab_vue___default.a);
 window.Vue.component('img-webp', __WEBPACK_IMPORTED_MODULE_31__components_ui_ImgWebp_vue___default.a);
 window.Vue.component('v-parallax-webp', __WEBPACK_IMPORTED_MODULE_32__components_ui_VParallaxWebp_vue___default.a);
+window.Vue.component('vibrate', __WEBPACK_IMPORTED_MODULE_33__components_Vibrate___default.a);
 
 var app = new window.Vue(__WEBPACK_IMPORTED_MODULE_5__components_App_vue___default.a);
 
@@ -105222,7 +105226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         text: 'Tasques',
         model: false,
         children: [{ icon: 'description', text: 'Tasques en PHP', url: '/tasks' }, { icon: 'description', text: 'Tasques tailwind', url: '/tasks_vue' }, { icon: 'description', text: 'Tasques', url: '/tasques' }]
-      }, { icon: 'account_box', text: 'About', url: '/about' }, { icon: 'person', text: 'Contacte', url: '/contact' }, { icon: 'description', text: 'Tags', url: '/tags' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'settings', text: 'Changelog', url: '/changelog' }, { icon: 'notifications', text: 'Notifications', url: '/notifications' }]
+      }, { icon: 'account_box', text: 'About', url: '/about' }, { icon: 'person', text: 'Contacte', url: '/contact' }, { icon: 'description', text: 'Tags', url: '/tags' }, { icon: 'person', text: 'Perfil', url: '/profile' }, { icon: 'settings', text: 'Changelog', url: '/changelog' }, { icon: 'notifications', text: 'Notifications', url: '/notifications' }, { icon: 'settings', text: 'Features', url: '/features' }]
     };
   },
 
@@ -109409,7 +109413,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   },
   methods: {
     alternateSrc: function alternateSrc() {
-      if (this.altFormat) return __WEBPACK_IMPORTED_MODULE_1__utils_helpers__["a" /* default */].changeExtension(this.src, this.altFormat);else return __WEBPACK_IMPORTED_MODULE_1__utils_helpers__["a" /* default */].changeExtension(this.src, 'jpeg');
+      if (this.altFormat) return __WEBPACK_IMPORTED_MODULE_1__utils_helpers__["a" /* default */].changeExtension(this.src, this.altFormat);else return __WEBPACK_IMPORTED_MODULE_1__utils_helpers__["a" /* default */].changeExtension(this.src, 'png');
     }
   },
   created: function () {
@@ -109912,8 +109916,139 @@ if (false) {
 /* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(494)
-var buildFormatLocale = __webpack_require__(495)
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(494)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(496)
+/* template */
+var __vue_template__ = __webpack_require__(497)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-f3356158"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Vibrate.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f3356158", Component.options)
+  } else {
+    hotAPI.reload("data-v-f3356158", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 494 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(495);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("3c4e6c04", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f3356158\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Vibrate.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f3356158\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Vibrate.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 495 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 496 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Vibrate.vue',
+  methods: {
+    vibrate: function vibrate() {
+      navigator.vibrate(200);
+    }
+  }
+});
+
+/***/ }),
+/* 497 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("v-btn", { on: { click: _vm.vibrate } }, [_vm._v("Vibrate")])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f3356158", module.exports)
+  }
+}
+
+/***/ }),
+/* 498 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var buildDistanceInWordsLocale = __webpack_require__(499)
+var buildFormatLocale = __webpack_require__(500)
 
 /**
  * @category Locales
@@ -109927,7 +110062,7 @@ module.exports = {
 
 
 /***/ }),
-/* 494 */
+/* 499 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -110032,7 +110167,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 495 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(30)
@@ -110122,7 +110257,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 496 */
+/* 501 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
