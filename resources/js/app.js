@@ -32,6 +32,7 @@ import ShareFab from './components/ShareFab.vue'
 import ImgWebp from './components/ui/ImgWebp.vue'
 import VParallaxWebp from './components/ui/VParallaxWebp.vue'
 import Vibrate from './components/Vibrate'
+import Geolocation from './components/Geolocation'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -157,5 +158,6 @@ window.Vue.component('share-fab', ShareFab)
 window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
+window.Vue.component('geolocation', Geolocation)
 
 const app = new window.Vue(AppComponent)

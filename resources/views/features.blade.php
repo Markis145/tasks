@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Tasques en Vue
+    Mobile features
 @endsection
 
 @section('content')
     <div>
         <vibrate></vibrate>
+        {{--<div id="target"><geolocation></geolocation></div>--}}
+        <geolocation></geolocation>
+
     </div>
 @endsection
