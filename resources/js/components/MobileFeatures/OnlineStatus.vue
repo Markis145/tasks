@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-layout class="justify-center">
-            <v-flex  xs2 sm2 lg2>
+            <v-flex  xs6 sm2 lg2>
                 <v-card class="justify-center">
                     <p class="font-weight-bold subheading">Clica'm! -><v-btn icon @click="show" :loading="online"> <v-icon>wifi_tethering</v-icon></v-btn></p>
                     <p>Actualment estas: <b id="status">unknown</b>.</p>
