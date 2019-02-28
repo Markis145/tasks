@@ -6,9 +6,10 @@
 
 @section('content')
     <div>
-        <vibrate></vibrate>
+        <div><vibrate></vibrate></div>
         {{--<div id="target"><geolocation></geolocation></div>--}}
-        <geolocation></geolocation>
-
+        <div id="target"><geolocation></geolocation></div>
+        <div><battery></battery></div>
+        <div><online-status></online-status></div>
     </div>
 @endsection

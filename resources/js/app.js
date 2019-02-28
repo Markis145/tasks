@@ -31,8 +31,10 @@ import Notifications from './components/notifications/Notifications'
 import ShareFab from './components/ShareFab.vue'
 import ImgWebp from './components/ui/ImgWebp.vue'
 import VParallaxWebp from './components/ui/VParallaxWebp.vue'
-import Vibrate from './components/Vibrate'
-import Geolocation from './components/Geolocation'
+import Vibrate from './components/MobileFeatures/Vibrate.vue'
+import Geolocation from './components/MobileFeatures/Geolocation.vue'
+import Battery from './components/MobileFeatures/Battery.vue'
+import OnlineStatus from './components/MobileFeatures/OnlineStatus.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -159,5 +161,7 @@ window.Vue.component('img-webp', ImgWebp)
 window.Vue.component('v-parallax-webp', VParallaxWebp)
 window.Vue.component('vibrate', Vibrate)
 window.Vue.component('geolocation', Geolocation)
+window.Vue.component('battery', Battery)
+window.Vue.component('online-status', OnlineStatus)
 
 const app = new window.Vue(AppComponent)
