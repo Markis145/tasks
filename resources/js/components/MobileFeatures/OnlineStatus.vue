@@ -16,8 +16,7 @@ export default {
   name: 'OnlineStatus',
   data () {
     return {
-      colorPrincipal: window.localStorage.getItem('PRIMARY_COLOR_KEY'),
-      colorSecundari: window.localStorage.getItem('SECONDARY_COLOR_KEY')
+      online: false
     }
   },
   methods: {

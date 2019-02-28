@@ -35,6 +35,9 @@ import Vibrate from './components/MobileFeatures/Vibrate.vue'
 import Geolocation from './components/MobileFeatures/Geolocation.vue'
 import Battery from './components/MobileFeatures/Battery.vue'
 import OnlineStatus from './components/MobileFeatures/OnlineStatus.vue'
+import Network from './components/MobileFeatures/Network.vue'
+import Memory from './components/MobileFeatures/Memory.vue'
+import ScreenOrientation from './components/MobileFeatures/ScreenOrientation.vue'
 
 window.Vue = Vue
 window.Vuetify = Vuetify
@@ -163,5 +166,8 @@ window.Vue.component('vibrate', Vibrate)
 window.Vue.component('geolocation', Geolocation)
 window.Vue.component('battery', Battery)
 window.Vue.component('online-status', OnlineStatus)
+window.Vue.component('network', Network)
+window.Vue.component('memory', Memory)
+window.Vue.component('screen-orientation', ScreenOrientation)
 
 const app = new window.Vue(AppComponent)

@@ -36,7 +36,7 @@
                             flat
                             @click="dialog = false"
                     >
-                        I accept
+                        Sortir
                     </v-btn>
                 </v-card-actions>
             </v-card>
