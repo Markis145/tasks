@@ -39,6 +39,10 @@ import Network from './components/MobileFeatures/Network.vue'
 import Memory from './components/MobileFeatures/Memory.vue'
 import ScreenOrientation from './components/MobileFeatures/ScreenOrientation.vue'
 
+import '../../public/img/branding.png'
+import '../../resources/img/branding.png'
+import '../../resources/img/branding.webp'
+
 window.Vue = Vue
 window.Vuetify = Vuetify
 

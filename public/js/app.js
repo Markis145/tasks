@@ -44425,7 +44425,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(162);
-module.exports = __webpack_require__(531);
+module.exports = __webpack_require__(534);
 
 
 /***/ }),
@@ -44510,6 +44510,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_MobileFeatures_Memory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__components_MobileFeatures_Memory_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_MobileFeatures_ScreenOrientation_vue__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_MobileFeatures_ScreenOrientation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__components_MobileFeatures_ScreenOrientation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__public_img_branding_png__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__public_img_branding_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40__public_img_branding_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__resources_img_branding_png__ = __webpack_require__(529);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__resources_img_branding_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_41__resources_img_branding_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__resources_img_branding_webp__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__resources_img_branding_webp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_42__resources_img_branding_webp__);
+
+
+
+
 
 
 
@@ -44645,7 +44655,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_23_vue_json_tree_view___default.a);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_24_vue_timeago__["a" /* default */], {
   locale: 'ca', // Default locale
   locales: {
-    'ca': __webpack_require__(528)
+    'ca': __webpack_require__(531)
   }
 });
 
@@ -92922,7 +92932,10 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { fullscreen: "", transition: "dialog-bottom-transition" },
+          attrs: {
+            fullscreen: _vm.$vuetify.breakpoint.smAndDown,
+            transition: "dialog-bottom-transition"
+          },
           on: {
             keydown: function($event) {
               if (
@@ -93132,6 +93145,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TaskShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__TaskShow__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__TasksTags__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__TasksTags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__TasksTags__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -96034,6 +96052,22 @@ var render = function() {
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _vm.$vuetify.breakpoint.smAndDown
+                    ? _c(
+                        "v-expansion-panel",
+                        [
+                          _c("v-expansion-panel-content", [
+                            _c(
+                              "div",
+                              { attrs: { slot: "filtres" }, slot: "filtres" },
+                              [_vm._v("Item")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "v-flex",
@@ -110757,7 +110791,7 @@ var render = function() {
         [
           _c(
             "v-flex",
-            { attrs: { xs2: "", sm2: "", lg2: "" } },
+            { attrs: { xs6: "", sm2: "", lg2: "" } },
             [
               _c("v-card", { staticClass: "justify-center" }, [
                 _c(
@@ -111239,7 +111273,7 @@ var render = function() {
         [
           _c(
             "v-flex",
-            { attrs: { xs2: "", sm2: "", lg2: "" } },
+            { attrs: { xs6: "", sm2: "", lg2: "" } },
             [
               _c("v-card", { staticClass: "justify-center" }, [
                 _c(
@@ -111452,7 +111486,7 @@ var render = function() {
         [
           _c(
             "v-flex",
-            { attrs: { xs2: "", sm2: "", lg2: "" } },
+            { attrs: { xs6: "", sm2: "", lg2: "" } },
             [
               _c("v-card", { staticClass: "justify-center" }, [
                 _c(
@@ -111503,10 +111537,28 @@ if (false) {
 
 /***/ }),
 /* 528 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/branding.png?db4e88c0fb29acc802000056ec73b989";
+
+/***/ }),
+/* 529 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/branding.png?db4e88c0fb29acc802000056ec73b989";
+
+/***/ }),
+/* 530 */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: Unexpected character '\u0015' (1:5)\nYou may need an appropriate loader to handle this file type.\n(Source code omitted for this binary file)");
+
+/***/ }),
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildDistanceInWordsLocale = __webpack_require__(529)
-var buildFormatLocale = __webpack_require__(530)
+var buildDistanceInWordsLocale = __webpack_require__(532)
+var buildFormatLocale = __webpack_require__(533)
 
 /**
  * @category Locales
@@ -111520,7 +111572,7 @@ module.exports = {
 
 
 /***/ }),
-/* 529 */
+/* 532 */
 /***/ (function(module, exports) {
 
 function buildDistanceInWordsLocale () {
@@ -111625,7 +111677,7 @@ module.exports = buildDistanceInWordsLocale
 
 
 /***/ }),
-/* 530 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var buildFormattingTokensRegExp = __webpack_require__(30)
@@ -111715,7 +111767,7 @@ module.exports = buildFormatLocale
 
 
 /***/ }),
-/* 531 */
+/* 534 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
