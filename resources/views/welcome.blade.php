@@ -7,13 +7,13 @@
 @section('content')
     <v-app light>
         <v-toolbar class="white">
-            <v-toolbar-title>Marc Mestre Algueró</v-toolbar-title>
+            <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp">Marc Mestre Algueró</v-toolbar-title>
             <v-spacer></v-spacer>
             @if (Route::has('login'))
                     @auth
                         <v-btn href="{{ url('/home') }}">Home</v-btn>
                     @else
-                        <v-btn href="{{ route('login') }}">Login</v-btn>
+                        <v-btn v-if="$vuetify.breakpoint.mdAndUp" href="{{ route('login') }}">Login</v-btn>
                         <v-btn href="{{ route('register') }}">Register</v-btn>
                     @endauth
             @endif

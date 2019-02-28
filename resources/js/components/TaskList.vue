@@ -39,6 +39,11 @@
                         >
                         </v-select>
                     </v-flex>
+                    <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+                        <v-expansion-panel-content>
+                            <div slot="filtres">Item</div>
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
                     <v-flex lg4 class="pr-2">
                       <user-select :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
