@@ -21,7 +21,7 @@ export default {
       { icon: 'person', text: 'Contacte', url: '/contact' },
       { icon: 'description', text: 'Tags', url: '/tags' },
       { icon: 'person', text: 'Perfil', url: '/profile' },
-      { icon: 'settings', text: 'Changelog', url: '/changelog' }
+      { icon: 'input', text: 'Changelog', url: '/changelog' }
     ]
   }),
   methods: {},

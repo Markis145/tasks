@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'Vibrate.vue',
+  name: 'Vibrate',
   methods: {
     vibrate () {
       navigator.vibrate(200)
