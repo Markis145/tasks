@@ -244,11 +244,8 @@
 </template>
 
 <script>
-import VListTile from "vuetify/lib/components/VList/VListTile"
-import VListTileAction from "vuetify/src/components/VList/VListTileAction"
 export default {
   name: 'Tags',
-  components: {VListTileAction, VListTile},
   data () {
     return {
       tagBeingEdited: '',
