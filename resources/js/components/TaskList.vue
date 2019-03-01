@@ -28,8 +28,10 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
-                    <v-flex lg3 class="pr-2">
+                <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
+                        <v-expansion-panel-content>
+                            <div slot="header">Filtres</div>
+                            <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
@@ -39,11 +41,6 @@
                         >
                         </v-select>
                     </v-flex>
-                    <v-expansion-panel v-if="$vuetify.breakpoint.smAndDown">
-                        <v-expansion-panel-content>
-                            <div slot="filtres">Item</div>
-                        </v-expansion-panel-content>
-                    </v-expansion-panel>
                     <v-flex lg4 class="pr-2">
                       <user-select :users="dataUsers" label="Usuari"></user-select>
                     </v-flex>
@@ -54,6 +51,9 @@
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
+                <v-layout row wrap>
                 </v-layout>
             </v-card-title>
             <v-data-table

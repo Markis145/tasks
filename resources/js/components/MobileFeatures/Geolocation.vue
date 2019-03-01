@@ -1,73 +1,90 @@
 <template>
+    <span>
+    <v-dialog
+            v-model="dialog"
+            width="500"
+    >
+      <v-btn
+              slot="activator"
+              @click="show"
+              :loading="gps"
+              id="askButton"
+      >Geolocation
+      </v-btn>
+      <v-card>
+        <v-card-title
+                class="headline grey lighten-2"
+                primary-title
+        >
+          Coordenades<v-spacer></v-spacer>
+            <v-tooltip bottom>
+                <v-btn
+                        icon
+                        @click="show"
+                        :loading="gps"
+                        id="askButton"
+                        slot="activator"
+                ><v-icon>cached</v-icon>
+                </v-btn>
+        <span>Actualitzar</span>
+        </v-tooltip>
+        </v-card-title>
 
-    <v-btn @click="geolocalitzacio" class="btn btn-default" id="askButton">Ask for location</v-btn>
+        <v-card-text class="text-xs-center list-style-type:none">
+
+            <div id="target"></div>
+                    <p class="font-weight-light font-italic">Fent clic sobre les coordenades obtindreu la posició al google maps.</p>
+        <p class="font-weight-light font-italic">Si no veieu les coordenades, si us plau premeu el botó de refresc.</p>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+                  color="primary"
+                  flat
+                  @click="dialog = false"
+          >
+            Sortir
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+        </span>
 </template>
 
 <script>
-var target = document.getElementById('target')
-var watchId
-var map, infoWindow;
 export default {
   name: 'Geolocation',
   data () {
     return {
-      value: ''
+      gps: false,
+      dialog: false
     }
   },
   methods: {
-    geolocalitzacio () {
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+    show () {
+      var target = document.getElementById('target')
+      var watchId
+      function appendLocation (location, verb) {
+        verb = verb || 'updated'
+        var newLocation = document.createElement('p')
+        newLocation.innerHTML = 'Estat: ' + verb + ': <a href="https://maps.google.com/maps?&z=15&q=' + location.coords.latitude + '+' + location.coords.longitude + '&ll=' + location.coords.latitude + '+' + location.coords.longitude + '" target="_blank">' + location.coords.latitude + ', ' + location.coords.longitude + '</a>'
+        target.appendChild(newLocation)
       }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-          'Error: The Geolocation service failed.' :
-          'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
+      if ('geolocation' in navigator) {
+        document.getElementById('askButton').addEventListener('click', function () {
+          navigator.geolocation.getCurrentPosition(function (location) {
+            appendLocation(location, 'fetched')
+          })
+
+          watchId = navigator.geolocation.watchPosition(appendLocation)
+        })
+      } else {
+        target.innerText = 'Geolocation API not supported.'
       }
-      // function appendLocation (location, verb) {
-      //   verb = verb || 'updated'
-      //   var newLocation = document.createElement('p')
-      //   newLocation.innerHTML = 'Location ' + verb + ': <a href="https://maps.google.com/maps?&z=15&q=' + location.coords.latitude + '+' + location.coords.longitude + '&ll=' + location.coords.latitude + '+' + location.coords.longitude + '" target="_blank">' + location.coords.latitude + ', ' + location.coords.longitude + '</a>'
-      //   target.appendChild(newLocation)
-      // }
-      //
-      // if ('geolocation' in navigator) {
-      //   document.getElementById('askButton').addEventListener('click', function () {
-      //     navigator.geolocation.getCurrentPosition(function (location) {
-      //       appendLocation(location, 'fetched')
-      //     })
-      //     watchId = navigator.geolocation.watchPosition(appendLocation)
-      //   })
-      // } else {
-      //   target.innerText = 'Geolocation API not supported.'
-      // }
     }
   }
 }
