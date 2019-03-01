@@ -103,7 +103,7 @@
     </v-navigation-drawer>
     <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Menú</v-toolbar-title>
+        <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">Menú</v-toolbar-title>
         <span v-role="'SuperAdmin'" style="margin-left: 2%">
             <git-info class="hidden-xs-only" ></git-info></span>
         <v-spacer></v-spacer>
@@ -134,6 +134,8 @@
     </v-footer>
 </v-app>
 
+<script defer src="{{mix('js/manifest.js')}}"></script>
+<script defer src="{{mix('js/vendor.js')}}"></script>
 <script defer src="{{mix('js/app.js')}}"></script>
 </body>
 </html>

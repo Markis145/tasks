@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-layout class="justify-center">
-            <v-flex  xs2 sm2 lg2>
+            <v-flex  xs6 sm2 lg2>
                 <v-card class="justify-center">
                     <p class="font-weight-bold subheading">Clica'm! -><v-btn icon @click="show" :loading="orientation"> <v-icon>screen_rotation</v-icon></v-btn></p>
                     <p>L'orientació de la pantalla és: <b id="orientationType">unknown</b>.</p>
