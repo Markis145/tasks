@@ -26,6 +26,13 @@ mix.js('resources/js/app.js', 'public/js').then(() => {
   })
 }).sass('resources/sass/app.scss', 'public/css')
 
+  .extract()
+  .sourceMaps(false) // .sourceMaps(false) -> Disable source maps in production
+
+if (mix.inProduction()) {
+  mix.version()
+}
+
 mix.webpackConfig({
   plugins: [
     // Options: https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin

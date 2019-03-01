@@ -53,8 +53,6 @@
                     </v-flex>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
-                <v-layout row wrap>
-                </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"

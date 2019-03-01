@@ -20,7 +20,7 @@
         </v-toolbar>
         <v-content>
             <section>
-                <v-parallax-webp src="img/inici.webp" height="600" class="article" alt-format="jpg">
+                <v-parallax-webp src="img/inici.webp" height="600" class="article" alt="imatge d'una altra taula" alt-format="jpg">
                     <v-layout
                             column
                             align-center
@@ -122,7 +122,7 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/inici2.webp" height="380" alt-format="jpg">
+                <v-parallax-webp src="img/inici2.webp" height="380" alt="imatge d'una taula" alt-format="jpg">
                     <v-layout column align-center justify-center>
                         <div class="headline white--text mb-3 text-xs-center">Organitzar la teva vida mai havia sigut tant facil</div>
                         <em>Comença avui a fer-ho</em>

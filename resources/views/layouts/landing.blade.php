@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#8719E0">
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="manifest" href="/manifest.json">
@@ -26,6 +26,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
+    <script defer src="{{mix('js/manifest.js')}}"></script>
+    <script defer src="{{mix('js/vendor.js')}}"></script>
     <script defer src="{{mix('js/app.js')}}"></script>
     <title>@yield('title')</title>
     <style>
