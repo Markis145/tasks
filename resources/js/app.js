@@ -45,7 +45,8 @@ import '../../resources/img/inici.webp'
 import '../../resources/img/inici.jpg'
 import '../../resources/img/inici2.jpg'
 import '../../resources/img/inici2.webp'
-
+import '../../resources/img/github.webp'
+import '../../resources/img/github.png'
 
 window.Vue = Vue
 window.Vuetify = Vuetify

@@ -43,8 +43,9 @@
                                    class="dark mt-5"
                                    target="_blank"
                                    large
+                                   rel="noopener"
                                    href="https://github.com/Markis145/tasks"
-                            ><img src="img/github.png" alt="Github" height="25" class="mr-3">
+                            ><img-webp src="img/github.webp" alt="Github" height="25" class="mr-3" alt-format="png">
                                 Github
                             </v-btn>
                         </v-layout>
@@ -233,19 +234,19 @@
 
                     <div class="footer-icons">
 
-                        <a href="https://www.facebook.com/marc.m.alguero">
+                        <a rel="noopener" href="https://www.facebook.com/marc.m.alguero">
                             <img border="0" alt="facebook" src="/img/facebook.svg" style="white" width="30" height="30">
                         </a>
 
-                        <a href="https://www.instagram.com/mrks145">
+                        <a rel="noopener" href="https://www.instagram.com/mrks145">
                             <img border="0" alt="instagram" src="/img/instagram.svg" style="white" width="30" height="30">
                         </a>
 
-                        <a href="https://www.twitter.com/markis145">
+                        <a rel="noopener" href="https://www.twitter.com/markis145">
                             <img border="0" alt="twitter" src="/img/twitter.svg" style="white" width="30" height="30">
                         </a>
 
-                        <a href="https://www.github.com/markis145/tasks">
+                        <a rel="noopener" href="https://www.github.com/markis145/tasks">
                             <img border="0" alt="github" src="/img/github.svg" style="white" width="30" height="30">
                         </a>
 
