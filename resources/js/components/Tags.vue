@@ -127,7 +127,7 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+                <v-layout wrap>
                     <v-flex lg6>
                         <v-text-field
                                 append-icon="search"
@@ -244,11 +244,8 @@
 </template>
 
 <script>
-import VListTile from "vuetify/lib/components/VList/VListTile"
-import VListTileAction from "vuetify/src/components/VList/VListTileAction"
 export default {
   name: 'Tags',
-  components: {VListTileAction, VListTile},
   data () {
     return {
       tagBeingEdited: '',

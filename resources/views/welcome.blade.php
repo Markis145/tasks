@@ -29,10 +29,10 @@
                     >
                         <img-webp src="img/branding.webp" alt="Tasques" height="200" alt-format="png"></img-webp>
                         <h1 class="mb-2 display-1 text-xs-center font-weight-black" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Aplicació Tasques Marc Mestre</h1>
-                        <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Fet amb vuetify</div>
+                        <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle1" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Fet amb vuetify</div>
                         <v-layout>
                             <v-btn
-                                    class="primary lighten-2 mt-5"
+                                    class="primary darken-1 mt-5"
                                     dark
                                     large
                                     href="/home"
@@ -73,7 +73,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                                            <v-icon x-large class="blue--text text--darken-3">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Material Design</div>
@@ -88,7 +88,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                                            <v-icon x-large class="blue--text text--darken-3">flash_on</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline">Fast development</div>
@@ -103,7 +103,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                                            <v-icon x-large class="blue--text text--darken-3">build</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Completely Open Sourced</div>
@@ -124,10 +124,10 @@
             <section>
                 <v-parallax-webp src="img/inici2.webp" height="380" alt="imatge d'una taula" alt-format="jpg">
                     <v-layout column align-center justify-center>
-                        <div class="headline white--text mb-3 text-xs-center">Organitzar la teva vida mai havia sigut tant facil</div>
-                        <em>Comença avui a fer-ho</em>
+                        <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle2" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Organitzar la teva vida mai havia sigut tant facil</div>
+                        <div class="mb-3 text-xs-center font-weight-bold" id="fgoogle3" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Comença avui a fer-ho</div>
                         <v-btn
-                                class="primary lighten-2 mt-5"
+                                class="primary darken-1 mt-5"
                                 dark
                                 large
                                 href="/home"
@@ -164,7 +164,7 @@
                                 <v-list class="transparent">
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">phone</v-icon>
+                                            <v-icon class="blue--text text--darken-3">phone</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>777-867-5309</v-list-tile-title>
@@ -172,7 +172,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">place</v-icon>
+                                            <v-icon class="blue--text text--darken-3">place</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>Tortosa, CAT</v-list-tile-title>
@@ -180,7 +180,7 @@
                                     </v-list-tile>
                                     <v-list-tile>
                                         <v-list-tile-action>
-                                            <v-icon class="blue--text text--lighten-2">email</v-icon>
+                                            <v-icon class="blue--text text--darken-3">email</v-icon>
                                         </v-list-tile-action>
                                         <v-list-tile-content>
                                             <v-list-tile-title>marcmestre@iesebre.com</v-list-tile-title>
@@ -216,9 +216,10 @@
                     <p class="text-xs-center headline white--text" id="fgoogle">Introdueix el teu correu per a rebre totes les actualitzacions d'aquesta aplicació.</p>
 
                     <v-text-field
-                            class="white--text"
-                            label="Introdueix el teu correu electronic"
-                            solo-inverted
+                            background-color="white"
+                            label="Correu electrònic"
+                            placeholder="Introdueix el teu correu electrònic"
+                            box
                     ></v-text-field>
 
                 </div>

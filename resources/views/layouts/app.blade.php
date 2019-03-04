@@ -61,7 +61,7 @@
     >
         <v-card>
             <v-card-title class="secondary darken3 white--text"><h4>Perfil</h4></v-card-title>
-            <v-layout row wrap>
+            <v-layout wrap>
                 <v-flex xs12>
                         <p>Nom: {{ Auth::user()->name }}</p>
                         <p>Email: {{ Auth::user()->email }}</p>
@@ -81,7 +81,7 @@
         <v-card>
             <v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>
 
-            <v-layout row wrap>
+            <v-layout wrap>
                 @impersonating
                 <v-flex xs12>
                     <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
@@ -110,7 +110,11 @@
         <notificationswidget></notificationswidget>
         <h4 class="white-text mb-3 font-italic text-center hidden-xs-only" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar @click="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-            <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            @if (  Auth::user('online') )
+                <img style="border: lawngreen 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            @else
+                <img style="border: red 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
+            @endif
         </v-avatar>
         <v-form action="logout" method="POST">
             @csrf
