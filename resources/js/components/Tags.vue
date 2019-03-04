@@ -127,7 +127,7 @@
         </v-toolbar>
         <v-card>
             <v-card-title>
-                <v-layout row wrap>
+                <v-layout wrap>
                     <v-flex lg6>
                         <v-text-field
                                 append-icon="search"

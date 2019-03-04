@@ -32,7 +32,7 @@
                         <div class="subheading mb-3 text-xs-center font-weight-bold" id="fgoogle" style=" font-family: 'Montserrat', sans-serif; text-shadow: black 0.1em 0.1em 0.1em">Fet amb vuetify</div>
                         <v-layout>
                             <v-btn
-                                    class="primary lighten-2 mt-5"
+                                    class="primary darken-1 mt-5"
                                     dark
                                     large
                                     href="/home"
@@ -73,7 +73,7 @@
                                 <v-flex xs12 md4>
                                     <v-card class="elevation-0 transparent">
                                         <v-card-text class="text-xs-center">
-                                            <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                                            <v-icon x-large class="blue--text text--darken-3">color_lens</v-icon>
                                         </v-card-text>
                                         <v-card-title primary-title class="layout justify-center">
                                             <div class="headline text-xs-center">Material Design</div>

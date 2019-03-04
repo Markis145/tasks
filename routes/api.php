@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
+use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
@@ -73,5 +74,8 @@ Route::middleware('auth:api')->group(function (){
     Route::delete('/v1/user/unread_notifications/{notification}','\\' . UserUnreadNotificationsController::class . '@destroy');
 
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
+
+    Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
 });
 

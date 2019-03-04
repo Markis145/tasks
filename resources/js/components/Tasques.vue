@@ -1,5 +1,5 @@
 <template>
-    <v-layout row>
+    <v-layout>
         <v-flex>
             <v-card>
                 <snackbar></snackbar>
