@@ -26,6 +26,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
+    <meta name="Description" content="App">
     <script defer src="{{mix('js/manifest.js')}}"></script>
     <script defer src="{{mix('js/vendor.js')}}"></script>
     <script defer src="{{mix('js/app.js')}}"></script>

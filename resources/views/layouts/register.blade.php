@@ -25,7 +25,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
-
+    <meta name="Description" content="App">
     <title>@yield('title')</title>
     <style>
         [v-cloak] {display: none}
