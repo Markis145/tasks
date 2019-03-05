@@ -30,3 +30,8 @@ workbox.routing.registerRoute(
   '/public/favicon-32x32',
   workbox.strategies.cacheFirst({ cacheName: 'favicon' })
 )
+
+workbox.routing.registerRoute(
+  new RegExp('/tasques'),
+  new workbox.strategies.NetworkFirst()
+)

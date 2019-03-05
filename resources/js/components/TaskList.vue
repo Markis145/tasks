@@ -35,7 +35,7 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         >
@@ -63,7 +63,7 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         >
@@ -158,7 +158,8 @@
                         sm8
                 >
 
-                    <v-card class="elevation-10 mb-2">
+                    <v-card class="elevation-10 mb-2"
+                            v-touch="{ left: () => removeTask(task)}">>
                         <v-list class="mr-1">
                             <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
