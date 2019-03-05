@@ -53,7 +53,8 @@
                     </v-flex>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
-                <v-flex v-else lg3 class="pr-2">
+                <v-layout v-else>
+                    <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
@@ -73,6 +74,7 @@
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
+                </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"
