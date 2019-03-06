@@ -159,7 +159,7 @@
                 >
 
                     <v-card class="elevation-10 mb-2"
-                            v-touch="{ left: () => removeTask(task)}">>
+                            v-touch="{ left: () => call('delete', task)}">>
                         <v-list class="mr-1">
                             <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
@@ -185,7 +185,7 @@
                                     <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
                                 </v-list-tile-content>
                                 <v-list-tile-content>
-                                    <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                                    <task-destroy :task="task" :mobile="true" @removed="removeTask" :uri="uri"></task-destroy>
                                 </v-list-tile-content>
                             </v-list-tile>
                         </v-list>
@@ -202,7 +202,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
-
+import EventBus from './../eventBus'
 export default {
   name: 'TasksList',
   components: {
@@ -305,6 +305,9 @@ export default {
         console.log(error)
         this.loading = false
       })
+    },
+    call (action, object) {
+      EventBus.$emit('touch-' + action, object)
     }
   }
 }
