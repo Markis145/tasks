@@ -122,4 +122,23 @@ class TasksTagsControllerTest extends TestCase {
 
         $response->assertStatus(401);
     }
+
+    /**
+     * @test
+     */
+    public function can_delete_tag()
+    {
+        $this->withoutExceptionHandling();
+        $this->loginAsTagsManager('api');
+        // 1
+        $tag = factory(Tag::class)->create();
+        // 2
+        $response = $this->json('DELETE','/api/v1/tags/' . $tag->id);
+        // 3
+        $result = json_decode($response->getContent());
+        $response->assertSuccessful();
+        $this->assertEquals('', $result);
+//        $this->assertDatabaseMissing('tags', $tag);
+        $this->assertNull(Tag::find($tag->id));
+    }
 }

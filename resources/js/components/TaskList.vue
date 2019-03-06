@@ -35,14 +35,19 @@
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                      <user-select :users="dataUsers" label="Usuari"></user-select>
+                      <user-select
+                              url="/api/v1/users"
+                              label="Usuari"
+                              v-model="filterUser"
+                              :users="dataUsers"
+                      ></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -53,18 +58,24 @@
                     </v-flex>
                         </v-expansion-panel-content>
                     </v-expansion-panel>
-                <v-flex v-else lg3 class="pr-2">
+                <v-layout v-else>
+                    <v-flex lg3 class="pr-2">
                         <v-select
                                 label="Filtres"
                                 :items="filters"
-                                v-model="filter"
+                                v-model="statusBy"
                                 item-text="name"
                                 :return-object="true"
                         >
                         </v-select>
                     </v-flex>
                     <v-flex lg4 class="pr-2">
-                      <user-select :users="dataUsers" label="Usuari"></user-select>
+                      <user-select
+                              url="/api/v1/users"
+                              label="Usuari"
+                              v-model="filterUser"
+                              :users="dataUsers"
+                      ></user-select>
                     </v-flex>
                     <v-flex lg5>
                         <v-text-field
@@ -73,6 +84,7 @@
                                 v-model="search"
                         ></v-text-field>
                     </v-flex>
+                </v-layout>
             </v-card-title>
             <v-data-table
                     :headers="headers"
@@ -146,7 +158,8 @@
                         sm8
                 >
 
-                    <v-card class="elevation-10 mb-2">
+                    <v-card class="elevation-10 mb-2"
+                            v-touch="{ left: () => call('delete', task)}">>
                         <v-list class="mr-1">
                             <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
@@ -172,7 +185,7 @@
                                     <task-update :users="users" :task="task" @updated="updateTask" :uri="uri"></task-update>
                                 </v-list-tile-content>
                                 <v-list-tile-content>
-                                    <task-destroy :task="task" @removed="removeTask" :uri="uri"></task-destroy>
+                                    <task-destroy :task="task" :mobile="true" @removed="removeTask" :uri="uri"></task-destroy>
                                 </v-list-tile-content>
                             </v-list-tile>
                         </v-list>
@@ -189,7 +202,7 @@ import TaskDestroy from './TaskDestroy'
 import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
-
+import EventBus from './../eventBus'
 export default {
   name: 'TasksList',
   components: {
@@ -202,11 +215,18 @@ export default {
   data () {
     return {
       user: '',
+      user_id: '',
       loading: false,
       dataTasks: this.tasks,
       dataUsers: this.users,
-      filter: { name: 'Totes', value: null },
-      filters: [{ name: 'Totes', value: null }, { name: 'Completades', value: true }, { name: 'Pendents', value: false }],
+      filter: 'Totes',
+      filterUser: null,
+      filters: [
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
+      ],
+      statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
       pagination: {
         rowsPerPage: 5
@@ -248,10 +268,24 @@ export default {
   },
   computed: {
     getFilteredTasks () {
-      return this.dataTasks.filter((task) => {
-        if (task.completed === this.filter.value || this.filter.value == null) return true
-        else return false
-      })
+      let filterUser = this.filterUser
+      let statusBy = this.statusBy
+      let tasks = this.dataTasks
+      if (filterUser == null) {
+        tasks = this.dataTasks
+      } else if (filterUser !== null) {
+        tasks = tasks.filter((task) => {
+          if (task.user_id == filterUser.id) return true
+          else return false
+        })
+      }
+      if (statusBy.value != 'Totes') {
+        tasks = tasks.filter((task) => {
+          if (task.completed == statusBy.value) return true
+          else return false
+        })
+      }
+      return tasks
     }
   },
   methods: {
@@ -271,6 +305,9 @@ export default {
         console.log(error)
         this.loading = false
       })
+    },
+    call (action, object) {
+      EventBus.$emit('touch-' + action, object)
     }
   }
 }

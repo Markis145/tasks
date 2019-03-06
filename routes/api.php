@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Notifications\UserNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserUnreadNotificationsController;
 use App\Http\Controllers\Api\OnlineUsersController;
 use App\Http\Controllers\Api\TasksTagsController;
+use App\Http\Controllers\Api\TasksTagController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Http\Request;
@@ -60,6 +61,9 @@ Route::middleware('auth:api')->group(function (){
 
 
     Route::put('/v1/tasks/{task}/tags', '\\' . TasksTagsController::class . '@update');
+
+    Route::post('/v1/tasks/{task}/tag', '\\' . TasksTagsController::class . '@store');
+    Route::delete('/v1/tasks/{task}/tag', '\\' . TasksTagsController::class . '@destroy');
 
     Route::post('/v1/user/photo', '\\' . PhotoController::class . '@store');
 

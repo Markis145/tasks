@@ -46,7 +46,7 @@
                                    rel="noopener"
                                    href="https://github.com/Markis145/tasks"
                             ><img-webp src="img/github.webp" alt="Github" height="25" class="mr-3" alt-format="png">
-                                Github
+                                    </img-webp>Github
                             </v-btn>
                         </v-layout>
                     </v-layout>
