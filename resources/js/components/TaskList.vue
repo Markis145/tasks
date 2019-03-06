@@ -159,7 +159,7 @@
                 >
 
                     <v-card class="elevation-10 mb-2"
-                            v-touch="{ left: () => call('delete', task)}">>
+                            v-touch="{ left: () => call('delete', task)}">
                         <v-list class="mr-1">
                             <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
