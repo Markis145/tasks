@@ -1,68 +1,79 @@
 <template>
-    <v-switch
-            v-model="dataValue"
-            :label="dataValue ? activeText : unactiveText"
-            :loading="loading"
-    ></v-switch>
+    <v-switch :readonly="readonly" :loading="loading" :disabled="loading" v-model="dataStatus" :label="dataTask.completed ? 'Completada' : 'Pendent'"></v-switch>
 </template>
 
 <script>
 export default {
-  name: 'taskCompletedToggle',
+  name: 'Toggle',
   data () {
     return {
-      dataValue: this.value,
+      dataStatus: this.status,
+      dataTask: this.task,
       loading: false
     }
   },
   props: {
-    activeText: {
-      type: String,
-      default: 'Active'
-    },
-    unactiveText: {
-      type: String,
-      default: 'Unactive'
-    },
-    uri: {
-      type: String,
+    task: {
+      type: Object,
       required: true
     },
-    value: {
+    status: {
       type: Boolean,
       required: true
     },
-    resource: {
-      type: Object,
-      required: true
+    readonly: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
-    dataValue (dataValue, oldDataValue) {
-      if (dataValue !== oldDataValue) {
-        if (dataValue) this.completeTask()
-        else this.uncompleteTask()
+    // task (task) {
+    //   this.dataTask = task
+    // },
+    dataStatus: {
+      handler: function (dataStatus) {
+        if (dataStatus !== this.dataTask.completed) {
+          if (dataStatus) this.completeTask()
+          else this.uncompleteTask()
+        }
       }
+    },
+    task (task) {
+      this.dataTask = task
+    },
+    status (status) {
+      this.dataStatus = status
     }
+    // Watchers Imperativa NO DECLARATIVA
+
   },
   methods: {
-    completeTask () {
+    async uncompleteTask () {
+      // LOADING I DISABLED TODO
       this.loading = true
-      window.axios.post(this.uri + '/' + this.resource.id).then(() => {
+      await window.axios.delete('/api/v1/completed_task/' + this.task.id).then((response) => {
+        this.$snackbar.showMessage("S'ha descompletat correctament la tasca")
         this.loading = false
+        this.dataTask.completed = false
       }).catch(error => {
-        this.loading = false
-        this.$snackbar.showError(error)
-      })
+        this.$snackbar.showError(error.message)
+        this.removing = null
+        this.loading = null
+        this.dataStatus = !this.dataStatus
+      }) // TODO ACABAR
     },
-    uncompleteTask () {
+    async completeTask () {
       this.loading = true
-      window.axios.delete(this.uri + '/' + this.resource.id).then(() => {
+      await window.axios.post('/api/v1/completed_task/' + this.task.id).then((response) => {
+        this.$snackbar.showMessage("S'ha completat correctament la tasca")
         this.loading = false
+        this.dataTask.completed = true
       }).catch(error => {
-        this.loading = false
-        this.$snackbar.showError(error)
-      })
+        this.$snackbar.showError(error.message)
+        this.removing = null
+        this.loading = null
+        this.dataStatus = !this.dataStatus
+      }) // TODO ACABAR
     }
   }
 }

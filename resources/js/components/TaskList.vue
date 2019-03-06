@@ -119,7 +119,7 @@
                             </v-avatar>
                         </td>
                         <td>
-                            <task-completed-toggle :value="task.completed" uri="/api/v1/completed_task" active-text="Completada" unactive-text="Pendent" :resource="task"></task-completed-toggle>
+                            <task-completed-toggle :status="task.completed"  :task="task" :tags="tags"></task-completed-toggle>
                         </td>
                         <td>
                             <tasks-tags :task="task" :task-tags="task.tags" :tags="tags" @change="refresh(false)"></tasks-tags>
@@ -159,7 +159,7 @@
                 >
 
                     <v-card class="elevation-10 mb-2"
-                            v-touch="{ left: () => call('delete', task)}">>
+                            v-touch="{ left: () => call('delete', task)}">
                         <v-list class="mr-1">
                             <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
                             <v-list-tile>
@@ -222,9 +222,9 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        { name: 'Totes', value: 'Totes' },
-        { name: 'Completades', value: true },
-        { name: 'Pendents', value: false }
+        {name: 'Totes', value: 'Totes'},
+        {name: 'Completades', value: true},
+        {name: 'Pendents', value: false}
       ],
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
