@@ -1,7 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/manifest.js": "/js/manifest.js",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/app.a9dce9f9e6e5af38032b.hot-update.js": "/js/app.a9dce9f9e6e5af38032b.hot-update.js",
-    "/js/app.4d9add87b9ec443cc297.hot-update.js": "/js/app.4d9add87b9ec443cc297.hot-update.js"
+    "/js/vendor.js": "/js/vendor.js"
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\GitController;
+use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
@@ -80,6 +81,9 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
+    Route::post('/newsletter', '\\' . NewsletterController::class . '@store');
+
 
 });
 

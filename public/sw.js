@@ -1,7 +1,13 @@
-importScripts("/service-worker/precache-manifest.948c7aa5e2c10c7ced44a55ca190cb33.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.14744bda35b0e9fa51a5eb4afeb6d9df.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+
+workbox.setConfig({
+  debug: true
+})
 
 workbox.skipWaiting()
 workbox.clientsClaim()
+// workbox.core.skipWaiting()
+// workbox.core.clientsClaim()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
