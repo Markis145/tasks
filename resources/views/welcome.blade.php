@@ -141,14 +141,6 @@
             </section>
 
             <section>
-                <v-parallax-webp src="img/inici2.webp" height="380" alt="imatge d'una taula" alt-format="jpg">
-                    <v-layout column align-center justify-center>
-                        <newsletter-subscription-card></newsletter-subscription-card>
-                    </v-layout>
-                </v-parallax-webp>
-            </section>
-
-            <section>
                 <v-container grid-list-xl>
                     <v-layout row wrap justify-center class="my-5">
                         <v-flex xs12 sm4>

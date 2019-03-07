@@ -59,6 +59,24 @@ const SECONDARY_COLOR_KEY = 'SECONDARY_COLOR_KEY'
 const primaryColor = window.localStorage.getItem(PRIMARY_COLOR_KEY) || '#8719E0'
 const secondaryColor = window.localStorage.getItem(SECONDARY_COLOR_KEY) || '#616E7C'
 
+window.axios.interceptors.response.use((response) => {
+  return response
+}, function (error) {
+  if (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.log('HEY! unauthorized, logging out ...')
+        // TODO -> Pass current page as query string '/login?back=CURRENT_URL'
+        // this.showSnackBar(error.response.data, 'error', error.response.status)
+        window.Vue.prototype.$snackbar.showError("No heu entrat al sistema o ha caducat la sessió. Renviant-vos a l'entrada del sistema")
+        setTimeout(function () { window.location = '/login' }, 3000)
+      }
+      // return Promise.reject(error.response)
+    }
+  }
+  return Promise.reject(error)
+})
+
 window.Vue.use(window.Vuetify, {
   theme: {
     primary: {
@@ -181,6 +199,6 @@ window.Vue.component('network', Network)
 window.Vue.component('memory', Memory)
 window.Vue.component('screen-orientation', ScreenOrientation)
 window.Vue.component('main-toolbar', MainToolbar)
-window.Vue.component('News-letter-subscription-card', NewsLetterSubscriptionCard)
+window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 
 const app = new window.Vue(AppComponent)
