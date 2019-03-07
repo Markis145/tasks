@@ -6,10 +6,10 @@
             <git-info class="hidden-xs-only" ></git-info></span>
         <v-spacer></v-spacer>
         <notificationswidget></notificationswidget>
-        <!--<h4 class="white-text mb-3 font-italic text-center hidden-xs-only" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>-->
-        <v-avatar @click="$emit('toggle-right')" :title="user.name">
-            <img v-if="user.online" style="border: lawngreen 2px solid; margin: 20px;" :src="'https://www.gravatar.com/avatar/'+ user.gravatar" alt="avatar">
-            <img v-else style="border: red 2px solid; margin: 20px;" :src="'https://www.gravatar.com/avatar/' + user.gravatar" alt="avatar">
+        <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ user('email') }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+        <v-avatar  @click="$emit('toggle-right')"  :title="user('email')">
+            <img v-if="user('online')" style="border: lawngreen 2px solid; margin: 20px;" :src=userAvatar alt="avatar">
+            <img v-else style="border: red 2px solid; margin: 20px;" :src=userAvatar alt="avatar">
         </v-avatar>
         <v-form action="logout" method="POST">
             <v-btn color="error" type="submit">Logout</v-btn>
@@ -18,20 +18,26 @@
 </template>
 
 <script>
-import NotificationsWidget from './notifications/NotificationsWidget.vue'
-import GitInfoComponent from './git/GitInfoComponent.vue'
+import NotificationsWidget from './notifications/NotificationsWidget'
+import GitInfoComponent from './git/GitInfoComponent'
 export default {
   name: 'MainToolbar',
   components: {
     'notifications-widget': NotificationsWidget,
     'git-info': GitInfoComponent
   },
-  created () {
-    this.user = window.laravel_user
+  data () {
+    return {
+      userAvatar: window.laravel_user.gravatar
+    }
+  },
+  methods: {
+    user (prop) {
+      return window.laravel_user[prop]
+    },
+    created () {
+      this.user = window.laravel_user
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>
