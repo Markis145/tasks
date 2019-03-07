@@ -53,6 +53,9 @@
     <share-fab></share-fab>
     <service-worker></service-worker>
     <navigation v-model="drawer"></navigation>
+    <main-toolbar @toggle-right="drawerRight=!drawerRight"
+                  @toggle-left="drawer=!drawer">
+    </main-toolbar>
     <v-navigation-drawer
             v-model="drawerRight"
             fixed
@@ -102,26 +105,7 @@
             </v-layout>
         </v-card>
     </v-navigation-drawer>
-    <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">Menú</v-toolbar-title>
-        <span v-role="'SuperAdmin'" style="margin-left: 2%">
-            <git-info class="hidden-xs-only" ></git-info></span>
-        <v-spacer></v-spacer>
-        <notificationswidget></notificationswidget>
-        <h4 class="white-text mb-3 font-italic text-center hidden-xs-only" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar @click="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-            @if (  Auth::user('online') )
-                <img style="border: lawngreen 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            @else
-                <img style="border: red 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            @endif
-        </v-avatar>
-        <v-form action="logout" method="POST">
-            @csrf
-            <v-btn color="error" type="submit">Logout</v-btn>
-        </v-form>
-    </v-toolbar>
+
     <v-content>
         <v-container fluid fill-height>
             <v-layout

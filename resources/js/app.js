@@ -38,6 +38,7 @@ import OnlineStatus from './components/MobileFeatures/OnlineStatus.vue'
 import Network from './components/MobileFeatures/Network.vue'
 import Memory from './components/MobileFeatures/Memory.vue'
 import ScreenOrientation from './components/MobileFeatures/ScreenOrientation.vue'
+import MainToolbar from './components/MainToolbar.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -178,5 +179,6 @@ window.Vue.component('online-status', OnlineStatus)
 window.Vue.component('network', Network)
 window.Vue.component('memory', Memory)
 window.Vue.component('screen-orientation', ScreenOrientation)
+window.Vue.component('main-toolbar', MainToolbar)
 
 const app = new window.Vue(AppComponent)
