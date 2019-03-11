@@ -55,6 +55,7 @@
     <navigation v-model="drawer"></navigation>
     <main-toolbar @toggle-right="drawerRight=!drawerRight"
                   @toggle-left="drawer=!drawer">
+        csrf-token="{{ csrf_token() }}"
     </main-toolbar>
     <v-navigation-drawer
             v-model="drawerRight"

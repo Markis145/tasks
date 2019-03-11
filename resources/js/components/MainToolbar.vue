@@ -12,7 +12,18 @@
             <img v-else style="border: red 2px solid; margin: 20px;" :src=userAvatar alt="avatar">
         </v-avatar>
         <v-form action="logout" method="POST">
-            <v-btn color="error" type="submit">Logout</v-btn>
+            <input type="hidden" name="_token" :value="csrfToken">
+            <v-btn
+                    depressed
+                    flat
+                    small
+                    round
+                    color="red lighten-2 elevation-0"
+                    type="submit"
+                    placeholder="Sortir"
+            >
+                <span>Logout</span>
+            </v-btn>
         </v-form>
     </v-toolbar>
 </template>
@@ -29,6 +40,11 @@ export default {
   data () {
     return {
       userAvatar: window.laravel_user.gravatar
+    }
+  },
+  props: {
+    csrfToken: {
+      Type: String
     }
   },
   methods: {

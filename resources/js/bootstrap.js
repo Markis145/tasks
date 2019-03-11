@@ -44,7 +44,7 @@ let user = document.head.querySelector('meta[name="user"]')
 if (user) {
   window.laravel_user = JSON.parse(user.content)
 } else {
-  console.error('Caution!: User not found at HTML meta')
+  // console.error('Caution!: User not found at HTML meta')
 }
 
 let gitHeader = document.head.querySelector('meta[name="git"]')
