@@ -90,7 +90,8 @@ export default {
         { icon: 'person', text: 'Perfil', url: '/profile' },
         { icon: 'settings', text: 'Changelog', url: '/changelog' },
         { icon: 'notifications', text: 'Notifications', url: '/notifications' },
-        { icon: 'widgets', text: 'Features', url: '/features' }
+        { icon: 'widgets', text: 'Features', url: '/features' },
+        { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' }
       ]
     }
   },

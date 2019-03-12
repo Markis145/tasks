@@ -131,9 +131,3 @@
 <script defer src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
-<script>
-  import NavigationRight from "../../js/components/NavigationRight"
-  export default {
-    components: {NavigationRight}
-  }
-</script>
