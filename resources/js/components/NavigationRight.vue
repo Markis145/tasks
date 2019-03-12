@@ -53,10 +53,6 @@
         </v-card>
         <v-card>
             <v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>
-            <v-flex v-if="isImpersonating">
-                <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat class="white--text" icon><v-icon>exit_to_app</v-icon></v-btn>
-            </v-flex>
-
             <v-flex xs12 v-if="canImpersonate">
                 <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
             </v-flex>
@@ -73,6 +69,7 @@
 
                             {{ impersonatedBy.name }} està suplantant a {{ user.name }}
                         </v-flex>
+                        <v-btn  title="Abandonar suplantació" href="impersonate/leave" flat icon><v-icon>exit_to_app</v-icon></v-btn>
                     </v-card-text>
                 </v-layout>
             </v-flex>
