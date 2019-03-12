@@ -21,7 +21,7 @@ try {
  */
 
 window.axios = require('axios')
-
+window.md5 = require('md5')
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 /**
@@ -46,6 +46,9 @@ if (user) {
 } else {
   // console.error('Caution!: User not found at HTML meta')
 }
+
+let impersonatedby = document.head.querySelector('meta[name="impersonatedBy"]')
+if (impersonatedby) if (impersonatedby.content) window.impersonatedBy = JSON.parse(impersonatedby.content)
 
 let gitHeader = document.head.querySelector('meta[name="git"]')
 window.git = null

@@ -40,6 +40,7 @@ import Memory from './components/MobileFeatures/Memory.vue'
 import ScreenOrientation from './components/MobileFeatures/ScreenOrientation.vue'
 import MainToolbar from './components/MainToolbar.vue'
 import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard.vue'
+import NavigationRight from './components/NavigationRight.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -200,5 +201,6 @@ window.Vue.component('memory', Memory)
 window.Vue.component('screen-orientation', ScreenOrientation)
 window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
+window.Vue.component('navigation-right', NavigationRight)
 
 const app = new window.Vue(AppComponent)
