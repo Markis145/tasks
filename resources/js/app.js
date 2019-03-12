@@ -42,6 +42,7 @@ import MainToolbar from './components/MainToolbar.vue'
 import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard.vue'
 import Newsletters from './components/newsletters/Newsletters'
 import NavigationRight from './components/NavigationRight.vue'
+import Clock from './components/ui/Clock.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -204,5 +205,6 @@ window.Vue.component('main-toolbar', MainToolbar)
 window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('navigation-right', NavigationRight)
 window.Vue.component('newsletters', Newsletters)
+window.Vue.component('clock', Clock)
 
 const app = new window.Vue(AppComponent)

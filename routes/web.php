@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
@@ -71,6 +72,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/features','\\'. FeaturesController::class . '@index');
 
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    Route::get('/clock', '\\' . ClockController::class . '@index');
 
 });
 

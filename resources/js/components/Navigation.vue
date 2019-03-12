@@ -91,7 +91,8 @@ export default {
         { icon: 'settings', text: 'Changelog', url: '/changelog' },
         { icon: 'notifications', text: 'Notifications', url: '/notifications' },
         { icon: 'widgets', text: 'Features', url: '/features' },
-        { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' }
+        { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' },
+        { icon: 'av_timer', text: 'Clock', url: '/clock' }
       ]
     }
   },
