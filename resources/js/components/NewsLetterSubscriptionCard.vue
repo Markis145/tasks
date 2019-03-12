@@ -50,8 +50,6 @@ export default {
       window.axios.post('/api/v1/newsletter', { 'email': this.email }).then(() => {
         this.$snackbar.showMessage("La subscripció s'ha realitzar correctament")
       }).catch(error => {
-        console.log(error)
-        this.$snackbar.showError(error)
       }).then(() => {
         this.loading = false
       })

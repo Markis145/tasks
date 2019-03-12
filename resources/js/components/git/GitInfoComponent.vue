@@ -76,7 +76,6 @@ export default {
         this.$snackbar.showMessage('Dades actualitzades correctament')
         this.dataGit = response.data
       }).catch(error => {
-        this.$snackbar.showError(error)
       })
     }
   },

@@ -327,7 +327,7 @@ export default {
         this.newTag.color = ''
         this.refresh()
       }).catch(error => {
-        this.$snackbar.showError(error)
+
       })
     },
     async destroy (tag) {
@@ -348,7 +348,6 @@ export default {
           this.removing = null
           this.refresh()
         }).catch(error => {
-          this.$snackbar.showError(error)
           this.removing = null
         })
       }
@@ -362,7 +361,6 @@ export default {
         this.editDialog = false
         this.refresh()
       }).catch(error => {
-        this.$snackbar.showError(error)
       })
     },
     refresh () {
@@ -372,7 +370,6 @@ export default {
         this.loading = false
         this.$snackbar.showMessage('Tags actualitzats correctament')
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.loading = false
       })
     },

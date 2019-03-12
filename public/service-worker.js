@@ -10,6 +10,14 @@ workbox.precaching.cleanupOutdatedCaches()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
 
+const showNotification = () => {
+  self.registration.showNotification('Post Sent', {
+    body: 'You are back online and your post was successfully sent!'
+    // icon: 'assets/icon/256.png',
+    // badge: 'assets/icon/32png.png'
+  })
+}
+
 const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
   maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
   callbacks: {

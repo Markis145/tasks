@@ -301,8 +301,7 @@ export default {
         this.dataTasks = response.data
         this.loading = false
         if (message) this.$snackbar.showMessage('Tasques actualitzades correctament')
-      }).catch(error => {
-        console.log(error)
+      }).catch(() => {
         this.loading = false
       })
     },

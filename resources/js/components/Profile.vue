@@ -202,8 +202,6 @@ export default {
           this.$snackbar.showMessage('La foto ha estat pujada correctament!')
         })
         .catch(error => {
-          console.log(error)
-          this.$snackbar.showError(error)
           this.uploading = false
         })
     },
@@ -240,8 +238,6 @@ export default {
           this.$snackbar.showMessage('El avatar ha estat pujat correctament!')
         })
         .catch(error => {
-          console.log(error)
-          this.$snackbar.showError(error)
           this.uploadingAvatar = false
         })
     },
