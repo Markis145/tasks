@@ -135,6 +135,7 @@
                         >
                             Get Started
                         </v-btn>
+                        <newsletter-subscription-card></newsletter-subscription-card>
                     </v-layout>
                 </v-parallax-webp>
             </section>

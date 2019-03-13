@@ -13,6 +13,7 @@ class TasquesController extends Controller
 {
     public function index(UserTasksIndex $request)
     {
+//        abort('500');
         if (Auth::user()->can('tasks.manage')) {
             $tasks = map_collection(Task::with('user', 'tags')->orderBy('created_at', 'desc')->get());
             $uri = '/api/v1/tasks';

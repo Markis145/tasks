@@ -13,9 +13,11 @@
 
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -69,9 +71,11 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/features','\\'. FeaturesController::class . '@index');
 
+    Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
+
+    Route::get('/clock', '\\' . ClockController::class . '@index');
+
 });
-
-
 
 Route::get('/', function () {
     return view('welcome');

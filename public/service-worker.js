@@ -1,7 +1,37 @@
-workbox.skipWaiting()
-workbox.clientsClaim()
+workbox.setConfig({
+  debug: true
+})
+
+workbox.core.skipWaiting()
+workbox.core.clientsClaim()
+// workbox.core.skipWaiting()
+// workbox.core.clientsClaim()
+workbox.precaching.cleanupOutdatedCaches()
 
 workbox.precaching.precacheAndRoute(self.__precacheManifest)
+
+const showNotification = () => {
+  self.registration.showNotification('Post Sent', {
+    body: 'You are back online and your post was successfully sent!'
+    // icon: 'assets/icon/256.png',
+    // badge: 'assets/icon/32png.png'
+  })
+}
+
+const bgSyncPlugin = new workbox.backgroundSync.Plugin('newsletter', {
+  maxRetentionTime: 24 * 60, // Retry for max of 24 Hours
+  callbacks: {
+    queueDidReplay: showNotification
+  }
+})
+
+workbox.routing.registerRoute(
+  '/api/v1/newsletter',
+  new workbox.strategies.NetworkOnly({
+    plugins: [bgSyncPlugin]
+  }),
+  'POST'
+)
 
 workbox.routing.registerRoute(
   new RegExp('.(?:jpg|jpeg|png|gif|svg|webp)$'),
@@ -18,17 +48,17 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   '/',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'landing' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'landing' })
 )
 
 workbox.routing.registerRoute(
   '/public/css/*',
-  workbox.strategies.staleWhileRevalidate({ cacheName: 'css' })
+  new workbox.strategies.StaleWhileRevalidate({ cacheName: 'css' })
 )
 
 workbox.routing.registerRoute(
   '/public/favicon-32x32',
-  workbox.strategies.cacheFirst({ cacheName: 'favicon' })
+  new workbox.strategies.CacheFirst({ cacheName: 'favicon' })
 )
 
 workbox.routing.registerRoute(

@@ -26,6 +26,7 @@
     <meta name="twitter:site" content="@markis145" />
     <meta name="twitter:creator" content="@markis145" />
     <meta name="Description" content="App">
+    <meta name="impersonatedBy" content="{{ Auth::user()->impersonatedBy() }}">
     <link rel="manifest" href="/manifest.json">
     <title>@yield('title')</title>
     <style>
@@ -53,75 +54,61 @@
     <share-fab></share-fab>
     <service-worker></service-worker>
     <navigation v-model="drawer"></navigation>
-    <v-navigation-drawer
-            v-model="drawerRight"
-            fixed
-            right
-            clipped
-            app
-    >
-        <v-card>
-            <v-card-title class="secondary darken3 white--text"><h4>Perfil</h4></v-card-title>
-            <v-layout wrap>
-                <v-flex xs12>
-                        <p>Nom: {{ Auth::user()->name }}</p>
-                        <p>Email: {{ Auth::user()->email }}</p>
-                        @if(Auth::user()->admin)
-                                Super Administrador
-                        @else
-                                Usuari
-                        @endif
-                        <p></p>
-                        <p>Rols: {{ implode(',',Auth::user()->map()['roles']) }}</p>
-                        <p>Permissos: {{ implode(', ',Auth::user()->map()['permissions']) }}</p>
-                        <h3>Colors del tema</h3>
-                        <color></color>
-                </v-flex>
-            </v-layout>
-        </v-card>
-        <v-card>
-            <v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>
+    <main-toolbar @toggle-right="drawerRight=!drawerRight"
+                  @toggle-left="drawer=!drawer"
+                  csrf-token="{{ csrf_token() }}">
+    </main-toolbar>
+    <navigation-right v-model="drawerRight"></navigation-right>
+    {{--<v-navigation-drawer--}}
+            {{--v-model="drawerRight"--}}
+            {{--fixed--}}
+            {{--right--}}
+            {{--clipped--}}
+            {{--app--}}
+    {{-->--}}
+        {{--<v-card>--}}
+            {{--<v-card-title class="secondary darken3 white--text"><h4>Perfil</h4></v-card-title>--}}
+            {{--<v-layout wrap>--}}
+                {{--<v-flex xs12>--}}
+                        {{--<p>Nom: {{ Auth::user()->name }}</p>--}}
+                        {{--<p>Email: {{ Auth::user()->email }}</p>--}}
+                        {{--@if(Auth::user()->admin)--}}
+                                {{--Super Administrador--}}
+                        {{--@else--}}
+                                {{--Usuari--}}
+                        {{--@endif--}}
+                        {{--<p></p>--}}
+                        {{--<p>Rols: {{ implode(',',Auth::user()->map()['roles']) }}</p>--}}
+                        {{--<p>Permissos: {{ implode(', ',Auth::user()->map()['permissions']) }}</p>--}}
+                        {{--<h3>Colors del tema</h3>--}}
+                        {{--<color></color>--}}
+                {{--</v-flex>--}}
+            {{--</v-layout>--}}
+        {{--</v-card>--}}
+        {{--<v-card>--}}
+            {{--<v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>--}}
 
-            <v-layout wrap>
-                @impersonating
-                <v-flex xs12>
-                    <v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">
-                        <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">
-                    </v-avatar>
-                </v-flex>
-                @endImpersonating
-                <v-flex xs12>
-                    @canImpersonate
-                    <impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>
-                    @endCanImpersonate
-                    @impersonating
-                    {{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}
-                    <a href="impersonate/leave">Abandonar la suplantació</a>
-                    @endImpersonating
-                </v-flex>
-            </v-layout>
-        </v-card>
-    </v-navigation-drawer>
-    <v-toolbar color="primary" dark fixed app clipped-right clipped-left>
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">Menú</v-toolbar-title>
-        <span v-role="'SuperAdmin'" style="margin-left: 2%">
-            <git-info class="hidden-xs-only" ></git-info></span>
-        <v-spacer></v-spacer>
-        <notificationswidget></notificationswidget>
-        <h4 class="white-text mb-3 font-italic text-center hidden-xs-only" style="margin-top: 1%">{{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-        <v-avatar @click="drawerRight = !drawerRight" title="{{Auth::user()->name}}({{(Auth::user()->email)}})">
-            @if (  Auth::user('online') )
-                <img style="border: lawngreen 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            @else
-                <img style="border: red 3px solid; margin: 20px;" src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}" alt="avatar">
-            @endif
-        </v-avatar>
-        <v-form action="logout" method="POST">
-            @csrf
-            <v-btn color="error" type="submit">Logout</v-btn>
-        </v-form>
-    </v-toolbar>
+            {{--<v-layout wrap>--}}
+                {{--@impersonating--}}
+                {{--<v-flex xs12>--}}
+                    {{--<v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">--}}
+                        {{--<img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">--}}
+                    {{--</v-avatar>--}}
+                {{--</v-flex>--}}
+                {{--@endImpersonating--}}
+                {{--<v-flex xs12>--}}
+                    {{--@canImpersonate--}}
+                    {{--<impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>--}}
+                    {{--@endCanImpersonate--}}
+                    {{--@impersonating--}}
+                    {{--{{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}--}}
+                    {{--<a href="impersonate/leave">Abandonar la suplantació</a>--}}
+                    {{--@endImpersonating--}}
+                {{--</v-flex>--}}
+            {{--</v-layout>--}}
+        {{--</v-card>--}}
+    {{--</v-navigation-drawer>--}}
+
     <v-content>
         <v-container fluid fill-height>
             <v-layout

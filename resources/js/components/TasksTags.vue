@@ -104,7 +104,6 @@ export default {
         this.loading = false
         this.$emit('change', this.selectedTags)
       }).catch(error => {
-        this.$snackbar.showError(error)
       })
     }
   }

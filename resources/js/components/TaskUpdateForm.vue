@@ -81,7 +81,6 @@ export default {
         this.$emit('close')
         this.working = false
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.working = false
       })
     }

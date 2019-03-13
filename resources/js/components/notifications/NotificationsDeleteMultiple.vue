@@ -32,7 +32,6 @@ export default {
         this.$emit('deleted', response.data)
         this.loading = false
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.loading = false
       })
     }

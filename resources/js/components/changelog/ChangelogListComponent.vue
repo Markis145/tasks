@@ -190,7 +190,6 @@ export default {
         this.dataLogs = response.data
         this.refreshing = false
       }).catch(error => {
-        this.$snackbar.showError(error)
         this.refreshing = false
       })
     },

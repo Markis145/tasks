@@ -77,7 +77,6 @@ export default {
         this.$emit('sent')
       }).catch(error => {
         this.sending = false
-        this.$snackbar.showError(error)
       })
     }
   }
