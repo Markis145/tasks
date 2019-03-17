@@ -15,11 +15,8 @@ class TagsControllerTest extends TestCase
      */
     public function guest_user_cannot_show_tags()
     {
-        // 2 execute
         $response = $this->get('/tags');
-
-        //3 Comprovar
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?back=tags');
     }
 
     /**

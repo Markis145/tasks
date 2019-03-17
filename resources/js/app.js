@@ -69,7 +69,6 @@ window.axios.interceptors.response.use((response) => {
   if (error && error.response) {
     // Refresh CSRF TOKEN
     // dAMpDXBRrjVJ2TKewouYHgOeozZmW72EiAt5K1jY
-    console.log('PROVA ###############')
     if (error.response.status === 419) {
       console.log('419 error intercepted!!!!!')
       return window.helpers.getCsrfToken().then((token) => {
