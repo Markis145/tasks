@@ -56,7 +56,7 @@ class TasquesControllerTest extends TestCase
     public function guest_user_cannot_index_tasks()
     {
         $response = $this->get('/tasques');
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/login?back=tasques');
     }
 
     /**
