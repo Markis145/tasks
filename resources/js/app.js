@@ -43,6 +43,7 @@ import NewsLetterSubscriptionCard from './components/NewsLetterSubscriptionCard.
 import Newsletters from './components/newsletters/Newsletters'
 import NavigationRight from './components/NavigationRight.vue'
 import Clock from './components/ui/Clock.vue'
+import ShowOneTask from './components/ShowOneTask.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -291,5 +292,7 @@ window.Vue.component('newsletter-subscription-card', NewsLetterSubscriptionCard)
 window.Vue.component('navigation-right', NavigationRight)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
+window.Vue.component('show-one-task', ShowOneTask)
+
 
 const app = new window.Vue(AppComponent)

@@ -179,6 +179,9 @@
                             <v-list-tile>
                                 <v-spacer></v-spacer>
                                 <v-list-tile-content>
+                                    <share-task :task="task"></share-task>
+                                </v-list-tile-content>
+                                <v-list-tile-content>
                                     <task-show :users="users" :task="task" :uri="uri"></task-show>
                                 </v-list-tile-content>
                                 <v-list-tile-content>
@@ -203,6 +206,7 @@ import TaskUpdate from './TaskUpdate'
 import TaskShow from './TaskShow'
 import TasksTags from './TasksTags'
 import EventBus from './../eventBus'
+import ShareTask from './ShareTask'
 export default {
   name: 'TasksList',
   components: {
@@ -210,7 +214,8 @@ export default {
     'task-update': TaskUpdate,
     'task-show': TaskShow,
     'task-completed-toggle': TaskCompletedToggle,
-    'tasks-tags': TasksTags
+    'tasks-tags': TasksTags,
+    'share-task': ShareTask
   },
   data () {
     return {
