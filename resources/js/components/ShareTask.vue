@@ -3,13 +3,10 @@
             v-if="show()"
             v-model="fab"
             color="accent"
-            bottom
-            right
-            fixed
-            large
-            ripple
+            dark
+            icon
+            flat
             @click="share"
-            class="white--text"
             :disabled="loading"
             :loading="loading"
     >
