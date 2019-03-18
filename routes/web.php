@@ -21,6 +21,7 @@ use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TasquesController;
 use App\Task;
 
 Auth::routes();
@@ -74,6 +75,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/newsletters', '\\' . NewslettersController::class . '@index');
 
     Route::get('/clock', '\\' . ClockController::class . '@index');
+
+    Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
 
 });
 
