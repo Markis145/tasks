@@ -3,9 +3,13 @@
             v-if="show()"
             v-model="fab"
             color="accent"
-            dark
+            bottom
+            right
+            fixed
             large
+            ripple
             @click="share"
+            class="white--text"
             :disabled="loading"
             :loading="loading"
     >
@@ -19,7 +23,16 @@ export default {
   data () {
     return {
       fab: false,
-      loading: false
+      loading: false,
+      dataTitle: this.title,
+      dataText: this.text,
+      dataUrl: this.url
+    }
+  },
+  props: {
+    task: {
+      type: Object,
+      required: true
     }
   },
   methods: {
