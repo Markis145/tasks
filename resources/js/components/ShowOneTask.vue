@@ -12,42 +12,42 @@
                             return-object readonly></v-autocomplete>
         </v-form>
 
-        <v-card color="grey lighten-4" class="elevation-5 mr-2 ml-2 hidden-md-and-up" v-touch="{
-                                    left: () => call('delete', task)
-                            }">
-            <v-layout>
-                <v-flex xs5>
-                    <v-img :src="(task.user !== null) ? task.user_gravatar : 'img/user_profile.png'" height="125px"
-                           contain></v-img>
-                </v-flex>
-                <v-flex xs7>
-                    <v-card-title primary-title>
-                        <div>
-                            <div class="headline">{{ task.user_name }}</div>
-                            <div class="subheading"
-                                 style="width:160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
-                                task.name }}
-                            </div>
-                            <div v-if="task.completed" style="color: #1abf00">Completada</div>
-                            <div v-else style="color: #8C3D10">Pendent</div>
-                        </div>
-                    </v-card-title>
-                </v-flex>
-            </v-layout>
-        </v-card>
+        <v-card class="elevation-10 mb-2 hidden-md-and-up"
+                v-touch="{ left: () => call('delete', task)}">
+                        <v-list class="mr-1">
+                            <v-card-title class="title font-weight-black">{{ task.name }}</v-card-title>
+                            <v-list-tile>
+                                <v-list-tile-content class="font-italic" style="color:#504847">{{ task.description }}</v-list-tile-content>
+                                <v-avatar :title="(task.user !== null) ? task.user_name + ' - ' + task.user_email : ''">
+                                    <img style=" width:150%; height:150%; border-radius:160px;" :src="(task.user !== null) ? task.user_gravatar : 'img/usuari.png'"
+                                         alt="gravatar">
+                                </v-avatar>
+                            </v-list-tile>
+                            <v-list-tile class="font-italic" style="color:gray">
+                                <td v-if="task.user_id !== null" >
+                                    {{task.user_email}}
+                                </td>
+                            </v-list-tile>
+                            <v-list-tile style="color:gray" class="font-italic">
+                                <td  v-if="task.completed">
+                                    Completada
+                                </td>
+                            </v-list-tile>
+                        </v-list>
+                    </v-card>
     </span>
 </template>
 
 <script>
-  export default {
-    name: 'ShowOneTask',
-    data () {
-      return {
-        dataUsers: this.users,
-        user: '',
-        dataTasks: this.task
-      }
-    },
-    props: ['task', 'users']
-  }
+export default {
+  name: 'ShowOneTask',
+  data () {
+    return {
+      dataUsers: this.users,
+      user: '',
+      dataTasks: this.task
+    }
+  },
+  props: ['task', 'users']
+}
 </script>
