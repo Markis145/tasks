@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\LoggedUserAvatarController;
@@ -77,6 +78,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/clock', '\\' . ClockController::class . '@index');
 
     Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
+
+    Route::get('/chat', '\\' . ChatController::class . '@index');
+    Route::get('/xat', '\\' . ChatController::class . '@index');
+
 
 });
 

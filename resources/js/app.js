@@ -44,6 +44,9 @@ import Newsletters from './components/newsletters/Newsletters'
 import NavigationRight from './components/NavigationRight.vue'
 import Clock from './components/ui/Clock.vue'
 import ShowOneTask from './components/ShowOneTask.vue'
+import Chat from './components/chat/Chat.vue'
+import ChatChannel from './components/chat/ChatChannel.vue'
+import ChatChannels from './components/chat/ChatChannels.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -293,6 +296,8 @@ window.Vue.component('navigation-right', NavigationRight)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('show-one-task', ShowOneTask)
-
+window.Vue.component('chat', Chat)
+window.Vue.component('chat-channel', ChatChannel)
+window.Vue.component('chat-channels', ChatChannels)
 
 const app = new window.Vue(AppComponent)
