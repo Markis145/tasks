@@ -1,7 +1,16 @@
 <template>
     <span>
         <v-toolbar color="primary">
-            <user-avatar :user="user" size="52px" @click="$emit('toggleright')"></user-avatar>
+
+            <td v-if="task.user_id !== null" >
+                            <v-avatar class="hidden-xs-only" size="70" :title="task.user_name + ' - ' + task.user_email">
+                                <img :src="task.user_gravatar" alt="gravatar">
+                            </v-avatar>
+                            <v-avatar class="hidden-lg-only hidden-xl-only hidden-md-only hidden-sm-only" size="45" :title="task.user_name + ' - ' + task.user_email">
+                                <img :src="task.user_gravatar" alt="gravatar">
+                            </v-avatar>
+                        </td>
+
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -58,13 +67,12 @@
 </template>
 
 <script>
-
 export default {
   name: 'ChatChannels',
-
   data () {
     return {
-      dataChannels: this.channels
+      dataChannels: this.channels,
+      userAvatar: window.laravel_user.gravatar
       //   [
       //   {
       //     id: 1,
@@ -183,6 +191,14 @@ export default {
     channels: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    user (prop) {
+      return window.laravel_user[prop]
+    },
+    created () {
+      this.user = window.laravel_user
     }
   },
   created () {

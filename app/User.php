@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Channel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -200,6 +201,11 @@ class User extends Authenticatable
     public function isOnline()
     {
         return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);
+    }
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
     }
 
 }

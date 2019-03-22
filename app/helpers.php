@@ -624,9 +624,9 @@ if (! function_exists('create_admin_user')) {
     {
         if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
             User::forceCreate([
-                'name' => config('tasks.admin_user_name_on_tenant'),
-                'email' => config('tasks.admin_user_email_on_tenant'),
-                'password' => is_sha1($password = config('tasks.admin_username_password_on_tenant')) ? $password : sha1($password),
+                'name' => config('tasks.admin_user_name'),
+                'email' => config('tasks.admin_user_email'),
+                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
                 'admin' => true
             ]);
         }
@@ -635,7 +635,7 @@ if (! function_exists('create_admin_user')) {
 
 if (! function_exists('get_admin_user')) {
     function get_admin_user() {
-        return User::where('email',config('tasks.admin_user_email_on_tenant'))->first();
+        return User::where('email',config('tasks.admin_user_email_on_tasks'))->first();
     }
 }
 
