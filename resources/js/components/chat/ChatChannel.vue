@@ -1,6 +1,8 @@
 <template>
     <div id="dsadsasadasdasddsadsa">
-        <v-toolbar color="primary">
+        <v-container fluid text-xs-center class="ma-0 pa-0" >
+            <v-layout row wrap class="mx-0">
+        <v-toolbar color="primary" class="ml-3">
             <v-avatar
                     color="grey lighten-4"
             >
@@ -21,8 +23,7 @@
                 <span>Menú</span>
             </v-tooltip>
         </v-toolbar>
-        <v-container fluid text-xs-center class="ma-0 pa-0" >
-          <v-layout row wrap>
+
             <v-flex xs12 style="height: calc(100vh - 64px - 64px - 64px);" class="bg-pattern">
                 <v-list subheader style="background-color: transparent;">
                     <v-subheader>Recent messages</v-subheader>
@@ -51,6 +52,7 @@
                             label="Solo"
                             placeholder="Nou missatge"
                             solo
+                            class="ml-4 mr-3 mt-3"
                     ></v-text-field>
               </v-flex>
           </v-layout>

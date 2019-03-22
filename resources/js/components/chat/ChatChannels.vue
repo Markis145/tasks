@@ -1,7 +1,9 @@
 <template>
     <span>
-        <v-toolbar color="primary">
-            <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')"></v-avatar>
+        <v-toolbar color="primary" class="ml-2">
+            <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')">
+                <img :src=userAvatar alt="avatar">
+            </v-avatar>
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -62,6 +64,7 @@ export default {
   name: 'ChatChannels',
   data () {
     return {
+      userAvatar: window.laravel_user.gravatar,
       dataChannels:
           [
             {
