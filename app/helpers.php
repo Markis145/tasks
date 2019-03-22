@@ -1,7 +1,7 @@
 <?php
 
+use App\Channel;
 use App\Log;
-use App\Models\Channel;
 use App\Notifications\SimpleNotification;
 use App\Tag;
 use App\Task;
@@ -613,56 +613,6 @@ if (! function_exists('sample_logs')) {
         }
     }
 }
-if (! function_exists('is_sha1')) {
-    function is_sha1($str) {
-        return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
-    }
-}
-
-if (! function_exists('create_admin_user')) {
-    function create_admin_user()
-    {
-        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
-            User::forceCreate([
-                'name' => config('tasks.admin_user_name'),
-                'email' => config('tasks.admin_user_email'),
-                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
-                'admin' => true
-            ]);
-        }
-    }
-}
-
-if (! function_exists('get_admin_user')) {
-    function get_admin_user() {
-        return User::where('email',config('tasks.admin_user_email_on_tasks'))->first();
-    }
-}
-
-if (! function_exists('get_random_timestamps')) {
-    function get_random_timestamps($backwardDays = null)
-    {
-        if ( is_null($backwardDays) )
-        {
-            $backwardDays = -800;
-        }
-        $backwardCreatedDays = rand($backwardDays, 0);
-        $backwardUpdatedDays = rand($backwardCreatedDays + 1, 0);
-        return [
-            'created_at' => \Carbon\Carbon::now()->addDays($backwardCreatedDays)->addMinutes(rand(0,
-                60 * 23))->addSeconds(rand(0, 60)),
-            'updated_at' => \Carbon\Carbon::now()->addDays($backwardUpdatedDays)->addMinutes(rand(0,
-                60 * 23))->addSeconds(rand(0, 60))
-        ];
-    }
-}
-
-if (! function_exists('add_random_timestamps')) {
-    function add_random_timestamps($array)
-    {
-        return array_merge($array,get_random_timestamps());
-    }
-}
 
 if (! function_exists('initialize_sample_chat_channels')) {
     function initialize_sample_chat_channels($user = null)	{
@@ -788,5 +738,51 @@ if (! function_exists('initialize_sample_chat_channels')) {
             'image' => 'http://i.pravatar.cc/300',
             'last_message' => 'Hey que tal...'
         ]))->addUser($user);
+    }
+}
+if (! function_exists('get_random_timestamps')) {
+    function get_random_timestamps($backwardDays = null)
+    {
+        if ( is_null($backwardDays) )
+        {
+            $backwardDays = -800;
+        }
+        $backwardCreatedDays = rand($backwardDays, 0);
+        $backwardUpdatedDays = rand($backwardCreatedDays + 1, 0);
+        return [
+            'created_at' => \Carbon\Carbon::now()->addDays($backwardCreatedDays)->addMinutes(rand(0,
+                60 * 23))->addSeconds(rand(0, 60)),
+            'updated_at' => \Carbon\Carbon::now()->addDays($backwardUpdatedDays)->addMinutes(rand(0,
+                60 * 23))->addSeconds(rand(0, 60))
+        ];
+    }
+}
+if (! function_exists('add_random_timestamps')) {
+    function add_random_timestamps($array)
+    {
+        return array_merge($array,get_random_timestamps());
+    }
+}
+if (! function_exists('get_admin_user')) {
+    function get_admin_user() {
+        return User::where('email',config('tasks.admin_user_email_on_tasks'))->first();
+    }
+}
+if (! function_exists('create_admin_user')) {
+    function create_admin_user()
+    {
+        if (! App\User::where('email',config('tasks.admin_user_email'))->first()) {
+            User::forceCreate([
+                'name' => config('tasks.admin_user_name'),
+                'email' => config('tasks.admin_user_email'),
+                'password' => is_sha1($password = config('tasks.admin_username_password')) ? $password : sha1($password),
+                'admin' => true
+            ]);
+        }
+    }
+}
+if (! function_exists('is_sha1')) {
+    function is_sha1($str) {
+        return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
     }
 }
