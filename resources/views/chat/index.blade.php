@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <chat :channels="{{ $channels }}"></chat>
+    <chat :channels="{{ $channels }}" :user="{{ $user }}"></chat>
 @endsection
