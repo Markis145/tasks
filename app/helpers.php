@@ -824,7 +824,7 @@ if (!function_exists('chat_permissions')) {
 if (!function_exists('initialize_chat_role')) {
     function initialize_chat_role()
     {
-        $role = Role::firstOrCreate(['name' => ['ChatManager']]);
+        $role = Role::firstOrCreate(['name' => 'ChatManager']);
         $permissions = chat_permissions();
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
