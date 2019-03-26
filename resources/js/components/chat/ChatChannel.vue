@@ -61,8 +61,12 @@
 </template>
 
 <script>
+import ChatMessageAdd from './ChatMessageAdd'
 export default {
   name: 'ChatChannel',
+  components: {
+    'chat-message-add': ChatMessageAdd
+  },
   data () {
     return {
       dataMessages: [],
@@ -78,26 +82,10 @@ export default {
     }
   },
   methods: {
+    add () {
+      this.fetchMessages()
+    },
     fetchMessages () {
-      // TODO esborrar seguent línia quan estigui feta l'API
-      this.dataMessages = [
-        {
-          id: 1,
-          title: 'Hey man!'
-        },
-        {
-          id: 2,
-          title: 'How are you?'
-        },
-        {
-          id: 3,
-          title: 'bla bla bla....'
-        },
-        {
-          id: 4,
-          title: 'bla bla bla....'
-        }
-      ]
       if (this.channel) {
         this.loading = true
         window.axios('/api/v1/channel/' + this.channel.id + '/messages').then((response) => {
@@ -121,7 +109,6 @@ export default {
         background-repeat: repeat;
     }
 </style>
-
 <!-- WHATSAPP BACKGROUNDS
 https://www.heropatterns.com/
 https://www.toptal.com/designers/subtlepatterns/

@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\Api\TasksTagController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\Tenant\Api\Chat\ChatMessagesController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,11 @@ Route::middleware('auth:api')->group(function (){
     Route::post('/v1/simple_notifications/','\\' . SimpleNotificationsController::class . '@store');
 
     Route::get('/v1/users/online', '\\'. OnlineUsersController::class .'@index');
+
+    Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
+    Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
+    Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
+
 });
 Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');
 

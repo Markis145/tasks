@@ -2,6 +2,7 @@
 
 use App\Channel;
 use App\Log;
+use App\Models\ChatMessage;
 use App\Notifications\SimpleNotification;
 use App\Tag;
 use App\Task;
@@ -407,6 +408,27 @@ if (!function_exists('initialize_gates')) {
         Gate::define('changelog.list', function ($user) {
             return $user->hasRole('ChangelogManager');
         });
+
+        Gate::define('chat.index', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+
+        Gate::define('chat.store', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
+
+        Gate::define('chat.destroy', function ($loggedUser, $chat) {
+            $result = $chat->users->search(function ($user) use ($loggedUser) {
+                return $loggedUser->id  === $user->id;
+            });
+            return $result === false ? false : true;
+        });
     }
 }
 
@@ -784,5 +806,67 @@ if (! function_exists('create_admin_user')) {
 if (! function_exists('is_sha1')) {
     function is_sha1($str) {
         return (bool) preg_match('/^[0-9a-f]{40}$/i', $str);
+    }
+}
+
+
+if (!function_exists('chat_permissions')) {
+    function chat_permissions()
+    {
+        return [
+            'chat.index',
+            'chat.store',
+            'chat.destroy'
+        ];
+    }
+}
+
+if (!function_exists('initialize_chat_role')) {
+    function initialize_chat_role()
+    {
+        $role = Role::firstOrCreate(['name' => ['ChatManager']]);
+        $permissions = chat_permissions();
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+            $role->givePermissionTo($permission);
+        }
+    }
+}
+
+if (! function_exists('create_sample_channel')) {
+    function create_sample_channel($user = null,$name = 'Pepe Pardo Jeans', $randomTimestamps = true) {
+        create_admin_user();
+        if(!$user) $user = get_admin_user();
+
+        if ($randomTimestamps) {
+            $channelData = add_random_timestamps([
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ]);
+        } else {
+            $channelData = [
+                'name' => $name,
+                'image' => 'http://i.pravatar.cc/300',
+                'last_message' => 'Bla bla bla'
+            ];
+        }
+
+        $channel = Channel::create($channelData)->addUser($user);
+
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Hola que tal!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Whats up?'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'Dude your are so cool!'
+        ]));
+        $channel->addMessage(ChatMessage::create([
+            'text' => 'WTF are you fool?'
+        ]));
+
+        return $channel;
     }
 }
