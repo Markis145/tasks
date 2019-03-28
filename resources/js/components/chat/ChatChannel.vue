@@ -4,6 +4,7 @@
             <v-layout row wrap class="mx-0">
         <v-toolbar color="primary" class="ml-3">
             <v-avatar
+                    @click="$emit('toggle-right')"
                     color="grey lighten-4"
             >
                 <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
@@ -52,7 +53,7 @@
                             label="Solo"
                             placeholder="Nou missatge"
                             solo
-                            class="ml-4 mr-3 mt-3"
+                            class="ml-4 mr-4 mt-3"
                     ></v-text-field>
               </v-flex>
           </v-layout>

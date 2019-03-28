@@ -1,6 +1,6 @@
 <template>
     <span>
-        <v-toolbar color="primary" class="ml-2">
+        <v-toolbar color="primary" class="ml-3">
             <v-avatar :src="user.avatar" size="52px" @click="$emit('toggleright')">
                 <img :src=userAvatar alt="avatar">
             </v-avatar>
@@ -32,7 +32,7 @@
               </v-card>
             </v-flex>
             <v-flex xs12 class="scroll-y" style="max-height: calc(100vh - 64px - 64px - 64px - 64px)">
-                <v-list subheader>
+                <v-list class="ml-4" subheader>
                     <v-subheader>Recent channels</v-subheader>
                     <v-list-tile
                             v-for="channel in dataChannels"
