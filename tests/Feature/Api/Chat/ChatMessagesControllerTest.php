@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Tenants\Api\Curriculum\Studies;
 
-use App\Models\ChatMessage;
+use App\ChatMessage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Contracts\Console\Kernel;
 use Tests\Feature\Traits\CanLogin;
@@ -23,6 +23,7 @@ class ChatMessagesControllerTest extends TestCase {
      */
     public function can_list_chat_messages()
     {
+        $this->withoutExceptionHandling();
         $this->loginAsChatUser('api');
 
         $channel = create_sample_channel();

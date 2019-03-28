@@ -2,7 +2,7 @@
 
 use App\Channel;
 use App\Log;
-use App\Models\ChatMessage;
+use App\ChatMessage;
 use App\Notifications\SimpleNotification;
 use App\Tag;
 use App\Task;

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Changelog\ChangelogController;
+use App\Http\Controllers\Api\ChatMessagesController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Api\TasksTagsController;
 use App\Http\Controllers\Api\TasksTagController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\Tenant\Api\Chat\ChatMessagesController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------

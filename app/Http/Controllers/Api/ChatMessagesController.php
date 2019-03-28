@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Api\Chat;
+namespace App\Http\Controllers\Api;
 
 use App\Channel;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Http\Requests\Chat\ChatMessagesDestroy;
 use App\Http\Requests\Chat\ChatMessagesIndex;
 use App\Http\Requests\Chat\ChatMessagesStore;
 
-use App\Models\ChatMessage;
+use App\ChatMessage;
 
 
 /**

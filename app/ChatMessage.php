@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Models;
-
-use App\Channel;
+namespace App;
 
 use App\Traits\FormattedDates;
 use Illuminate\Database\Eloquent\Model;
