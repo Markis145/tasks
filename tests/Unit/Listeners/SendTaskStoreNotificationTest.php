@@ -1,39 +1,39 @@
 <?php
 
-
 use App\Listeners\SendTaskStoreNotification;
+use App\Mail\TaskCompleted;
 use App\Notifications\TaskStore;
-use App\Events\TaskStore as TaskStoreEvent;
 use App\Task;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Events\TaskStore as TaskStoredEvent;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
-class SendTaskStoreNotificationTest extends TestCase
+class SendTaskStoredNotificationTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
      * @test
      */
-    public function send_task_store_notification()
+    public function send_task_stored_notification()
     {
-
         $listener = new SendTaskStoreNotification();
         $user = factory(User::class)->create();
-        $task = factory(Task::class)->create();
-        $task->assignUser($user);
-//        $task = Task::create();
-        $event = new TaskStore($task);
+        $task = Task::create([
+            'name' => 'Pepito',
+            'user_id' => $user->id
+        ]);
+        $event  = new TaskStoredEvent($task, $user);
         Notification::fake();
-
         $listener->handle($event);
         Notification::assertSentTo(
             $user,
-            TaskStoreEvent::class,
+            TaskStore::class,
             function ($notification, $channels) use ($task) {
-                return $notification->order->id === $task->id;
+                return $notification->task->id === $task->id;
             }
         );
     }

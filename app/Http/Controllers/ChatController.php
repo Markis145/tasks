@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\ChatIndex;
+use App\Http\Requests\Chat\ChatIndex;
 use App\User;
 
 class ChatController extends Controller
