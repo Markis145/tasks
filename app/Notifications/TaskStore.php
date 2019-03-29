@@ -57,6 +57,14 @@ class TaskStore extends Notification implements ShouldQueue
      */
     public function toDatabase($notifiable)
     {
-        return $this->task->map();
+        return [
+            // La eliipsis millor a javascript
+//            'title' => "S'ha creat una nova incidència " . ellipsis($this->incident->subject, 25),
+            'title' => "S'ha creat una nova tasca: " . $this->task->name,
+            'url' => '/tasques/' . $this->task->id,
+            'icon' => 'build',
+            'iconColor' => 'accent',
+            'task' => $this->task->map()
+        ];
     }
 }

@@ -47,6 +47,7 @@ import ShowOneTask from './components/ShowOneTask.vue'
 import Chat from './components/chat/Chat.vue'
 import ChatChannel from './components/chat/ChatChannel.vue'
 import ChatChannels from './components/chat/ChatChannels.vue'
+import Users from './components/Users.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -299,5 +300,6 @@ window.Vue.component('show-one-task', ShowOneTask)
 window.Vue.component('chat', Chat)
 window.Vue.component('chat-channel', ChatChannel)
 window.Vue.component('chat-channels', ChatChannels)
+window.Vue.component('users', Users)
 
 const app = new window.Vue(AppComponent)
