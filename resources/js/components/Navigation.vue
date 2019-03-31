@@ -93,7 +93,8 @@ export default {
         { icon: 'widgets', text: 'Features', url: '/features' },
         { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' },
         { icon: 'av_timer', text: 'Clock', url: '/clock' },
-        { icon: 'widgets', text: 'Chat', url: '/chat' }
+        { icon: 'widgets', text: 'Chat', url: '/chat' },
+        { icon: 'person', text: 'Users', url: '/users' }
       ]
     }
   },

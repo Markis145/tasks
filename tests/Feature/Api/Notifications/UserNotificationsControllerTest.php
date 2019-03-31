@@ -22,6 +22,7 @@ class UserNotificationsControllerTest extends TestCase
      */
     public function user_can_get_his_owned_notifications()
     {
+
         $user = $this->login('api');
         set_sample_notifications_to_user($user);
         $response = $this->json('GET','/api/v1/user/notifications/');

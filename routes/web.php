@@ -23,6 +23,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasquesController;
+use App\Http\Controllers\UsersController;
 use App\Task;
 
 Auth::routes();
@@ -81,6 +82,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/chat', '\\' . ChatController::class . '@index');
     Route::get('/xat', '\\' . ChatController::class . '@index');
+
+    Route::get('/users', '\\' . UsersController::class . '@index');
 
 
 });
