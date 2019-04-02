@@ -16,8 +16,15 @@
             <v-list-tile @click.stop="dialogVeureFoto = true">
                 <v-list-tile-title>Veure foto</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile>
+            <v-list-tile
+                    @click="selectFiles"
+                    :loading="uploading"
+                    :disabled="uploading">
                 <v-list-tile-title>Pendre foto</v-list-tile-title>
+                <form action="/photo" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload">
+                    <input type="hidden" name="_token" :value="csrf_token">
+                </form>
             </v-list-tile>
             <v-list-tile>
                 <v-list-tile-title>Pujar foto</v-list-tile-title>
@@ -104,9 +111,45 @@ export default {
       userAvatar: window.laravel_user.gravatar
     }
   },
+  preview () {
+    if (this.$refs.photo.files && this.$refs.photo.files[0]) {
+      var reader = new FileReader()
+      reader.onload = e => {
+        this.$refs.img_photo.setAttribute('src', e.target.result)
+      }
+      reader.readAsDataURL(this.$refs.photo.files[0])
+    }
+  },
   created () {
     this.user = window.laravel_user
-  }
+  },
+  selectFiles () {
+    this.$refs.photo.click()
+  },
+  upload () {
+    const formData = new FormData()
+    formData.append('photo', this.$refs.photo.files[0])
+    // Preview it
+    this.preview()
+    // save it
+    this.save(formData)
+  },
+  save (formData) {
+    this.uploading = true
+    var config = {
+      onUploadProgress: progressEvent => {
+        this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      }
+    }
+    window.axios.post('/api/v1/user/photo', formData, config)
+      .then(() => {
+        this.uploading = false
+        this.$snackbar.showMessage('La foto ha estat pujada correctament!')
+      })
+      .catch(error => {
+        this.uploading = false
+      })
+  },
 }
 </script>
 
