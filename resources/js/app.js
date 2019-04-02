@@ -48,6 +48,7 @@ import Chat from './components/chat/Chat.vue'
 import ChatChannel from './components/chat/ChatChannel.vue'
 import ChatChannels from './components/chat/ChatChannels.vue'
 import UsersList from './components/users/UsersList.vue'
+import Games from './components/games/Game.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -301,5 +302,6 @@ window.Vue.component('chat', Chat)
 window.Vue.component('chat-channel', ChatChannel)
 window.Vue.component('chat-channels', ChatChannels)
 window.Vue.component('users-list', UsersList)
+window.Vue.component('games', Games)
 
 const app = new window.Vue(AppComponent)

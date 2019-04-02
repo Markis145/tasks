@@ -16,6 +16,7 @@ use App\Http\Controllers\ChangelogController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FeaturesController;
+use App\Http\Controllers\GamesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
 use App\Http\Controllers\NewslettersController;
@@ -84,6 +85,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/xat', '\\' . ChatController::class . '@index');
 
     Route::get('/users', '\\' . UsersController::class . '@index');
+
+    Route::get('/games', '\\' . GamesController::class . '@index');
+
+
 
 
 });
