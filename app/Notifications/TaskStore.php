@@ -62,7 +62,7 @@ class TaskStore extends Notification implements ShouldQueue
 //            'title' => "S'ha creat una nova incidència " . ellipsis($this->incident->subject, 25),
             'title' => "S'ha creat una nova tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
-            'icon' => 'build',
+            'icon' => 'view_headline',
             'iconColor' => 'accent',
             'task' => $this->task->map()
         ];
