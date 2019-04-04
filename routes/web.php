@@ -27,7 +27,8 @@ use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
 use App\Task;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 //Auth::logout();
 
 //TODO
