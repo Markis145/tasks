@@ -23,6 +23,7 @@ use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
 use App\Task;
@@ -89,8 +90,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/games', '\\' . GamesController::class . '@index');
 
-
-
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
 
 });
 
