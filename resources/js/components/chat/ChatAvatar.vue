@@ -22,8 +22,7 @@
                     :disabled="uploading">
                 <v-list-tile-title>Pendre foto</v-list-tile-title>
                 <form action="/photo" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*" @change="upload">
-                    <input type="hidden" name="_token" :value="csrf_token">
+                    <input type="file" name="photo" id="photo-file-input" ref="photo" accept="image/*">
                 </form>
             </v-list-tile>
             <v-list-tile>
@@ -153,6 +152,10 @@ export default {
 }
 </script>
 
-<style scoped>
 
+<style scoped>
+    input[type=file] {
+        position: absolute;
+        left: -99999px;
+    }
 </style>

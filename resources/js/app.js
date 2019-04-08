@@ -50,6 +50,7 @@ import ChatChannels from './components/chat/ChatChannels.vue'
 import ChatAvatar from './components/chat/ChatAvatar.vue'
 import UsersList from './components/users/UsersList.vue'
 import Games from './components/games/Game.vue'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -305,5 +306,6 @@ window.Vue.component('chat-channels', ChatChannels)
 window.Vue.component('chat-avatar', ChatAvatar)
 window.Vue.component('users-list', UsersList)
 window.Vue.component('games', Games)
+window.Vue.component('users-online-widget', UsersOnlineWidget)
 
 const app = new window.Vue(AppComponent)
