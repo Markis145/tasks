@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Changelog\ChangelogController;
 use App\Http\Controllers\Api\ChatMessagesController;
 use App\Http\Controllers\Api\GitController;
 use App\Http\Controllers\Api\NewsletterController;
+use App\Http\Controllers\Api\Notifications\HelloNotificationsController;
 use App\Http\Controllers\Api\Notifications\NotificationsController;
 use App\Http\Controllers\Api\Notifications\SimpleNotificationsController;
 use App\Http\Controllers\Api\Notifications\UserNotificationsController;
@@ -86,6 +87,8 @@ Route::middleware('auth:api')->group(function (){
     Route::get('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@index');
     Route::post('/v1/channel/{channel}/messages', '\\' . ChatMessagesController::class . '@store');
     Route::delete('/v1/channel/{channel}/messages/{message}', '\\' . ChatMessagesController::class . '@destroy');
+
+    Route::post('/v1/notifications/hello', '\\' . HelloNotificationsController::class . '@store');
 
 });
 Route::post('/v1/newsletter', '\\' . NewsletterController::class . '@store');

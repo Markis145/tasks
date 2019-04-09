@@ -51,6 +51,7 @@ import ChatAvatar from './components/chat/ChatAvatar.vue'
 import UsersList from './components/users/UsersList.vue'
 import Games from './components/games/Game.vue'
 import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
+import PushNotificationsButton from './components/notifications/PushNotificationsButton.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -307,5 +308,6 @@ window.Vue.component('chat-avatar', ChatAvatar)
 window.Vue.component('users-list', UsersList)
 window.Vue.component('games', Games)
 window.Vue.component('users-online-widget', UsersOnlineWidget)
+window.Vue.component('push-notifications-button', PushNotificationsButton)
 
 const app = new window.Vue(AppComponent)

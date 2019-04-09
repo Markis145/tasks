@@ -74,6 +74,7 @@
                 </v-layout>
             </v-flex>
         </v-card>
+        <push-notifications-button></push-notifications-button>
         <v-card>
             <v-card-title class="primary white--text"><h4>Colors del tema</h4></v-card-title>
             <color></color>

@@ -4,8 +4,8 @@
         <v-toolbar-title v-if="$vuetify.breakpoint.smAndUp">Menú</v-toolbar-title>
         <span v-role="'SuperAdmin'" style="margin-left: 2%">
             <git-info class="hidden-xs-only" ></git-info></span>
-        <users-online-widget></users-online-widget>
         <v-spacer></v-spacer>
+        <users-online-widget></users-online-widget>
         <notificationswidget></notificationswidget>
         <h4 class="white-text mb-3 font-italic text-center hidden-sm-and-down" style="margin-top: 1%">{{ user('email') }}&nbsp;&nbsp;&nbsp;&nbsp;</h4>
         <v-avatar  @click="$emit('toggle-right')"  :title="user('email')">
