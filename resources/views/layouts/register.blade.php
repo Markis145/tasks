@@ -18,6 +18,7 @@
     <meta property="og:image" content="/img/branding.png">
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <meta property="og:description" content="Projecte de tasques per a 2&ordm; DAM de Marc Mestre Alguer&oacute;">
     <meta property="og:title" content="Tasques Marc Mestre Alguer&oacute;">
     <meta property="og:url" content="https://tasks.marcmestre.scool.cat">

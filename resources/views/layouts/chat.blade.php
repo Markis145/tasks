@@ -15,6 +15,7 @@
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#8719E0"/>
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <meta property="og:image" content="/img/branding.png">
     <meta property="og:image:width" content="279">
     <meta property="og:image:height" content="279">

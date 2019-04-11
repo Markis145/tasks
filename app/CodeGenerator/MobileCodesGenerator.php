@@ -9,11 +9,13 @@
 namespace App\Notifications;
 
 
+use Composer\Factory;
+
 class MobileCodesGenerator
 {
     public static function generate()
     {
-        // TODO GENERATE CODE
-        return '123456';
+        $faker = Factory::create();
+        return $faker->numberBetween($min = 000000, $max = 999999);
     }
 }

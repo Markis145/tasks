@@ -1,8 +1,8 @@
 <template>
     <span>
-        <span style="display: flex;align-items: center;">
+        <span>
             <v-tooltip left>
-                <v-btn slot="activator" v-if="disabled" icon flat color="primary" href="#" target="_blank">
+                <v-btn slot="activator" v-if="disabled" icon flat color="info" href="#" target="_blank">
                     <v-icon>help</v-icon>
                 </v-btn>
                 <span>Ajuda sobre les notificacions</span>
@@ -38,13 +38,13 @@ export default {
       loading: false,
       loading1: false,
       disabled: true,
-      disableWatcher: false
+      disableWatcher: false,
+      sending: false
     }
   },
   methods: {
     sendNotification () {
       this.loading1 = true
-
       window.axios.post('/api/v1/notifications/hello')
         .catch(error => console.log(error))
         .then(() => { this.loading1 = false })
@@ -94,7 +94,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
