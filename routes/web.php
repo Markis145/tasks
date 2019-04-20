@@ -19,6 +19,7 @@ use App\Http\Controllers\FeaturesController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
@@ -92,6 +93,8 @@ Route::middleware(['auth'])->group(function (){
 
     Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
     Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
+
+    Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
 
 });
 

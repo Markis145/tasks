@@ -148,10 +148,9 @@ export default {
       .catch(error => {
         this.uploading = false
       })
-  },
+  }
 }
 </script>
-
 
 <style scoped>
     input[type=file] {
