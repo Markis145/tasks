@@ -12,7 +12,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class TaskDelete
+class TaskDelete implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +35,9 @@ class TaskDelete
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return [
+            new PrivateChannel('App.User.' . $this->task->user_id),
+            new PrivateChannel('Tasques')
+        ];
     }
 }

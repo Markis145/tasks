@@ -13,18 +13,24 @@
 
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChangelogController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ClockController;
 use App\Http\Controllers\FeaturesController;
+use App\Http\Controllers\GamesController;
 use App\Http\Controllers\LoggedUserAvatarController;
 use App\Http\Controllers\LoggedUserPhotoController;
+use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\NewslettersController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TasquesController;
+use App\Http\Controllers\UsersController;
 use App\Task;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 //Auth::logout();
 
 //TODO
@@ -77,6 +83,18 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/clock', '\\' . ClockController::class . '@index');
 
     Route::get('/tasques/{id}', '\\' . TasquesController::class . '@show');
+
+    Route::get('/chat', '\\' . ChatController::class . '@index');
+    Route::get('/xat', '\\' . ChatController::class . '@index');
+
+    Route::get('/users', '\\' . UsersController::class . '@index');
+
+    Route::get('/games', '\\' . GamesController::class . '@index');
+
+    Route::post('/subscriptions', '\\' . PushSubscriptionController::class . '@update');
+    Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
+
+    Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
 
 });
 

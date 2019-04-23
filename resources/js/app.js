@@ -44,6 +44,15 @@ import Newsletters from './components/newsletters/Newsletters'
 import NavigationRight from './components/NavigationRight.vue'
 import Clock from './components/ui/Clock.vue'
 import ShowOneTask from './components/ShowOneTask.vue'
+import Chat from './components/chat/Chat.vue'
+import ChatChannel from './components/chat/ChatChannel.vue'
+import ChatChannels from './components/chat/ChatChannels.vue'
+import ChatAvatar from './components/chat/ChatAvatar.vue'
+import UsersList from './components/users/UsersList.vue'
+import Games from './components/games/Game.vue'
+import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
+import PushNotificationsButton from './components/notifications/PushNotificationsButton.vue'
+import Multimedia from './components/Multimedia.vue'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -293,6 +302,14 @@ window.Vue.component('navigation-right', NavigationRight)
 window.Vue.component('newsletters', Newsletters)
 window.Vue.component('clock', Clock)
 window.Vue.component('show-one-task', ShowOneTask)
-
+window.Vue.component('chat', Chat)
+window.Vue.component('chat-channel', ChatChannel)
+window.Vue.component('chat-channels', ChatChannels)
+window.Vue.component('chat-avatar', ChatAvatar)
+window.Vue.component('users-list', UsersList)
+window.Vue.component('games', Games)
+window.Vue.component('users-online-widget', UsersOnlineWidget)
+window.Vue.component('push-notifications-button', PushNotificationsButton)
+window.Vue.component('multimedia', Multimedia)
 
 const app = new window.Vue(AppComponent)

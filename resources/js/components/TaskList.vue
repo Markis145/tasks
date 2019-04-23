@@ -227,9 +227,9 @@ export default {
       filter: 'Totes',
       filterUser: null,
       filters: [
-        {name: 'Totes', value: 'Totes'},
-        {name: 'Completades', value: true},
-        {name: 'Pendents', value: false}
+        { name: 'Totes', value: 'Totes' },
+        { name: 'Completades', value: true },
+        { name: 'Pendents', value: false }
       ],
       statusBy: { name: 'Totes', value: 'Totes' },
       search: '',
@@ -312,6 +312,70 @@ export default {
     },
     call (action, object) {
       EventBus.$emit('touch-' + action, object)
+    }
+  },
+  created () {
+    console.log('Registering laravel echo')
+    console.log('User id: ')
+    console.log(window.laravel_user.id)
+    console.log('Is admin: ')
+    console.log(window.laravel_user.admin)
+    if (window.laravel_user.admin) {
+      console.log('admiiiin')
+      window.Echo.private('Tasques')
+        .listen('TaskUncompleted', (e) => {
+          console.log('TaskUncompleted Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          console.log('TaskCompleted Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskStore', (e) => {
+          console.log('TaskStore Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskModify', (e) => {
+          console.log('TaskModify Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskDelete', (e) => {
+          console.log('TaskDelete Received')
+          console.log(e.task)
+          this.refresh()
+        })
+    } else {
+      console.log('no admiiiin')
+      window.Echo.private('App.User.' + window.laravel_user.id)
+        .listen('TaskUncompleted', (e) => {
+          console.log('TaskUncompleted Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskCompleted', (e) => {
+          console.log('TaskCompleted Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskStore', (e) => {
+          console.log('TaskStore Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskModify', (e) => {
+          console.log('TaskModify Received')
+          console.log(e.task)
+          this.refresh()
+        })
+        .listen('TaskDelete', (e) => {
+          console.log('TaskDelete Received')
+          console.log(e.task)
+          this.refresh()
+        })
     }
   }
 }

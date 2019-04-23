@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Channel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,11 +10,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Lab404\Impersonate\Models\Impersonate;
 use Laravel\Passport\HasApiTokens;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasRoles, Notifiable, HasApiTokens, Impersonate;
+    use HasRoles, Notifiable, HasApiTokens, Impersonate, HasPushSubscriptions;
 
     const DEFAULT_PHOTO = 'default.png';
 //    const PHOTOS_PATH = 'user_photos';
@@ -200,6 +202,16 @@ class User extends Authenticatable
     public function isOnline()
     {
         return Cache::has(User::USERS_CACHE_KEY . '-user-is-online-' . $this->id);
+    }
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
+
+    public function routeNotificationForNexmo()
+    {
+        return $this->mobile;
     }
 
 }

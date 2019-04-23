@@ -92,7 +92,11 @@ export default {
         { icon: 'notifications', text: 'Notifications', url: '/notifications' },
         { icon: 'widgets', text: 'Features', url: '/features' },
         { icon: 'view_headline', text: 'Newsletter', url: '/newsletters' },
-        { icon: 'av_timer', text: 'Clock', url: '/clock' }
+        { icon: 'av_timer', text: 'Clock', url: '/clock' },
+        { icon: 'widgets', text: 'Chat', url: '/chat' },
+        { icon: 'person', text: 'Users', url: '/users' },
+        { icon: 'videogame_asset', text: 'Jocs', url: '/games' },
+        { icon: 'play_arrow', text: 'Multimedia', url: '/multimedia' }
       ]
     }
   },

@@ -80,4 +80,10 @@ trait CanLogin
         $this->actingAs($user,$guard);
         return $user;
     }
+
+    public function loginAsChatUser($guard = 'web')
+    {
+        initialize_chat_role();
+        return $this->loginAsUsingRole($guard, ['ChatManager']);
+    }
 }

@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="vapidPublicKey" content="{{ config('webpush.vapid.public_key') }}">
     <meta name="user" content="{{ logged_user() }}">
     <meta name="git" content="{{ git() }}">
     <meta name="theme-color" content="#8719E0"/>
@@ -59,55 +60,6 @@
                   csrf-token="{{ csrf_token() }}">
     </main-toolbar>
     <navigation-right v-model="drawerRight"></navigation-right>
-    {{--<v-navigation-drawer--}}
-            {{--v-model="drawerRight"--}}
-            {{--fixed--}}
-            {{--right--}}
-            {{--clipped--}}
-            {{--app--}}
-    {{-->--}}
-        {{--<v-card>--}}
-            {{--<v-card-title class="secondary darken3 white--text"><h4>Perfil</h4></v-card-title>--}}
-            {{--<v-layout wrap>--}}
-                {{--<v-flex xs12>--}}
-                        {{--<p>Nom: {{ Auth::user()->name }}</p>--}}
-                        {{--<p>Email: {{ Auth::user()->email }}</p>--}}
-                        {{--@if(Auth::user()->admin)--}}
-                                {{--Super Administrador--}}
-                        {{--@else--}}
-                                {{--Usuari--}}
-                        {{--@endif--}}
-                        {{--<p></p>--}}
-                        {{--<p>Rols: {{ implode(',',Auth::user()->map()['roles']) }}</p>--}}
-                        {{--<p>Permissos: {{ implode(', ',Auth::user()->map()['permissions']) }}</p>--}}
-                        {{--<h3>Colors del tema</h3>--}}
-                        {{--<color></color>--}}
-                {{--</v-flex>--}}
-            {{--</v-layout>--}}
-        {{--</v-card>--}}
-        {{--<v-card>--}}
-            {{--<v-card-title class="secondary darken3 white--text"><h4>Opcions administrador</h4></v-card-title>--}}
-
-            {{--<v-layout wrap>--}}
-                {{--@impersonating--}}
-                {{--<v-flex xs12>--}}
-                    {{--<v-avatar title="{{ Auth::user()->impersonatedBy()->name }} ( {{ Auth::user()->email }} )">--}}
-                        {{--<img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->impersonatedBy()->email) }}" alt="avatar">--}}
-                    {{--</v-avatar>--}}
-                {{--</v-flex>--}}
-                {{--@endImpersonating--}}
-                {{--<v-flex xs12>--}}
-                    {{--@canImpersonate--}}
-                    {{--<impersonate label="Entrar com..." url="/api/v1/regular_users"></impersonate>--}}
-                    {{--@endCanImpersonate--}}
-                    {{--@impersonating--}}
-                    {{--{{ Auth::user()->impersonatedBy()->name }} està suplantant {{ Auth::user()->name }}--}}
-                    {{--<a href="impersonate/leave">Abandonar la suplantació</a>--}}
-                    {{--@endImpersonating--}}
-                {{--</v-flex>--}}
-            {{--</v-layout>--}}
-        {{--</v-card>--}}
-    {{--</v-navigation-drawer>--}}
 
     <v-content>
         <v-container fluid fill-height>
