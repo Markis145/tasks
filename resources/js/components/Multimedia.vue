@@ -1,48 +1,58 @@
 <template>
-    <span>
-        <div>
-            <video id="demovideo" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" preload="auto" controls></video>
-            <v-flex xs12 sm6 lg4 offset-sm3 offset-lg4 mt-3 mb-5>
-                <v-card>
-                <v-slider
-                        prepend-icon="volume_up"
-                        v-model="volume"
-                        color="primary"
-                        @input="updateVolumeVideo(volume)"
-                        max="1" step="any"
-                        style="width: 20%">
-                </v-slider>
-                    <v-btn small fab outline @click="rewind('demovideo')" icon color="primary">
-                        <v-icon color="primary">fast_rewind</v-icon>
-                    </v-btn>
-                    <v-btn outline @click="stop('demovideo')" icon color="primary">
-                        <v-icon color="primary">stop</v-icon>
-                    </v-btn>
-                    <v-btn outline @click="play('demovideo')" icon color="primary">
-                        <v-icon color="primary">play_arrow</v-icon>
-                    </v-btn>
-                    <v-btn outline @click="pause('demovideo')" icon color="primary">
-                        <v-icon color="primary">pause</v-icon>
-                    </v-btn>
-                    <v-btn outline @click="forward('demovideo')" icon color="primary">
-                        <v-icon color="primary">fast_forward</v-icon>
-                    </v-btn>
-                </v-card>
-            </v-flex>
-        </div>
+    <v-layout row wrap align-center justify-center>
+        <v-flex xs12>
+                <video width="100%" id="demovideo" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" preload="auto" controls></video>
+                    <v-card>
+                        <v-card-text>
+                            <v-layout row wrap align-center justify-center>
+                                <v-flex xs12>
+                            <v-btn small fab outline @click="rewind('demovideo')" icon color="primary">
+                            <v-icon color="primary">fast_rewind</v-icon>
+                        </v-btn>
+                        <v-btn outline @click="stop('demovideo')" icon color="primary">
+                            <v-icon color="primary">stop</v-icon>
+                        </v-btn>
+                        <v-btn outline @click="play('demovideo')" icon color="primary">
+                            <v-icon color="primary">play_arrow</v-icon>
+                        </v-btn>
+                        <v-btn outline @click="pause('demovideo')" icon color="primary">
+                            <v-icon color="primary">pause</v-icon>
+                        </v-btn>
+                        <v-btn outline @click="forward('demovideo')" icon color="primary">
+                            <v-icon color="primary">fast_forward</v-icon>
+                        </v-btn>
+                                </v-flex>
 
-        <div>
+                            <v-flex xs4>
+
+                                <v-slider
+                                    prepend-icon="volume_up"
+                                    v-model="volume"
+                                    color="primary"
+                                    @input="updateVolumeVideo(volume)"
+                                    max="1" step="any"
+                            >
+                            </v-slider>
+
+                            </v-flex>
+                                </v-layout>
+                        </v-card-text>
+
+                    </v-card>
+        </v-flex>
+
+        <v-flex xs12 class="mt-3">
         <audio id="demoaudio" src="https://upload.wikimedia.org/wikipedia/en/4/45/ACDC_-_Back_In_Black-sample.ogg" preload="auto" controls></audio>
-            <v-flex  xs12 sm6 lg4 offset-sm3 offset-lg4 mt-3 mb-5>
+            <v-flex class="mt-3 mb-5">
                 <v-card>
-                    <v-slider
-                            prepend-icon="volume_up"
-                            v-model="volumeAudio"
-                            color="primary"
-                            @input="updateVolumeAudio(volumeAudio)"
-                            max="1" step="any"
-                            style="width: 20%">
-                    </v-slider>
+                    <!--<v-slider-->
+                            <!--prepend-icon="volume_up"-->
+                            <!--v-model="volumeAudio"-->
+                            <!--color="primary"-->
+                            <!--@input="updateVolumeAudio(volumeAudio)"-->
+                            <!--max="1" step="any"-->
+                            <!--style="width: 20%">-->
+                    <!--</v-slider>-->
                     <v-btn small fab outline @click="rewind('demoaudio')" icon color="primary">
                         <v-icon color="primary">fast_rewind</v-icon>
                     </v-btn>
@@ -60,8 +70,8 @@
                     </v-btn>
                 </v-card>
             </v-flex>
-        </div>
-    </span>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -101,6 +111,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
