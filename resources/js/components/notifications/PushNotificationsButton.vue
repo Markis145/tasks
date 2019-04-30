@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import pushSubscriptions from './../../../api/pushSubscriptions'
+import pushSubscriptions from './../api/notifications/pushSubscriptions'
 export default {
   name: 'PushNotificationButton',
   data () {
@@ -49,8 +49,8 @@ export default {
         .then(() => { this.loading1 = false })
     },
     /**
-     * Toggle push notifications subscription.
-     */
+       * Toggle push notifications subscription.
+       */
     togglePush (oldValue) {
       this.loading = true
       if (oldValue) {

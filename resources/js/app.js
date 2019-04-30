@@ -64,6 +64,7 @@ import '../../resources/img/github.webp'
 import '../../resources/img/github.png'
 
 window.Vue = Vue
+window.eventBus = new Vue()
 window.Vuetify = Vuetify
 
 const PRIMARY_COLOR_KEY = 'PRIMARY_COLOR_KEY'

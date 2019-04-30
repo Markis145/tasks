@@ -1,4 +1,4 @@
-importScripts("/service-worker/precache-manifest.c503ab8fa07d7921f4cc5c611f990037.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
+importScripts("/service-worker/precache-manifest.4edb2742cda4aef4cb94e27fd4e58e85.js", "https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: true
@@ -164,3 +164,4 @@ const WebPush = {
   }
 }
 WebPush.init()
+
