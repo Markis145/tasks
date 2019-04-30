@@ -9,7 +9,8 @@
 namespace App\Notifications;
 
 
-use Composer\Factory;
+
+use Faker\Factory;
 
 class MobileCodesGenerator
 {

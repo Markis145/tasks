@@ -1,6 +1,6 @@
 <template>
     <v-menu offset-y>
-        <v-badge slot="activator" left overlap color="error" class="ml-3 mr-2">
+        <v-badge slot="activator" left overlap color="error" class="ml-3 mr-2 mt-2">
             <span slot="badge" v-text="counter"></span>
             <v-btn icon color="white" :loading="loading" :disabled="loading">
                 <v-icon color="primary">person</v-icon>
@@ -21,11 +21,10 @@
                     target="_blank"
             >
                 <v-list-tile-avatar>
-                    <user-avatar :hash-id="user.hashid"
-                                 :alt="user.name"
-                                 :user="user"
-                                 size="40"
-                    ></user-avatar>
+                    <v-avatar :title="user.name">
+                        <v-img v-if="user.gravatar" :src="user.gravatar" alt="avatar"></v-img>
+                        <v-img v-else src="https://www.gravatar.com/avatar/" alt="avatar"></v-img>
+                    </v-avatar>
                 </v-list-tile-avatar>
                 <v-list-tile-content v-if="counter > 0">
                     <v-list-tile-title style="max-width: 450px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
