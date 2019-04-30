@@ -28,6 +28,8 @@ class PushSubscriptionUpdate extends FormRequest
      */
     public function rules()
     {
-        return [];
+        return [
+            'endpoint' => 'required'
+        ];
     }
 }
