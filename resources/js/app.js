@@ -53,6 +53,7 @@ import Games from './components/games/Game.vue'
 import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
 import PushNotificationsButton from './components/notifications/PushNotificationsButton.vue'
 import Multimedia from './components/Multimedia.vue'
+import ProfileDrawer from './components/chat/ProfileDrawer'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -312,5 +313,6 @@ window.Vue.component('games', Games)
 window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('push-notifications-button', PushNotificationsButton)
 window.Vue.component('multimedia', Multimedia)
+window.Vue.component('profile-drawer', ProfileDrawer)
 
 const app = new window.Vue(AppComponent)

@@ -7,7 +7,7 @@
                 style="max-width: 600px"
         >
         <template v-slot:activator="{ on }">
-            <v-avatar v-on="on" :src="user.avatar" size="52px">
+            <v-avatar v-on="on" :src="user.avatar" size="200px">
                 <img :src=userAvatar alt="avatar">
             </v-avatar>
         </template>
