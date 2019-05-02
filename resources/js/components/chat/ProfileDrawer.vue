@@ -1,11 +1,11 @@
 <template>
-    <span>
         <v-navigation-drawer
                 v-model="dataDrawer"
-                fixed
-                clipped
-                app
+                absolute
+                width="344"
         >
+            <v-layout row wrap>
+                <v-flex xs12>
             <v-card>
                 <v-card-title class="teal lighten-2 white--text">
                     <v-btn flat icon color="white" @click.stop="profileDrawer =! profileDrawer">
@@ -16,16 +16,27 @@
                 <v-card-text class="blue-grey lighten-5">
                      <chat-avatar></chat-avatar>
                 </v-card-text>
-                <v-card-text>
-                    <v-card-text-title class="green--text left">Tu nombre</v-card-text-title>
-                    <v-card-text>Marc Mestre A.</v-card-text>
-                </v-card-text>
-                <v-card-text class="blue-grey lighten-5 grey--text ">
-                    Este no es tu nombre de usuario ni un PIN. Este nombre será visible para tus contactos de Whatsapp.
-                </v-card-text>
+
+
             </v-card>
+                </v-flex>
+                <v-flex xs12>
+            <v-list>
+                <v-subheader class="green--text ml-4">Tu nombre</v-subheader>
+                    <v-list-tile class="ml-4">
+                        <v-list-tile-title>Marc Mestre A.</v-list-tile-title>
+                        <v-list-tile-actions><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-actions>
+                    </v-list-tile>
+            </v-list>
+                </v-flex>
+                <v-flex xs12>
+
+            <span class="blue-grey lighten-5 grey--text ">
+                    Este no es tu nombre de usuario ni un PIN. Este nombre será visible para tus contactos de Whatsapp.
+                </span>
+                </v-flex>
+            </v-layout>
         </v-navigation-drawer>
-    </span>
 </template>
 
 <script>
