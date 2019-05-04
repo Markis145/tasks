@@ -43,7 +43,7 @@
                 </form>
             </v-list-tile>
             <v-list-tile>
-                <v-list-tile-title onclick="getStream('video')">Pujar foto</v-list-tile-title>
+                <v-list-tile-title>Pujar foto</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click.stop="dialogEliminarFoto = true">
                 <v-list-tile-title>Eliminar foto</v-list-tile-title>
@@ -148,51 +148,6 @@ export default {
     // Preview it
     this.preview()
     // save it
-    this.save(formData)
-  },
-  save (formData) {
-    this.uploading = true
-    var config = {
-      onUploadProgress: progressEvent => {
-        this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-      }
-    }
-    window.axios.post('/api/v1/user/photo', formData, config)
-      .then(() => {
-        this.uploading = false
-        this.$snackbar.showMessage('La foto ha estat pujada correctament!')
-      })
-      .catch(error => {
-        this.uploading = false
-      })
-  },
-  getUserMedia (options, successCallback, failureCallback) {
-    var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia || navigator.msGetUserMedia
-    if (api) {
-      return api.bind(navigator)(options, successCallback, failureCallback)
-    }
-  },
-  getStream (type) {
-    if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
-      !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
-      alert('User Media API not supported.')
-      return
-    }
-    var constraints = {}
-    constraints[type] = true
-    getUserMedia(constraints, function (stream) {
-      var mediaControl = document.querySelector(type)
-
-      if ('srcObject' in mediaControl) {
-        mediaControl.srcObject = stream
-        mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream)
-      } else if (navigator.mozGetUserMedia) {
-        mediaControl.mozSrcObject = stream
-      }
-    }, function (err) {
-      alert('Error: ' + err)
-    })
   }
 }
 </script>
