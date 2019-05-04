@@ -7,9 +7,26 @@
                 style="max-width: 600px"
         >
         <template v-slot:activator="{ on }">
-            <v-avatar v-on="on" :src="user.avatar" size="200px">
-                <img :src=userAvatar alt="avatar">
-            </v-avatar>
+            <v-hover>
+                <v-avatar v-on="on" :src="user.avatar" size="200px" slot-scope="{ hover }">
+                    <v-img :src=userAvatar alt="avatar">
+                        <v-fade-transition>
+                            <div v-if="hover"
+                               class="grey d-flex
+                               display-3 white--text"
+                               style="height: 100%; opacity: 0.5">
+                                <v-flex>
+                                    <div class="text-xs-center">
+                                        <v-icon color="white">camera_alt</v-icon>
+                                    </div>
+                                    <p class="hover_letters text-xs-center">CANVIA &nbsp; L'ICONA</p>
+                                    <p class="hover_letters text-xs-center">DEL GRUP</p>
+                                </v-flex>
+                            </div>
+                        </v-fade-transition>
+                    </v-img>
+                </v-avatar>
+            </v-hover>
         </template>
 
         <v-list>
@@ -26,7 +43,7 @@
                 </form>
             </v-list-tile>
             <v-list-tile>
-                <v-list-tile-title>Pujar foto</v-list-tile-title>
+                <v-list-tile-title onclick="getStream('video')">Pujar foto</v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click.stop="dialogEliminarFoto = true">
                 <v-list-tile-title>Eliminar foto</v-list-tile-title>
@@ -148,6 +165,34 @@ export default {
       .catch(error => {
         this.uploading = false
       })
+  },
+  getUserMedia (options, successCallback, failureCallback) {
+    var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia || navigator.msGetUserMedia
+    if (api) {
+      return api.bind(navigator)(options, successCallback, failureCallback)
+    }
+  },
+  getStream (type) {
+    if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+      !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+      alert('User Media API not supported.')
+      return
+    }
+    var constraints = {}
+    constraints[type] = true
+    getUserMedia(constraints, function (stream) {
+      var mediaControl = document.querySelector(type)
+
+      if ('srcObject' in mediaControl) {
+        mediaControl.srcObject = stream
+        mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream)
+      } else if (navigator.mozGetUserMedia) {
+        mediaControl.mozSrcObject = stream
+      }
+    }, function (err) {
+      alert('Error: ' + err)
+    })
   }
 }
 </script>
@@ -156,5 +201,15 @@ export default {
     input[type=file] {
         position: absolute;
         left: -99999px;
+    }
+    .hover_letters {
+        font-size: small;
+    }
+    .v-card-reveal {
+        align-items: center;
+        bottom: 0;
+        justify-content: center;
+        opacity: .5;
+        position: absolute;
     }
 </style>
