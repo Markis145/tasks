@@ -1,8 +1,9 @@
 <template>
     <span>
         <v-toolbar color="primary" class="ml-3">
-            <chat-avatar></chat-avatar>
-
+            <v-avatar size="52px" @click.stop="profileDrawer =! profileDrawer">
+                <img :src=userAvatar alt="avatar">
+            </v-avatar>
             <v-toolbar-title>Channels</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-tooltip bottom>
@@ -21,6 +22,8 @@
 
         <v-container fluid text-xs-center class="ma-0 pa-0">
           <v-layout row wrap>
+                          <profile-drawer v-model="profileDrawer"></profile-drawer>
+
             <v-flex xs12 style="height: 64px;">
               <v-card dark color="cyan" style="height: 64px;">
                 <v-card-text class="px-0">TODO activar notificacions d'escriptori</v-card-text>
@@ -60,15 +63,14 @@
 </template>
 
 <script>
-import ChatAvatar from "./ChatAvatar"
+import ProfileDrawer from "./ProfileDrawer"
 export default {
   name: 'ChatChannels',
-  components: {ChatAvatar},
+  components: {ProfileDrawer},
   data () {
     return {
       showMenu: false,
-      dialogVeureFoto: false,
-      dialogEliminarFoto: false,
+      profileDrawer: false,
       userAvatar: window.laravel_user.gravatar,
       dataChannels:
           [
