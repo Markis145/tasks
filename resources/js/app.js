@@ -54,6 +54,8 @@ import UsersOnlineWidget from './components/users/UsersOnlineWidget.vue'
 import PushNotificationsButton from './components/notifications/PushNotificationsButton.vue'
 import Multimedia from './components/Multimedia.vue'
 import ProfileDrawer from './components/chat/ProfileDrawer'
+import UserEmailConfirmation from './components/users/UserEmailsComponent'
+import VerifyMobileForm from './components/users/VerifyMobileForm'
 
 import '../../resources/img/branding.png'
 import '../../resources/img/branding.webp'
@@ -314,5 +316,7 @@ window.Vue.component('users-online-widget', UsersOnlineWidget)
 window.Vue.component('push-notifications-button', PushNotificationsButton)
 window.Vue.component('multimedia', Multimedia)
 window.Vue.component('profile-drawer', ProfileDrawer)
+window.Vue.component('users-email-component', UserEmailConfirmation)
+window.Vue.component('verify-mobile-form', VerifyMobileForm)
 
 const app = new window.Vue(AppComponent)

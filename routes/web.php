@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerifyMobileController;
 use App\Task;
 
 Auth::routes(['verify' => true]);
@@ -95,6 +96,9 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/subscriptions/Delete', '\\' . PushSubscriptionController::class . '@destroy');
 
     Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
+
+    Route::get('/verificar_mobil','\\' . VerifyMobileController::class . '@index');
+    Route::post('/verificar_mobil','\\' . VerifyMobileController::class . '@send');
 
 });
 

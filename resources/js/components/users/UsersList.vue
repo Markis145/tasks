@@ -1,13 +1,13 @@
 <template>
-    <v-card>
+    <v-card class="ml-2 mr-2 mt-5">
         <v-toolbar dark color="primary elevation-2">
             <v-toolbar-title>
-                <v-icon class="mr-1">supervised_user_circle</v-icon>Users
+                Users
             </v-toolbar-title>
         </v-toolbar>
         <v-container fluid>
             <v-layout row>
-                <v-flex xs12 md4>
+                <v-flex class="ml-3" xs12 md4>
                     <v-text-field
                             v-model="search"
                             append-icon="search"
@@ -22,9 +22,11 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.email }}</td>
+                            <td>{{ user.mobile }}</td>
                             <td>{{ user.email_verified_at }}</td>
-                            <td></td>
+                            <td>
+                                <users-email-component :user="user"></users-email-component>
+                            </td>
                         </template>
                     </v-data-table>
                 </v-flex>
@@ -41,18 +43,23 @@ export default {
       dataUsers: this.users,
       search: '',
       headers: [
-        { text: '#', value: 'id' },
+        { text: 'Id', value: 'id' },
         { text: 'Name', value: 'name' },
         { text: 'Email', value: 'email' },
-        { text: 'Phone', value: 'email' },
-        { text: 'Verified', value: 'verified_at' },
+        { text: 'Phone', value: 'mobile' },
+        { text: 'Verified', value: 'email_verified_at' },
         { text: 'Actions', value: 'id' }
       ]
     }
   },
   props: {
     users: {
-      type: Array
+      type: Array,
+      required: true
+    },
+    user: {
+      type: Object,
+      required: false
     }
   }
 }
