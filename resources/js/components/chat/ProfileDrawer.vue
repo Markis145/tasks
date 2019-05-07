@@ -23,7 +23,7 @@
                         <v-subheader class="green--text ml-4">Tu nombre</v-subheader>
                             <v-list-tile class="ml-4">
                                 <v-list-tile-title>Marc Mestre A.</v-list-tile-title>
-                                <v-list-tile-actions><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-actions>
+                                <v-list-tile-action><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-action>
                             </v-list-tile>
                     </v-list>
                 </v-flex>
@@ -41,7 +41,7 @@
                         <v-subheader class="green--text ml-4">Info.</v-subheader>
                         <v-list-tile class="ml-4">
                             <v-list-tile-title>Hello! I'm using WhatsApp!</v-list-tile-title>
-                            <v-list-tile-actions><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-actions>
+                            <v-list-tile-action><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-action>
                         </v-list-tile>
                     </v-list>
                 </v-flex>
