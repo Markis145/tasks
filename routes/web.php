@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\TasquesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerifyMobileController;
 use App\Task;
 
 Auth::routes(['verify' => true]);
@@ -96,6 +97,9 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/multimedia', '\\' . MultimediaController::class . '@index');
 
+    Route::get('/verificar_mobil','\\' . VerifyMobileController::class . '@index');
+    Route::post('/verificar_mobil','\\' . VerifyMobileController::class . '@send');
+
 });
 
 Route::get('/', function () {
@@ -103,7 +107,10 @@ Route::get('/', function () {
 });
 
 
-
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 
 Auth::routes();
 

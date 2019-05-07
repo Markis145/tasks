@@ -2,16 +2,22 @@
 namespace App\Notifications;
 use App\Task;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 use NotificationChannels\WebPush\WebPushMessage;
-class TaskUncompleted extends Notification
+/**
+ * Class TaskStored.
+ *
+ * @package App\Notifications
+ */
+class TaskCompleted extends Notification implements ShouldQueue
 {
     use Queueable;
     public $task;
     /**
-     * TaskUncompleted constructor.
+     * SimpleNotification constructor.
      * @param $task
      */
     public function __construct(Task $task)
@@ -21,7 +27,7 @@ class TaskUncompleted extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -37,7 +43,7 @@ class TaskUncompleted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'title' => "S'ha descompletat la tasca: " . $this->task->name,
+            'title' => "S'ha completat la tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
             'icon' => 'assignment',
             'iconColor' => 'primary',
@@ -54,9 +60,9 @@ class TaskUncompleted extends Notification
     public function toWebPush($notifiable, $notification)
     {
         return (new WebPushMessage)
-            ->title('Tasca descompletada!')
+            ->title('Tasca completada!')
             ->icon('/notification-icon.png')
-            ->body('Has descompletat la tasca: ' . $this->task->name)
+            ->body('Has completat la tasca: ' . $this->task->name)
             ->action('View app', 'view_app')
             ->data(['id' => $notification->id]);
     }

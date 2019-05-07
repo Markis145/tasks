@@ -1,26 +1,25 @@
 <?php
-namespace App\Notifications;
-use App\CodeGenerator\MobileCodeGenerator;
+namespace App\Notifications\SMS;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
-class VerifyMobile extends Notification
+class SMSMessage extends Notification
 {
     use Queueable;
-    public $code;
+    public $message;
     /**
-     * VerifyMobile constructor.
+     * SMSMessage constructor.
+     *
+     * @param $message
      */
-    public function __construct($code)
+    public function __construct($message)
     {
-        $this->code =  $code;
+        $this->message = $message;
     }
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -30,13 +29,13 @@ class VerifyMobile extends Notification
     /**
      * Get the Nexmo / SMS representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed $notifiable
      * @return NexmoMessage
      */
     public function toNexmo($notifiable)
     {
         return (new NexmoMessage)
-            ->content($this->code)
+            ->content($this->message)
             ->unicode();
     }
 }

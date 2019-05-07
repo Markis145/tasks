@@ -1,19 +1,16 @@
 <?php
-
 namespace App\Notifications;
-
 use App\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-
+use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
 class TaskStore extends Notification implements ShouldQueue
 {
     use Queueable;
-
     public $task;
-
     /**
      * TaskUncompleted constructor.
      * @param $task
@@ -22,8 +19,6 @@ class TaskStore extends Notification implements ShouldQueue
     {
         $this->task = $task;
     }
-
-
     /**
      * Get the notification's delivery channels.
      *
@@ -32,9 +27,8 @@ class TaskStore extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', WebPushChannel::class];
     }
-
     /**
      * Get the mail representation of the notification.
      *
@@ -44,11 +38,10 @@ class TaskStore extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification. Task: ' . $this->task->name)
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->line('The introduction to the notification. Task: ' . $this->task->name)
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
-
     /**
      * Get the array representation of the notification.
      *
@@ -58,13 +51,27 @@ class TaskStore extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-            // La eliipsis millor a javascript
-//            'title' => "S'ha creat una nova incidència " . ellipsis($this->incident->subject, 25),
             'title' => "S'ha creat una nova tasca: " . $this->task->name,
             'url' => '/tasques/' . $this->task->id,
-            'icon' => 'view_headline',
+            'icon' => 'assignment',
             'iconColor' => 'accent',
             'task' => $this->task->map()
         ];
+    }
+    /**
+     * Get the web push representation of the notification.
+     *
+     * @param mixed $notifiable
+     * @param mixed $notification
+     * @return \Illuminate\Notifications\Messages\DatabaseMessage
+     */
+    public function toWebPush($notifiable, $notification)
+    {
+        return (new WebPushMessage)
+            ->title('Tasca creada')
+            ->icon('/notification-icon.png')
+            ->body('Has creat la tasca: ' . $this->task->name)
+            ->action('View app', 'view_app')
+            ->data(['id' => $notification->id]);
     }
 }
