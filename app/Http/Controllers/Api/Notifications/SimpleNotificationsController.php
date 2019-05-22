@@ -23,8 +23,8 @@ class SimpleNotificationsController extends Controller
      */
     public function store(SimpleNotificationsStore $request)
     {
-        User::findOrFail($request->user)->notify(new SimpleNotification($request->title));
-//        $user = $user->fresh();
+        User::findOrFail($request->user)->notify(new SimpleNotification($request->title, $request->body));
+        // $user = $user->fresh();
 //        dd ($user->notifications);
 //        return $user->fresh()->notifications->last();
     }
