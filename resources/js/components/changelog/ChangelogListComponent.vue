@@ -71,12 +71,12 @@
                      >
                         <v-layout justify-space-between>
                             <v-flex xs2 text-xs-left align-self-center>
-                                <template v-if="log.user_name">
-                                    <v-avatar :title="(user !== null) ? user.name + ' - ' + user.email : ''">
-                                        <img :src="(user.gravatar !== null) ? user.gravatar : 'img/user_profile.png'"
+                                <template v-if="log.user">
+                                    <v-avatar :title="(log.user !== null) ? log.user.name + ' - ' + log.user.email : ''">
+                                        <img :src="(log.user.gravatar !== null) ? log.user.gravatar : 'img/user_profile.png'"
                                              alt="avatar">
                                     </v-avatar>
-                                    <span :title="log.user_email">{{log.user_name}}</span>
+                                    <span :title="log.user.email">{{log.user.name}}</span>
                                 </template>
                                 <template v-else>Cap usuari</template>
                             </v-flex>
@@ -195,11 +195,12 @@ export default {
       })
     },
     activeRealTime () {
-      // TODO NOTIFICATIONs
-      // window.Echo.private(this.channel)
-      //   .listen('LogCreated', (e) => {
-      //     this.dataLogs.push(e.log)
-      //   })
+      window.Echo.private(this.channel)
+        .listen('Changelog', (e) => {
+          let log = e.log
+          log.user = e.user
+          this.dataLogs.push(log)
+        })
     },
     disableRealTime () {
       window.Echo.leave(this.channel)
@@ -207,7 +208,6 @@ export default {
   },
   created () {
     if (this.realTime) this.activeRealTime()
-    this.user = window.laravel_user
   }
 }
 </script>

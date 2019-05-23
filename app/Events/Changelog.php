@@ -1,8 +1,6 @@
 <?php
-
 namespace App\Events;
-
-use App\Task;
+use App\Log;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -10,22 +8,22 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-
-class TaskUncompleted implements ShouldBroadcast
+class Changelog implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public $task;
-
+    public $log;
+    public $user;
     /**
-     * TaskUncompleted constructor.
-     * @param $task
+     * Create a new event instance.
+     *
+     * @param Log $log
+     * @param $user
      */
-    public function __construct(Task $task)
+    public function __construct(Log $log, $user)
     {
-        $this->task = $task;
+        $this->user = $user;
+        $this->log = $log;
     }
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -33,10 +31,6 @@ class TaskUncompleted implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return [
-            new PrivateChannel('App.User.' . $this->task->user_id),
-            new PrivateChannel('Tasques'),
-            new PrivateChannel('App.Log')
-        ];
+        return new PrivateChannel('App.Log');
     }
 }
