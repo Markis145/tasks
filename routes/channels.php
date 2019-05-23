@@ -26,3 +26,6 @@ Broadcast::channel('App.Counter', function ($user) {
         'gravatar' => $user->gravatar
     ];
 });
+Broadcast::channel('App.Log', function () {
+    return true;
+});
