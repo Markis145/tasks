@@ -71,7 +71,7 @@ class TaskStore extends Notification implements ShouldQueue
             ->title('Tasca creada')
             ->icon('/notification-icon.png')
             ->body('Has creat la tasca: ' . $this->task->name)
-            ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->action('Visualitza la tasca', 'open_url')
+            ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
 }

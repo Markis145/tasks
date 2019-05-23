@@ -57,7 +57,7 @@ class TaskUncompleted extends Notification
             ->title('Tasca descompletada!')
             ->icon('/notification-icon.png')
             ->body('Has descompletat la tasca: ' . $this->task->name)
-            ->action('View app', 'view_app')
-            ->data(['id' => $notification->id]);
+            ->action('Visualitza la tasca', 'open_url')
+            ->data(['url' => env('APP_URL') . '/tasques/' . $this->task->id]);
     }
 }
