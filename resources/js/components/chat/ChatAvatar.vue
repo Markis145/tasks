@@ -114,7 +114,7 @@
             </v-card-title>
             <v-card-text class="text-xs-center">
                 <v-avatar :src="userAvatar" size="650px" tile @click="$emit('toggleright')">
-                    <img src="https://i.ibb.co/MCnF5wC/moo.png" alt="avatar">
+                    <img :src=userAvatar alt="avatar">
                 </v-avatar>
             </v-card-text>
         </v-card>

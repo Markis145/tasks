@@ -8,7 +8,7 @@
                 <v-flex xs12>
                     <v-card>
                         <v-card-title class="teal lighten-2 white--text">
-                            <v-btn flat icon color="white" @click.stop="profileDrawer =! profileDrawer">
+                            <v-btn flat icon color="white" @click.stop="dataDrawer =! dataDrawer">
                                 <v-icon>arrow_back</v-icon>
                             </v-btn>
                             <h4>Perfil</h4>
@@ -56,8 +56,7 @@ export default {
   components: { ChatAvatar },
   data () {
     return {
-      dataDrawer: this.profileDrawer,
-      name: this.laravel_user.name
+      dataDrawer: this.profileDrawer
     }
   },
   props: {
