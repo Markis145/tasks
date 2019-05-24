@@ -22,7 +22,7 @@
                     <v-list>
                         <v-subheader class="green--text ml-4">Tu nombre</v-subheader>
                             <v-list-tile class="ml-4">
-                                <v-list-tile-title>Marc Mestre A.</v-list-tile-title>
+                                <v-list-tile-title>{{ user('name') }}</v-list-tile-title>
                                 <v-list-tile-action><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-action>
                             </v-list-tile>
                     </v-list>
@@ -56,7 +56,8 @@ export default {
   components: { ChatAvatar },
   data () {
     return {
-      dataDrawer: this.profileDrawer
+      dataDrawer: this.profileDrawer,
+      name: this.laravel_user.name
     }
   },
   props: {
@@ -76,6 +77,11 @@ export default {
   model: {
     prop: 'profileDrawer',
     event: 'input'
+  },
+  methods: {
+    user (prop) {
+      return window.laravel_user[prop]
+    }
   }
 }
 </script>

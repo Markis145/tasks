@@ -14,7 +14,7 @@
                             <div v-if="hover"
                                class="grey d-flex
                                display-3 white--text"
-                               style="height: 100%; opacity: 0.5">
+                               style="height: 100%; opacity: 0.7">
                                 <v-flex>
                                     <div class="text-xs-center">
                                         <v-icon color="white">camera_alt</v-icon>
@@ -181,7 +181,7 @@ export default {
         left: -99999px;
     }
     .hover_letters {
-        font-size: small;
+        font-size: medium;
     }
     .v-card-reveal {
         align-items: center;
