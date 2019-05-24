@@ -14,7 +14,7 @@
                             <div v-if="hover"
                                class="grey d-flex
                                display-3 white--text"
-                               style="height: 100%; opacity: 0.5">
+                               style="height: 100%; opacity: 0.7">
                                 <v-flex>
                                     <div class="text-xs-center">
                                         <v-icon color="white">camera_alt</v-icon>
@@ -114,7 +114,7 @@
             </v-card-title>
             <v-card-text class="text-xs-center">
                 <v-avatar :src="userAvatar" size="650px" tile @click="$emit('toggleright')">
-                    <img src="https://i.ibb.co/MCnF5wC/moo.png" alt="avatar">
+                    <img :src=userAvatar alt="avatar">
                 </v-avatar>
             </v-card-text>
         </v-card>
@@ -181,7 +181,7 @@ export default {
         left: -99999px;
     }
     .hover_letters {
-        font-size: small;
+        font-size: medium;
     }
     .v-card-reveal {
         align-items: center;

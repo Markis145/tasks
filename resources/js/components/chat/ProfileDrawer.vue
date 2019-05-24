@@ -8,7 +8,7 @@
                 <v-flex xs12>
                     <v-card>
                         <v-card-title class="teal lighten-2 white--text">
-                            <v-btn flat icon color="white" @click.stop="profileDrawer =! profileDrawer">
+                            <v-btn flat icon color="white" @click.stop="dataDrawer =! dataDrawer">
                                 <v-icon>arrow_back</v-icon>
                             </v-btn>
                             <h4>Perfil</h4>
@@ -22,7 +22,7 @@
                     <v-list>
                         <v-subheader class="green--text ml-4">Tu nombre</v-subheader>
                             <v-list-tile class="ml-4">
-                                <v-list-tile-title>Marc Mestre A.</v-list-tile-title>
+                                <v-list-tile-title>{{ user('name') }}</v-list-tile-title>
                                 <v-list-tile-action><v-btn flat icon color="grey"><v-icon>edit</v-icon></v-btn></v-list-tile-action>
                             </v-list-tile>
                     </v-list>
@@ -76,6 +76,11 @@ export default {
   model: {
     prop: 'profileDrawer',
     event: 'input'
+  },
+  methods: {
+    user (prop) {
+      return window.laravel_user[prop]
+    }
   }
 }
 </script>
