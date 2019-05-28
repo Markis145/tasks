@@ -12,9 +12,9 @@
                     <v-img :src=userAvatar alt="avatar">
                         <v-fade-transition>
                             <div v-if="hover"
-                               class="grey d-flex
+                                 class="grey d-flex
                                display-3 white--text"
-                               style="height: 100%; opacity: 0.7">
+                                 style="height: 100%; opacity: 0.7">
                                 <v-flex>
                                     <div class="text-xs-center">
                                         <v-icon color="white">camera_alt</v-icon>
@@ -30,7 +30,7 @@
         </template>
 
         <v-list>
-            <v-list-tile @click.stop="dialogVeureFoto = true">
+            <v-list-tile @click.stop.prevent="dialogVeureFoto = true">
                 <v-list-tile-title>Veure foto</v-list-tile-title>
             </v-list-tile>
             <v-list-tile   @click="selectFiles">
@@ -51,7 +51,7 @@
                                 Pujar foto
                             </v-list-tile-title>
             </v-list-tile>
-            <v-list-tile @click.stop="dialogEliminarFoto = true">
+            <v-list-tile @click.stop.prevent="dialogEliminarFoto = true">
                 <v-list-tile-title>Eliminar foto</v-list-tile-title>
             </v-list-tile>
         </v-list>
@@ -123,56 +123,56 @@
 </template>
 
 <script>
-export default {
-  name: 'ChatAvatar',
-  data () {
-    return {
-      showMenu: false,
-      dialogVeureFoto: false,
-      dialogEliminarFoto: false,
-      userAvatar: window.laravel_user.gravatar
-    }
-  },
-  methods: {
-    preview () {
-      if (this.$refs.photo.files && this.$refs.photo.files[0]) {
-        var reader = new FileReader()
-        reader.onload = e => {
-          this.$refs.img_photo.setAttribute('src', e.target.result)
-        }
-        reader.readAsDataURL(this.$refs.photo.files[0])
+  export default {
+    name: 'ChatAvatar',
+    data () {
+      return {
+        showMenu: false,
+        dialogVeureFoto: false,
+        dialogEliminarFoto: false,
+        userAvatar: window.laravel_user.gravatar
       }
     },
-    save (formData) {
-      this.uploading = true
-      var config = {
-        onUploadProgress: progressEvent => {
-          this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+    methods: {
+      preview () {
+        if (this.$refs.photo.files && this.$refs.photo.files[0]) {
+          var reader = new FileReader()
+          reader.onload = e => {
+            this.$refs.img_photo.setAttribute('src', e.target.result)
+          }
+          reader.readAsDataURL(this.$refs.photo.files[0])
         }
+      },
+      save (formData) {
+        this.uploading = true
+        var config = {
+          onUploadProgress: progressEvent => {
+            this.percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          }
+        }
+        window.axios.post('/api/v1/user/photo', formData, config)
+          .then(() => {
+            this.uploading = false
+            this.$snackbar.showMessage('La foto ha estat pujada correctament!')
+          })
+          .catch(error => {
+            console.log(error)
+            this.uploading = false
+          })
+      },
+      selectFiles () {
+        this.$refs.photo.click()
+      },
+      upload () {
+        const formData = new FormData()
+        formData.append('photo', this.$refs.photo.files[0])
+        // Preview it
+        this.preview()
+        // save it
+        this.save(formData)
       }
-      window.axios.post('/api/v1/user/photo', formData, config)
-        .then(() => {
-          this.uploading = false
-          this.$snackbar.showMessage('La foto ha estat pujada correctament!')
-        })
-        .catch(error => {
-          console.log(error)
-          this.uploading = false
-        })
-    },
-    selectFiles () {
-      this.$refs.photo.click()
-    },
-    upload () {
-      const formData = new FormData()
-      formData.append('photo', this.$refs.photo.files[0])
-      // Preview it
-      this.preview()
-      // save it
-      this.save(formData)
     }
   }
-}
 </script>
 
 <style scoped>
