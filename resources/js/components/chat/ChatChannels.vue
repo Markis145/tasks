@@ -63,10 +63,10 @@
 </template>
 
 <script>
-import ProfileDrawer from "./ProfileDrawer"
+import ProfileDrawer from './ProfileDrawer'
 export default {
   name: 'ChatChannels',
-  components: {ProfileDrawer},
+  components: { ProfileDrawer },
   data () {
     return {
       showMenu: false,
