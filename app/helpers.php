@@ -616,9 +616,9 @@ if (! function_exists('sample_logs')) {
 
     if (! function_exists('set_sample_notifications_to_user')) {
         function set_sample_notifications_to_user($user) {
-            $user->notify(new SimpleNotification('Notification 1'));
-            $user->notify(new SimpleNotification('Notification 2'));
-            $user->notify(new SimpleNotification('Notification 3'));
+            $user->notify(new SimpleNotification('Notification 1','Body', '/'));
+            $user->notify(new SimpleNotification('Notification 2','Body', '/'));
+            $user->notify(new SimpleNotification('Notification 3','Body', '/'));
         }
     }
 
@@ -632,8 +632,8 @@ if (! function_exists('sample_logs')) {
                 'name' => 'Bart Simpson',
                 'email' => 'bart@lossimpsons.com'
             ]);
-            $user1->notify(new SimpleNotification('Sample Notification 1'));
-            $user2->notify(new SimpleNotification('Sample Notification 2'));
+            $user1->notify(new SimpleNotification('Sample Notification 1','Body', '/'));
+            $user2->notify(new SimpleNotification('Sample Notification 2','Body', '/'));
         }
     }
 }

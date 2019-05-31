@@ -14,7 +14,7 @@ class LogTaskCompletedTest extends TestCase
     /**
      * @test
      */
-    public function a_task_uncompleted_log_has_been_created()
+    public function a_task_completed_log_has_been_created()
     {
         // 1 Preparar
         $user = factory(User::class)->create();
@@ -25,8 +25,8 @@ class LogTaskCompletedTest extends TestCase
         // Executar
 //        event(new TaskUncompleted($task));
 
-        $listener = new \App\Listeners\LogTaskUncompleted();
-        $listener->handle(new \App\Events\TaskUncompleted($task));
+        $listener = new \App\Listeners\LogTaskCompleted();
+        $listener->handle(new \App\Events\TaskCompleted($task));
         // 3 ASSERT
         // Test log is inserted
         $log  = Log::find(1);

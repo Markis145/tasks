@@ -53,6 +53,7 @@ export default {
         this.$snackbar.showMessage('Codi correcte. El vostre mòbil ha estat validat correctament')
       }).catch(() => {
         this.loading = false
+        this.$snackbar.showError('Codi incorrecte.')
       })
     }
   }
