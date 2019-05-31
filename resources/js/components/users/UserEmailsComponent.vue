@@ -14,10 +14,10 @@
             <v-list-tile @click="reset">
                 <v-list-tile-title>Restauració paraula de pas</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile v-if="!user.email_verified_at" @click="confirm">
+            <v-list-tile @click="confirm">
                 <v-list-tile-title>Confirmació email personal</v-list-tile-title>
             </v-list-tile>
-            <v-list-tile v-if="!user.mobile_verified_at" @click="sendMobileVerification">
+            <v-list-tile @click="sendMobileVerification">
                 <v-list-tile-title>Confirmació SMS telèfon</v-list-tile-title>
             </v-list-tile>
         </v-list>
